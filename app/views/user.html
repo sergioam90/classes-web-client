@@ -1,0 +1,214 @@
+<div ng-controller="UserCtrl">
+  <div class="col-sm-10 col-sm-offset-1">
+    <div class="row">
+      <div class="col-sm-12 panel panel-default">
+
+        <tabset justified="true">
+
+          <!-- User profile -->
+          <tab>
+            <tab-heading><i class="fa fa-user"></i> Usuario</tab-heading>
+
+            <!-- Profiles buttons -->
+            <div class="text-center">
+              <button class="btn btn-warning" ng-show="!currentUser.teacher && !showNewTeacherForm"
+                      ng-click="startTeaching()" ng-cloak>
+                ¡Comienza a enseñar!
+              </button>
+              <button class="btn btn-success" ng-show="!currentUser.student" ng-click="startLearning()" ng-cloak>
+                ¡Comienza a aprender!
+              </button>
+            </div>
+
+            <!-- Profile image -->
+            <div class="col-sm-2">
+              <img class="img-responsive img-rounded" src="images/mock.jpg"/>
+            </div>
+
+            <!-- First fields column -->
+            <div class="col-sm-5">
+              <dl>
+                <dt>Nombre</dt>
+                <dd>{{ currentUser.firstName }} {{ currentUser.lastName }}</dd>
+                <dt>Nombre de usuario</dt>
+                <dd>{{ currentUser.username }}</dd>
+                <dt>E-mail</dt>
+                <dd>{{ currentUser.email }}</dd>
+              </dl>
+            </div>
+
+            <!-- Second fields column -->
+            <div class="col-sm-2">
+              <dl>
+                <dt>Miembro desde</dt>
+                <dd>{{ currentUser.createdDate | date:'longDate' }}</dd>
+              </dl>
+            </div>
+
+          </tab>
+
+          <!-- Student profile -->
+          <tab ng-show="studentTabVisible">
+            <tab-heading><i class="fa fa-book"></i> Estudiante</tab-heading>
+            <div class="text-center">
+              <div ng-hide="!currentUser.student" ng-cloak>
+                <h5 class="text-center">¡Listo!</h5>
+                <h6 class="text-center">¡Próximamente podrás registrarte en una clase!</h6>
+              </div>
+            </div>
+
+          </tab>
+
+          <!-- Teacher profile -->
+          <tab ng-show="teacherTabVisible">
+            <tab-heading><i class="fa fa-graduation-cap"></i> Profesor</tab-heading>
+            <div class="container-fluid">
+              <div class="col-sm-12" ng-show="showNewTeacherForm">
+                <!-- Teacher form -->
+                <form class="form-horizontal" ng-submit="sendTeacherForm(newTeacher)">
+
+                  <!-- Address -->
+                  <div class="form-group">
+                    <label class="control-label col-sm-3">Dirección</label>
+
+                    <div class="col-sm-9">
+                      <input class="form-control" placeholder="Dirección"
+                             ng-model="newTeacher.address" required/>
+                    </div>
+                  </div>
+
+                  <!-- Phone -->
+                  <div class="form-group">
+                    <label class="control-label col-sm-3">Teléfono</label>
+
+                    <div class="col-sm-9">
+                      <input class="form-control" placeholder="Teléfono" ng-model="newTeacher.phone" required/>
+                    </div>
+                  </div>
+
+                  <!-- Studies -->
+                  <div class="form-group">
+                    <label class="control-label col-sm-3">Estudios</label>
+
+                    <div class="col-sm-9">
+                      <select class="form-control" placeholder="Estudios"
+                              ng-model="newTeacher.degree"
+                              ng-options="degree.description for degree in degrees track by degree.id"
+                              ng-required="true">
+                      </select>
+                    </div>
+                  </div>
+
+                  <!-- Description -->
+                  <div class="form-group">
+                    <label class="control-label col-sm-3">Descripción</label>
+
+                    <div class="col-sm-9">
+                      <input class="form-control" placeholder="Descripción" ng-model="newTeacher.description" required/>
+                    </div>
+                  </div>
+
+                  <!-- Subjects -->
+                  <div class="form-group">
+
+                    <label class="control-label col-sm-3">Materias</label>
+
+                    <!-- Subjects checkboxes -->
+                    <div class="col-sm-9">
+                      <div class="checkbox" ng-repeat="subject in subjects">
+                        <label>
+                          <input type="checkbox" ng-model="subject.selected"/> {{ subject.name }}
+                        </label>
+                      </div>
+                    </div>
+
+                  </div>
+
+                  <!-- General class price -->
+                  <div class="form-group">
+
+                    <label class="control-label col-sm-3">Precio de la clase</label>
+
+                    <div class="col-sm-9">
+                      <div class="input-group">
+                        <span class="input-group-addon">$</span>
+                        <input class="form-control" placeholder="80" type="number" min="0"
+                               ng-model="newTeacher.classPrice"/>
+                      </div>
+
+                      <span>*El precio de las clases es aproximado</span>
+                    </div>
+                  </div>
+
+                  <!-- Class audience -->
+                  <div class="form-group">
+                    <label class="control-label col-sm-3">Tipo de clase</label>
+
+                    <div class="col-sm-9">
+                      <div>
+                        <input type="radio" ng-model="newTeacher.personalClasses" ng-value="true"/> Personalizada
+                      </div>
+                      <div>
+                        <input type="radio" ng-model="newTeacher.personalClasses" ng-value="false"/> Grupal
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                    <input type="submit" value="¡Terminar!" class="btn btn-warning"/>
+                  </div>
+                </form>
+              </div>
+            </div>
+            <div ng-show="currentUser.teacher" ng-cloak>
+              <!-- Address -->
+              <div class="row">
+                <div class="col-sm-3"><p class="dt">Dirección</p></div>
+                <div class="col-sm-9">
+                  {{currentUser.teacher.address }}
+                </div>
+              </div>
+
+              <!-- Phone -->
+              <div class="row">
+                <div class="col-sm-3"><p class="dt">Teléfono</p></div>
+                <div class="col-sm-9">
+                  {{currentUser.teacher.phone }}
+                </div>
+              </div>
+
+              <!-- Studies -->
+              <div class="row">
+                <div class="col-sm-3"><p class="dt">Estudios</p></div>
+                <div class="col-sm-9">
+                  {{currentUser.teacher.degree.description }}
+                </div>
+              </div>
+
+              <!-- Description -->
+              <div class="row">
+                <div class="col-sm-3"><p class="dt">Descripción</p></div>
+                <div class="col-sm-9">
+                  {{currentUser.teacher.description }}
+                </div>
+              </div>
+
+              <!-- Subjects checkboxes -->
+              <div class="row">
+                <div class="col-sm-3"><p class="dt">Materias</p></div>
+                <div class="col-sm-9">
+                  <p class="lead" ng-repeat="subject in currentUser.teacher.subjects">
+                    <span class="label label-lg label-warning">{{ subject.name }}</span>
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+          </tab>
+
+        </tabset>
+
+      </div>
+    </div>
+  </div>
+</div>
