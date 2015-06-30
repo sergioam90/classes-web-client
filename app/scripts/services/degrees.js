@@ -1,13 +1,14 @@
-'use strict';
+(function () {
+  'use strict';
 
-/**
- * @ngdoc service
- * @name classesClientApp.degrees
- * @description
- * # degrees
- * Service in the classesClientApp.
- */
-angular.module('classesClientApp')
-  .factory('Degrees', ['Restangular', function (Restangular) {
+  angular
+    .module('classesClientApp')
+    .factory('Degrees', RestangularFactory);
+
+  RestangularFactory.$inject = ['Restangular'];
+
+  function RestangularFactory(Restangular) {
     return Restangular.service('degrees');
-  }]);
+  }
+
+})();
