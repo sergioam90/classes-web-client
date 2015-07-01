@@ -63,6 +63,18 @@ module.exports = function (grunt) {
       }
     },
 
+    includeSource: {
+      options: {
+        basePath: 'app',
+        baseUrl: '/'
+      },
+      serve: {
+        files: {
+          //'<%= yeoman.app %>/index.html': '<%= yeoman.app %>/index.html'
+        }
+      }
+    },
+
     // The actual grunt server settings
     connect: {
       options: {
@@ -397,6 +409,7 @@ module.exports = function (grunt) {
 
     grunt.task.run([
       'clean:server',
+      'includeSource:serve',
       'wiredep',
       'concurrent:server',
       'autoprefixer:server',
@@ -421,6 +434,7 @@ module.exports = function (grunt) {
 
   grunt.registerTask('build', [
     'clean:dist',
+    'includeSource:serve',
     'wiredep',
     'useminPrepare',
     'concurrent:dist',

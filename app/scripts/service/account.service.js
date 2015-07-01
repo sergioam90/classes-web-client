@@ -5,7 +5,7 @@
     .module('classesClientApp')
     .service('AccountService', AccountService);
 
-  AccountService.$inject = [];
+  AccountService.$inject = ['Users', 'OAuth', 'OAuthToken', '$rootScope'];
 
   function AccountService(Users, OAuth, OAuthToken, $rootScope) {
 
@@ -41,6 +41,5 @@
     }
 
   }
-
 
 })();

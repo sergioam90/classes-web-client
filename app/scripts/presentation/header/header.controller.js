@@ -5,9 +5,9 @@
     .module('classesClientApp')
     .controller('HeaderCtrl', HeaderController);
 
-  HeaderController.$inject = ['$location', 'OAuth', 'UserService']
+  HeaderController.$inject = ['$location', 'OAuth', 'AccountService']
 
-  function HeaderController($location, OAuth, UserService) {
+  function HeaderController($location, OAuth, AccountService) {
     var vm = this;
 
     vm.isActive = isActive;
@@ -15,8 +15,8 @@
     vm.logout = logout;
 
     // TODO: Check this
-    if (UserService.isAuthenticated()) {
-      UserService.me();
+    if (AccountService.isAuthenticated()) {
+      AccountService.me();
     }
 
     ////////////////
@@ -26,7 +26,7 @@
     }
 
     function logout() {
-      UserService.logout();
+      AccountService.logout();
       $location.path('/');
     }
   }

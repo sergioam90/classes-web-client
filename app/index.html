@@ -110,21 +110,29 @@
 <!-- endbuild -->
 
 <!-- build:js({.tmp,app}) scripts/scripts.js -->
-<script src="scripts/app.js"></script>
-<script src="scripts/controllers/main.controller.js"></script>
-<script src="scripts/controllers/about.controller.js"></script>
-<script src="scripts/controllers/login.controller.js"></script>
-<script src="scripts/controllers/teachers.controller.js"></script>
-<script src="scripts/services/users.js"></script>
-<script src="scripts/services/teachers.js"></script>
-<script src="scripts/services/users.service.js"></script>
-<script src="scripts/controllers/register.controller.js"></script>
-<script src="scripts/controllers/header.controller.js"></script>
-<script src="scripts/controllers/account.controller.js"></script>
-<script src="scripts/services/subjects.js"></script>
-<script src="scripts/services/students.js"></script>
-<script src="scripts/services/degrees.js"></script>
 <!-- endbuild -->
+
+<!-- include: "type": "js", "files": "scripts/**/*.js" -->
+<script src="/scripts/app.module.js"></script>
+<script src="/scripts/app.constant.js"></script>
+<script src="/scripts/app.run.js"></script>
+<script src="/scripts/config/oauth/oauth.config.js"></script>
+<script src="/scripts/config/restangular/restangular.config.js"></script>
+<script src="/scripts/config/router/router.config.js"></script>
+<script src="/scripts/domain/degrees.js"></script>
+<script src="/scripts/domain/students.js"></script>
+<script src="/scripts/domain/subjects.js"></script>
+<script src="/scripts/domain/teachers.js"></script>
+<script src="/scripts/domain/users.js"></script>
+<script src="/scripts/presentation/about/about.controller.js"></script>
+<script src="/scripts/presentation/account/account.controller.js"></script>
+<script src="/scripts/presentation/account/login/login.controller.js"></script>
+<script src="/scripts/presentation/account/registration/register.controller.js"></script>
+<script src="/scripts/presentation/header/header.controller.js"></script>
+<script src="/scripts/presentation/main/main.controller.js"></script>
+<script src="/scripts/presentation/teacher/teachers.controller.js"></script>
+<script src="/scripts/service/account.service.js"></script>
+<!-- /include -->
 
 <script src="bower_components/angular-i18n/angular-locale_es-ar.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>

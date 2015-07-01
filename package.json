@@ -1,7 +1,9 @@
 {
   "name": "classesclient",
   "version": "0.0.0",
-  "dependencies": {},
+  "dependencies": {
+    "grunt-include-source": "~0.6.0"
+  },
   "repository": {},
   "devDependencies": {
     "grunt": "^0.4.5",
