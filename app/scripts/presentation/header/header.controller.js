@@ -3,7 +3,7 @@
 
   angular
     .module('classesClientApp')
-    .controller('HeaderCtrl', HeaderController);
+    .controller('HeaderController', HeaderController);
 
   HeaderController.$inject = ['$location', 'OAuth', 'AccountService']
 

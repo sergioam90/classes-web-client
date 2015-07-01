@@ -5,9 +5,9 @@
     .module('classesClientApp')
     .controller('LoginController', LoginController);
 
-  LoginController.$inject = ['UserService', '$routeParams', '$location', '$rootScope'];
+  LoginController.$inject = ['AccountService', '$routeParams', '$location', '$rootScope'];
 
-  function LoginController(UserService, $routeParams, $location, $rootScope) {
+  function LoginController(AccountService, $routeParams, $location, $rootScope) {
     var vm = this;
 
     vm.isAuthenticated = isAuthenticated;
@@ -24,13 +24,13 @@
     }
 
     function login(user) {
-      UserService.login(user).then(function () {
+      AccountService.login(user).then(function () {
         $location.path($routeParams.redirectUrl || '/');
       });
     }
 
     function isAuthenticated() {
-      return UserService.isAuthenticated();
+      return AccountService.isAuthenticated();
     }
 
   }

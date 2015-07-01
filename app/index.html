@@ -27,7 +27,7 @@
 <![endif]-->
 
 <!-- Add your site or application content here -->
-<div class="header" ng-controller="HeaderCtrl">
+<div class="header" ng-controller="HeaderController as header">
   <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
       <div class="navbar-header">
@@ -40,25 +40,25 @@
           <span class="icon-bar"></span>
         </button>
 
-        <a class="navbar-brand text-uppercase" href="#/">aprob.ar</a>
+        <a class="navbar-brand text-uppercase" ui-sref="main">aprob.ar</a>
       </div>
 
       <div class="collapse navbar-collapse" id="js-navbar-collapse">
 
         <ul class="nav navbar-nav">
-          <li ng-class="{ active: isActive('/teachers') }"><a href="#/teachers">Profesores</a></li>
+          <li ng-class="{ active: isActive('/teachers/search') }"><a ui-sref="teachersSearch">Profesores</a></li>
         </ul>
-        <div ng-show="isAuthenticated()" class="navbar-right" ng-cloak>
+        <div ng-show="header.isAuthenticated()" class="navbar-right" ng-cloak>
           <ul class="nav navbar-nav">
             <li ng-class="active">
-              <a href="#/user/{{ currentUser.id }}"><i class="fa fa-user"></i> {{ currentUser.firstName }}</a>
+              <a ui-sref="account"><i class="fa fa-user"></i> {{ currentUser.firstName }}</a>
             </li>
           </ul>
-          <a href="" class="btn navbar-btn btn-primary" ng-click="logout()">Salir</a>
+          <a href="" class="btn navbar-btn btn-primary" ng-click="header.logout()">Salir</a>
         </div>
-        <div class="navbar-right" ng-show="!isAuthenticated()" ng-cloak>
-          <a href="#/login" class="btn navbar-btn btn-primary">Iniciar sesión</a>
-          <a href="#/register" class="btn navbar-btn btn-primary">Crear cuenta</a>
+        <div class="navbar-right" ng-show="!header.isAuthenticated()" ng-cloak>
+          <a ui-sref="login" class="btn navbar-btn btn-primary">Iniciar sesión</a>
+          <a ui-sref="register" class="btn navbar-btn btn-primary">Crear cuenta</a>
         </div>
       </div>
     </div>
@@ -66,7 +66,7 @@
 </div>
 
 <div class="container">
-  <div class="container" ng-view=""></div>
+  <div class="container" ui-view></div>
 </div>
 
 <div class="footer">
@@ -106,6 +106,7 @@
 <script src="bower_components/query-string/query-string.js"></script>
 <script src="bower_components/angular-oauth2/dist/angular-oauth2.js"></script>
 <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
 
@@ -117,6 +118,7 @@
 <script src="/scripts/app.constant.js"></script>
 <script src="/scripts/app.run.js"></script>
 <script src="/scripts/config/oauth/oauth.config.js"></script>
+<script src="/scripts/config/oauth/oauth.run.js"></script>
 <script src="/scripts/config/restangular/restangular.config.js"></script>
 <script src="/scripts/config/router/router.config.js"></script>
 <script src="/scripts/domain/degrees.js"></script>
@@ -127,10 +129,10 @@
 <script src="/scripts/presentation/about/about.controller.js"></script>
 <script src="/scripts/presentation/account/account.controller.js"></script>
 <script src="/scripts/presentation/account/login/login.controller.js"></script>
-<script src="/scripts/presentation/account/registration/register.controller.js"></script>
+<script src="/scripts/presentation/account/register/register.controller.js"></script>
 <script src="/scripts/presentation/header/header.controller.js"></script>
 <script src="/scripts/presentation/main/main.controller.js"></script>
-<script src="/scripts/presentation/teacher/teachers.controller.js"></script>
+<script src="/scripts/presentation/teachers/search/teachers.search.controller.js"></script>
 <script src="/scripts/service/account.service.js"></script>
 <!-- /include -->
 

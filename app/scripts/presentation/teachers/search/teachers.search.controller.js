@@ -3,11 +3,11 @@
 
   angular
     .module('classesClientApp')
-    .controller('TeachersCtrl', TeachersController);
+    .controller('TeachersSearchController', TeachersSearchController);
 
-  TeachersController.$inject = ['Teachers', '$location', 'Subjects'];
+  TeachersSearchController.$inject = ['Teachers', '$location', 'Subjects'];
 
-  function TeachersController(Teachers, $location, Subjects) {
+  function TeachersSearchController(Teachers, $location, Subjects) {
     var vm = this;
     vm.teachers = [];
 

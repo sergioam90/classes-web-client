@@ -6,37 +6,45 @@
     .module('classesClientApp')
     .config(RouterConfig);
 
-  RouterConfig.$inject = ['$routeProvider'];
+  RouterConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
 
-  function RouterConfig($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'scripts/presentation/main/main.html',
+  function RouterConfig($stateProvider, $urlRouterProvider) {
+
+    $urlRouterProvider.otherwise('/');
+
+    var templateUrlPrefix = 'scripts/presentation/';
+
+    $stateProvider
+      .state('main', {
+        url: '/',
+        templateUrl: templateUrlPrefix + 'main/main.html',
         controller: 'MainController'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
+      .state('about',{
+        url: '/about',
+        templateUrl: templateUrlPrefix + 'about/about.html',
         controller: 'AboutController'
-      })
-      .when('/login', {
-        templateUrl: 'views/login.html',
+      }).state('login', {
+        url: '/account/login',
+        templateUrl: templateUrlPrefix + 'account/login/login.html',
         controller: 'LoginController'
       })
-      .when('/teachers', {
-        templateUrl: 'views/teachers.html',
-        controller: 'TeachersController'
-      })
-      .when('/register', {
-        templateUrl: 'views/register.html',
+      .state('register', {
+        url: '/account/register',
+        templateUrl: templateUrlPrefix + 'account/register/register.html',
         controller: 'RegisterController'
       })
-      .when('/user/:userId', {
-        templateUrl: 'views/user.html',
-        controller: 'UserController'
+      .state('account', {
+        url: '/account',
+        templateUrl: templateUrlPrefix + 'account/account.html',
+        controller: 'AccountController'
       })
-      .otherwise({
-        redirectTo: '/'
+      .state('teachersSearch', {
+        url: '/teachers/search',
+        templateUrl: templateUrlPrefix + 'teachers/search/teachers.search.html',
+        controller: 'TeachersSearchController'
       });
+
   }
 
 })();

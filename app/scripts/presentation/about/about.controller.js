@@ -3,7 +3,7 @@
 
   angular
     .module('classesClientApp')
-    .controller('AboutCtrl', AboutController);
+    .controller('AboutController', AboutController);
 
   function AboutController() {
     var vm = this;

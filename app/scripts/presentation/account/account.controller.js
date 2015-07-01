@@ -5,9 +5,9 @@
     .module('classesClientApp')
     .controller('AccountController', AccountController);
 
-  AccountController.$inject = ['$rootScope', 'UserService', 'Students', 'Subjects', 'Teachers', 'Degrees'];
+  AccountController.$inject = ['$rootScope', 'AccountService', 'Students', 'Subjects', 'Teachers', 'Degrees'];
 
-  function AccountController($rootScope, UserService, Students, Subjects, Teachers, Degrees) {
+  function AccountController($rootScope, AccountService, Students, Subjects, Teachers, Degrees) {
     var vm = this;
 
     vm.newTeacher = {};
@@ -20,14 +20,14 @@
 
     Degrees.getList().then(processDegrees);
 
-    if (UserService.isAuthenticated()) {
+    if (AccountService.isAuthenticated()) {
       refreshUser();
     }
 
     ////////////////////////////
 
     function refreshUser() {
-      UserService.me().then(function () {
+      AccountService.me().then(function () {
         vm.subjects = [];
 
         vm.studentTabVisible = $rootScope.currentUser.student ? true : false;
