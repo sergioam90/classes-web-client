@@ -1,14 +1,14 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('classesClientApp')
-    .config(RestangularConfig);
+    angular
+        .module('classesClientApp')
+        .config(RestangularConfig);
 
-  RestangularConfig.$inject = ['RestangularProvider', 'appConfig'];
+    RestangularConfig.$inject = ['RestangularProvider', 'appConfig'];
 
-  function RestangularConfig(RestangularProvider, appConfig) {
-    RestangularProvider.setBaseUrl('http://' + appConfig.SERVER_URL);
-  }
+    function RestangularConfig(RestangularProvider, appConfig) {
+        RestangularProvider.setBaseUrl('http://' + appConfig.SERVER_URL);
+    }
 
 })();

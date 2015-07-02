@@ -1,22 +1,22 @@
 body {
-  margin-top: 75px;
-  background: #F4F4F4;
-  font-family: 'Roboto', sans-serif;
+    margin-top: 75px;
+    background: #F4F4F4;
+    font-family: 'Roboto', sans-serif;
 }
 
 .teachers_panel:hover {
-  background: rgba(250, 250, 250, 1);
-  cursor: pointer;
+    background: rgba(250, 250, 250, 1);
+    cursor: pointer;
 }
 
 p.dt {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .tab-content {
-  margin: 30px 30px;
+    margin: 30px 30px;
 }
 
 .nav, .pagination, .carousel, .panel-title a {
-  cursor: pointer;
+    cursor: pointer;
 }

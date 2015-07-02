@@ -1,14 +1,14 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('classesClientApp')
-    .factory('Users', Users);
+    angular
+        .module('classesClientApp')
+        .factory('Users', Users);
 
-  Users.$inject = ['Restangular'];
+    Users.$inject = ['Restangular'];
 
-  function Users(Restangular) {
-    return Restangular.service('users');
-  }
+    function Users(Restangular) {
+        return Restangular.service('users');
+    }
 
 })();

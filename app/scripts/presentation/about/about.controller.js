@@ -1,17 +1,17 @@
-(function() {
-  'use strict';
+(function () {
+    'use strict';
 
-  angular
-    .module('classesClientApp')
-    .controller('AboutController', AboutController);
+    angular
+        .module('classesClientApp')
+        .controller('AboutController', AboutController);
 
-  function AboutController() {
-    var vm = this;
+    function AboutController() {
+        var vm = this;
 
-    vm.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  }
+        vm.awesomeThings = [
+            'HTML5 Boilerplate',
+            'AngularJS',
+            'Karma'
+        ];
+    }
 })();

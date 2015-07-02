@@ -1,12 +1,18 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('classesClientApp')
-    .controller('MainController', MainController);
+    angular
+        .module('classesClientApp')
+        .controller('MainController', MainController);
 
-  function MainController(){
+    MainController.$inject = ['Subjects'];
 
-  }
+    function MainController(Subjects) {
+        var vm = this;
+
+        Subjects.getList().then(function (subjects) {
+            vm.subjects = subjects.plain();
+        });
+    }
 
 })();

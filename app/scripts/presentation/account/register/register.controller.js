@@ -1,28 +1,28 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('classesClientApp')
-    .controller('RegisterController', RegisterController);
+    angular
+        .module('classesClientApp')
+        .controller('RegisterController', RegisterController);
 
-  RegisterController.$inject = ['AccountService', '$location'];
+    RegisterController.$inject = ['AccountService', '$location'];
 
-  function RegisterController(AccountService, $location) {
-    var vm = this;
+    function RegisterController(AccountService, $location) {
+        var vm = this;
 
-    vm.register = register;
+        vm.register = register;
 
-    // TODO: Check
-    function register(user) {
-      AccountService.register(user).then(registrationSuccess, registrationError);
+        // TODO: Check
+        function register(user) {
+            AccountService.register(user).then(registrationSuccess, registrationError);
 
-      function registrationError() {
-        alert('Error in registration');
-      }
+            function registrationError() {
+                alert('Error in registration');
+            }
 
-      function registrationSuccess() {
-        $location.path('/login');
-      }
+            function registrationSuccess() {
+                $location.path('/login');
+            }
+        }
     }
-  }
 })();

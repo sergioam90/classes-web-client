@@ -1,14 +1,14 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('classesClientApp')
-    .factory('Degrees', RestangularFactory);
+    angular
+        .module('classesClientApp')
+        .factory('Degrees', RestangularFactory);
 
-  RestangularFactory.$inject = ['Restangular'];
+    RestangularFactory.$inject = ['Restangular'];
 
-  function RestangularFactory(Restangular) {
-    return Restangular.service('degrees');
-  }
+    function RestangularFactory(Restangular) {
+        return Restangular.service('degrees');
+    }
 
 })();

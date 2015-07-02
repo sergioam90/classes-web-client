@@ -1,13 +1,13 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular.module('classesClientApp')
-    .factory('Students', Students);
+    angular.module('classesClientApp')
+        .factory('Students', Students);
 
-  Students.$inject = ['Restangular'];
+    Students.$inject = ['Restangular'];
 
-  function Students(Restangular) {
-    return Restangular.service('students');
-  }
+    function Students(Restangular) {
+        return Restangular.service('students');
+    }
 
 })();

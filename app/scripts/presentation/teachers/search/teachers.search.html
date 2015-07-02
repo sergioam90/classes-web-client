@@ -1,126 +1,127 @@
 <div ng-controller="TeachersSearchController as search">
-  <!-- Sidebar -->
-  <div class="col-sm-3">
+    <!-- Sidebar -->
+    <div class="col-sm-3">
 
-    <!-- Search -->
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title text-uppercase text-center">Búsqueda</h3>
-      </div>
-      <div class="panel-body">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Nombre, Apellido, etc."/>
+        <!-- Search -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-uppercase text-center">Búsqueda</h3>
+            </div>
+            <div class="panel-body">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Nombre, Apellido, etc."/>
           <span class="input-group-btn">
             <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
           </span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Subjects -->
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title text-uppercase text-center">Materias</h3>
-      </div>
-      <div class="panel-body">
-        <div ng-repeat="subject in search.subjects">
-          <div class="checkbox">
-            <label>
-              <input type="checkbox"/> {{ subject.name }}
-            </label>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Class audience -->
-    <div class="panel panel-primary">
-      <div class="panel-heading">
-        <h3 class="panel-title text-uppercase text-center">Tipo de clase</h3>
-      </div>
-      <div class="panel-body">
-        <div class="col-sm-9">
-          <div>
-            <input type="radio" ng-model="newTeacher.personalClasses" ng-value="undefined"/> Cualquiera
-          </div>
-          <div>
-            <input type="radio" ng-model="newTeacher.personalClasses" ng-value="true"/> Personalizada
-          </div>
-          <div>
-            <input type="radio" ng-model="newTeacher.personalClasses" ng-value="false"/> Grupal
-          </div>
-        </div>
-      </div>
-    </div>
-
-  </div>
-
-  <!-- Main content -->
-  <div class="col-sm-6">
-    <div class="panel panel-default" ng-repeat="teacher in search.teachers">
-      <div class="panel-body teachers_panel" ng-click="search.redirect(teacher.id)">
-        <div class="row">
-          <!-- Profile picture -->
-          <div class="col-md-2">
-            <img class="img-responsive img-thumbnail" src="/images/mock.jpg" alt=""/>
-          </div>
-
-          <!-- Profile data -->
-          <div class="col-md-10">
-
-            <!-- Name and more info -->
-            <div class="row">
-              <div class="col-md-8">
-                <strong class="lead">{{ search.teacher.user.firstName }} {{ search.teacher.user.lastName }}</strong>
-              </div>
-
-              <!-- More info -->
-              <div class="col-md-4 text-center">
-                <a href="#/teacher/{{ teacher.id }}" class="btn btn-primary btn_view_more">
-                  Ver teléfono
-                </a>
-              </div>
+                </div>
             </div>
+        </div>
 
-            <!-- Additional data -->
-            <div class="row">
-              <div class="col-md-12">
-                <dl>
-                  <!-- Studies -->
-                  <dd>
-                    <p>
-                      <img src=""
-                           height="24"/>{{ search.teacher.degree.description }}
-                    </p>
-                  </dd>
-                  <!-- Description -->
-                  <dd>"{{ search.teacher.description }}"</dd>
+        <!-- Subjects -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-uppercase text-center">Materias</h3>
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="subject in search.subjects">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"/> {{ subject.name }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-                  <!-- Subjects -->
-                  <dd>
-                    <p class="lead">
+        <!-- Class audience -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-uppercase text-center">Tipo de clase</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-9">
+                    <div>
+                        <input type="radio" ng-model="newTeacher.personalClasses" ng-value="undefined"/> Cualquiera
+                    </div>
+                    <div>
+                        <input type="radio" ng-model="newTeacher.personalClasses" ng-value="true"/> Personalizada
+                    </div>
+                    <div>
+                        <input type="radio" ng-model="newTeacher.personalClasses" ng-value="false"/> Grupal
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Main content -->
+    <div class="col-sm-6">
+        <div class="panel panel-default" ng-repeat="teacher in search.teachers">
+            <div class="panel-body teachers_panel" ng-click="search.redirect(teacher.id)">
+                <div class="row">
+                    <!-- Profile picture -->
+                    <div class="col-md-2">
+                        <img class="img-responsive img-thumbnail" src="/images/mock.jpg" alt=""/>
+                    </div>
+
+                    <!-- Profile data -->
+                    <div class="col-md-10">
+
+                        <!-- Name and more info -->
+                        <div class="row">
+                            <div class="col-md-8">
+                                <strong class="lead">{{ search.teacher.user.firstName }} {{ search.teacher.user.lastName
+                                    }}</strong>
+                            </div>
+
+                            <!-- More info -->
+                            <div class="col-md-4 text-center">
+                                <a href="#/teacher/{{ teacher.id }}" class="btn btn-primary btn_view_more">
+                                    Ver teléfono
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- Additional data -->
+                        <div class="row">
+                            <div class="col-md-12">
+                                <dl>
+                                    <!-- Studies -->
+                                    <dd>
+                                        <p>
+                                            <img src=""
+                                                 height="24"/>{{ search.teacher.degree.description }}
+                                        </p>
+                                    </dd>
+                                    <!-- Description -->
+                                    <dd>"{{ search.teacher.description }}"</dd>
+
+                                    <!-- Subjects -->
+                                    <dd>
+                                        <p class="lead">
                       <span class="label label-primary" ng-repeat="subject in search.teacher.subjects">
                         {{ subject.name }}
                       </span>
-                    </p>
-                  </dd>
-                </dl>
-              </div>
+                                        </p>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-
-          </div>
         </div>
-      </div>
     </div>
-  </div>
 
-  <!-- Ads -->
-  <div class="col-sm-3">
-    <div class="panel panel-info">
-      <div class="panel-heading">
-        <h3 class="panel-title text-center">¡Anuncie aquí!</h3>
-      </div>
+    <!-- Ads -->
+    <div class="col-sm-3">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title text-center">¡Anuncie aquí!</h3>
+            </div>
+        </div>
     </div>
-  </div>
 
 </div>

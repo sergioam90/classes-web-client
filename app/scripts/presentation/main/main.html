@@ -1,11 +1,47 @@
-<div class="jumbotron">
-    <div class="container">
+<div class="" ng-controller="MainController as main">
+    <div class="container text-center">
         <h1>¡Bienvenido a clase!</h1>
 
-        <p>En este sitio podrá encontrar sencillamente las clases que necesita, o bien publicar las clases que
+        <p class="lead">En este sitio podrá encontrar sencillamente las clases que necesita, o bien publicar las clases
+            que
             dicta. </p>
 
-        <p><a class="btn btn-primary btn-lg" ui-sref="register" role="button">Registrar</a></p>
+        <p>
+
+        <form action="" ng-submit="main.homeSearch(criteria)">
+            <div class="form-group row">
+                <div class="col-sm-4">
+                    <label class="control-label"><h4>Asignatura</h4></label>
+                    <ui-select ng-model="main.criteria.subject" theme="bootstrap">
+                        <ui-select-match placeholder="Elija una asignatura...">{{ $select.selected.name }}
+                        </ui-select-match>
+                        <ui-select-choices
+                                repeat="subject in main.subjects track by subject.id ">
+                            <!-- TODO: Add filter for choices -->
+                            <div ng-bind-html="subject.name | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
+                </div>
+                <div class="col-sm-3">
+                    <label class="control-label"><h4>Nivel</h4></label>
+                    <input class="form-control" placeholder="Nivel" ng-model="main.criteria.level"/>
+                </div>
+                <div class="col-sm-4">
+                    <label class="control-label"><h4>Localidad</h4></label>
+                    <input class="form-control" placeholder="Localidad" ng-model="main.criteria.city"/>
+                </div>
+                <div class="col-sm-1">
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </div>
+        </form>
+        </p>
+
+        <p>
+            <a class="btn btn-primary btn-lg" ui-sref="register" role="button">¡Quiero enseñar!</a>
+        </p>
 
     </div>
 </div>

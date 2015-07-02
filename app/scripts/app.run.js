@@ -1,8 +1,8 @@
 (function () {
-  'use strict';
+    'use strict';
 
-  angular
-    .module('classesClientApp')
-    .run();
+    angular
+        .module('classesClientApp')
+        .run();
 
 })();
