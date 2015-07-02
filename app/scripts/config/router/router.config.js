@@ -30,9 +30,26 @@
                 controller: 'LoginController'
             })
             .state('register', {
-                url: '/account/register',
+                abstract: true,
+                url: '/account/register/{target}',
                 templateUrl: templateUrlPrefix + 'account/register/register.html',
                 controller: 'RegisterController'
+            })
+            .state('register.method', {
+                url: '/method',
+                templateUrl: templateUrlPrefix + 'account/register/register.method.html'
+            })
+            .state('register.personal', {
+                url: '/personal',
+                templateUrl: templateUrlPrefix + 'account/register/register.personal.html'
+            })
+            .state('register.teacher', {
+                url: '/teacher',
+                templateUrl: templateUrlPrefix + 'account/register/teacher/register.teacher.html'
+            })
+            .state('register.student', {
+                url: '/student',
+                templateUrl: templateUrlPrefix + 'account/register/student/register.student.html'
             })
             .state('account', {
                 url: '/account',
