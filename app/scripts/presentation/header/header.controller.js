@@ -13,10 +13,13 @@
         vm.isActive = isActive;
         vm.isAuthenticated = OAuth.isAuthenticated;
         vm.logout = logout;
+        vm.currentUser = {};
 
         // TODO: Check this
         if (AccountService.isAuthenticated()) {
-            AccountService.me();
+            AccountService.getMe().then(function () {
+                vm.currentUser = AccountService.me;
+            });
         }
 
         ////////////////

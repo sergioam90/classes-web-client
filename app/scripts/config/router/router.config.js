@@ -56,10 +56,20 @@
                 templateUrl: templateUrlPrefix + 'account/account.html',
                 controller: 'AccountController'
             })
+            .state('studentProfile', {
+                url: '/studentProfile',
+                templateUrl: templateUrlPrefix + 'account/student-profile/student.profile.html',
+                controller: 'StudentProfileController'
+            })
             .state('teachersSearch', {
                 url: '/teachers/search',
                 templateUrl: templateUrlPrefix + 'teachers/search/teachers.search.html',
                 controller: 'TeachersSearchController'
+            })
+            .state('maps', {
+                url: '/maps',
+                templateUrl: templateUrlPrefix + 'maps/maps.html',
+                controller: 'MapsController'
             });
 
     }

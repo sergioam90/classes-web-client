@@ -1,0 +1,44 @@
+<div class="row" ng-controller="StudentProfileController as vm">
+    <dl>
+
+        <!-- User information -->
+        <dt>Nombre</dt>
+        <dd>{{ vm.student.user.firstName }}</dd>
+
+        <dt>Apellido</dt>
+        <dd>{{ vm.student.user.lastName }}</dd>
+
+        <dt>Email</dt>
+        <dd>{{ vm.student.user.email }}</dd>
+
+        <dt>Género</dt>
+        <dd>{{ vm.student.user.gender }}</dd>
+
+        <dt>Fecha de nacimiento</dt>
+        <dd>{{ vm.student.user.birthDate }}</dd>
+
+        <dt>Imagen de perfil</dt>
+        <dd>{{ vm.student.user.profilePicture }}</dd>
+
+        <!-- Student information -->
+        <dt>Ubicación</dt>
+        <dd>{{ vm.student.location }}</dd>
+
+        <dt>Profesores favoritos</dt>
+        <dd>
+            <div ng-repeat="teacher in vm.student.favoriteTeachers">
+                Nombre: {{ teacher.firstName }}
+            </div>
+        </dd>
+
+        <!-- Student reviews -->
+        <dt>Reseñas hechas</dt>
+        <dd>
+            <div ng-repeat="review in vm.madeReviews">
+                <p>Profesor: {{ review.teacher }}</p>
+                <p>Comentario: {{ review.comment }}</p>
+                <p>Puntaje: {{ review.rating }}</p>
+            </div>
+        </dd>
+    </dl>
+</div>

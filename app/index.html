@@ -53,15 +53,17 @@
                 <div ng-show="header.isAuthenticated()" class="navbar-right" ng-cloak>
                     <ul class="nav navbar-nav">
                         <li ng-class="active">
-                            <a ui-sref="account"><i class="fa fa-user"></i> {{ currentUser.firstName }}</a>
+                            <a ui-sref="account"><i class="fa fa-user"></i> {{ header.currentUser.firstName }}</a>
                         </li>
                     </ul>
                     <a href="" class="btn navbar-btn btn-primary" ng-click="header.logout()">Salir</a>
                 </div>
                 <div class="navbar-right" ng-show="!header.isAuthenticated()" ng-cloak>
                     <a ui-sref="login" class="btn navbar-btn btn-primary">Iniciar sesión</a>
-                    <a ui-sref="register.method({target: 'teacher'})" class="btn navbar-btn btn-primary">Quiero enseñar</a>
-                    <a ui-sref="register.method({target: 'student'})" class="btn navbar-btn btn-primary">Quiero aprender</a>
+                    <a ui-sref="register.method({target: 'teacher'})" class="btn navbar-btn btn-primary">Quiero
+                        enseñar</a>
+                    <a ui-sref="register.method({target: 'student'})" class="btn navbar-btn btn-primary">Quiero
+                        aprender</a>
 
                 </div>
             </div>
@@ -138,11 +140,17 @@
 <script src="/scripts/presentation/header/header.controller.js"></script>
 <script src="/scripts/presentation/main/main.controller.js"></script>
 <script src="/scripts/presentation/teachers/search/teachers.search.controller.js"></script>
+<script src="/scripts/presentation/maps/maps.controller.js"></script>
+<script src="/scripts/presentation/account/student-profile/student.profile.js"></script>
 <script src="/scripts/service/account.service.js"></script>
+<script src="/scripts/service/student.service.js"></script>
 <!-- /include -->
 
 <script src="bower_components/angular-i18n/angular-locale_es-ar.js"></script>
 <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+<!-- TODO: Is this include right? -->
+<script src="https://maps.googleapis.com/maps/api/js?libraries=places"></script>
 
 </body>
 </html>

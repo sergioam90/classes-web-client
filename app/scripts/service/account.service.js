@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .service('AccountService', AccountService);
 
-    AccountService.$inject = ['Users', 'OAuth', 'OAuthToken', '$rootScope'];
+    AccountService.$inject = ['Users', 'OAuth', 'OAuthToken'];
 
-    function AccountService(Users, OAuth, OAuthToken, $rootScope) {
+    function AccountService(Users, OAuth, OAuthToken) {
 
         var vm = this;
 
@@ -15,7 +15,8 @@
         vm.isAuthenticated = OAuth.isAuthenticated;
         vm.login = login;
         vm.logout = logout;
-        vm.me = me;
+        vm.getMe = getMe;
+        vm.me = {};
 
         ////////
 
@@ -23,9 +24,9 @@
             return Users.post(user);
         }
 
-        function me() {
+        function getMe() {
             return Users.one('me').get().then(function (user) {
-                $rootScope.currentUser = user;
+                vm.me = user;
             });
         }
 
@@ -37,7 +38,7 @@
             if (vm.isAuthenticated()) {
                 vm.logout();
             }
-            return OAuth.getAccessToken(user).then(vm.me);
+            return OAuth.getAccessToken(user).then(vm.getMe);
         }
 
     }
