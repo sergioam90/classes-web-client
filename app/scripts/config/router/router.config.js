@@ -67,7 +67,7 @@
                 controller: 'MyStudentProfileController'
             })
             .state('account.teacher', {
-                url: '/student',
+                url: '/teacher',
                 templateUrl: templateUrlPrefix + 'account/teacher-profile/my.teacher.profile.html',
                 controller: 'MyTeacherProfileController'
             })

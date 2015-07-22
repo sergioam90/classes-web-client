@@ -28,7 +28,7 @@
         <dd>{{ vm.user.gender }}</dd>
 
         <dt>Fecha de nacimiento</dt>
-        <dd>{{ vm.user.birthDate }}</dd>
+        <dd>{{ vm.user.birthDate | date:'longDate' }}</dd>
 
         <dt>Imagen de perfil</dt>
         <dd>{{ vm.user.profilePicture }}</dd>
