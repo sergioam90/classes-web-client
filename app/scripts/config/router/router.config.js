@@ -52,6 +52,7 @@
                 templateUrl: templateUrlPrefix + 'account/register/student/register.student.html'
             })
             .state('account', {
+                abstract: true,
                 url: '/account',
                 templateUrl: templateUrlPrefix + 'account/account.html',
                 controller: 'AccountController'
