@@ -26,7 +26,7 @@
 
         function getMe() {
             return Users.one('me').get().then(function (user) {
-                vm.me = user;
+                vm.me = user.plain();
             });
         }
 

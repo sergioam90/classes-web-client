@@ -1,0 +1,37 @@
+<div ng-controller="MyUserProfileController as vm">
+
+    <dl>
+
+        <!-- User information -->
+        <dt>Nombre</dt>
+        <dd>
+            <div class="row">
+                <div class="col-sm-4">
+                        <span editable-text="vm.user.firstName" e-required e-form="textBtnForm">
+                            {{ vm.user.firstName }}
+                        </span>
+                </div>
+                <button class="btn btn-default btn-sm" ng-click="textBtnForm.$show()"
+                        ng-hide="textBtnForm.$visible">
+                    <i class="fa fa-pencil"></i>
+                </button>
+            </div>
+        </dd>
+
+        <dt>Apellido</dt>
+        <dd>{{ vm.user.lastName }}</dd>
+
+        <dt>Email</dt>
+        <dd>{{ vm.user.email }}</dd>
+
+        <dt>Género</dt>
+        <dd>{{ vm.user.gender }}</dd>
+
+        <dt>Fecha de nacimiento</dt>
+        <dd>{{ vm.user.birthDate }}</dd>
+
+        <dt>Imagen de perfil</dt>
+        <dd>{{ vm.user.profilePicture }}</dd>
+
+    </dl>
+</div>

@@ -56,15 +56,30 @@
                 templateUrl: templateUrlPrefix + 'account/account.html',
                 controller: 'AccountController'
             })
-            .state('studentProfile', {
-                url: '/studentProfile',
-                templateUrl: templateUrlPrefix + 'account/student-profile/student.profile.html',
-                controller: 'StudentProfileController'
+            .state('account.user', {
+                url: '/user',
+                templateUrl: templateUrlPrefix + 'account/user-profile/my.user.profile.html',
+                controller: 'MyUserProfileController'
+            })
+            .state('account.student', {
+                url: '/student',
+                templateUrl: templateUrlPrefix + 'account/student-profile/my.student.profile.html',
+                controller: 'MyStudentProfileController'
+            })
+            .state('account.teacher', {
+                url: '/student',
+                templateUrl: templateUrlPrefix + 'account/teacher-profile/my.teacher.profile.html',
+                controller: 'MyTeacherProfileController'
             })
             .state('teachersSearch', {
                 url: '/teachers/search',
                 templateUrl: templateUrlPrefix + 'teachers/search/teachers.search.html',
                 controller: 'TeachersSearchController'
+            })
+            .state('teacherProfile', {
+                url: '/teachers/{id}',
+                templateUrl: templateUrlPrefix + 'teachers/profile/teacher.profile.html',
+                controller: 'TeacherProfileController'
             })
             .state('maps', {
                 url: '/maps',

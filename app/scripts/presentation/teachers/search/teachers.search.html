@@ -58,7 +58,7 @@
     <!-- Main content -->
     <div class="col-sm-6">
         <div class="panel panel-default" ng-repeat="teacher in search.teachers">
-            <div class="panel-body teachers_panel" ng-click="search.redirect(teacher.id)">
+            <div class="panel-body teachers_panel">
                 <div class="row">
                     <!-- Profile picture -->
                     <div class="col-md-2">
@@ -71,13 +71,13 @@
                         <!-- Name and more info -->
                         <div class="row">
                             <div class="col-md-8">
-                                <strong class="lead">{{ search.teacher.user.firstName }} {{ search.teacher.user.lastName
+                                <strong class="lead">{{ teacher.user.firstName }} {{ teacher.user.lastName
                                     }}</strong>
                             </div>
 
                             <!-- More info -->
                             <div class="col-md-4 text-center">
-                                <a href="#/teacher/{{ teacher.id }}" class="btn btn-primary btn_view_more">
+                                <a ui-sref="teacherProfile({ id : teacher.id })" class="btn btn-primary btn_view_more">
                                     Ver teléfono
                                 </a>
                             </div>
@@ -91,16 +91,16 @@
                                     <dd>
                                         <p>
                                             <img src=""
-                                                 height="24"/>{{ search.teacher.degree.description }}
+                                                 height="24"/>{{ teacher.degree }}
                                         </p>
                                     </dd>
                                     <!-- Description -->
-                                    <dd>"{{ search.teacher.description }}"</dd>
+                                    <dd>"{{ teacher.description }}"</dd>
 
                                     <!-- Subjects -->
                                     <dd>
                                         <p class="lead">
-                      <span class="label label-primary" ng-repeat="subject in search.teacher.subjects">
+                      <span class="label label-primary" ng-repeat="subject in teacher.subjects">
                         {{ subject.name }}
                       </span>
                                         </p>

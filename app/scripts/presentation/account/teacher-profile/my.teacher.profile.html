@@ -1,0 +1,52 @@
+<div ng-controller="MyTeacherProfileController as vm">
+
+    <dl>
+
+        <!-- Teacher information -->
+        <dt>Descripción</dt>
+        <dd>{{ vm.teacher.description }}</dd>
+
+        <dt>Estudios</dt>
+        <dd>{{ vm.teacher.degree }}</dd>
+
+        <dt>Puntaje</dt>
+        <dd>{{ vm.teacher.averageRating }}</dd>
+
+        <dt>Clase grupal</dt>
+        <dd>{{ vm.teacher.groupLessons }}</dd>
+
+        <dt>A domicilio</dt>
+        <dd>{{ !vm.teacher.homeLessons }}</dd>
+
+        <dt>Teléfono</dt>
+        <dd>
+            Numero: {{ vm.teacher.phone.number }}
+            Tiene whatsapp: {{ vm.teacher.phone.whatsApp }}
+        </dd>
+
+        <dt>Materias</dt>
+        <dd>
+            <p class="lead">
+                <span class="label label-primary" ng-repeat="subject in vm.teacher.subjects">
+                    {{ subject.name }}
+                </span>
+            </p>
+        </dd>
+
+        <dt>Ubicación</dt>
+        <dd>{{ vm.teacher.location }}</dd>
+
+        <!-- Recieved reviews -->
+        <dt>Reseñas recibidas</dt>
+        <dd>
+            <div ng-repeat="review in vm.reviews">
+                <p>Estudiante: {{ review.student }}</p>
+
+                <p>Comentario: {{ review.comment }}</p>
+
+                <p>Puntaje: {{ review.rating }}</p>
+
+            </div>
+        </dd>
+    </dl>
+</div>

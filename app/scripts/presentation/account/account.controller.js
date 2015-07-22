@@ -5,29 +5,23 @@
         .module('classesClientApp')
         .controller('AccountController', AccountController);
 
-    AccountController.$inject = ['$rootScope', 'AccountService', 'Students', 'Subjects', 'Teachers', 'Degrees'];
+    AccountController.$inject = ['AccountService', 'Students', 'Subjects', 'Teachers', '$scope', '$state'];
 
-    function AccountController($rootScope, AccountService, Students, Subjects, Teachers, Degrees) {
+    function AccountController(AccountService, Students, Subjects, Teachers, $scope, $state) {
         var vm = this;
 
-        vm.newTeacher = {};
-        vm.studentTabVisible = false;
-        vm.startTeaching = showTeacherForm;
-        vm.startLearning = showStudentForm;
-        vm.teacherTabVisible = false;
-        // TODO: Rename
-        vm.sendTeacherForm = createTeacherProfile;
+        vm.user = {};
 
-        Degrees.getList().then(processDegrees);
+        $scope.go = function (route) {
+            $state.go(route);
+        };
 
-        if (AccountService.isAuthenticated()) {
-            refreshUser();
-        }
 
         ////////////////////////////
 
+        /*
         function refreshUser() {
-            AccountService.me().then(function () {
+            AccountService.getMe().then(function () {
                 vm.subjects = [];
 
                 vm.studentTabVisible = $rootScope.currentUser.student ? true : false;
@@ -76,10 +70,8 @@
 
             Teachers.post(teacher).then(refreshUser);
         }
+        */
 
-        function processDegrees(degrees) {
-            vm.degrees = degrees.plain();
-        }
     }
 
 

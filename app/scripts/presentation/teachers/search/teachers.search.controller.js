@@ -5,13 +5,12 @@
         .module('classesClientApp')
         .controller('TeachersSearchController', TeachersSearchController);
 
-    TeachersSearchController.$inject = ['Teachers', '$location', 'Subjects'];
+    TeachersSearchController.$inject = ['Teachers', 'Subjects'];
 
-    function TeachersSearchController(Teachers, $location, Subjects) {
+    function TeachersSearchController(Teachers, Subjects) {
         var vm = this;
         vm.teachers = [];
-
-        vm.redirect = redirect;
+        vm.subjects = [];
 
         // TODO: How should I write this?
         Teachers.getList().then(function (teachers) {
@@ -23,11 +22,6 @@
             vm.subjects = subjects;
         });
 
-        //////////////
-
-        function redirect(id) {
-            $location.path('/teachers/' + id);
-        }
     }
 
 })();

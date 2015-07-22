@@ -1,0 +1,29 @@
+<div ng-controller="MyStudentProfileController as vm">
+
+    <dl>
+        <!-- Student information -->
+        <dt>Ubicación</dt>
+        <dd>{{ vm.student.location }}</dd>
+
+        <dt>Profesores favoritos</dt>
+        <dd>
+            <div ng-repeat="teacher in vm.favoriteTeachers">
+                Nombre: {{ teacher.user.firstName }} {{ teacher.user.lastName }}
+            </div>
+        </dd>
+
+        <!-- Student reviews -->
+        <dt>Reseñas hechas</dt>
+        <dd>
+            <div ng-repeat="review in vm.madeReviews">
+                <p>Profesor: {{ review.teacher.user.firstName }} {{ review.teacher.user.lastName }}</p>
+
+                <p>Comentario: {{ review.comment }}</p>
+
+                <p>Puntaje: {{ review.rating }}</p>
+
+                <button class="btn btn-danger" ng-click="vm.removeReview(review.teacher.id)"><i class="fa fa-remove"></i></button>
+            </div>
+        </dd>
+    </dl>
+</div>

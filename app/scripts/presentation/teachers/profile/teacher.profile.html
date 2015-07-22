@@ -1,0 +1,97 @@
+<div class="row" ng-controller="TeacherProfileController as vm">
+
+    <div class="panel panel-body">
+
+        <h3>Perfil de profesor</h3>
+
+        <dl>
+            <button ng-if="vm.currentUser.student" ng-click="vm.addAsFavorite(vm.teacher)" class="btn btn-warning">
+                Agregar a favoritos
+            </button>
+
+            <!-- User information -->
+            <dt>Nombre</dt>
+            <dd>{{ vm.teacher.user.firstName }}</dd>
+
+            <dt>Apellido</dt>
+            <dd>{{ vm.teacher.user.lastName }}</dd>
+
+            <dt>Email</dt>
+            <dd>{{ vm.teacher.user.email }}</dd>
+
+            <dt>Género</dt>
+            <dd>{{ vm.teacher.user.gender }}</dd>
+
+            <dt>Fecha de nacimiento</dt>
+            <dd>{{ vm.teacher.user.birthDate }}</dd>
+
+            <dt>Imagen de perfil</dt>
+            <dd>{{ vm.teacher.user.profilePicture }}</dd>
+
+            <!-- Teacher information -->
+            <dt>Descripción</dt>
+            <dd>{{ vm.teacher.description }}</dd>
+
+            <dt>Estudios</dt>
+            <dd>{{ vm.teacher.degree }}</dd>
+
+            <dt>Puntaje</dt>
+            <dd>{{ vm.teacher.averageRating }}</dd>
+
+            <dt>Clase grupal</dt>
+            <dd>{{ vm.teacher.groupLessons }}</dd>
+
+            <dt>A domicilio</dt>
+            <dd>{{ !vm.teacher.homeLessons }}</dd>
+
+            <dt>Teléfono</dt>
+            <dd>
+                Numero: {{ vm.teacher.phone.number }}
+                Tiene whatsapp: {{ vm.teacher.phone.whatsApp }}
+            </dd>
+
+            <dt>Materias</dt>
+            <dd>
+                <p class="lead">
+                <span class="label label-primary" ng-repeat="subject in vm.teacher.subjects">
+                    {{ subject.name }}
+                </span>
+                </p>
+            </dd>
+
+            <dt>Ubicación</dt>
+            <dd>{{ vm.teacher.location }}</dd>
+
+            <dt>Profesores relacionados</dt>
+            <dd>
+                <div ng-repeat="teacher in vm.relatedTeachers">
+                    Nombre: {{ teacher.user.firstName }}
+                </div>
+            </dd>
+
+            <!-- Recieved reviews -->
+            <dt>Reseñas recibidas</dt>
+            <dd>
+                <div ng-repeat="review in vm.reviews">
+
+                    <p>Estudiante: {{ review.student.user.firstName }} {{ review.student.user.lastName }}</p>
+
+                    <p>URL: {{ review.student.id }}</p>
+
+                    <p>Comentario: {{ review.comment }}</p>
+
+                    <p>Puntaje: {{ review.rating }}</p>
+                </div>
+            </dd>
+
+            <div ng-if="vm.currentUser.student">
+                <dt>Escribir reseña</dt>
+                <dd class="col-sm-4">
+                    Puntaje: <input class="form-control" type="number" ng-model="newReview.rating"> <!-- TODO: Add validation -->
+                    Comentario: <input class="form-control" type="text" ng-model="newReview.comment">
+                    <button class="btn btn-primary" ng-click="vm.submitReview(newReview)">Calificar</button>
+                </dd>
+            </div>
+        </dl>
+    </div>
+</div>
