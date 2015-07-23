@@ -13,16 +13,18 @@
         vm.isActive = isActive;
         vm.isAuthenticated = OAuth.isAuthenticated;
         vm.logout = logout;
-        vm.currentUser = {};
+        vm.getCurrentUser = getCurrentUser;
 
         // TODO: Check this
         if (AccountService.isAuthenticated()) {
-            AccountService.getMe().then(function () {
-                vm.currentUser = AccountService.me;
-            });
+            AccountService.getMe();
         }
 
         ////////////////
+
+        function getCurrentUser(){
+            return AccountService.me;
+        }
 
         function isActive(viewLocation) {
             return viewLocation === $location.path();

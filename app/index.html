@@ -53,7 +53,7 @@
                 <div ng-show="header.isAuthenticated()" class="navbar-right" ng-cloak>
                     <ul class="nav navbar-nav">
                         <li ng-class="active">
-                            <a ui-sref="account.user"><i class="fa fa-user"></i> {{ header.currentUser.firstName }}</a>
+                            <a ui-sref="account.user"><i class="fa fa-user"></i> {{ header.getCurrentUser().firstName }}</a>
                         </li>
                     </ul>
                     <a href="" class="btn navbar-btn btn-primary" ng-click="header.logout()">Salir</a>

@@ -3,7 +3,7 @@
 
     angular
         .module('classesClientApp')
-        .run(['$rootScope', '$window', 'OAuth', OAuthRunConfiguration]);
+        .run(OAuthRunConfiguration);
 
     OAuthRunConfiguration.$inject = ['$rootScope', '$window', 'OAuth'];
 

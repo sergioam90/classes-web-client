@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .controller('MyUserProfileController', MyUserProfileController);
 
-    MyUserProfileController.$inject = ['UserService'];
+    MyUserProfileController.$inject = ['UserService', 'AccountService'];
 
-    function MyUserProfileController(UserService) {
+    function MyUserProfileController(UserService, AccountService) {
 
         var vm = this;
 
@@ -23,15 +23,11 @@
         }
 
         function loadUser(){
-            UserService.me().then(function (user) {
-                vm.user = user;
-            });
+            vm.user = AccountService.me;
         }
 
         function saveUser(){
-            UserService.saveUser(vm.user).then(function(user){
-                vm.user = user;
-            });
+            UserService.saveUser(vm.user).then(loadUser);
         }
     }
 })();
