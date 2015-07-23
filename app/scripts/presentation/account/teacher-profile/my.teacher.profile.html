@@ -10,7 +10,7 @@
         <dd>{{ vm.teacher.degree | degree }}</dd>
 
         <dt>Puntaje</dt>
-        <dd>{{ vm.teacher.averageRating }}</dd>
+        <rating ng-model="vm.teacher.averageRating" readonly="true"></rating>
 
         <dt>Clase grupal</dt>
         <dd>{{ vm.teacher.groupLessons }}</dd>
