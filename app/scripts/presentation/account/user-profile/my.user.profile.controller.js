@@ -12,6 +12,7 @@
         var vm = this;
 
         vm.user = {};
+        vm.saveUser = saveUser;
 
         initialize();
 
@@ -27,6 +28,10 @@
             });
         }
 
-
+        function saveUser(){
+            UserService.saveUser(vm.user).then(function(user){
+                vm.user = user;
+            });
+        }
     }
 })();

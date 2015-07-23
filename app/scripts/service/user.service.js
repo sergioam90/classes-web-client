@@ -12,7 +12,7 @@
         var vm = this;
 
         vm.me = me;
-        vm.editUser = editUser;
+        vm.saveUser = saveUser;
 
 
         /* Implementation */
@@ -21,8 +21,8 @@
             return Users.one('me').get();
         }
 
-        function editUser(user){
-            return Users.one('me').put(user);
+        function saveUser(user){
+            return Users.one('me').customPUT(user);
         }
 
     }

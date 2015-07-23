@@ -6,20 +6,35 @@
         <dt>Nombre</dt>
         <dd>
             <div class="row">
-                <div class="col-sm-4">
-                        <span editable-text="vm.user.firstName" e-required e-form="textBtnForm">
-                            {{ vm.user.firstName }}
+                <div class="col-sm-6">
+                    <div class="row">
+                        <div class="col-sm-6">
+                        <span editable-text="vm.user.firstName" e-required e-form="nameform">
+                            {{ vm.user.firstName }} {{ vm.user.lastName }}
                         </span>
+                        </div>
+                        <div class="col-sm-6">
+                        <span editable-text="vm.user.lastName" e-required e-form="nameform">
+                        </span>
+                        </div>
+                    </div>
                 </div>
-                <button class="btn btn-default btn-sm" ng-click="textBtnForm.$show()"
-                        ng-hide="textBtnForm.$visible">
-                    <i class="fa fa-pencil"></i>
-                </button>
+                <div class="col-sm-4">
+                    <form editable-form name="nameform" onaftersave="vm.saveUser()" ng-show="nameform.$visible">
+                        <button type="submit" ng-disabled="nameform.$waiting" class="btn btn-sm btn-primary">
+                            <i class="fa fa-check"></i>
+                        </button>
+                        <button type="button" ng-disabled="nameform.$waiting" ng-click="nameform.$cancel()"
+                                class="btn btn-sm btn-default">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </form>
+                    <button class="btn btn-default btn-sm" ng-click="nameform.$show()" ng-hide="nameform.$visible">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                </div>
             </div>
         </dd>
-
-        <dt>Apellido</dt>
-        <dd>{{ vm.user.lastName }}</dd>
 
         <dt>Email</dt>
         <dd>{{ vm.user.email }}</dd>
