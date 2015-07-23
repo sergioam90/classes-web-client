@@ -20,7 +20,7 @@
             <dd>{{ vm.teacher.user.email }}</dd>
 
             <dt>Género</dt>
-            <dd>{{ vm.teacher.user.gender }}</dd>
+            <dd>{{ vm.teacher.user.gender | gender }}</dd>
 
             <dt>Fecha de nacimiento</dt>
             <dd>{{ vm.teacher.user.birthDate }}</dd>
@@ -33,7 +33,7 @@
             <dd>{{ vm.teacher.description }}</dd>
 
             <dt>Estudios</dt>
-            <dd>{{ vm.teacher.degree }}</dd>
+            <dd>{{ vm.teacher.degree | degree }}</dd>
 
             <dt>Puntaje</dt>
             <dd>{{ vm.teacher.averageRating }}</dd>

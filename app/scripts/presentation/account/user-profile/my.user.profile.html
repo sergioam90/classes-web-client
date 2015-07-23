@@ -25,7 +25,7 @@
         <dd>{{ vm.user.email }}</dd>
 
         <dt>Género</dt>
-        <dd>{{ vm.user.gender }}</dd>
+        <dd>{{ vm.user.gender | gender }}</dd>
 
         <dt>Fecha de nacimiento</dt>
         <dd>{{ vm.user.birthDate | date:'longDate' }}</dd>

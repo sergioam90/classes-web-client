@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .service('TeacherService', TeacherService);
 
-    TeacherService.$inject = ['Teachers', 'DegreeService', 'GenderService'];
+    TeacherService.$inject = ['Teachers'];
 
-    function TeacherService(Teachers, DegreeService, GenderService) {
+    function TeacherService(Teachers) {
 
         var vm = this;
 
@@ -21,15 +21,7 @@
         /* Implementation */
 
         function me() {
-            return Teachers.one('me').get().then(function(teacher){
-                // Translate degree to readable string
-                teacher.degree = DegreeService.getName(teacher.degree);
-
-                // Translate gender to readable string
-                teacher.user.gender = GenderService.getName(teacher.user.gender);
-
-                return teacher;
-            });
+            return Teachers.one('me').get();
         }
 
         function reviews(id){

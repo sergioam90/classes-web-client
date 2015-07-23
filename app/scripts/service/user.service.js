@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .service('UserService', UserService);
 
-    UserService.$inject = ['Users', 'GenderService'];
+    UserService.$inject = ['Users'];
 
-    function UserService(Users, GenderService) {
+    function UserService(Users) {
 
         var vm = this;
 
@@ -18,12 +18,7 @@
         /* Implementation */
 
         function me() {
-            return Users.one('me').get().then(function(user){
-                // Translate gender to readable string
-                user.gender = GenderService.getName(user.gender);
-
-                return user;
-            });
+            return Users.one('me').get();
         }
 
         function editUser(user){
