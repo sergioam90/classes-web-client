@@ -9,10 +9,10 @@
 
     function MapsService($q) {
 
-
         function getLocationName(placeId) {
             var deferred = $q.defer();
 
+            // TODO: Don't hide the 'div'
             var mapsService = new google.maps.places.PlacesService(document.createElement('div'));
             var request = {placeId: placeId};
 
