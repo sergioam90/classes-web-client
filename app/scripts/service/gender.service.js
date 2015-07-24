@@ -7,14 +7,14 @@
 
     function GenderService() {
 
-        var genderNames = {
+        var gendersNames = {
             Male: 'Masculino',
             Female: 'Femenino'
         };
 
         return {
-            getName: function (gender) {
-                return genderNames[gender];
+            getGenderName: function (gender) {
+                return gendersNames[gender];
             }
         };
     }

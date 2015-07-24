@@ -28,7 +28,7 @@
         <dd>
             <p class="lead">
                 <span class="label label-primary" ng-repeat="subject in vm.teacher.subjects">
-                    {{ subject.name }}
+                    {{ subject.name }} - {{ subject.level | level }}
                 </span>
             </p>
         </dd>
@@ -46,6 +46,9 @@
 
                 <p>Puntaje: {{ review.rating }}</p>
 
+            </div>
+            <div ng-if="!vm.reviews.length">
+                Aún no has recibido reseñas
             </div>
         </dd>
     </dl>

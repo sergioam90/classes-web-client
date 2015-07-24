@@ -55,14 +55,13 @@
             <dd>
                 <p class="lead">
                 <span class="label label-primary" ng-repeat="subject in vm.teacher.subjects">
-                    {{ subject.name }}
+                    {{ subject.name }} - {{ subject.level | level }}
                 </span>
                 </p>
             </dd>
 
             <dt>Ubicación</dt>
-            <dd>{{ vm.teacher.location }}</dd>
-            <dd>{{ vm.teacher.location.cityName }}</dd>
+            <dd>{{ vm.teacher.location }} - {{ vm.teacher.location.city | city }}</dd>
 
             <dt>Profesores relacionados</dt>
             <dd>

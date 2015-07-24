@@ -11,7 +11,7 @@
         return function (input) {
             input = input || '';
 
-            return DegreeService.getName(input);
+            return DegreeService.getDegreeName(input);
         };
     }
 })();

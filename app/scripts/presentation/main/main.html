@@ -24,11 +24,25 @@
                 </div>
                 <div class="col-sm-3">
                     <label class="control-label"><h4>Nivel</h4></label>
-                    <input class="form-control" placeholder="Nivel" ng-model="main.criteria.level"/>
+                    <ui-select ng-model="main.criteria.level" theme="bootstrap">
+                        <ui-select-match placeholder="Elija un nivel...">{{ $select.selected | level }}
+                        </ui-select-match>
+                        <ui-select-choices
+                                repeat="level in main.levels">
+                            <div ng-bind-html="level | level | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
                 </div>
                 <div class="col-sm-4">
                     <label class="control-label"><h4>Localidad</h4></label>
-                    <input class="form-control" placeholder="Localidad" ng-model="main.criteria.city"/>
+                    <ui-select ng-model="main.criteria.city" theme="bootstrap">
+                        <ui-select-match placeholder="Elija una ciudad...">{{ $select.selected | city }}
+                        </ui-select-match>
+                        <ui-select-choices
+                                repeat="city in main.cities">
+                            <div ng-bind-html="city | city | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
                 </div>
                 <div class="col-sm-1">
                     <span class="input-group-btn">

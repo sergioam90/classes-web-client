@@ -27,6 +27,9 @@
                         </div>
                     </div>
                 </div>
+                <div class="col-sm-4" ng-if="!vm.favoriteTeachers.length">
+                    No tienes profesores favoritos
+                </div>
             </div>
         </dd>
 
@@ -43,9 +46,10 @@
                             <div class="col-sm-9">
                                 <div class="row">
                                     <div class="col-sm-10">
-                                        <a ui-sref="teacherProfile(review.teacher.id)">{{ review.teacher.user.firstName
-                                            }}
-                                            {{ review.teacher.user.lastName }}</a>
+                                        <a ui-sref="teacherProfile(review.teacher.id)">
+                                            {{ review.teacher.user.firstName }}
+                                            {{ review.teacher.user.lastName }}
+                                        </a>
 
                                         <rating ng-model="review.rating" readonly="true"></rating>
                                     </div>

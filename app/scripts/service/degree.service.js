@@ -14,7 +14,7 @@
         };
 
         return {
-            getName: function (degree) {
+            getDegreeName: function (degree) {
                 return degreesNames[degree];
             }
         };

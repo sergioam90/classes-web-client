@@ -11,7 +11,7 @@
         return function (input) {
             input = input || '';
 
-            return GenderService.getName(input);
+            return GenderService.getGenderName(input);
         };
     }
 })();
