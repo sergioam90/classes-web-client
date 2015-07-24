@@ -5,16 +5,14 @@
         <h3>Perfil de profesor</h3>
 
         <dl>
-            <button ng-if="vm.currentUser.student" ng-click="vm.addAsFavorite(vm.teacher)" class="btn btn-warning">
-                Agregar a favoritos
-            </button>
+            <div ng-if="vm.currentUser.student" ng-click="vm.addAsFavorite(vm.teacher)">
+                <i ng-if="vm.teacher.isStudentsFavorite" class="fa fa-star fa-2x yellow-star"></i>
+                <i ng-if="!vm.teacher.isStudentsFavorite" class="fa fa-star-o fa-2x yellow-star"></i>
+            </div>
 
             <!-- User information -->
             <dt>Nombre</dt>
-            <dd>{{ vm.teacher.user.firstName }}</dd>
-
-            <dt>Apellido</dt>
-            <dd>{{ vm.teacher.user.lastName }}</dd>
+            <dd>{{ vm.teacher.user.firstName }} {{ vm.teacher.user.lastName }}</dd>
 
             <dt>Email</dt>
             <dd>{{ vm.teacher.user.email }}</dd>

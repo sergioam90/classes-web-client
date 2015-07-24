@@ -47,6 +47,7 @@
         }
 
         function addAsFavorite(teacher){
+            // TODO: Make this toggle not only add
             StudentService.addAsFavorite(teacher);
         }
 
