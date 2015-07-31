@@ -5,15 +5,16 @@
         .module('classesClientApp')
         .controller('MyTeacherProfileController', MyTeacherProfileController);
 
-    MyTeacherProfileController.$inject = ['TeacherService', 'MapsService'];
+    MyTeacherProfileController.$inject = ['TeacherService', 'MapsService', 'DegreeService'];
 
-    function MyTeacherProfileController(TeacherService, MapsService) {
+    function MyTeacherProfileController(TeacherService, MapsService, DegreeService) {
 
         var vm = this;
 
         vm.teacher = {};
         vm.reviews = [];
         vm.saveTeacher = saveTeacher;
+        vm.degrees = DegreeService.getAllDegrees();
 
         initialize();
 

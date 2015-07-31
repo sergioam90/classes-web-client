@@ -13,10 +13,26 @@
             Postgraduate: 'Superior a graduado'
         };
 
-        return {
-            getDegreeName: function (degree) {
-                return degreesNames[degree];
+        function getDegreeName(degree) {
+            return degreesNames[degree];
+        }
+
+        function getAllDegrees(){
+            var keys = [];
+
+            for (var key in degreesNames) {
+                if (degreesNames.hasOwnProperty(key)) {
+                    keys.push(key);
+                }
             }
+
+            return keys;
+        }
+
+        return {
+            getDegreeName: getDegreeName,
+
+            getAllDegrees: getAllDegrees
         };
     }
 })();

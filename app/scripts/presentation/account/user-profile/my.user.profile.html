@@ -65,7 +65,7 @@
         <dd>
             <div class="row">
                 <div class="col-sm-6">
-            <span editable-select="vm.user.gender" e-ng-options="s | gender for s in vm.genders" e-form="genderForm">
+            <span editable-select="vm.user.gender" e-ng-options="genderValue | gender for genderValue in vm.genders" e-form="genderForm">
                 {{ vm.user.gender | gender }}
             </span>
                 </div>
