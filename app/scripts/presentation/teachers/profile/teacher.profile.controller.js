@@ -14,7 +14,7 @@
         vm.teacher = {};
         vm.relatedTeachers = [];
         vm.currentUser = AccountService.me;
-        vm.addAsFavorite = addAsFavorite;
+        vm.toggleFavorite = toggleFavorite;
         vm.submitReview = submitReview;
 
         initialize();
@@ -46,9 +46,10 @@
             });
         }
 
-        function addAsFavorite(teacher){
-            // TODO: Make this toggle not only add
-            StudentService.addAsFavorite(teacher);
+        function toggleFavorite(teacher){
+            StudentService.toggleFavorite(teacher).then(function(){
+                loadTeacher(vm.teacher.id);
+            });
         }
 
         function submitReview(review){

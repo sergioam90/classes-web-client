@@ -14,6 +14,7 @@
         vm.me = me;
         vm.madeReviews = madeReviews;
         vm.favoriteTeachers = favoriteTeachers;
+        vm.toggleFavorite = toggleFavorite;
         vm.addAsFavorite = addAsFavorite;
         vm.removeFavoriteTeacher = removeFavoriteTeacher;
         vm.removeReview = removeReview;
@@ -34,12 +35,20 @@
             return Students.one('me').one('favorite-teachers').getList();
         }
 
-        function addAsFavorite(teacher) {
-            return Students.one('me').all('favorite-teachers').post({id: teacher.id});
+        function addAsFavorite(teacherId) {
+            return Students.one('me').all('favorite-teachers').post({id: teacherId});
         }
 
         function removeFavoriteTeacher(teacherId){
             return Students.one('me').all('favorite-teachers').one(teacherId).remove();
+        }
+
+        function toggleFavorite(teacher){
+            if(teacher.isFavorite){
+                return removeFavoriteTeacher(teacher.id);
+            }
+
+            return addAsFavorite(teacher.id);
         }
 
         function removeReview(teacherId){
