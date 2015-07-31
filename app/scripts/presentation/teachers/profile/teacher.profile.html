@@ -5,7 +5,7 @@
         <h3>Perfil de profesor</h3>
 
         <dl>
-            <div ng-if="vm.currentUser.student" ng-click="vm.toggleFavorite(vm.teacher)">
+            <div ng-if="vm.currentUser.student && vm.currentUser.teacher !== vm.teacher.id" ng-click="vm.toggleFavorite(vm.teacher)">
                 <i ng-if="vm.teacher.isFavorite" class="fa fa-star fa-2x yellow-star"></i>
                 <i ng-if="!vm.teacher.isFavorite" class="fa fa-star-o fa-2x yellow-star"></i>
             </div>
