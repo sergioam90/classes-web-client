@@ -4,13 +4,13 @@
             <div class="col-sm-12 panel panel-default">
 
                 <tabset justified="true">
-                    <tab select="go('account.user')">
+                    <tab ui-sref="account.user" ui-sref-active-eq="active" active="false">
                         <tab-heading><i class="fa fa-user"></i> Usuario</tab-heading>
                     </tab>
-                    <tab select="go('account.student')">
+                    <tab ui-sref="account.student" ui-sref-active-eq="active">
                         <tab-heading><i class="fa fa-book"></i> Estudiante</tab-heading>
                     </tab>
-                    <tab select="go('account.teacher')">
+                    <tab ui-sref="account.teacher" ui-sref-active-eq="active">
                         <tab-heading><i class="fa fa-graduation-cap"></i> Profesor</tab-heading>
                     </tab>
                 </tabset>
