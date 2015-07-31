@@ -34,7 +34,10 @@
         </dd>
 
         <dt>Ubicación</dt>
-        <dd>{{ vm.teacher.location }} - {{ vm.teacher.location.city | city }}</dd>
+        <dd>{{ vm.teacher.location }} - {{ vm.teacher.location.city | city }}
+            {{ vm.teacher.formattedAddress }}
+            <img class="img img-responsive" src="https://maps.googleapis.com/maps/api/staticmap?size=300x300&maptype=roadmap&markers={{ vm.teacher.location.latitude }},{{ vm.teacher.location.longitude }}" />
+        </dd>
 
         <!-- Recieved reviews -->
         <dt>Reseñas recibidas</dt>

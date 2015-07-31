@@ -23,7 +23,6 @@
         /* Implementation */
 
         function me() {
-            // TODO: Update call to 'me'
             return Students.one('me').get();
         }
 

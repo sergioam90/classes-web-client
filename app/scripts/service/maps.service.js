@@ -27,8 +27,31 @@
             return deferred.promise;
         }
 
+        function getAddress(coordinates) {
+            var deferred = $q.defer();
+
+            var geocoder = new google.maps.Geocoder();
+
+            // TODO: Harcoded location
+            var latlng = new google.maps.LatLng(-38.7229407,-62.2685386);
+
+            var request = {location: latlng};
+
+            geocoder.geocode(request, function (results, status) {
+                if (status === google.maps.GeocoderStatus.OK) {
+                    deferred.resolve(results[0].formatted_address);
+                } else {
+                    console.log('Geocoding failed. Status: ' + status);
+                    deferred.reject();
+                }
+            });
+
+            return deferred.promise;
+        }
+
         return {
-            getLocationName: getLocationName
+            getLocationName: getLocationName,
+            getAddress: getAddress
         };
     }
 })();

@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .controller('MyTeacherProfileController', MyTeacherProfileController);
 
-    MyTeacherProfileController.$inject = ['TeacherService'];
+    MyTeacherProfileController.$inject = ['TeacherService', 'MapsService'];
 
-    function MyTeacherProfileController(TeacherService) {
+    function MyTeacherProfileController(TeacherService, MapsService) {
 
         var vm = this;
 
@@ -27,6 +27,8 @@
                 vm.teacher = teacher;
 
                 loadReviews(vm.teacher.id);
+
+                loadTeacherAddress(vm.teacher.location);
             });
         }
 
@@ -36,6 +38,10 @@
             });
         }
 
-
+        function loadTeacherAddress(){
+            MapsService.getAddress(location).then(function (result) {
+                vm.teacher.formattedAddress = result;
+            });
+        }
     }
 })();
