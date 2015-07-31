@@ -5,12 +5,11 @@
         .module('classesClientApp')
         .controller('HeaderController', HeaderController);
 
-    HeaderController.$inject = ['$location', 'OAuth', 'AccountService'];
+    HeaderController.$inject = ['OAuth', 'AccountService', '$state'];
 
-    function HeaderController($location, OAuth, AccountService) {
+    function HeaderController(OAuth, AccountService, $state) {
         var vm = this;
 
-        vm.isActive = isActive;
         vm.isAuthenticated = OAuth.isAuthenticated;
         vm.logout = logout;
         vm.getCurrentUser = getCurrentUser;
@@ -26,13 +25,9 @@
             return AccountService.me;
         }
 
-        function isActive(viewLocation) {
-            return viewLocation === $location.path();
-        }
-
         function logout() {
             AccountService.logout();
-            $location.path('/');
+            $state.go('main');
         }
     }
 
