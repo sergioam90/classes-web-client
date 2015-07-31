@@ -12,10 +12,27 @@
             Female: 'Femenino'
         };
 
-        return {
-            getGenderName: function (gender) {
-                return gendersNames[gender];
+        function getGenderName(gender) {
+            return gendersNames[gender];
+        }
+
+        function getAllGenders(){
+            var keys = [];
+
+            for (var key in gendersNames) {
+                if (gendersNames.hasOwnProperty(key)) {
+                    keys.push(key);
+                }
             }
+
+            return keys;
+        }
+
+
+        return {
+            getGenderName: getGenderName,
+
+            getAllGenders: getAllGenders
         };
     }
 })();

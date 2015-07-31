@@ -5,14 +5,15 @@
         .module('classesClientApp')
         .controller('MyUserProfileController', MyUserProfileController);
 
-    MyUserProfileController.$inject = ['UserService', 'AccountService'];
+    MyUserProfileController.$inject = ['UserService', 'AccountService', 'GenderService'];
 
-    function MyUserProfileController(UserService, AccountService) {
+    function MyUserProfileController(UserService, AccountService, GenderService) {
 
         var vm = this;
 
         vm.user = {};
         vm.saveUser = saveUser;
+        vm.genders = GenderService.getAllGenders();
 
         initialize();
 
