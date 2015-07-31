@@ -16,6 +16,7 @@
         vm.relatedTeachers = relatedTeachers;
         vm.getById = getById;
         vm.submitReview = submitReview;
+        vm.saveTeacher = saveTeacher;
 
 
         /* Implementation */
@@ -24,20 +25,24 @@
             return Teachers.one('me').get();
         }
 
-        function reviews(id){
+        function reviews(id) {
             return Teachers.one(id).one('reviews').getList();
         }
 
-        function relatedTeachers(id){
+        function relatedTeachers(id) {
             return Teachers.one(id).one('related-teachers').getList();
         }
 
-        function getById(id){
+        function getById(id) {
             return Teachers.one(id).get();
         }
 
-        function submitReview(teacherId, review){
+        function submitReview(teacherId, review) {
             return Teachers.one(teacherId).all('reviews').post(review);
+        }
+
+        function saveTeacher(teacher) {
+            return Teachers.one('me').customPUT(teacher);
         }
 
     }

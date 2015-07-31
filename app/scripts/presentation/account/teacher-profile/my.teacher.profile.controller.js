@@ -13,6 +13,7 @@
 
         vm.teacher = {};
         vm.reviews = [];
+        vm.saveTeacher = saveTeacher;
 
         initialize();
 
@@ -41,6 +42,13 @@
         function loadTeacherAddress(){
             MapsService.getAddress(location).then(function (result) {
                 vm.teacher.formattedAddress = result;
+            });
+        }
+
+        function saveTeacher(){
+            TeacherService.saveTeacher(vm.teacher).then(function(teacher){
+                // TODO: Is this ok?
+                vm.teacher = teacher;
             });
         }
     }

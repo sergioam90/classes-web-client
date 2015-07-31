@@ -4,13 +4,37 @@
 
         <!-- Teacher information -->
         <dt>Descripción</dt>
-        <dd>{{ vm.teacher.description }}</dd>
+        <dd>
+            <div class="row">
+                <!-- TODO: Fix editable width -->
+                <div class="col-sm-6">
+                        <span editable-text="vm.teacher.description" e-required e-form="descriptionForm">
+                            {{ vm.teacher.description }}
+                        </span>
+                </div>
+                <div class="col-sm-4">
+                    <form editable-form name="descriptionForm" onaftersave="vm.saveTeacher()" ng-show="descriptionForm.$visible">
+                        <button type="submit" ng-disabled="descriptionForm.$waiting" class="btn btn-sm btn-primary">
+                            <i class="fa fa-check"></i>
+                        </button>
+                        <button type="button" ng-disabled="descriptionForm.$waiting" ng-click="descriptionForm.$cancel()"
+                                class="btn btn-sm btn-default">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </form>
+                    <button class="btn btn-default btn-sm" ng-click="descriptionForm.$show()" ng-hide="descriptionForm.$visible">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                </div>
+            </div>
+        </dd>
 
         <dt>Estudios</dt>
         <dd>{{ vm.teacher.degree | degree }}</dd>
 
         <dt>Puntaje</dt>
-        <rating ng-model="vm.teacher.averageRating" readonly="true"></rating>
+        <div ng-if="vm.teacher.averageRating < 1">Aún no fue calificado</div>
+        <rating ng-if="vm.teacher.averageRating >= 1" ng-model="vm.teacher.averageRating" readonly="true"></rating>
 
         <dt>Clase grupal</dt>
         <dd>{{ vm.teacher.groupLessons }}</dd>
