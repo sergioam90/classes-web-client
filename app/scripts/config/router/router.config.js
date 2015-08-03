@@ -73,13 +73,13 @@
                 controller: 'MyTeacherProfileController'
             })
             .state('teachersSearch', {
-                url: '/teachers/search',
-                templateUrl: templateUrlPrefix + 'teachers/search/teachers.search.html',
+                url: '/teacher/search',
+                templateUrl: templateUrlPrefix + 'teacher/search/teachers.search.html',
                 controller: 'TeachersSearchController'
             })
             .state('teacherProfile', {
                 url: '/teachers/{id}',
-                templateUrl: templateUrlPrefix + 'teachers/profile/teacher.profile.html',
+                templateUrl: templateUrlPrefix + 'teacher/profile/teacher.profile.html',
                 controller: 'TeacherProfileController'
             })
             .state('maps', {

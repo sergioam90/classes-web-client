@@ -5,7 +5,8 @@
         <h3>Perfil de profesor</h3>
 
         <dl>
-            <div ng-if="vm.currentUser.student && vm.currentUser.teacher !== vm.teacher.id" ng-click="vm.toggleFavorite(vm.teacher)">
+            <div ng-if="vm.currentUser.student && vm.currentUser.teacher !== vm.teacher.id"
+                 ng-click="vm.toggleFavorite(vm.teacher)">
                 <i ng-if="vm.teacher.isFavorite" class="fa fa-star fa-2x yellow-star"></i>
                 <i ng-if="!vm.teacher.isFavorite" class="fa fa-star-o fa-2x yellow-star"></i>
             </div>
@@ -68,6 +69,36 @@
                 </div>
             </dd>
 
+            <div ng-if="vm.currentUser.student && vm.currentUser.teacher !== vm.teacher.id">
+                <dt>Mi reseña</dt>
+                <dd>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <button ng-click="vm.showReviewModal()" class="btn btn-warning">Calificar</button>
+                            <div class="row">
+                                <div class="col-sm-2">
+                                    <img src="images/mock.jpg" class="img img-responsive"/>
+                                </div>
+                                <div class="col-sm-10">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            {{ vm.teacher.review.student.user.firstName }} {{
+                                            vm.teacher.review.student.user.lastName }}
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <rating ng-model="vm.teacher.review.rating" readonly="true"></rating>
+                                        </div>
+                                        <div class="col-sm-12">
+                                            <p>{{ vm.teacher.review.comment }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </dd>
+            </div>
+
             <!-- Recieved reviews -->
             <dt>Reseñas recibidas</dt>
             <dd>
@@ -79,18 +110,12 @@
 
                     <p>Comentario: {{ review.comment }}</p>
 
-                    <p>Puntaje: {{ review.rating }}</p>
+                    <p>Puntaje:
+                        <rating ng-model="review.rating" readonly="true"></rating>
+                    </p>
                 </div>
             </dd>
 
-            <div ng-if="vm.currentUser.student">
-                <dt>Escribir reseña</dt>
-                <dd class="col-sm-4">
-                    Puntaje: <input class="form-control" type="number" ng-model="newReview.rating"> <!-- TODO: Add validation -->
-                    Comentario: <input class="form-control" type="text" ng-model="newReview.comment">
-                    <button class="btn btn-primary" ng-click="vm.submitReview(newReview)">Calificar</button>
-                </dd>
-            </div>
         </dl>
     </div>
 </div>
