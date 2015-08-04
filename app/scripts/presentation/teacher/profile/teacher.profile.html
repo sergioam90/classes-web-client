@@ -1,66 +1,315 @@
 <div class="row" ng-controller="TeacherProfileController as vm">
 
-    <div class="panel panel-body">
 
-        <h3>Perfil de profesor</h3>
+    <div class="col-sm-8">
+        <div class="panel panel-body">
 
-        <dl>
-            <div ng-if="vm.currentUser.student && vm.currentUser.teacher !== vm.teacher.id"
-                 ng-click="vm.toggleFavorite(vm.teacher)">
-                <i ng-if="vm.teacher.isFavorite" class="fa fa-star fa-2x yellow-star"></i>
-                <i ng-if="!vm.teacher.isFavorite" class="fa fa-star-o fa-2x yellow-star"></i>
+            <div class="row">
+
+                <!-- User image -->
+                <div class="col-sm-3">
+                    <img src="images/mock.jpg" class="img img-responsive img-thumbnail">
+                </div>
+
+                <!-- User information -->
+                <div class="col-sm-8">
+
+                    <!-- Name and rating -->
+                    <div class="row">
+
+                        <!-- User name -->
+                        <div class="col-sm-7">
+
+                            <h3>
+                                <!-- Degree -->
+                                <span tooltip="{{ vm.teacher.degree | degree }}">
+                                    <!-- Undergraduated -->
+                                    <i ng-if="vm.teacher.degree == 'Undergraduate'"
+                                       class="fa fa-graduation-cap text-muted">
+                                    </i>
+
+                                    <!-- Graduated -->
+                                    <i ng-if="vm.teacher.degree == 'Graduate'"
+                                       class="fa fa-graduation-cap text-default">
+                                    </i>
+
+                                    <!-- Postgraduated -->
+                                    <i ng-if="vm.teacher.degree == 'Postgraduate'"
+                                       class="fa fa-graduation-cap text-warning">
+                                    </i>
+                                </span>
+
+                                <!-- Username -->
+                                {{ vm.teacher.user.firstName }} {{ vm.teacher.user.lastName }}
+                            </h3>
+                        </div>
+
+                        <!-- Rating -->
+                        <div class="col-sm-4">
+                            <h4>
+                                <rating
+                                        class="text-warning"
+                                        ng-if="vm.teacher.averageRating > 0"
+                                        ng-model="vm.teacher.averageRating"
+                                        readonly="true">
+                                </rating>
+                            </h4>
+                            <!-- TODO: Add not available message -->
+                        </div>
+
+                        <!-- Favorite icon -->
+                        <div class="col-sm-1"
+                             ng-if="vm.currentUser.student && vm.currentUser.teacher !== vm.teacher.id"
+                             ng-click="vm.toggleFavorite(vm.teacher)">
+
+                                <span tooltip="Agregar a favoritos">
+                                    <i ng-if="vm.teacher.isFavorite" class="fa fa-thumbs-up fa-2x text-success"></i>
+                                    <i ng-if="!vm.teacher.isFavorite" class="fa fa-thumbs-o-up fa-2x text-default"></i>
+                                </span>
+                        </div>
+                    </div>
+
+                    <!-- Icon bar -->
+                    <div class="row">
+                        <h4>
+                            <!-- Class type -->
+                            <span>
+
+                                <!-- Individual class -->
+                                <span class="fa-stack" ng-if="!vm.teacher.groupLessons" tooltip="Clases individuales">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-user fa-stack-1x fa-inverse"></i>
+                                </span>
+
+                                <!-- Group class -->
+                                <span class="fa-stack" ng-if="vm.teacher.groupLessons" tooltip="Solo clases grupales">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-users fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </span>
+
+                            <!-- Class location -->
+                            <span>
+                                <!-- Home class -->
+                                <span class="fa-stack" ng-if="vm.teacher.homeLessons" tooltip="A domicilio">
+                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                                    <i class="fa fa-home fa-stack-1x fa-inverse"></i>
+                                </span>
+
+                                <!-- No home class -->
+                                <span class="fa-stack" ng-if="!vm.teacher.homeLessons" tooltip="No va a domicilio">
+                                    <i class="fa fa-home fa-stack-1x"></i>
+                                    <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                                </span>
+                            </span>
+
+                            <!-- Whatsapp availability -->
+                            <span>
+                                <!-- Has whatsapp -->
+                                <span class="fa-stack" ng-if="vm.teacher.phone.whatsApp" tooltip="Tiene whatsapp">
+                                    <i class="fa fa-circle fa-stack-2x text-success"></i>
+                                    <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
+                                </span>
+
+                                <!-- Doesn't have whatsapp -->
+                                <span class="fa-stack" ng-if="!vm.teacher.phone.whatsApp" tooltip="No tiene whatsapp">                                    <i
+                                        class="fa fa-circle fa-stack-2x text-success"></i>
+                                    <i class="fa fa-circle fa-stack-2x text-success"></i>
+                                    <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
+                                    <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                                </span>
+                            </span>
+                        </h4>
+
+                    </div>
+                </div>
             </div>
 
-            <!-- User information -->
-            <dt>Nombre</dt>
-            <dd>{{ vm.teacher.user.firstName }} {{ vm.teacher.user.lastName }}</dd>
+            <!-- Information tabs -->
+            <div class="row">
+                <tabset justified="true">
 
-            <dt>Email</dt>
-            <dd>{{ vm.teacher.user.email }}</dd>
+                    <!-- Details tab -->
+                    <tab heading="Información">
 
-            <dt>Género</dt>
-            <dd>{{ vm.teacher.user.gender | gender }}</dd>
+                        <!-- Description -->
+                        <p class="lead text-center">{{ vm.teacher.description }}</p>
 
-            <dt>Fecha de nacimiento</dt>
-            <dd>{{ vm.teacher.user.birthDate }}</dd>
+                        <hr>
 
-            <dt>Imagen de perfil</dt>
-            <dd>{{ vm.teacher.user.profilePicture }}</dd>
+                        <div class="row">
+                            <!-- Degree -->
+                            <div class="col-sm-3 text-center feature-container">
+                                <h3>
+                                <span>
+                                    <!-- Undergraduated -->
+                                    <i ng-if="vm.teacher.degree == 'Undergraduate'"
+                                       class="fa fa-graduation-cap text-muted">
+                                    </i>
 
-            <!-- Teacher information -->
-            <dt>Descripción</dt>
-            <dd>{{ vm.teacher.description }}</dd>
+                                    <!-- Graduated -->
+                                    <i ng-if="vm.teacher.degree == 'Graduate'"
+                                       class="fa fa-graduation-cap text-default">
+                                    </i>
 
-            <dt>Estudios</dt>
-            <dd>{{ vm.teacher.degree | degree }}</dd>
+                                    <!-- Postgraduated -->
+                                    <i ng-if="vm.teacher.degree == 'Postgraduate'"
+                                       class="fa fa-graduation-cap text-warning">
+                                    </i>
+                                </span>
+                                </h3>
 
-            <dt>Puntaje</dt>
-            <rating ng-model="vm.teacher.averageRating" readonly="true"></rating>
+                                <p>{{ vm.teacher.degree | degree }}</p>
+                            </div>
 
+                            <!-- Age -->
+                            <div class="col-sm-3 text-center feature-container">
+                                <h3>{{ vm.teacher.user.birthDate | age }}</h3>
 
-            <dt>Clase grupal</dt>
-            <dd>{{ vm.teacher.groupLessons }}</dd>
+                                <p>Edad</p>
+                            </div>
 
-            <dt>A domicilio</dt>
-            <dd>{{ !vm.teacher.homeLessons }}</dd>
+                            <!-- Gender -->
+                            <div class="col-sm-3 text-center feature-container">
 
-            <dt>Teléfono</dt>
-            <dd>
-                Numero: {{ vm.teacher.phone.number }}
-                Tiene whatsapp: {{ vm.teacher.phone.whatsApp }}
-            </dd>
+                                <h3>
+                                    <span>
+                                        <!-- Male -->
+                                        <i ng-if="vm.teacher.user.gender == 'Male'"
+                                           class="fa fa-male text-primary">
+                                        </i>
 
-            <dt>Materias</dt>
-            <dd>
-                <p class="lead">
-                <span class="label label-primary" ng-repeat="subject in vm.teacher.subjects">
-                    {{ subject.name }} - {{ subject.level | level }}
-                </span>
-                </p>
-            </dd>
+                                        <!-- Female -->
+                                        <i ng-if="vm.teacher.user.gender == 'Female'"
+                                           class="fa fa-female text-info">
+                                        </i>
+                                    </span>
+                                </h3>
 
-            <dt>Ubicación</dt>
-            <dd>{{ vm.teacher.location }} - {{ vm.teacher.location.city | city }}</dd>
+                                <p>{{ vm.teacher.user.gender | gender }}</p>
+                            </div>
+
+                            <!-- Class location -->
+                            <div class="col-sm-3 text-center">
+                                <h3>
+                                    <span>
+                                        <!-- Home class -->
+                                        <span ng-if="vm.teacher.homeLessons">
+                                            <i class="fa fa-home text-success"></i>
+                                        </span>
+
+                                        <!-- No home class -->
+                                        <span class="fa-stack" ng-if="!vm.teacher.homeLessons">
+                                            <i class="fa fa-home fa-stack-1x"></i>
+                                            <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                                        </span>
+                                    </span>
+                                </h3>
+                                <!-- TODO: Should this be made as a filter? -->
+                                <p ng-if="vm.teacher.homeLessons">A domicilio</p>
+
+                                <p ng-if="!vm.teacher.homeLessons">No va a domicilio</p>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <!-- Teacher information -->
+                        <div class="page-header">
+                            <h4>Materias que dicto
+                                <small></small>
+                            </h4>
+                        </div>
+                        <dd>
+                            <p class="lead">
+                                <span class="label label-primary" ng-repeat="subject in vm.teacher.subjects">
+                                    {{ subject.name }} - {{ subject.level | level }}
+                                </span>
+                            </p>
+                        </dd>
+                    </tab>
+
+                    <!-- Reviews tab -->
+                    <tab heading="Opiniones">
+
+                        <div ng-if="vm.currentUser.student && vm.currentUser.teacher !== vm.teacher.id">
+                            <dt>Mi reseña</dt>
+                            <dd>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <button ng-click="vm.showReviewModal()" class="btn btn-warning">Calificar
+                                        </button>
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <img src="images/mock.jpg" class="img img-responsive"/>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <div class="row">
+                                                    <div class="col-sm-8">
+                                                        {{ vm.teacher.review.student.user.firstName }} {{
+                                                        vm.teacher.review.student.user.lastName }}
+                                                    </div>
+                                                    <div class="col-sm-4">
+                                                        <rating ng-model="vm.teacher.review.rating"
+                                                                readonly="true"></rating>
+                                                    </div>
+                                                    <div class="col-sm-12">
+                                                        <p>{{ vm.teacher.review.comment }}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </dd>
+                        </div>
+
+                        <!-- Recieved reviews -->
+                        <dt>Reseñas recibidas</dt>
+                        <dd>
+                            <div ng-repeat="review in vm.reviews">
+
+                                <p>Estudiante: {{ review.student.user.firstName }} {{ review.student.user.lastName
+                                    }}</p>
+
+                                <p>URL: {{ review.student.id }}</p>
+
+                                <p>Comentario: {{ review.comment }}</p>
+
+                                <p>Puntaje:
+                                    <rating ng-model="review.rating" readonly="true"></rating>
+                                </p>
+                            </div>
+                        </dd>
+                    </tab>
+
+                    <!-- Contact tab -->
+                    <tab heading="Contacto">
+
+                        <!-- Phone -->
+                        <dt>Teléfono</dt>
+                        <dd>
+                            Numero: {{ vm.teacher.phone.number }}
+                            Tiene whatsapp: {{ vm.teacher.phone.whatsApp }}
+                        </dd>
+
+                        <!-- Email -->
+                        <dt>Email</dt>
+                        <dd>{{ vm.teacher.user.email }}</dd>
+
+                        <!-- Location -->
+                        <dt>Ubicación</dt>
+                        <dd>{{ vm.teacher.location }} - {{ vm.teacher.location.city | city }}</dd>
+
+                    </tab>
+                </tabset>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        <div class="panel panel-body">
 
             <dt>Profesores relacionados</dt>
             <dd>
@@ -68,54 +317,7 @@
                     Nombre: {{ teacher.user.firstName }}
                 </div>
             </dd>
-
-            <div ng-if="vm.currentUser.student && vm.currentUser.teacher !== vm.teacher.id">
-                <dt>Mi reseña</dt>
-                <dd>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <button ng-click="vm.showReviewModal()" class="btn btn-warning">Calificar</button>
-                            <div class="row">
-                                <div class="col-sm-2">
-                                    <img src="images/mock.jpg" class="img img-responsive"/>
-                                </div>
-                                <div class="col-sm-10">
-                                    <div class="row">
-                                        <div class="col-sm-8">
-                                            {{ vm.teacher.review.student.user.firstName }} {{
-                                            vm.teacher.review.student.user.lastName }}
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <rating ng-model="vm.teacher.review.rating" readonly="true"></rating>
-                                        </div>
-                                        <div class="col-sm-12">
-                                            <p>{{ vm.teacher.review.comment }}</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </dd>
-            </div>
-
-            <!-- Recieved reviews -->
-            <dt>Reseñas recibidas</dt>
-            <dd>
-                <div ng-repeat="review in vm.reviews">
-
-                    <p>Estudiante: {{ review.student.user.firstName }} {{ review.student.user.lastName }}</p>
-
-                    <p>URL: {{ review.student.id }}</p>
-
-                    <p>Comentario: {{ review.comment }}</p>
-
-                    <p>Puntaje:
-                        <rating ng-model="review.rating" readonly="true"></rating>
-                    </p>
-                </div>
-            </dd>
-
-        </dl>
+        </div>
     </div>
+
 </div>

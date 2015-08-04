@@ -14,8 +14,6 @@
             'angular-oauth2',
             'xeditable',
             'ui.bootstrap',
-            'ui.bootstrap.rating',
-            'ui.bootstrap.modal',
             'ui.router',
             'ui.select'
         ])
