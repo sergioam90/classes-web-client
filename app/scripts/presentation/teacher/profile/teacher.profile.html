@@ -14,7 +14,7 @@
                 <!-- User information -->
                 <div class="col-sm-8">
 
-                    <!-- Name and rating -->
+                    <!-- Name and degree -->
                     <div class="row">
 
                         <!-- User name -->
@@ -71,8 +71,9 @@
 
                     <!-- Icon bar -->
                     <div class="row">
-                        <h4>
-                            <!-- Class type -->
+                        <div class="col-sm-8">
+                            <h4>
+                                <!-- Class type -->
                             <span>
 
                                 <!-- Individual class -->
@@ -88,7 +89,7 @@
                                 </span>
                             </span>
 
-                            <!-- Class location -->
+                                <!-- Class location -->
                             <span>
                                 <!-- Home class -->
                                 <span class="fa-stack" ng-if="vm.teacher.homeLessons" tooltip="A domicilio">
@@ -103,24 +104,28 @@
                                 </span>
                             </span>
 
-                            <!-- Whatsapp availability -->
-                            <span>
-                                <!-- Has whatsapp -->
-                                <span class="fa-stack" ng-if="vm.teacher.phone.whatsApp" tooltip="Tiene whatsapp">
-                                    <i class="fa fa-circle fa-stack-2x text-success"></i>
-                                    <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
-                                </span>
+                                <!-- Whatsapp availability -->
+                                <span>
+                                    <!-- Has whatsapp -->
+                                    <span class="fa-stack" ng-if="vm.teacher.phone.whatsApp" tooltip="Tiene whatsapp">
+                                        <i class="fa fa-circle fa-stack-2x text-success"></i>
+                                        <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
+                                    </span>
 
-                                <!-- Doesn't have whatsapp -->
-                                <span class="fa-stack" ng-if="!vm.teacher.phone.whatsApp" tooltip="No tiene whatsapp">                                    <i
-                                        class="fa fa-circle fa-stack-2x text-success"></i>
-                                    <i class="fa fa-circle fa-stack-2x text-success"></i>
-                                    <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
-                                    <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                                    <!-- Doesn't have whatsapp -->
+                                    <span class="fa-stack" ng-if="!vm.teacher.phone.whatsApp"
+                                          tooltip="No tiene whatsapp">                                    <i
+                                            class="fa fa-circle fa-stack-2x text-success"></i>
+                                        <i class="fa fa-circle fa-stack-2x text-success"></i>
+                                        <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
+                                        <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                                    </span>
                                 </span>
-                            </span>
-                        </h4>
-
+                            </h4>
+                        </div>
+                        <div class="col-sm-4">
+                            <h4>$ {{ vm.teacher.fee }}</h4>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -199,9 +204,8 @@
                                         </span>
 
                                         <!-- No home class -->
-                                        <span class="fa-stack" ng-if="!vm.teacher.homeLessons">
-                                            <i class="fa fa-home fa-stack-1x"></i>
-                                            <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                                        <span ng-if="!vm.teacher.homeLessons">
+                                            <i class="fa fa-home text-muted"></i>
                                         </span>
                                     </span>
                                 </h3>
@@ -215,18 +219,13 @@
                         <hr>
 
                         <!-- Teacher information -->
-                        <div class="page-header">
-                            <h4>Materias que dicto
-                                <small></small>
-                            </h4>
+                        <h5>Materias que dicto</h5>
+
+                        <div class="row">
+                            <div class="col-sm-3" ng-repeat="subject in vm.teacher.subjects">
+                                <subject ng-model="subject"></subject>
+                            </div>
                         </div>
-                        <dd>
-                            <p class="lead">
-                                <span class="label label-primary" ng-repeat="subject in vm.teacher.subjects">
-                                    {{ subject.name }} - {{ subject.level | level }}
-                                </span>
-                            </p>
-                        </dd>
                     </tab>
 
                     <!-- Reviews tab -->
