@@ -232,54 +232,31 @@
                     <tab heading="Opiniones">
 
                         <div ng-if="vm.currentUser.student && vm.currentUser.teacher !== vm.teacher.id">
-                            <dt>Mi reseña</dt>
-                            <dd>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <button ng-click="vm.showReviewModal()" class="btn btn-warning">Calificar
-                                        </button>
-                                        <div class="row">
-                                            <div class="col-sm-2">
-                                                <img src="images/mock.jpg" class="img img-responsive"/>
-                                            </div>
-                                            <div class="col-sm-10">
-                                                <div class="row">
-                                                    <div class="col-sm-8">
-                                                        {{ vm.teacher.review.student.user.firstName }} {{
-                                                        vm.teacher.review.student.user.lastName }}
-                                                    </div>
-                                                    <div class="col-sm-4">
-                                                        <rating ng-model="vm.teacher.review.rating"
-                                                                readonly="true"></rating>
-                                                    </div>
-                                                    <div class="col-sm-12">
-                                                        <p>{{ vm.teacher.review.comment }}</p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </dd>
+                            <h5>
+                                Mi calificación
+                                <button ng-click="vm.showReviewModal()"
+                                        class="btn btn-default btn-sm"
+                                        tooltip="Editar"
+                                        tooltip-placement="right">
+                                    <i class="fa fa-pencil"></i>
+                                </button>
+                            </h5>
+                            <review ng-model="vm.teacher.review"></review>
+                            <hr>
                         </div>
 
                         <!-- Recieved reviews -->
-                        <dt>Reseñas recibidas</dt>
-                        <dd>
-                            <div ng-repeat="review in vm.reviews">
+                        <h5>Calificaciones</h5>
 
-                                <p>Estudiante: {{ review.student.user.firstName }} {{ review.student.user.lastName
-                                    }}</p>
+                        <div ng-repeat="review in vm.reviews">
+                            <review ng-model="review"></review>
+                            <hr>
+                        </div>
 
-                                <p>URL: {{ review.student.id }}</p>
+                        <div ng-if="!vm.reviews">
+                            <p class="lead">¡Aún no han calificado a este profesor!</p>
+                        </div>
 
-                                <p>Comentario: {{ review.comment }}</p>
-
-                                <p>Puntaje:
-                                    <rating ng-model="review.rating" readonly="true"></rating>
-                                </p>
-                            </div>
-                        </dd>
                     </tab>
 
                     <!-- Contact tab -->
