@@ -15,6 +15,18 @@
         vm.currentUser = currentUser;
         vm.modalSubmitReview = modalSubmitReview;
         vm.modalDismiss = modalDismiss;
+        vm.onHover = onHover;
+        vm.onLeave = onLeave;
+
+        vm.titles = [
+            'Malísimo',
+            'Malo',
+            'Zafa',
+            'Bueno',
+            'Genial'
+        ];
+
+        vm.currentTitle = vm.titles[vm.teacher.review.rating - 1];
 
         function modalSubmitReview(review) {
             submitReview(review);
@@ -23,6 +35,14 @@
 
         function modalDismiss() {
             $modalInstance.close();
+        }
+
+        function onHover(value) {
+            vm.currentTitle = vm.titles[value - 1];
+        }
+
+        function onLeave() {
+            vm.currentTitle = vm.titles[vm.teacher.review.rating - 1];
         }
 
     }

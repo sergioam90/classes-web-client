@@ -36,6 +36,11 @@
             TeacherService.getById(id).then(function (teacher) {
                 vm.teacher = teacher;
 
+                // TODO: Ask to send empty object if student didn't make a review
+                if (!vm.teacher.review) {
+                    vm.teacher.review = {};
+                }
+
                 loadRelatedTeachers(vm.teacher.id);
                 loadReviews(vm.teacher.id);
             });
@@ -61,7 +66,8 @@
 
         function submitReview(review) {
             TeacherService.submitReview(vm.teacher.id, review).then(function () {
-                loadReviews(vm.teacher.id); // TODO: Will this update view?
+
+                loadTeacher(vm.teacher.id);
             });
         }
 

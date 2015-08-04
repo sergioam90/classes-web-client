@@ -1,0 +1,34 @@
+<div class="row">
+
+    <!-- Teacher image -->
+    <div class="col-sm-3">
+        <img src="images/mock.jpg" class="img img-responsive">
+    </div>
+
+    <!-- Teacher information -->
+    <div class="col-sm-9">
+
+        <!-- Teacher name -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h5>
+                    <a ui-sref="teacherProfile(teacher.id)">
+                        {{ teacher.user.firstName }} {{ teacher.user.lastName }}
+                    </a>
+                </h5>
+            </div>
+        </div>
+
+        <!-- Teacher rating -->
+        <div class="row">
+            <div class="col-sm-12">
+                <h4>
+                    <rating ng-if="teacher.averageRating >= 1"
+                            class="text-warning"
+                            readonly="true"
+                            ng-model="teacher.averageRating"></rating>
+                </h4>
+            </div>
+        </div>
+    </div>
+</div>

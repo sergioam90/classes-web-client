@@ -1,13 +1,37 @@
-<div class="modal-header">
-    <button type="button" class="close" ng-click="vm.modalDismiss()" aria-hidden="true">×</button>
-    <h4 class="modal-title">Calificación de {{ vm.currentUser.firstName }} {{ vm.currentUser.lastName }}</h4>
+<div class="modal-header bg-primary">
+
+    <div class="row">
+        <div class="col-sm-2">
+            <img src="images/mock.jpg" class="img img-responsive img-circle">
+        </div>
+
+        <div class="col-sm-9">
+            <h4 class="modal-title text-white">
+                Calificación de {{ vm.currentUser.firstName }} {{ vm.currentUser.lastName }}
+            </h4>
+        </div>
+
+        <div class="col-sm-1 pull-right">
+            <button type="button" class="close" ng-click="vm.modalDismiss()" aria-hidden="true">×</button>
+        </div>
+    </div>
+
+
 </div>
+
 <div class="modal-body">
-    <h4>
-        <rating ng-model="vm.teacher.review.rating"></rating>
-    </h4>
+    <h4 class="text-center">{{ vm.currentTitle }}</h4>
+
+    <h2 class="text-center">
+        <rating class="text-warning"
+                ng-model="vm.teacher.review.rating"
+                on-hover="vm.onHover(value)"
+                on-leave="vm.onLeave()">
+        </rating>
+    </h2>
     <textarea class="form-control" type="text" ng-model="vm.teacher.review.comment" maxlength="256"></textarea>
 </div>
+
 <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="vm.modalDismiss()">Cancelar</button>
     <button type="button" class="btn btn-primary" ng-click="vm.modalSubmitReview(vm.teacher.review)">

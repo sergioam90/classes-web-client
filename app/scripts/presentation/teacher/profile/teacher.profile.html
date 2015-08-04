@@ -2,6 +2,19 @@
 
 
     <div class="col-sm-8">
+        <!-- Favorite icon -->
+        <span class="teacher-bookmark pull-right"
+              ng-if="vm.currentUser.student && vm.currentUser.teacher !== vm.teacher.id"
+              ng-click="vm.toggleFavorite(vm.teacher)">
+
+            <span tooltip="Agregar a favoritos">
+                <i ng-if="vm.teacher.isFavorite"
+                   class="fa fa-bookmark fa-3x text-success"></i>
+                <i ng-if="!vm.teacher.isFavorite"
+                   class="fa fa-bookmark-o fa-3x text-muted"></i>
+            </span>
+        </span>
+
         <div class="panel panel-body">
 
             <div class="row">
@@ -57,16 +70,6 @@
                             <!-- TODO: Add not available message -->
                         </div>
 
-                        <!-- Favorite icon -->
-                        <div class="col-sm-1"
-                             ng-if="vm.currentUser.student && vm.currentUser.teacher !== vm.teacher.id"
-                             ng-click="vm.toggleFavorite(vm.teacher)">
-
-                                <span tooltip="Agregar a favoritos">
-                                    <i ng-if="vm.teacher.isFavorite" class="fa fa-thumbs-up fa-2x text-success"></i>
-                                    <i ng-if="!vm.teacher.isFavorite" class="fa fa-thumbs-o-up fa-2x text-default"></i>
-                                </span>
-                        </div>
                     </div>
 
                     <!-- Icon bar -->
@@ -231,17 +234,24 @@
                     <!-- Reviews tab -->
                     <tab heading="Opiniones">
 
-                        <div ng-if="vm.currentUser.student && vm.currentUser.teacher !== vm.teacher.id">
+                        <div ng-if="vm.currentUser.student && vm.currentUser.teacher != vm.teacher.id">
                             <h5>
                                 Mi calificación
-                                <button ng-click="vm.showReviewModal()"
+                                <button ng-if="vm.teacher.review.rating"
+                                        ng-click="vm.showReviewModal()"
                                         class="btn btn-default btn-sm"
                                         tooltip="Editar"
                                         tooltip-placement="right">
                                     <i class="fa fa-pencil"></i>
                                 </button>
                             </h5>
-                            <review ng-model="vm.teacher.review"></review>
+                            <review ng-if="vm.teacher.review.rating" ng-model="vm.teacher.review"></review>
+                            <div ng-if="!vm.teacher.review.rating" class="text-center">
+                                <button ng-click="vm.showReviewModal()"
+                                        class="btn btn-primary btn-lg">
+                                    Calificar
+                                </button>
+                            </div>
                             <hr>
                         </div>
 
@@ -253,7 +263,7 @@
                             <hr>
                         </div>
 
-                        <div ng-if="!vm.reviews">
+                        <div ng-if="!vm.reviews.length">
                             <p class="lead">¡Aún no han calificado a este profesor!</p>
                         </div>
 
@@ -263,19 +273,29 @@
                     <tab heading="Contacto">
 
                         <!-- Phone -->
-                        <dt>Teléfono</dt>
-                        <dd>
-                            Numero: {{ vm.teacher.phone.number }}
-                            Tiene whatsapp: {{ vm.teacher.phone.whatsApp }}
-                        </dd>
+                        <h4>
+                            <i class="fa fa-phone text-primary fa-fw"></i>
+                            <span>  {{ vm.teacher.phone.number }}  </span>
+                        </h4>
+
+                        <hr>
 
                         <!-- Email -->
-                        <dt>Email</dt>
-                        <dd>{{ vm.teacher.user.email }}</dd>
+                        <h4>
+                            <i class="fa fa-envelope fa-fw"></i>
+                            {{ vm.teacher.user.email }}
+                        </h4>
+
+                        <hr>
 
                         <!-- Location -->
-                        <dt>Ubicación</dt>
-                        <dd>{{ vm.teacher.location }} - {{ vm.teacher.location.city | city }}</dd>
+                        <h4>
+                            <i class="fa fa-map-marker text-danger fa-fw"></i>{{ vm.teacher.location.city | city }}
+                        </h4>
+                        <hr>
+
+                        {{ vm.teacher.location }}
+
 
                     </tab>
                 </tabset>
@@ -286,13 +306,10 @@
 
     <div class="col-sm-4">
         <div class="panel panel-body">
-
-            <dt>Profesores relacionados</dt>
-            <dd>
-                <div ng-repeat="teacher in vm.relatedTeachers">
-                    Nombre: {{ teacher.user.firstName }}
-                </div>
-            </dd>
+                <span ng-repeat="teacher in vm.relatedTeachers">
+                    <related-teacher ng-model="teacher"></related-teacher>
+                    <hr>
+                </span>
         </div>
     </div>
 

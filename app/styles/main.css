@@ -95,3 +95,12 @@ body {
 .feature-container {
     border-right: 1px solid #EEE;
 }
+
+.text-white {
+    color: white;
+}
+
+.teacher-bookmark {
+    padding-right: 10px;
+    margin-top: -5px;
+}

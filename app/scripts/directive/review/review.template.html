@@ -16,7 +16,10 @@
             <div class="col-sm-9">
                 <h5>
                     {{ review.student.user.firstName }} {{ review.student.user.lastName }}
-                    <rating class="text-warning" readonly="true" ng-model="review.rating"></rating>
+                    <rating class="text-warning"
+                            readonly="true"
+                            ng-model="review.rating">
+                    </rating>
                 </h5>
             </div>
 
