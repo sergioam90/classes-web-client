@@ -6,9 +6,12 @@
         .module('classesClientApp')
         .config(RouterConfig);
 
-    RouterConfig.$inject = ['$stateProvider', '$urlRouterProvider'];
+    RouterConfig.$inject = ['$stateProvider', '$urlRouterProvider', '$locationProvider'];
 
-    function RouterConfig($stateProvider, $urlRouterProvider) {
+    function RouterConfig($stateProvider, $urlRouterProvider, $locationProvider) {
+
+        // TODO: Enable this for making urls pretty
+        //$locationProvider.html5Mode(true);
 
         $urlRouterProvider.otherwise('/');
 

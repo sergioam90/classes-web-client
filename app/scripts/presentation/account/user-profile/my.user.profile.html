@@ -38,27 +38,7 @@
 
         <dt>Email</dt>
         <dd>
-            <div class="row">
-                <div class="col-sm-6">
-                        <span editable-text="vm.user.email" e-required e-form="emailForm">
-                            {{ vm.user.email }}
-                        </span>
-                </div>
-                <div class="col-sm-4">
-                    <form editable-form name="emailForm" onaftersave="vm.saveUser()" ng-show="emailForm.$visible">
-                        <button type="submit" ng-disabled="emailForm.$waiting" class="btn btn-sm btn-primary">
-                            <i class="fa fa-check"></i>
-                        </button>
-                        <button type="button" ng-disabled="emailForm.$waiting" ng-click="emailForm.$cancel()"
-                                class="btn btn-sm btn-default">
-                            <i class="fa fa-close"></i>
-                        </button>
-                    </form>
-                    <button class="btn btn-default btn-sm" ng-click="emailForm.$show()" ng-hide="emailForm.$visible">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                </div>
-            </div>
+            {{ vm.user.email }}
         </dd>
 
         <dt>Género</dt>

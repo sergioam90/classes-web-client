@@ -4,7 +4,7 @@
     angular
         .module('classesClientApp')
         .constant('appConfig', {
-            SERVER_URL: 'localhost:8080'
+            SERVER_URL: 'classes.noip.me:8080'
         });
 
 })();
