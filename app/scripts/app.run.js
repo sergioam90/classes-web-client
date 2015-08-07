@@ -3,6 +3,11 @@
 
     angular
         .module('classesClientApp')
-        .run();
+        .run(Run);
+
+    Run.$inject = [];
+
+    function Run() {
+    }
 
 })();

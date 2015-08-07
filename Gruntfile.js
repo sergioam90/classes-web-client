@@ -418,13 +418,11 @@ module.exports = function (grunt) {
             options: {
                 space: '  ',
                 wrap: "(function(){ 'use strict';\n\n {%= __ngModule %}}\n)();",
-                name: 'appConstant'
+                name: 'appConstant',
+                dest: '.tmp/scripts/app.config.js'
             },
             // Environment targets
             development: {
-                options: {
-                    dest: '.tmp/scripts/app.config.js'
-                },
                 constants: {
                     appConfig: {
                         API_SERVER_URL: 'localhost:8080'
@@ -432,9 +430,6 @@ module.exports = function (grunt) {
                 }
             },
             production: {
-                options: {
-                    dest: '.tmp/scripts/app.config.js'
-                },
                 constants: {
                     appConfig: {
                         API_SERVER_URL: 'api.classes-bahia.tk:8080'
