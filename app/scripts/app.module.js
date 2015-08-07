@@ -3,6 +3,7 @@
 
     angular
         .module('classesClientApp', [
+            'appConstant',
             'ngAnimate',
             'ngCookies',
             'ngMessages',

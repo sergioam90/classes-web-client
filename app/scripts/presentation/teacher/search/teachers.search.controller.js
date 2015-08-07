@@ -5,23 +5,38 @@
         .module('classesClientApp')
         .controller('TeachersSearchController', TeachersSearchController);
 
-    TeachersSearchController.$inject = ['Teachers', 'Subjects'];
+    TeachersSearchController.$inject = ['TeacherService', 'Subjects', '$scope'];
 
-    function TeachersSearchController(Teachers, Subjects) {
+    function TeachersSearchController(TeacherService, Subjects, $scope) {
         var vm = this;
-        vm.teachers = [];
+
         vm.subjects = [];
+        vm.searchCriteria = {};
+        vm.teachersResult = [];
+        vm.search = search;
 
-        // TODO: How should I write this?
-        Teachers.getList().then(function (teachers) {
-            vm.teachers = teachers;
-        });
+        initialize();
 
-        // TODO: How should I write this?
-        Subjects.getList().then(function (subjects) {
-            vm.subjects = subjects;
-        });
+        /* Implementation */
 
+        function initialize() {
+            getSubjects();
+            search();
+        }
+
+        function getSubjects() {
+            Subjects.getList().then(function (subjects) {
+                vm.subjects = subjects;
+            });
+        }
+
+        function search() {
+            TeacherService.search(vm.searchCriteria).then(function (page) {
+
+                // TODO: Work with full page object
+                vm.teachersResult = page.content;
+            });
+        }
     }
 
 })();

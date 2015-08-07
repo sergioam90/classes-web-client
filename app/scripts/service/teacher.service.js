@@ -17,6 +17,7 @@
         vm.getById = getById;
         vm.submitReview = submitReview;
         vm.saveTeacher = saveTeacher;
+        vm.search = search;
 
 
         /* Implementation */
@@ -43,6 +44,10 @@
 
         function saveTeacher(teacher) {
             return Teachers.one('me').customPUT(teacher);
+        }
+
+        function search(searchCriteria) {
+            return Teachers.one('').get(searchCriteria);
         }
 
     }

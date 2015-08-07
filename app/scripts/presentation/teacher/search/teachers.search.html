@@ -1,18 +1,18 @@
-<div ng-controller="TeachersSearchController as search">
+<div ng-controller="TeachersSearchController as vm">
     <!-- Sidebar -->
     <div class="col-sm-3">
 
-        <!-- Search -->
+        <!-- Text search -->
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title text-uppercase text-center">Búsqueda</h3>
             </div>
             <div class="panel-body">
                 <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Nombre, Apellido, etc."/>
-          <span class="input-group-btn">
-            <button class="btn btn-primary" type="button"><i class="fa fa-search"></i></button>
-          </span>
+                    <input ng-model="vm.searchCriteria.text" type="text" class="form-control" placeholder="Nombre, Apellido, etc."/>
+                    <span class="input-group-btn">
+                        <button class="btn btn-primary" type="button" ng-click="vm.search()"><i class="fa fa-search"></i></button>
+                    </span>
                 </div>
             </div>
         </div>
@@ -23,7 +23,7 @@
                 <h3 class="panel-title text-uppercase text-center">Materias</h3>
             </div>
             <div class="panel-body">
-                <div ng-repeat="subject in search.subjects">
+                <div ng-repeat="subject in vm.subjects">
                     <div class="checkbox">
                         <label>
                             <input type="checkbox"/> {{ subject.name }}
@@ -41,13 +41,13 @@
             <div class="panel-body">
                 <div class="col-sm-9">
                     <div>
-                        <input type="radio" ng-model="newTeacher.personalClasses" ng-value="undefined"/> Cualquiera
+                        <input type="radio" ng-model="vm.searchCriteria.groupLessons" ng-value="undefined"/> Cualquiera
                     </div>
                     <div>
-                        <input type="radio" ng-model="newTeacher.personalClasses" ng-value="true"/> Personalizada
+                        <input type="radio" ng-model="vm.searchCriteria.groupLessons" ng-value="false"/> Personalizada
                     </div>
                     <div>
-                        <input type="radio" ng-model="newTeacher.personalClasses" ng-value="false"/> Grupal
+                        <input type="radio" ng-model="vm.searchCriteria.groupLessons" ng-value="true"/> Grupal
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@
 
     <!-- Main content -->
     <div class="col-sm-6">
-        <div class="panel panel-default" ng-repeat="teacher in search.teachers">
+        <div class="panel panel-default" ng-repeat="teacher in vm.teachersResult">
             <div class="panel-body teachers_panel">
                 <div class="row">
                     <!-- Profile picture -->

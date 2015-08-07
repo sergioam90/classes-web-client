@@ -8,7 +8,7 @@
     RestangularConfig.$inject = ['RestangularProvider', 'appConfig'];
 
     function RestangularConfig(RestangularProvider, appConfig) {
-        RestangularProvider.setBaseUrl('http://' + appConfig.SERVER_URL);
+        RestangularProvider.setBaseUrl('http://' + appConfig.API_SERVER_URL);
     }
 
 })();

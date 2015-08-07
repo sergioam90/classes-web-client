@@ -10,7 +10,7 @@
     function OAuthConfig(OAuthProvider, OAuthTokenProvider, appConfig) {
 
         OAuthProvider.configure({
-            baseUrl: 'http://' + appConfig.SERVER_URL,
+            baseUrl: 'http://' + appConfig.API_SERVER_URL,
             clientId: 'CLIENT_ID',
             grantPath: '/oauth/token',
             revokePath: '/'

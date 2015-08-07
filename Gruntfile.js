@@ -15,7 +15,8 @@ module.exports = function (grunt) {
     // Load grunt tasks automatically
     require('jit-grunt')(grunt, {
         useminPrepare: 'grunt-usemin',
-        cdnify: 'grunt-google-cdn'
+        cdnify: 'grunt-google-cdn',
+        ngconstant: 'grunt-ng-constant'
     });
 
     // Configurable paths for the application
@@ -219,22 +220,6 @@ module.exports = function (grunt) {
             app: {
                 src: ['<%= yeoman.app %>/index.html'],
                 ignorePath: /\.\.\//
-            },
-            test: {
-                devDependencies: true,
-                src: '<%= karma.unit.configFile %>',
-                ignorePath: /\.\.\//,
-                fileTypes: {
-                    js: {
-                        block: /(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi,
-                        detect: {
-                            js: /'(.*\.js)'/gi
-                        },
-                        replace: {
-                            js: '\'{{filePath}}\','
-                        }
-                    }
-                }
             }
         },
 
@@ -307,8 +292,6 @@ module.exports = function (grunt) {
         // concat: {
         //   dist: {}
         // },
-
-        concat: {},
 
         imagemin: {
             dist: {
@@ -426,11 +409,34 @@ module.exports = function (grunt) {
             ]
         },
 
-        // Test settings
-        karma: {
-            unit: {
-                configFile: 'test/karma.conf.js',
-                singleRun: true
+        // Sets the enviroment constants for angular
+        ngconstant: {
+            // Options for all targets
+            options: {
+                space: '  ',
+                wrap: "(function(){ 'use strict';\n\n {%= __ngModule %}}\n)();",
+                name: 'appConstant'
+            },
+            // Environment targets
+            development: {
+                options: {
+                    dest: '.tmp/scripts/app.config.js'
+                },
+                constants: {
+                    appConfig: {
+                        API_SERVER_URL: 'localhost:8080'
+                    }
+                }
+            },
+            production: {
+                options: {
+                    dest: '.tmp/scripts/app.config.js'
+                },
+                constants: {
+                    appConfig: {
+                        API_SERVER_URL: 'api.classes-bahia.tk:8080'
+                    }
+                }
             }
         }
     });
@@ -443,6 +449,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
+            'ngconstant:development',
             'includeSource',
             'wiredep',
             'concurrent:server',
@@ -452,41 +459,27 @@ module.exports = function (grunt) {
         ]);
     });
 
-    grunt.registerTask('server', 'DEPRECATED TASK. Use the "serve" task instead', function (target) {
-        grunt.log.warn('The `server` task has been deprecated. Use `grunt serve` to start a server.');
-        grunt.task.run(['serve:' + target]);
-    });
-
-    grunt.registerTask('test', [
-        'clean:server',
-        'wiredep',
-        'concurrent:test',
-        'autoprefixer',
-        'connect:test',
-        'karma'
-    ]);
-
     grunt.registerTask('build', [
         'clean:dist',
+        'ngconstant:production',
         'includeSource',
-        'newer:wiredep',
+        'wiredep',
         'useminPrepare',
         'concurrent:dist',
         'autoprefixer',
-        'newer:concat',
+        'concat',
         'ngAnnotate',
-        'newer:copy:dist',
-        'newer:cdnify',
-        'newer:cssmin',
-        'newer:uglify',
-        'newer:filerev',
-        'newer:usemin',
-        'newer:htmlmin'
+        'copy:dist',
+        'cdnify',
+        'cssmin',
+        'uglify',
+        'filerev',
+        'usemin',
+        'htmlmin'
     ]);
 
     grunt.registerTask('default', [
         'newer:jshint',
-        'test',
         'build'
     ]);
 };
