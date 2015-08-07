@@ -76,7 +76,7 @@
                 controller: 'MyTeacherProfileController'
             })
             .state('teachersSearch', {
-                url: '/teacher/search',
+                url: '/teacher/search?city?subjects',
                 templateUrl: templateUrlPrefix + 'teacher/search/teachers.search.html',
                 controller: 'TeachersSearchController'
             })

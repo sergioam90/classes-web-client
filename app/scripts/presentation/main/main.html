@@ -2,6 +2,7 @@
     <div class="container text-center">
 
         <!-- Fisrt page -->
+        <!-- TODO: Not working in mobile, because of content being big -->
         <div class="full-height">
             <h1>Anda a particular hoy, ¡festejá mañana!</h1>
 
@@ -11,24 +12,29 @@
                 dicta. </p>
 
 
-            <form action="" ng-submit="vm.homeSearch(criteria)" class="text-center">
+            <!-- TODO: Not working in mobile  -->
+            <form action="" ng-submit="vm.homeSearch()" class="text-center">
                 <div class="form-group row">
+
+                    <!-- Subject (with level) -->
                     <div class="col-sm-4 col-sm-offset-2">
                         <label class="control-label"><h4>Asignatura</h4></label>
-                        <ui-select ng-model="vm.criteria.subject" theme="bootstrap">
+                        <ui-select ng-model="vm.searchCriteria.subject" theme="bootstrap">
                             <ui-select-match placeholder="Elija una asignatura...">{{ $select.selected.name }}
                             </ui-select-match>
                             <ui-select-choices
-                                    repeat="subject in vm.subjects track by subject.id ">
+                                    repeat="subject in vm.subjects | filter: {name:$select.search}:vm.removeAccents">
                                 <!-- TODO: Add filter for choices -->
                                 <div ng-bind-html="subject.name | highlight: $select.search"></div>
-                                <div ng-bind-html="subject.level | level | highlight: $select.search"></div>
+                                <div ng-bind-html="subject.level | level"></div>
                             </ui-select-choices>
                         </ui-select>
                     </div>
+
+                    <!-- City -->
                     <div class="col-sm-4">
                         <label class="control-label"><h4>Localidad</h4></label>
-                        <ui-select ng-model="vm.criteria.city" theme="bootstrap">
+                        <ui-select ng-model="vm.searchCriteria.city" theme="bootstrap">
                             <ui-select-match placeholder="Elija una ciudad...">{{ $select.selected | city }}
                             </ui-select-match>
                             <ui-select-choices
@@ -37,7 +43,11 @@
                             </ui-select-choices>
                         </ui-select>
                     </div>
+
+
                 </div>
+
+                <!-- Search teacher button -->
                 <div class="row">
                     <div class="col-sm-12 text-center">
                     <span class="input-group-btn">
@@ -49,7 +59,6 @@
                 </div>
             </form>
 
-            <!-- TODO: Horrible, to be changed -->
             <div class="row">
                 <div class="col-sm-3 center-block">
                     <h1><i class="fa fa-angle-double-down"></i></h1>

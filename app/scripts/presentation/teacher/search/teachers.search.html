@@ -26,7 +26,8 @@
                 <div ng-repeat="subject in vm.subjects">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox"/> {{ subject.name }}
+                            <input ng-model="subject.selected" value="{{ subject.selected }}" type="checkbox"/> {{
+                            subject.name }}
                         </label>
                     </div>
                 </div>
@@ -77,8 +78,8 @@
 
                             <!-- More info -->
                             <div class="col-md-4 text-center">
-                                <a ui-sref="teacherProfile({ id : teacher.id })" class="btn btn-primary btn_view_more">
-                                    Ver teléfono
+                                <a ui-sref="teacherProfile(teacher)" class="btn btn-primary btn_view_more">
+                                    Ver perfil
                                 </a>
                             </div>
                         </div>
@@ -91,7 +92,7 @@
                                     <dd>
                                         <p>
                                             <img src=""
-                                                 height="24"/>{{ teacher.degree }}
+                                                 height="24"/>{{ teacher.degree | degree }}
                                         </p>
                                     </dd>
                                     <!-- Description -->
@@ -114,6 +115,7 @@
             </div>
         </div>
     </div>
+
 
     <!-- Ads -->
     <div class="col-sm-3">
