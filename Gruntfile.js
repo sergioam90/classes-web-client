@@ -441,9 +441,17 @@ module.exports = function (grunt) {
                     }
                 }
             }
+        },
+
+        'gh-pages': {
+            options: {
+                base: 'dist',
+                only: ['**/*', '!CNAME'],
+                message: 'Auto-generated commit by Grunt build'
+            },
+            src: '**/*'
         }
     });
-
 
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
         if (target === 'dist') {
@@ -478,7 +486,8 @@ module.exports = function (grunt) {
         'uglify',
         'filerev',
         'usemin',
-        'htmlmin'
+        'htmlmin',
+        'gh-pages'
     ]);
 
     grunt.registerTask('default', [
