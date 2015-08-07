@@ -7,6 +7,9 @@
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
 
+// TODO: Modularize this file
+// TODO: Externalize api server url settings
+
 module.exports = function (grunt) {
 
     // Time how long tasks take. Can help when optimizing build times
