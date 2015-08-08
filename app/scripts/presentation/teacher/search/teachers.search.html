@@ -2,6 +2,23 @@
     <!-- Sidebar -->
     <div class="col-sm-3">
 
+        <!-- City -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-uppercase text-center">Ciudad</h3>
+            </div>
+            <div class="panel-body">
+                <ui-select ng-model="vm.searchCriteria.city" theme="bootstrap">
+                    <ui-select-match placeholder="Elija una ciudad...">{{ $select.selected | city }}
+                    </ui-select-match>
+                    <ui-select-choices
+                            repeat="city in vm.cities">
+                        <div ng-bind-html="city | city | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+
         <!-- Text search -->
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -9,9 +26,11 @@
             </div>
             <div class="panel-body">
                 <div class="input-group">
-                    <input ng-model="vm.searchCriteria.text" type="text" class="form-control" placeholder="Nombre, Apellido, etc."/>
+                    <input ng-model="vm.searchCriteria.text" type="text" class="form-control"
+                           placeholder="Nombre, Apellido, etc."/>
                     <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button" ng-click="vm.search()"><i class="fa fa-search"></i></button>
+                        <button class="btn btn-primary" type="button" ng-click="vm.search()"><i
+                                class="fa fa-search"></i></button>
                     </span>
                 </div>
             </div>
@@ -28,6 +47,23 @@
                         <label>
                             <input ng-model="subject.selected" value="{{ subject.selected }}" type="checkbox"/> {{
                             subject.name }}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Degree -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-uppercase text-center">Estudios</h3>
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="degree in vm.degrees">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="degree.selected" value="{{ degree.selected }}" type="checkbox"/> {{
+                            degree.name | degree }}
                         </label>
                     </div>
                 </div>
@@ -59,7 +95,7 @@
     <!-- Main content -->
     <div class="col-sm-6">
         <div class="panel panel-default" ng-repeat="teacher in vm.teachersResult">
-            <div class="panel-body teachers_panel">
+            <div class="panel-body teachers_panel" ng-click="vm.viewProfile(teacher)">
                 <div class="row">
                     <!-- Profile picture -->
                     <div class="col-md-2">
@@ -113,6 +149,13 @@
                 </div>
             </div>
         </div>
+        <h4 class="text-center" ng-if="!vm.teachersResult.length">
+            ¡Uy! No hay nadie que cumpla esas condiciones :(
+        </h4>
+
+        <p class="lead text-center" ng-if="!vm.teachersResult.length">
+            Revisa los filtros
+        </p>
     </div>
 
 
