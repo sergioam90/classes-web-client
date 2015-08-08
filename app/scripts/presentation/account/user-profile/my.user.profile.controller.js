@@ -11,7 +11,6 @@
 
         var vm = this;
 
-        vm.user = {};
         vm.saveUser = saveUser;
         vm.genders = GenderService.getAllGenders();
 

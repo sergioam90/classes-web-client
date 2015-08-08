@@ -18,13 +18,16 @@
         vm.login = login;
         vm.logout = logout;
         vm.me = me;
+        vm.currentUser = {};
 
         initialize();
 
         /* Implementation */
 
         function initialize() {
-            loadMe();
+            if (vm.isAuthenticated) {
+                loadMe();
+            }
         }
 
         function me() {
@@ -37,6 +40,8 @@
 
         function loadMe() {
             return Users.one('me').get().then(function (user) {
+                vm.currentUser = user;
+
                 meDeferred.resolve(user);
             });
         }
@@ -49,7 +54,7 @@
             if (vm.isAuthenticated()) {
                 vm.logout();
             }
-            return OAuth.getAccessToken(user).then(vm.getMe);
+            return OAuth.getAccessToken(user).then(vm.loadMe);
         }
 
     }

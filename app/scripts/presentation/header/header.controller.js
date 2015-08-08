@@ -12,7 +12,7 @@
 
         vm.isAuthenticated = OAuth.isAuthenticated;
         vm.logout = logout;
-        vm.user = {};
+        vm.getCurrentUser = getCurrentUser;
 
         initialize();
 
@@ -23,13 +23,14 @@
         }
 
         function getCurrentUser() {
-            AccountService.me().then(function (user) {
-                vm.user = user;
-            });
+            return AccountService.currentUser;
         }
 
         function logout() {
             AccountService.logout();
+
+            vm.user = {};
+
             $state.go('main');
         }
     }

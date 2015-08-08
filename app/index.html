@@ -56,7 +56,7 @@
                     <!-- Logged in bar -->
                     <ul class="nav navbar-nav navbar-right" ng-show="header.isAuthenticated()">
                         <li ui-sref-active="active">
-                            <a ui-sref="account.user"><i class="fa fa-user"></i> {{ header.user.firstName }}</a>
+                            <a ui-sref="account.user"><i class="fa fa-user"></i> {{ header.getCurrentUser().firstName }}</a>
                         </li>
                         <li>
                             <!-- TODO: Replace click with ui-sref -->
