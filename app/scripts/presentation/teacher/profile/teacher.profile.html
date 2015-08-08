@@ -35,22 +35,7 @@
 
                             <h3>
                                 <!-- Degree -->
-                                <span tooltip="{{ vm.teacher.degree | degree }}">
-                                    <!-- Undergraduated -->
-                                    <i ng-if="vm.teacher.degree == 'Undergraduate'"
-                                       class="fa fa-graduation-cap text-muted">
-                                    </i>
-
-                                    <!-- Graduated -->
-                                    <i ng-if="vm.teacher.degree == 'Graduate'"
-                                       class="fa fa-graduation-cap text-default">
-                                    </i>
-
-                                    <!-- Postgraduated -->
-                                    <i ng-if="vm.teacher.degree == 'Postgraduate'"
-                                       class="fa fa-graduation-cap text-warning">
-                                    </i>
-                                </span>
+                                <degree-icon ng-model="vm.teacher.degree"></degree-icon>
 
                                 <!-- Username -->
                                 {{ vm.teacher.user.firstName }} {{ vm.teacher.user.lastName }}
@@ -149,22 +134,7 @@
                             <!-- Degree -->
                             <div class="col-sm-3 text-center feature-container">
                                 <h3>
-                                <span>
-                                    <!-- Undergraduated -->
-                                    <i ng-if="vm.teacher.degree == 'Undergraduate'"
-                                       class="fa fa-graduation-cap text-muted">
-                                    </i>
-
-                                    <!-- Graduated -->
-                                    <i ng-if="vm.teacher.degree == 'Graduate'"
-                                       class="fa fa-graduation-cap text-default">
-                                    </i>
-
-                                    <!-- Postgraduated -->
-                                    <i ng-if="vm.teacher.degree == 'Postgraduate'"
-                                       class="fa fa-graduation-cap text-warning">
-                                    </i>
-                                </span>
+                                    <degree-icon ng-model="vm.teacher.degree"></degree-icon>
                                 </h3>
 
                                 <p>{{ vm.teacher.degree | degree }}</p>

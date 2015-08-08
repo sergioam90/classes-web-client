@@ -72,8 +72,7 @@
                         <!-- Name and more info -->
                         <div class="row">
                             <div class="col-md-8">
-                                <strong class="lead">{{ teacher.user.firstName }} {{ teacher.user.lastName
-                                    }}</strong>
+                                <strong class="lead">{{ teacher.user | fullName }}</strong>
                             </div>
 
                             <!-- More info -->
@@ -88,11 +87,11 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <dl>
-                                    <!-- Studies -->
+                                    <!-- Degree -->
                                     <dd>
                                         <p>
-                                            <img src=""
-                                                 height="24"/>{{ teacher.degree | degree }}
+                                            <degree-icon ng-model="teacher.degree"></degree-icon>
+                                            {{ teacher.degree | degree }}
                                         </p>
                                     </dd>
                                     <!-- Description -->
