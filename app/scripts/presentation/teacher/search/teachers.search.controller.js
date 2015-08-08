@@ -22,6 +22,8 @@
         var paramSearch = $location.search();
         vm.searchCriteria = paramSearch ? paramSearch : {};
 
+        vm.moneyTranslate = moneyTranslate;
+
         initialize();
 
         /* Implementation */
@@ -85,6 +87,10 @@
 
         function viewProfile(teacher) {
             $state.go('teacherProfile', teacher);
+        }
+
+        function moneyTranslate(value) {
+            return '$ ' + value;
         }
 
     }

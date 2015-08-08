@@ -16,7 +16,8 @@
             'xeditable',
             'ui.bootstrap',
             'ui.router',
-            'ui.select'
+            'ui.select',
+            'rzModule' // Slider
         ])
         .run(function (editableOptions) {
             // TODO: Move

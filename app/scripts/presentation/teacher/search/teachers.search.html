@@ -70,6 +70,23 @@
             </div>
         </div>
 
+        <!-- Subjects -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-uppercase text-center">Precio maximo</h3>
+            </div>
+            <div class="panel-body">
+                <rzslider ng-init="vm.searchCriteria.fee = 400"
+                          rz-slider-model="vm.searchCriteria.fee"
+                          rz-slider-translate="vm.moneyTranslate"
+                          rz-slider-floor="20"
+                          rz-slider-ceil="400"
+                          rz-slider-step="20"
+                          rz-slider-always-show-bar="true">
+                </rzslider>
+            </div>
+        </div>
+
         <!-- Class audience -->
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -85,6 +102,27 @@
                     </div>
                     <div>
                         <input type="radio" ng-model="vm.searchCriteria.groupLessons" ng-value="true"/> Grupal
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Home lessons -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-uppercase text-center">A domicilio</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-9">
+                    <div>
+                        <input type="radio" ng-model="vm.searchCriteria.homeLessons" ng-value="undefined"/> Cualquiera
+                    </div>
+                    <div>
+                        <input type="radio" ng-model="vm.searchCriteria.homeLessons" ng-value="false"/> No va a
+                        domicilio
+                    </div>
+                    <div>
+                        <input type="radio" ng-model="vm.searchCriteria.homeLessons" ng-value="true"/> Va a domicilio
                     </div>
                 </div>
             </div>
