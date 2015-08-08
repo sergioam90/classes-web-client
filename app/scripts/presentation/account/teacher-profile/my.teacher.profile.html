@@ -1,109 +1,106 @@
-<div ng-controller="MyTeacherProfileController as vm">
+<dl>
 
-    <dl>
-
-        <!-- Teacher information -->
-        <dt>Descripción</dt>
-        <dd>
-            <div class="row">
-                <!-- TODO: Fix editable width -->
-                <div class="col-sm-6">
+    <!-- Teacher information -->
+    <dt>Descripción</dt>
+    <dd>
+        <div class="row">
+            <!-- TODO: Fix editable width -->
+            <div class="col-sm-6">
                         <span editable-text="vm.teacher.description" e-required e-form="descriptionForm">
                             {{ vm.teacher.description }}
                         </span>
-                </div>
-                <div class="col-sm-4">
-                    <form editable-form name="descriptionForm" onaftersave="vm.saveTeacher()"
-                          ng-show="descriptionForm.$visible">
-                        <button type="submit" ng-disabled="descriptionForm.$waiting" class="btn btn-sm btn-primary">
-                            <i class="fa fa-check"></i>
-                        </button>
-                        <button type="button" ng-disabled="descriptionForm.$waiting"
-                                ng-click="descriptionForm.$cancel()"
-                                class="btn btn-sm btn-default">
-                            <i class="fa fa-close"></i>
-                        </button>
-                    </form>
-                    <button class="btn btn-default btn-sm" ng-click="descriptionForm.$show()"
-                            ng-hide="descriptionForm.$visible">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                </div>
             </div>
-        </dd>
+            <div class="col-sm-4">
+                <form editable-form name="descriptionForm" onaftersave="vm.saveTeacher()"
+                      ng-show="descriptionForm.$visible">
+                    <button type="submit" ng-disabled="descriptionForm.$waiting" class="btn btn-sm btn-primary">
+                        <i class="fa fa-check"></i>
+                    </button>
+                    <button type="button" ng-disabled="descriptionForm.$waiting"
+                            ng-click="descriptionForm.$cancel()"
+                            class="btn btn-sm btn-default">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </form>
+                <button class="btn btn-default btn-sm" ng-click="descriptionForm.$show()"
+                        ng-hide="descriptionForm.$visible">
+                    <i class="fa fa-pencil"></i>
+                </button>
+            </div>
+        </div>
+    </dd>
 
-        <dt>Estudios</dt>
-        <dd>
-            <div class="row">
-                <div class="col-sm-6">
+    <dt>Estudios</dt>
+    <dd>
+        <div class="row">
+            <div class="col-sm-6">
             <span editable-select="vm.teacher.degree" e-ng-options="degreeValue | degree for degreeValue in vm.degrees"
                   e-form="degreeForm">
                 {{ vm.teacher.degree | degree }}
             </span>
-                </div>
-                <div class="col-sm-4">
-                    <form editable-form name="degreeForm" onaftersave="vm.saveTeacher()" ng-show="degreeForm.$visible">
-                        <button type="submit" ng-disabled="degreeForm.$waiting" class="btn btn-sm btn-primary">
-                            <i class="fa fa-check"></i>
-                        </button>
-                        <button type="button" ng-disabled="degreeForm.$waiting" ng-click="degreeForm.$cancel()"
-                                class="btn btn-sm btn-default">
-                            <i class="fa fa-close"></i>
-                        </button>
-                    </form>
-                    <button class="btn btn-default btn-sm" ng-click="degreeForm.$show()" ng-hide="degreeForm.$visible">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                </div>
             </div>
-        </dd>
+            <div class="col-sm-4">
+                <form editable-form name="degreeForm" onaftersave="vm.saveTeacher()" ng-show="degreeForm.$visible">
+                    <button type="submit" ng-disabled="degreeForm.$waiting" class="btn btn-sm btn-primary">
+                        <i class="fa fa-check"></i>
+                    </button>
+                    <button type="button" ng-disabled="degreeForm.$waiting" ng-click="degreeForm.$cancel()"
+                            class="btn btn-sm btn-default">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </form>
+                <button class="btn btn-default btn-sm" ng-click="degreeForm.$show()" ng-hide="degreeForm.$visible">
+                    <i class="fa fa-pencil"></i>
+                </button>
+            </div>
+        </div>
+    </dd>
 
-        <dt>Puntaje</dt>
-        <div ng-if="vm.teacher.averageRating < 1">Aún no fue calificado</div>
-        <rating ng-if="vm.teacher.averageRating >= 1" ng-model="vm.teacher.averageRating" readonly="true"></rating>
+    <dt>Puntaje</dt>
+    <div ng-if="vm.teacher.averageRating < 1">Aún no fue calificado</div>
+    <rating ng-if="vm.teacher.averageRating >= 1" ng-model="vm.teacher.averageRating" readonly="true"></rating>
 
-        <dt>Clase grupal</dt>
-        <dd>{{ vm.teacher.groupLessons }}</dd>
+    <dt>Clase grupal</dt>
+    <dd>{{ vm.teacher.groupLessons }}</dd>
 
-        <dt>A domicilio</dt>
-        <dd>{{ !vm.teacher.homeLessons }}</dd>
+    <dt>A domicilio</dt>
+    <dd>{{ !vm.teacher.homeLessons }}</dd>
 
-        <dt>Teléfono</dt>
-        <dd>
-            Numero: {{ vm.teacher.phone.number }}
-            Tiene whatsapp: {{ vm.teacher.phone.whatsApp }}
-        </dd>
+    <dt>Teléfono</dt>
+    <dd>
+        Numero: {{ vm.teacher.phone.number }}
+        Tiene whatsapp: {{ vm.teacher.phone.whatsApp }}
+    </dd>
 
-        <dt>Materias</dt>
-        <dd>
-            <p class="lead">
+    <dt>Materias</dt>
+    <dd>
+        <p class="lead">
                 <span class="label label-primary" ng-repeat="subject in vm.teacher.subjects">
                     {{ subject.name }} - {{ subject.level | level }}
                 </span>
-            </p>
-        </dd>
+        </p>
+    </dd>
 
-        <dt>Ubicación</dt>
-        <dd>{{ vm.teacher.location }} - {{ vm.teacher.location.city | city }}
-            {{ vm.teacher.formattedAddress }}
-            <img class="img img-responsive"
-                 src="https://maps.googleapis.com/maps/api/staticmap?size=300x300&maptype=roadmap&markers={{ vm.teacher.location.latitude }},{{ vm.teacher.location.longitude }}"/>
-        </dd>
+    <dt>Ubicación</dt>
+    <dd>{{ vm.teacher.location }} - {{ vm.teacher.location.city | city }}
+        {{ vm.teacher.formattedAddress }}
+        <img class="img img-responsive"
+             src="https://maps.googleapis.com/maps/api/staticmap?size=300x300&maptype=roadmap&markers={{ vm.teacher.location.latitude }},{{ vm.teacher.location.longitude }}"/>
+    </dd>
 
-        <!-- Recieved reviews -->
-        <dt>Reseñas recibidas</dt>
-        <dd>
-            <div ng-repeat="review in vm.reviews">
-                <p>Estudiante: {{ review.student }}</p>
+    <!-- Recieved reviews -->
+    <dt>Reseñas recibidas</dt>
+    <dd>
+        <div ng-repeat="review in vm.reviews">
+            <p>Estudiante: {{ review.student }}</p>
 
-                <p>Comentario: {{ review.comment }}</p>
+            <p>Comentario: {{ review.comment }}</p>
 
-                <p>Puntaje: {{ review.rating }}</p>
+            <p>Puntaje: {{ review.rating }}</p>
 
-            </div>
-            <div ng-if="!vm.reviews.length">
-                Aún no has recibido reseñas
-            </div>
-        </dd>
-    </dl>
-</div>
+        </div>
+        <div ng-if="!vm.reviews.length">
+            Aún no has recibido reseñas
+        </div>
+    </dd>
+</dl>

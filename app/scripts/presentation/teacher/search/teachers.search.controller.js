@@ -29,11 +29,11 @@
         /* Implementation */
 
         function initialize() {
-            loadSubjects();
-
             loadDegrees();
 
-            search();
+            // Wait for subject loading to finish before searching
+            loadSubjects().then(search);
+
         }
 
         function loadDegrees() {
@@ -45,7 +45,7 @@
         }
 
         function loadSubjects() {
-            Subjects.getList().then(function (subjects) {
+            return Subjects.getList().then(function (subjects) {
                 vm.subjects = subjects.plain();
 
                 // If there are subjects in url, set them as selected

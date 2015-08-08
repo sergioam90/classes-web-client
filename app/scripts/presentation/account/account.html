@@ -1,23 +1,21 @@
-<div ng-controller="AccountController">
-    <div class="col-sm-10 col-sm-offset-1">
-        <div class="row">
-            <div class="col-sm-12 panel panel-default">
+<div class="col-sm-10 col-sm-offset-1">
+    <div class="row">
+        <div class="col-sm-12 panel panel-default">
 
-                <tabset justified="true">
-                    <tab ui-sref="account.user" ui-sref-active-eq="active" active="false">
-                        <tab-heading><i class="fa fa-user"></i> Usuario</tab-heading>
-                    </tab>
-                    <tab ui-sref="account.student" ui-sref-active-eq="active">
-                        <tab-heading><i class="fa fa-book"></i> Estudiante</tab-heading>
-                    </tab>
-                    <tab ui-sref="account.teacher" ui-sref-active-eq="active">
-                        <tab-heading><i class="fa fa-graduation-cap"></i> Profesor</tab-heading>
-                    </tab>
-                </tabset>
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div ui-view></div>
-                    </div>
+            <tabset justified="true">
+                <tab ui-sref="account.user" ui-sref-active-eq="active">
+                    <tab-heading><i class="fa fa-user"></i> Usuario</tab-heading>
+                </tab>
+                <tab ui-sref="account.student" ui-sref-active-eq="active">
+                    <tab-heading><i class="fa fa-book"></i> Estudiante</tab-heading>
+                </tab>
+                <tab ui-sref="account.teacher" ui-sref-active-eq="active">
+                    <tab-heading><i class="fa fa-graduation-cap"></i> Profesor</tab-heading>
+                </tab>
+            </tabset>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div ui-view></div>
                 </div>
             </div>
         </div>

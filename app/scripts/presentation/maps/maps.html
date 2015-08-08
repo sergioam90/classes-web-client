@@ -1,55 +1,64 @@
-<div ng-controller="MapsController as vm">
-    <div class="panel panel-body">
-        <h3>Mapa de selección de ubicación</h3>
-        <div class="row">
+<div class="panel panel-body">
+    <h3>Mapa de selección de ubicación</h3>
 
-            <!-- Map -->
-            <div class="col-sm-8">
-                <input class="form-control" id="input1" placeholder="Ingrese su dirección">
-                <div id="mapCanvas1" style="height:420px;width:600px;"></div>
-            </div>
+    <div class="row">
 
-            <!-- Location -->
-            <div class="col-sm-4">
-                <h4>Ubicación</h4>
-                <p class="lead">{{ vm.LatLng }}</p>
-            </div>
+        <!-- Map -->
+        <div class="col-sm-8">
+            <input class="form-control" id="input1" placeholder="Ingrese su dirección">
+
+            <div id="mapCanvas1" style="height:420px;width:600px;"></div>
+        </div>
+
+        <!-- Location -->
+        <div class="col-sm-4">
+            <h4>Ubicación</h4>
+
+            <p class="lead">{{ vm.LatLng }}</p>
         </div>
     </div>
+</div>
 
-    <div class="panel panel-body">
-        <h3>Mapa de ubicación</h3>
-        <div class="row">
+<div class="panel panel-body">
+    <h3>Mapa de ubicación</h3>
 
-            <!-- Map -->
-            <div class="col-sm-8">
-                <div id="mapCanvas2" style="height:420px;width:600px;"></div>
-            </div>
+    <div class="row">
 
-            <!-- Location -->
-            <div class="col-sm-4">
-                <h4>Ubicación</h4>
-                <p class="lead">{{ vm.address }}</p>
-            </div>
+        <!-- Map -->
+        <div class="col-sm-8">
+            <div id="mapCanvas2" style="height:420px;width:600px;"></div>
+        </div>
+
+        <!-- Location -->
+        <div class="col-sm-4">
+            <h4>Ubicación</h4>
+
+            <p class="lead">{{ vm.address }}</p>
         </div>
     </div>
+</div>
 
-    <div class="panel panel-body">
-        <h3>Mapa de profesores</h3>
-        <div class="row">
+<div class="panel panel-body">
+    <h3>Mapa de profesores</h3>
 
-            <!-- Map -->
-            <div class="col-sm-8">
-                <div id="mapCanvas3" style="height:420px;width:600px;"></div>
-            </div>
+    <div class="row">
 
-            <!-- Information -->
-            <div class="col-sm-4">
-                <h4>Profesor</h4>
-                <p class="lead">Nombre</p><p>{{ vm.selectedTeacher.name }}</p>
-                <p class="lead">Ubicación</p><p>{{ vm.selectedTeacher.address }}</p>
-            </div>
+        <!-- Map -->
+        <div class="col-sm-8">
+            <div id="mapCanvas3" style="height:420px;width:600px;"></div>
+        </div>
+
+        <!-- Information -->
+        <div class="col-sm-4">
+            <h4>Profesor</h4>
+
+            <p class="lead">Nombre</p>
+
+            <p>{{ vm.selectedTeacher.name }}</p>
+
+            <p class="lead">Ubicación</p>
+
+            <p>{{ vm.selectedTeacher.address }}</p>
         </div>
     </div>
-
 </div>

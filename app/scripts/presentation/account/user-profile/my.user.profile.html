@@ -1,76 +1,74 @@
-<div ng-controller="MyUserProfileController as vm">
+<dl>
 
-    <dl>
-
-        <!-- User information -->
-        <dt>Nombre</dt>
-        <dd>
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="row">
-                        <div class="col-sm-6">
+    <!-- User information -->
+    <dt>Nombre</dt>
+    <dd>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="row">
+                    <div class="col-sm-6">
                         <span editable-text="vm.user.firstName" e-required e-form="nameForm">
                             {{ vm.user.firstName }} {{ vm.user.lastName }}
                         </span>
-                        </div>
-                        <div class="col-sm-6">
+                    </div>
+                    <div class="col-sm-6">
                         <span editable-text="vm.user.lastName" e-required e-form="nameForm">
                         </span>
-                        </div>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <form editable-form name="nameForm" onaftersave="vm.saveUser()" ng-show="nameForm.$visible">
-                        <button type="submit" ng-disabled="nameForm.$waiting" class="btn btn-sm btn-primary">
-                            <i class="fa fa-check"></i>
-                        </button>
-                        <button type="button" ng-disabled="nameForm.$waiting" ng-click="nameForm.$cancel()"
-                                class="btn btn-sm btn-default">
-                            <i class="fa fa-close"></i>
-                        </button>
-                    </form>
-                    <button class="btn btn-default btn-sm" ng-click="nameForm.$show()" ng-hide="nameForm.$visible">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                </div>
             </div>
-        </dd>
+            <div class="col-sm-4">
+                <form editable-form name="nameForm" onaftersave="vm.saveUser()" ng-show="nameForm.$visible">
+                    <button type="submit" ng-disabled="nameForm.$waiting" class="btn btn-sm btn-primary">
+                        <i class="fa fa-check"></i>
+                    </button>
+                    <button type="button" ng-disabled="nameForm.$waiting" ng-click="nameForm.$cancel()"
+                            class="btn btn-sm btn-default">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </form>
+                <button class="btn btn-default btn-sm" ng-click="nameForm.$show()" ng-hide="nameForm.$visible">
+                    <i class="fa fa-pencil"></i>
+                </button>
+            </div>
+        </div>
+    </dd>
 
-        <dt>Email</dt>
-        <dd>
-            {{ vm.user.email }}
-        </dd>
+    <dt>Email</dt>
+    <dd>
+        {{ vm.user.email }}
+    </dd>
 
-        <dt>Género</dt>
-        <dd>
-            <div class="row">
-                <div class="col-sm-6">
-            <span editable-select="vm.user.gender" e-ng-options="genderValue | gender for genderValue in vm.genders" e-form="genderForm">
+    <dt>Género</dt>
+    <dd>
+        <div class="row">
+            <div class="col-sm-6">
+            <span editable-select="vm.user.gender" e-ng-options="genderValue | gender for genderValue in vm.genders"
+                  e-form="genderForm">
                 {{ vm.user.gender | gender }}
             </span>
-                </div>
-                <div class="col-sm-4">
-                    <form editable-form name="genderForm" onaftersave="vm.saveUser()" ng-show="genderForm.$visible">
-                        <button type="submit" ng-disabled="genderForm.$waiting" class="btn btn-sm btn-primary">
-                            <i class="fa fa-check"></i>
-                        </button>
-                        <button type="button" ng-disabled="genderForm.$waiting" ng-click="genderForm.$cancel()"
-                                class="btn btn-sm btn-default">
-                            <i class="fa fa-close"></i>
-                        </button>
-                    </form>
-                    <button class="btn btn-default btn-sm" ng-click="genderForm.$show()" ng-hide="genderForm.$visible">
-                        <i class="fa fa-pencil"></i>
-                    </button>
-                </div>
             </div>
-        </dd>
+            <div class="col-sm-4">
+                <form editable-form name="genderForm" onaftersave="vm.saveUser()" ng-show="genderForm.$visible">
+                    <button type="submit" ng-disabled="genderForm.$waiting" class="btn btn-sm btn-primary">
+                        <i class="fa fa-check"></i>
+                    </button>
+                    <button type="button" ng-disabled="genderForm.$waiting" ng-click="genderForm.$cancel()"
+                            class="btn btn-sm btn-default">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </form>
+                <button class="btn btn-default btn-sm" ng-click="genderForm.$show()" ng-hide="genderForm.$visible">
+                    <i class="fa fa-pencil"></i>
+                </button>
+            </div>
+        </div>
+    </dd>
 
-        <dt>Fecha de nacimiento</dt>
-        <dd>{{ vm.user.birthDate | date:'longDate' }}</dd>
+    <dt>Fecha de nacimiento</dt>
+    <dd>{{ vm.user.birthDate | date:'longDate' }}</dd>
 
-        <dt>Imagen de perfil</dt>
-        <dd>{{ vm.user.profilePicture }}</dd>
+    <dt>Imagen de perfil</dt>
+    <dd>{{ vm.user.profilePicture }}</dd>
 
-    </dl>
-</div>
+</dl>

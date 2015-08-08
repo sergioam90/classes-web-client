@@ -12,17 +12,20 @@
 
         vm.isAuthenticated = OAuth.isAuthenticated;
         vm.logout = logout;
-        vm.getCurrentUser = getCurrentUser;
+        vm.user = {};
 
-        // TODO: Check this
-        if (AccountService.isAuthenticated()) {
-            AccountService.getMe();
+        initialize();
+
+        /* Implementation */
+
+        function initialize() {
+            getCurrentUser();
         }
 
-        ////////////////
-
-        function getCurrentUser(){
-            return AccountService.me;
+        function getCurrentUser() {
+            AccountService.me().then(function (user) {
+                vm.user = user;
+            });
         }
 
         function logout() {

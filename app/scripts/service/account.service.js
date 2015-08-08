@@ -5,28 +5,39 @@
         .module('classesClientApp')
         .service('AccountService', AccountService);
 
-    AccountService.$inject = ['Users', 'OAuth', 'OAuthToken'];
+    AccountService.$inject = ['Users', 'OAuth', 'OAuthToken', '$q'];
 
-    function AccountService(Users, OAuth, OAuthToken) {
+    function AccountService(Users, OAuth, OAuthToken, $q) {
 
         var vm = this;
+
+        var meDeferred = $q.defer();
 
         vm.register = register;
         vm.isAuthenticated = OAuth.isAuthenticated;
         vm.login = login;
         vm.logout = logout;
-        vm.getMe = getMe;
-        vm.me = {};
+        vm.me = me;
 
-        ////////
+        initialize();
+
+        /* Implementation */
+
+        function initialize() {
+            loadMe();
+        }
+
+        function me() {
+            return meDeferred.promise;
+        }
 
         function register(user) {
             return Users.post(user);
         }
 
-        function getMe() {
+        function loadMe() {
             return Users.one('me').get().then(function (user) {
-                vm.me = user;
+                meDeferred.resolve(user);
             });
         }
 

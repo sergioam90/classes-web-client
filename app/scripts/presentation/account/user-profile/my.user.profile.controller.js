@@ -24,7 +24,9 @@
         }
 
         function loadUser(){
-            vm.user = AccountService.me;
+            AccountService.me().then(function (user) {
+                vm.user = user;
+            });
         }
 
         function saveUser(){
