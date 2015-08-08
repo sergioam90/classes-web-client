@@ -84,7 +84,12 @@
             .state('teacherProfile', {
                 url: '/teachers/{id}',
                 templateUrl: templateUrlPrefix + 'teacher/profile/teacher.profile.html',
-                controller: 'TeacherProfileController as vm'
+                controller: 'TeacherProfileController as vm',
+                resolve: {
+                    teacher: function ($stateParams, TeacherService) {
+                        return TeacherService.getById($stateParams.id);
+                    }
+                }
             })
             .state('maps', {
                 url: '/maps',

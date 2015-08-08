@@ -1,127 +1,130 @@
+<button class="btn btn-primary" ng-click="vm.toggleSidebar = !vm.toggleSidebar">Ocultar filtros</button>
+
 <!-- Sidebar -->
-<div class="col-sm-3">
+<div class="col-sm-3" ng-init="vm.toggleSidebar = true" ng-show="vm.toggleSidebar">
+    <div>
+        <!-- City -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-uppercase text-center">Ciudad</h3>
+            </div>
+            <div class="panel-body">
+                <ui-select ng-model="vm.searchCriteria.city" theme="bootstrap">
+                    <ui-select-match placeholder="Elija una ciudad...">{{ $select.selected | city }}
+                    </ui-select-match>
+                    <ui-select-choices
+                            repeat="city in vm.cities">
+                        <div ng-bind-html="city | city | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
 
-    <!-- City -->
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title text-uppercase text-center">Ciudad</h3>
-        </div>
-        <div class="panel-body">
-            <ui-select ng-model="vm.searchCriteria.city" theme="bootstrap">
-                <ui-select-match placeholder="Elija una ciudad...">{{ $select.selected | city }}
-                </ui-select-match>
-                <ui-select-choices
-                        repeat="city in vm.cities">
-                    <div ng-bind-html="city | city | highlight: $select.search"></div>
-                </ui-select-choices>
-            </ui-select>
-        </div>
-    </div>
-
-    <!-- Text search -->
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title text-uppercase text-center">Búsqueda</h3>
-        </div>
-        <div class="panel-body">
-            <div class="input-group">
-                <input ng-model="vm.searchCriteria.text" type="text" class="form-control"
-                       placeholder="Nombre, Apellido, etc."/>
+        <!-- Text search -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-uppercase text-center">Búsqueda</h3>
+            </div>
+            <div class="panel-body">
+                <div class="input-group">
+                    <input ng-model="vm.searchCriteria.text" type="text" class="form-control"
+                           placeholder="Nombre, Apellido, etc."/>
                     <span class="input-group-btn">
                         <button class="btn btn-primary" type="button" ng-click="vm.search()"><i
                                 class="fa fa-search"></i></button>
                     </span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Subjects -->
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title text-uppercase text-center">Materias</h3>
-        </div>
-        <div class="panel-body">
-            <div ng-repeat="subject in vm.subjects">
-                <div class="checkbox">
-                    <label>
-                        <input ng-model="subject.selected" value="{{ subject.selected }}" type="checkbox"/> {{
-                        subject.name }}
-                    </label>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Degree -->
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title text-uppercase text-center">Estudios</h3>
-        </div>
-        <div class="panel-body">
-            <div ng-repeat="degree in vm.degrees">
-                <div class="checkbox">
-                    <label>
-                        <input ng-model="degree.selected" value="{{ degree.selected }}" type="checkbox"/> {{
-                        degree.name | degree }}
-                    </label>
+        <!-- Subjects -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-uppercase text-center">Materias</h3>
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="subject in vm.subjects">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="subject.selected" value="{{ subject.selected }}" type="checkbox"/> {{
+                            subject.name }}
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Fee -->
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title text-uppercase text-center">Precio maximo</h3>
-        </div>
-        <div class="panel-body">
-            <rzslider ng-init="vm.searchCriteria.fee = 400"
-                      rz-slider-model="vm.searchCriteria.fee"
-                      rz-slider-translate="vm.moneyTranslate"
-                      rz-slider-floor="20"
-                      rz-slider-ceil="400"
-                      rz-slider-step="20"
-                      rz-slider-always-show-bar="true">
-            </rzslider>
-        </div>
-    </div>
-
-    <!-- Class audience -->
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title text-uppercase text-center">Tipo de clase</h3>
-        </div>
-        <div class="panel-body">
-            <div class="col-sm-9">
-                <div>
-                    <input type="radio" ng-model="vm.searchCriteria.groupLessons" ng-value="undefined"/> Cualquiera
-                </div>
-                <div>
-                    <input type="radio" ng-model="vm.searchCriteria.groupLessons" ng-value="false"/> Personalizada
-                </div>
-                <div>
-                    <input type="radio" ng-model="vm.searchCriteria.groupLessons" ng-value="true"/> Grupal
+        <!-- Degree -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-uppercase text-center">Estudios</h3>
+            </div>
+            <div class="panel-body">
+                <div ng-repeat="degree in vm.degrees">
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="degree.selected" value="{{ degree.selected }}" type="checkbox"/> {{
+                            degree.name | degree }}
+                        </label>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- Home lessons -->
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title text-uppercase text-center">A domicilio</h3>
+        <!-- Fee -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-uppercase text-center">Precio maximo</h3>
+            </div>
+            <div class="panel-body">
+                <rzslider ng-init="vm.searchCriteria.fee = 400"
+                          rz-slider-model="vm.searchCriteria.fee"
+                          rz-slider-translate="vm.moneyTranslate"
+                          rz-slider-floor="20"
+                          rz-slider-ceil="400"
+                          rz-slider-step="20"
+                          rz-slider-always-show-bar="true">
+                </rzslider>
+            </div>
         </div>
-        <div class="panel-body">
-            <div class="col-sm-9">
-                <div>
-                    <input type="radio" ng-model="vm.searchCriteria.homeLessons" ng-value="undefined"/> Cualquiera
+
+        <!-- Class audience -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-uppercase text-center">Tipo de clase</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-9">
+                    <div>
+                        <input type="radio" ng-model="vm.searchCriteria.groupLessons" ng-value="undefined"/> Cualquiera
+                    </div>
+                    <div>
+                        <input type="radio" ng-model="vm.searchCriteria.groupLessons" ng-value="false"/> Personalizada
+                    </div>
+                    <div>
+                        <input type="radio" ng-model="vm.searchCriteria.groupLessons" ng-value="true"/> Grupal
+                    </div>
                 </div>
-                <div>
-                    <input type="radio" ng-model="vm.searchCriteria.homeLessons" ng-value="false"/> No va a
-                    domicilio
-                </div>
-                <div>
-                    <input type="radio" ng-model="vm.searchCriteria.homeLessons" ng-value="true"/> Va a domicilio
+            </div>
+        </div>
+
+        <!-- Home lessons -->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title text-uppercase text-center">A domicilio</h3>
+            </div>
+            <div class="panel-body">
+                <div class="col-sm-9">
+                    <div>
+                        <input type="radio" ng-model="vm.searchCriteria.homeLessons" ng-value="undefined"/> Cualquiera
+                    </div>
+                    <div>
+                        <input type="radio" ng-model="vm.searchCriteria.homeLessons" ng-value="false"/> No va a
+                        domicilio
+                    </div>
+                    <div>
+                        <input type="radio" ng-model="vm.searchCriteria.homeLessons" ng-value="true"/> Va a domicilio
+                    </div>
                 </div>
             </div>
         </div>
@@ -130,7 +133,71 @@
 </div>
 
 <!-- Main content -->
-<div class="col-sm-6">
+<div class="col-sm-8">
+
+    <!-- City and text filters -->
+    <div class="row">
+
+        <!-- Help button -->
+        <div class="col-sm-1">
+            <p class="lead"><i class="fa fa-question-circle text-primary"></i><br></p>
+        </div>
+
+        <!-- City filter -->
+        <div class="col-sm-5">
+            <p class="lead">
+                <i class="fa fa-map-marker"></i>
+                {{ vm.searchCriteria.city | city }}
+            </p>
+        </div>
+
+        <!-- Text filter -->
+        <div class="col-sm-6">
+            <input ng-model="vm.searchCriteria.text" type="text" class="form-control"
+                   placeholder="Nombre, Apellido, etc."/>
+        </div>
+    </div>
+
+    <!-- Toggle filters -->
+    <div class="row text-center">
+
+        <!-- Subject filter -->
+        <div class="col-sm-2">
+            <p class="lead"><i class="fa fa-flask"></i></p>
+            Varias materias
+        </div>
+
+        <!-- Fee filter -->
+        <div class="col-sm-2">
+            <p class="lead"><i class="fa fa-flask"></i></p>
+            $ 40
+        </div>
+
+        <!-- Home lesson filter -->
+        <div class="col-sm-2">
+            <p class="lead"><i class="fa fa-car"></i></p>
+            A domicilio
+        </div>
+
+        <!-- Degree filter -->
+        <div class="col-sm-2">
+            <p class="lead"><i class="fa fa-graduation-cap"></i></p>
+            {{ vm.searchCriteria.degree | degree }}
+        </div>
+
+        <!-- Private lessons -->
+        <div class="col-sm-2">
+            <p class="lead"><i class="fa fa-user"></i></p>
+            {{ vm.searchCriteria.degree | degree }}
+        </div>
+
+        <!-- Group lessons -->
+        <div class="col-sm-2">
+            <p class="lead"><i class="fa fa-users"></i></p>
+            {{ vm.searchCriteria.degree | degree }}
+        </div>
+    </div>
+
     <div class="panel panel-default" ng-repeat="teacher in vm.teachersResult">
         <div class="panel-body teachers_panel" ng-click="vm.viewProfile(teacher)">
             <div class="row">

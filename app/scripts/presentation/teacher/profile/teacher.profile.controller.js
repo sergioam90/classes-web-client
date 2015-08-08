@@ -10,14 +10,15 @@
         'StudentService',
         'AccountService',
         '$stateParams',
-        '$modal'
+        '$modal',
+        'teacher'
     ];
 
-    function TeacherProfileController(TeacherService, StudentService, AccountService, $stateParams, $modal) {
+    function TeacherProfileController(TeacherService, StudentService, AccountService, $stateParams, $modal, teacher) {
 
         var vm = this;
 
-        vm.teacher = {};
+        vm.teacher = teacher;
         vm.relatedTeachers = [];
         vm.currentUser = AccountService.me;
         vm.toggleFavorite = toggleFavorite;
@@ -29,7 +30,10 @@
         /* Implementation */
 
         function initialize() {
-            loadTeacher($stateParams.id);
+            //loadTeacher($stateParams.id);
+
+            loadRelatedTeachers(vm.teacher.id);
+            loadReviews(vm.teacher.id);
         }
 
         function loadTeacher(id) {
