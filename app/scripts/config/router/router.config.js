@@ -17,6 +17,7 @@
 
         var templateUrlPrefix = 'scripts/presentation/';
 
+        // TODO: Define object with states and iterate it (register global properties in foreach loop)
         $stateProvider
             .state('main', {
                 url: '/',

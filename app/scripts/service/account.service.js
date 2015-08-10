@@ -11,7 +11,7 @@
 
         var vm = this;
 
-        var meDeferred = $q.defer();
+        var meDeferred;
 
         vm.register = register;
         vm.isAuthenticated = OAuth.isAuthenticated;
@@ -31,6 +31,8 @@
         }
 
         function me() {
+            meDeferred = $q.defer();
+
             return meDeferred.promise;
         }
 
@@ -41,8 +43,6 @@
         function loadMe() {
             return Users.one('me').get().then(function (user) {
                 vm.currentUser = user;
-
-                meDeferred.resolve(user);
             });
         }
 
