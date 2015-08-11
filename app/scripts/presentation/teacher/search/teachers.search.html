@@ -47,7 +47,7 @@
             </div>
 
             <!-- Home lesson filter -->
-            <div class="col-sm-1 col-xs-2">
+            <div class="col-sm-1 col-xs-2" tooltip="A domicilio">
                 <home-filter ng-click="vm.search()" ng-model="vm.searchCriteria.homeLessons"></home-filter>
             </div>
 
@@ -61,6 +61,12 @@
                 <individual-filter ng-model="vm.searchCriteria.individualLessons"
                                    ng-click="vm.search()">
                 </individual-filter>
+            </div>
+
+            <div class="col-sm-2 col-xs-3">
+                <rating class="text-warning"
+                        ng-model="vm.searchCriteria.averageRating">
+                </rating>
             </div>
 
             <!-- Advanced search -->
@@ -220,7 +226,7 @@
 </div>
 
 <!-- Ads -->
-<div class="col-sm-3">
+<div class="col-sm-4">
     <div class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title text-center">¡Anuncie aquí!</h3>

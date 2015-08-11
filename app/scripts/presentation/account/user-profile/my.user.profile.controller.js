@@ -11,6 +11,7 @@
 
         var vm = this;
 
+        vm.user = {};
         vm.saveUser = saveUser;
         vm.genders = GenderService.getAllGenders();
 
@@ -23,7 +24,7 @@
         }
 
         function loadUser(){
-            AccountService.me().then(function (user) {
+            AccountService.loadUser().then(function (user) {
                 vm.user = user;
             });
         }

@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .service('UserService', UserService);
 
-    UserService.$inject = ['Users', 'AccountService'];
+    UserService.$inject = ['Users'];
 
-    function UserService(Users, AccountService) {
+    function UserService(Users) {
 
         var vm = this;
 
@@ -17,16 +17,16 @@
 
         /* Implementation */
 
+        function register(user) {
+            return Users.post(user);
+        }
+
         function me() {
             return Users.one('me').get();
         }
 
         function saveUser(user){
-            return Users.one('me').customPUT(user).then(function (user) {
-                AccountService.me = user;
-
-                return user;
-            });
+            return Users.one('me').customPUT(user);
         }
 
     }

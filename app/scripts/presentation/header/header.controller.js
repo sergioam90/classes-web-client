@@ -19,17 +19,14 @@
         /* Implementation */
 
         function initialize() {
-            getCurrentUser();
         }
 
         function getCurrentUser() {
-            return AccountService.currentUser;
+            return AccountService.me;
         }
 
         function logout() {
             AccountService.logout();
-
-            vm.user = {};
 
             $state.go('main');
         }

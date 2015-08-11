@@ -5,56 +5,45 @@
         .module('classesClientApp')
         .service('AccountService', AccountService);
 
-    AccountService.$inject = ['Users', 'OAuth', 'OAuthToken', '$q'];
+    AccountService.$inject = ['UserService', 'OAuth', 'OAuthToken'];
 
-    function AccountService(Users, OAuth, OAuthToken, $q) {
+    function AccountService(UserService, OAuth, OAuthToken) {
 
         var vm = this;
 
-        var meDeferred;
-
-        vm.register = register;
         vm.isAuthenticated = OAuth.isAuthenticated;
         vm.login = login;
         vm.logout = logout;
-        vm.me = me;
-        vm.currentUser = {};
+        vm.loadUser = loadUser;
+        vm.me = {};
 
         initialize();
 
         /* Implementation */
 
         function initialize() {
-            if (vm.isAuthenticated) {
-                loadMe();
+            if (vm.isAuthenticated()) {
+                loadUser();
             }
         }
 
-        function me() {
-            meDeferred = $q.defer();
-
-            return meDeferred.promise;
-        }
-
-        function register(user) {
-            return Users.post(user);
-        }
-
-        function loadMe() {
-            return Users.one('me').get().then(function (user) {
-                vm.currentUser = user;
+        function loadUser() {
+            return UserService.me().then(function (user) {
+                return vm.me = user;
             });
-        }
-
-        function logout() {
-            return OAuthToken.removeToken();
         }
 
         function login(user) {
             if (vm.isAuthenticated()) {
                 vm.logout();
             }
-            return OAuth.getAccessToken(user).then(vm.loadMe);
+            return OAuth.getAccessToken(user).then(vm.loadUser);
+        }
+
+        function logout() {
+            vm.me = {};
+
+            return OAuthToken.removeToken();
         }
 
     }
