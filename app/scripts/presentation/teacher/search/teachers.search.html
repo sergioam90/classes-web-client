@@ -1,7 +1,94 @@
-<button class="btn btn-primary" ng-click="vm.toggleSidebar = !vm.toggleSidebar">Ocultar filtros</button>
+<!-- Main content -->
+<div class="col-sm-8">
+
+    <div class="panel panel-body">
+        <!-- City and text filters -->
+        <div class="row filter-row">
+
+            <!-- Help button -->
+            <div class="col-sm-1 text-center">
+                <p class="lead"><i class="fa fa-question-circle text-primary"></i><br></p>
+            </div>
+
+            <!-- City filter -->
+            <div class="col-sm-5">
+                <ui-select ng-model="vm.searchCriteria.city" theme="bootstrap">
+                    <ui-select-match placeholder="Elija una ciudad...">{{ $select.selected | city }}
+                    </ui-select-match>
+                    <ui-select-choices
+                            repeat="city in vm.cities">
+                        <div ng-bind-html="city | city | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+
+            <!-- Text filter -->
+            <div class="col-sm-6">
+                <input ng-model="vm.searchCriteria.text"
+                       ng-model-options="{ debounce: 750 }"
+                       ng-change="vm.search()"
+                       type="text"
+                       class="form-control"
+                       placeholder="Nombre, Apellido, etc."/>
+            </div>
+        </div>
+
+        <!-- Toggle filters -->
+        <div class="row text-center">
+
+            <!-- Subject filter -->
+            <div class="col-sm-1 col-xs-2">
+                <p class="lead text-success"><i class="fa fa-flask"></i></p>
+            </div>
+
+            <!-- Fee filter -->
+            <div class="col-sm-2 col-xs-2">
+                <fee-filter ng-click="vm.search()" ng-model="vm.searchCriteria.fee"></fee-filter>
+            </div>
+
+            <!-- Home lesson filter -->
+            <div class="col-sm-1 col-xs-2">
+                <home-filter ng-click="vm.search()" ng-model="vm.searchCriteria.homeLessons"></home-filter>
+            </div>
+
+            <!-- Degree filter -->
+            <div class="col-sm-1 col-xs-2">
+                <degree-filter ng-click="vm.search()" ng-model="vm.searchCriteria.degree"></degree-filter>
+            </div>
+
+            <!-- Individual lessons -->
+            <div class="col-sm-1 col-xs-2">
+                <individual-filter ng-model="vm.searchCriteria.individualLessons"
+                                   ng-click="vm.search()">
+                </individual-filter>
+            </div>
+
+            <!-- Advanced search -->
+            <div class="col-sm-1 col-xs-2">
+                <p class="lead hand-pointer"
+                   ng-click="vm.toggleSidebar = !vm.toggleSidebar">
+                    <i class="fa fa-plus"></i>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div ng-repeat="teacher in vm.teachersResult">
+        <teacher-result ng-model="teacher" view-profile="vm.viewProfile(teacher)"></teacher-result>
+    </div>
+
+    <!-- Nothing found message -->
+    <h4 class="text-center" ng-if="!vm.teachersResult.length">
+        ¡Uh! No hay nadie que cumpla esas condiciones :(
+    </h4>
+
+    <p class="lead text-center" ng-if="!vm.teachersResult.length">
+        Tip: Revisa los filtros ;)
+    </p>
+</div>
 
 <!-- Sidebar -->
-<div class="col-sm-3" ng-init="vm.toggleSidebar = true" ng-show="vm.toggleSidebar">
+<div class="col-sm-3" ng-init="vm.toggleSidebar = false" ng-show="vm.toggleSidebar">
     <div>
         <!-- City -->
         <div class="panel panel-primary">
@@ -28,7 +115,7 @@
             <div class="panel-body">
                 <div class="input-group">
                     <input ng-model="vm.searchCriteria.text" type="text" class="form-control"
-                           placeholder="Nombre, Apellido, etc."/>
+                           placeholder="Nombre o descripcion..."/>
                     <span class="input-group-btn">
                         <button class="btn btn-primary" type="button" ng-click="vm.search()"><i
                                 class="fa fa-search"></i></button>
@@ -131,136 +218,6 @@
     </div>
 
 </div>
-
-<!-- Main content -->
-<div class="col-sm-8">
-
-    <!-- City and text filters -->
-    <div class="row">
-
-        <!-- Help button -->
-        <div class="col-sm-1">
-            <p class="lead"><i class="fa fa-question-circle text-primary"></i><br></p>
-        </div>
-
-        <!-- City filter -->
-        <div class="col-sm-5">
-            <p class="lead">
-                <i class="fa fa-map-marker"></i>
-                {{ vm.searchCriteria.city | city }}
-            </p>
-        </div>
-
-        <!-- Text filter -->
-        <div class="col-sm-6">
-            <input ng-model="vm.searchCriteria.text" type="text" class="form-control"
-                   placeholder="Nombre, Apellido, etc."/>
-        </div>
-    </div>
-
-    <!-- Toggle filters -->
-    <div class="row text-center">
-
-        <!-- Subject filter -->
-        <div class="col-sm-2">
-            <p class="lead"><i class="fa fa-flask"></i></p>
-            Varias materias
-        </div>
-
-        <!-- Fee filter -->
-        <div class="col-sm-2">
-            <p class="lead"><i class="fa fa-flask"></i></p>
-            $ 40
-        </div>
-
-        <!-- Home lesson filter -->
-        <div class="col-sm-2">
-            <home-filter ng-model="vm.searchCriteria.homeLessons"></home-filter>
-        </div>
-
-        <!-- Degree filter -->
-        <div class="col-sm-2">
-            <p class="lead"><i class="fa fa-graduation-cap"></i></p>
-            {{ vm.searchCriteria.degree | degree }}
-        </div>
-
-        <!-- Private lessons -->
-        <div class="col-sm-2">
-            <p class="lead"><i class="fa fa-user"></i></p>
-            {{ vm.searchCriteria.degree | degree }}
-        </div>
-
-        <!-- Group lessons -->
-        <div class="col-sm-2">
-            <p class="lead"><i class="fa fa-users"></i></p>
-            {{ vm.searchCriteria.degree | degree }}
-        </div>
-    </div>
-
-    <div class="panel panel-default" ng-repeat="teacher in vm.teachersResult">
-        <div class="panel-body teachers_panel" ng-click="vm.viewProfile(teacher)">
-            <div class="row">
-                <!-- Profile picture -->
-                <div class="col-md-2">
-                    <img class="img-responsive img-thumbnail" src="/images/mock.jpg" alt=""/>
-                </div>
-
-                <!-- Profile data -->
-                <div class="col-md-10">
-
-                    <!-- Name and more info -->
-                    <div class="row">
-                        <div class="col-md-8">
-                            <strong class="lead">{{ teacher.user | fullName }}</strong>
-                        </div>
-
-                        <!-- More info -->
-                        <div class="col-md-4 text-center">
-                            <a ui-sref="teacherProfile(teacher)" class="btn btn-primary btn_view_more">
-                                Ver perfil
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Additional data -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <dl>
-                                <!-- Degree -->
-                                <dd>
-                                    <p>
-                                        <degree-icon ng-model="teacher.degree"></degree-icon>
-                                        {{ teacher.degree | degree }}
-                                    </p>
-                                </dd>
-                                <!-- Description -->
-                                <dd>"{{ teacher.description }}"</dd>
-
-                                <!-- Subjects -->
-                                <dd>
-                                    <p class="lead">
-                      <span class="label label-primary" ng-repeat="subject in teacher.subjects">
-                        {{ subject.name }}
-                      </span>
-                                    </p>
-                                </dd>
-                            </dl>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <h4 class="text-center" ng-if="!vm.teachersResult.length">
-        ¡Uy! No hay nadie que cumpla esas condiciones :(
-    </h4>
-
-    <p class="lead text-center" ng-if="!vm.teachersResult.length">
-        Revisa los filtros
-    </p>
-</div>
-
 
 <!-- Ads -->
 <div class="col-sm-3">

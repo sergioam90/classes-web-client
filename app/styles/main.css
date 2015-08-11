@@ -114,3 +114,11 @@ html, body {
 .center-block {
     float: none;
 }
+
+.filter-row {
+    margin-bottom: 10px;
+}
+
+.hand-pointer {
+    cursor: pointer;
+}

@@ -1,8 +1,7 @@
 <!-- Home lesson filter -->
-<div ng-click="toggle()">
+<span ng-click="toggle()">
 
-    <p ng-if="state" class="lead"><i class="fa fa-car text-success"></i></p>
-    <span ng-if="state">A domicilio</span>
+    <p ng-if="state" class="lead hand-pointer" tooltip="A domicilio"><i class="fa fa-car text-success"></i></p>
 
-    <p ng-if="!state" class="lead"><i class="fa fa-car text-muted"></i></p>
-</div>
+    <p ng-if="!state" class="lead hand-pointer"><i class="fa fa-car text-muted"></i></p>
+</span>

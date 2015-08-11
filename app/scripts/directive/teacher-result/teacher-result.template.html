@@ -1,0 +1,44 @@
+<div class="panel panel-body teachers_panel" ng-click="viewProfile({teacher: teacher})">
+    <div class="row">
+        <!-- Profile picture -->
+        <div class="col-md-2">
+            <img class="img-responsive img-thumbnail" src="/images/mock.jpg" alt=""/>
+        </div>
+
+        <!-- Profile data -->
+        <div class="col-md-10">
+
+            <!-- Name and more info -->
+            <div class="row">
+                <div class="col-md-8">
+                    <strong class="lead">
+                        <degree-icon ng-model="teacher.degree"></degree-icon>
+                        {{ teacher.user | fullName }}
+                    </strong>
+                </div>
+
+                <rating class="text-warning"
+                        ng-model="teacher.averageRating"
+                        readonly="true">
+                </rating>
+            </div>
+
+            <!-- Additional data -->
+            <div class="row">
+                <div class="col-md-12">
+                    <dl>
+                        <!-- Subjects -->
+                        <dd>
+                            <p class="lead">
+                      <span class="label label-primary" ng-repeat="subject in teacher.subjects">
+                        {{ subject.name }}
+                      </span>
+                            </p>
+                        </dd>
+                    </dl>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
