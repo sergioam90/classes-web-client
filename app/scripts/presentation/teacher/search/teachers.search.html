@@ -5,13 +5,8 @@
         <!-- City and text filters -->
         <div class="row filter-row">
 
-            <!-- Help button -->
-            <div class="col-sm-1 text-center">
-                <p class="lead"><i class="fa fa-question-circle text-primary"></i><br></p>
-            </div>
-
             <!-- City filter -->
-            <div class="col-sm-5">
+            <div class="col-sm-4">
                 <ui-select ng-model="vm.searchCriteria.city" theme="bootstrap">
                     <ui-select-match placeholder="Elija una ciudad...">{{ $select.selected | city }}
                     </ui-select-match>
@@ -23,7 +18,7 @@
             </div>
 
             <!-- Text filter -->
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <input ng-model="vm.searchCriteria.text"
                        ng-model-options="{ debounce: 750 }"
                        ng-change="vm.search()"
@@ -31,6 +26,8 @@
                        class="form-control"
                        placeholder="Nombre o descripcion..."/>
             </div>
+
+
         </div>
 
         <!-- Toggle filters -->
@@ -42,7 +39,7 @@
             </div>
 
             <!-- Fee filter -->
-            <div class="col-sm-2 col-xs-2">
+            <div class="col-sm-2 col-xs-3">
                 <fee-filter ng-click="vm.search()" ng-model="vm.searchCriteria.fee"></fee-filter>
             </div>
 
@@ -63,18 +60,37 @@
                 </individual-filter>
             </div>
 
-            <div class="col-sm-2 col-xs-3">
-                <rating class="text-warning"
-                        ng-model="vm.searchCriteria.averageRating">
-                </rating>
+            <!-- For proper column alignment -->
+            <div class="clearfix visible-xs-block"></div>
+
+            <!-- Rating filter -->
+            <div class="col-sm-2 col-xs-4">
+                <div>
+                    <rating class="text-warning"
+                            tooltip="Calificación"
+                            ng-model="vm.searchCriteria.averageRating">
+                    </rating>
+                </div>
+                mín.
+            </div>
+
+            <!-- Schedule filter -->
+            <div class="col-sm-1 col-xs-2">
+                <schedule-filter ng-model="vm.searchCriteria.schedule"></schedule-filter>
             </div>
 
             <!-- Advanced search -->
             <div class="col-sm-1 col-xs-2">
-                <p class="lead hand-pointer"
-                   ng-click="vm.toggleSidebar = !vm.toggleSidebar">
-                    <i class="fa fa-plus"></i>
+                <p class="lead hand-pointer" tooltip="Búsqueda avanzada"
+                   ng-click="vm.advancedVisible = !vm.advancedVisible">
+                    <i class="fa fa-minus" ng-if="vm.advancedVisible"></i>
+                    <i class="fa fa-plus" ng-if="!vm.advancedVisible"></i>
                 </p>
+            </div>
+
+            <!-- Help button -->
+            <div class="col-sm-1 col-xs-2 text-center">
+                <p class="lead" tooltip="Ayuda"><i class="fa fa-question-circle text-primary"></i><br></p>
             </div>
         </div>
     </div>
@@ -95,7 +111,7 @@
 </div>
 
 <!-- Sidebar -->
-<div class="col-sm-3" ng-init="vm.toggleSidebar = false" ng-show="vm.toggleSidebar">
+<div class="col-sm-3" ng-init="vm.advancedVisible = false" ng-show="vm.advancedVisible">
     <div>
         <!-- City -->
         <div class="panel panel-primary">

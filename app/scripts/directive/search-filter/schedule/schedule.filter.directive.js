@@ -3,17 +3,19 @@
 
     angular
         .module('classesClientApp')
-        .directive('degreeFilter', DegreeFilterDirective);
+        .directive('scheduleFilter', ScheduleFilterDirective);
 
-    DegreeFilterDirective.$inject = ['DegreeService'];
+    ScheduleFilterDirective.$inject = ['ScheduleService'];
 
-    function DegreeFilterDirective(DegreeService) {
+    function ScheduleFilterDirective(ScheduleService) {
 
         function link(scope, element, attributes) {
 
-            scope.states = DegreeService.getAllDegrees();
+            scope.states = [undefined];
 
-            scope.states[0] = undefined;
+            scope.states.push.apply(scope.states, ScheduleService.getAllSchedules());
+
+            console.log(scope.states);
 
             scope.toggle = function () {
                 var current;
@@ -32,7 +34,7 @@
 
         return {
             restrict: 'E',
-            templateUrl: 'scripts/directive/search-filter/degree/degree.filter.template.html',
+            templateUrl: 'scripts/directive/search-filter/schedule/schedule.filter.template.html',
             scope: {
                 state: '=ngModel'
             },

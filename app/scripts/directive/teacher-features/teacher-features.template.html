@@ -1,19 +1,26 @@
 <!-- Teacher features container -->
 <div>
-    <!-- Class type -->
+    <!-- Individual lessons -->
     <span>
 
-        <!-- Individual class -->
-        <span class="fa-stack" ng-if="!teacher.groupLessons" tooltip="Clases individuales">
+        <!-- Individual lessons -->
+        <span class="fa-stack" ng-if="!teacher.individualLessons" tooltip="Clases individuales">
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-user fa-stack-1x fa-inverse"></i>
         </span>
 
-        <!-- Group class -->
-        <span class="fa-stack" ng-if="teacher.groupLessons" tooltip="Solo clases grupales">
+        <!-- TODO: Add "not individual classes"? -->
+    </span>
+
+    <!-- Group lessons -->
+    <span>
+
+        <!-- Group lessons -->
+        <span class="fa-stack" ng-if="teacher.groupLessons" tooltip="Clases grupales">
             <i class="fa fa-circle fa-stack-2x"></i>
             <i class="fa fa-users fa-stack-1x fa-inverse"></i>
         </span>
+
     </span>
 
     <!-- Class location -->
