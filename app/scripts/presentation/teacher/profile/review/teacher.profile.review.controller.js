@@ -13,6 +13,7 @@
 
         vm.teacher = teacher;
         vm.currentUser = currentUser;
+        vm.review = {};
         vm.modalSubmitReview = modalSubmitReview;
         vm.modalDismiss = modalDismiss;
         vm.onHover = onHover;
@@ -26,11 +27,25 @@
             'Genial'
         ];
 
-        vm.currentTitle = vm.titles[vm.teacher.review.rating - 1];
+        if (vm.teacher.review) {
+            vm.review.comment = vm.teacher.review.comment;
+            vm.review.rating = vm.teacher.review.rating;
 
-        function modalSubmitReview(review) {
-            submitReview(review);
-            $modalInstance.close();
+            // TODO: Make this a function
+            vm.currentTitle = vm.titles[vm.teacher.review.rating - 1];
+        }
+
+        function modalSubmitReview() {
+            console.log(vm.review);
+            submitReview(vm.review).then(success, error);
+
+            function success() {
+                $modalInstance.close();
+            }
+
+            function error() {
+                // TODO: Show error message
+            }
         }
 
         function modalDismiss() {

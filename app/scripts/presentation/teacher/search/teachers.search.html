@@ -1,5 +1,5 @@
 <!-- Main content -->
-<div class="col-sm-8">
+<div class="col-sm-9 col-sm-offset-1">
 
     <div class="panel panel-body">
         <!-- City and text filters -->
@@ -29,7 +29,7 @@
                        ng-change="vm.search()"
                        type="text"
                        class="form-control"
-                       placeholder="Nombre, Apellido, etc."/>
+                       placeholder="Nombre o descripcion..."/>
             </div>
         </div>
 
@@ -78,9 +78,10 @@
             </div>
         </div>
     </div>
-
-    <div ng-repeat="teacher in vm.teachersResult">
-        <teacher-result ng-model="teacher" view-profile="vm.viewProfile(teacher)"></teacher-result>
+    <div class="row">
+        <div ng-repeat="teacher in vm.teachersResult" class="col-sm-6 col-xs-12">
+            <teacher-result ng-model="teacher" view-profile="vm.viewProfile(teacher)"></teacher-result>
+        </div>
     </div>
 
     <!-- Nothing found message -->
@@ -226,7 +227,7 @@
 </div>
 
 <!-- Ads -->
-<div class="col-sm-4">
+<div class="col-sm-2 hidden-xs">
     <div class="panel panel-info">
         <div class="panel-heading">
             <h3 class="panel-title text-center">¡Anuncie aquí!</h3>

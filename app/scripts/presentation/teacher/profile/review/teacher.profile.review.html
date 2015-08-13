@@ -24,17 +24,17 @@
 
     <h2 class="text-center">
         <rating class="text-warning"
-                ng-model="vm.teacher.review.rating"
+                ng-model="vm.review.rating"
                 on-hover="vm.onHover(value)"
                 on-leave="vm.onLeave()">
         </rating>
     </h2>
-    <textarea class="form-control" type="text" ng-model="vm.teacher.review.comment" maxlength="256"></textarea>
+    <textarea class="form-control" type="text" ng-model="vm.review.comment" maxlength="256"></textarea>
 </div>
 
 <div class="modal-footer">
     <button type="button" class="btn btn-default" ng-click="vm.modalDismiss()">Cancelar</button>
-    <button type="button" class="btn btn-primary" ng-click="vm.modalSubmitReview(vm.teacher.review)">
+    <button type="button" class="btn btn-primary" ng-click="vm.modalSubmitReview()">
         Calificar
     </button>
 </div>

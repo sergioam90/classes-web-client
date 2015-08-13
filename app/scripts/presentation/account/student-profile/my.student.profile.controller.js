@@ -42,14 +42,16 @@
         }
 
         function loadStudentReviews(id) {
-            StudentService.madeReviews(id).then(function (madeReviews) {
-                vm.madeReviews = madeReviews;
+            StudentService.madeReviews(id).then(function (page) {
+                // TODO: Work with pages not just content
+                vm.madeReviews = page.content;
             });
         }
 
         function loadStudentFavoriteTeachers() {
-            StudentService.favoriteTeachers().then(function (favoriteTeachers) {
-                vm.favoriteTeachers = favoriteTeachers;
+            StudentService.favoriteTeachers().then(function (page) {
+                // TODO: Work with pages not just content
+                vm.favoriteTeachers = page.content;
             });
         }
 

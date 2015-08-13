@@ -57,8 +57,9 @@
         }
 
         function loadReviews(id) {
-            TeacherService.reviews(id).then(function (reviews) {
-                vm.reviews = reviews;
+            TeacherService.reviews(id).then(function (page) {
+                // TODO: Work with pages not just content
+                vm.reviews = page.content;
             });
         }
 
@@ -69,7 +70,7 @@
         }
 
         function submitReview(review) {
-            TeacherService.submitReview(vm.teacher.id, review).then(function () {
+            return TeacherService.submitReview(vm.teacher.id, review).then(function () {
 
                 loadTeacher(vm.teacher.id);
             });

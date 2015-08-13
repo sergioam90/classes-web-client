@@ -58,54 +58,7 @@
                 <div class="row">
                     <div class="col-sm-8">
                         <h4>
-                            <!-- Class type -->
-                            <span>
-
-                                <!-- Individual class -->
-                                <span class="fa-stack" ng-if="!vm.teacher.groupLessons" tooltip="Clases individuales">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-user fa-stack-1x fa-inverse"></i>
-                                </span>
-
-                                <!-- Group class -->
-                                <span class="fa-stack" ng-if="vm.teacher.groupLessons" tooltip="Solo clases grupales">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-users fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </span>
-
-                            <!-- Class location -->
-                            <span>
-                                <!-- Home class -->
-                                <span class="fa-stack" ng-if="vm.teacher.homeLessons" tooltip="A domicilio">
-                                    <i class="fa fa-circle fa-stack-2x text-primary"></i>
-                                    <i class="fa fa-home fa-stack-1x fa-inverse"></i>
-                                </span>
-
-                                <!-- No home class -->
-                                <span class="fa-stack" ng-if="!vm.teacher.homeLessons" tooltip="No va a domicilio">
-                                    <i class="fa fa-home fa-stack-1x"></i>
-                                    <i class="fa fa-ban fa-stack-2x text-danger"></i>
-                                </span>
-                            </span>
-
-                            <!-- Whatsapp availability -->
-                                <span>
-                                    <!-- Has whatsapp -->
-                                    <span class="fa-stack" ng-if="vm.teacher.phone.whatsApp" tooltip="Tiene whatsapp">
-                                        <i class="fa fa-circle fa-stack-2x text-success"></i>
-                                        <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
-                                    </span>
-
-                                    <!-- Doesn't have whatsapp -->
-                                    <span class="fa-stack" ng-if="!vm.teacher.phone.whatsApp"
-                                          tooltip="No tiene whatsapp">                                    <i
-                                            class="fa fa-circle fa-stack-2x text-success"></i>
-                                        <i class="fa fa-circle fa-stack-2x text-success"></i>
-                                        <i class="fa fa-whatsapp fa-stack-1x fa-inverse"></i>
-                                        <i class="fa fa-ban fa-stack-2x text-danger"></i>
-                                    </span>
-                                </span>
+                            <teacher-features ng-model="vm.teacher"></teacher-features>
                         </h4>
                     </div>
                     <div class="col-sm-4">
@@ -204,7 +157,7 @@
                     <div ng-if="vm.currentUser.student && vm.currentUser.teacher != vm.teacher.id">
                         <h5>
                             Mi calificación
-                            <button ng-if="vm.teacher.review.rating"
+                            <button ng-if="vm.teacher.review"
                                     ng-click="vm.showReviewModal()"
                                     class="btn btn-default btn-sm"
                                     tooltip="Editar"
@@ -212,8 +165,8 @@
                                 <i class="fa fa-pencil"></i>
                             </button>
                         </h5>
-                        <review ng-if="vm.teacher.review.rating" ng-model="vm.teacher.review"></review>
-                        <div ng-if="!vm.teacher.review.rating" class="text-center">
+                        <review ng-if="vm.teacher.review" ng-model="vm.teacher.review"></review>
+                        <div ng-if="!vm.teacher.review" class="text-center">
                             <button ng-click="vm.showReviewModal()"
                                     class="btn btn-primary btn-lg">
                                 Calificar

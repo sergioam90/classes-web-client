@@ -27,7 +27,7 @@
         }
 
         function reviews(id) {
-            return Teachers.one(id).one('reviews').getList();
+            return Teachers.one(id).one('reviews').get();
         }
 
         function relatedTeachers(id) {

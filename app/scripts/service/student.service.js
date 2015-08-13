@@ -27,11 +27,11 @@
         }
 
         function madeReviews(id) {
-            return Students.one(id).one('made-reviews').getList();
+            return Students.one(id).one('made-reviews').get();
         }
 
         function favoriteTeachers() {
-            return Students.one('me').one('favorite-teachers').getList();
+            return Students.one('me').one('favorite-teachers').get();
         }
 
         function addAsFavorite(teacherId) {
