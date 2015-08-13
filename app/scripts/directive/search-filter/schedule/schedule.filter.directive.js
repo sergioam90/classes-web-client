@@ -15,8 +15,6 @@
 
             scope.states.push.apply(scope.states, ScheduleService.getAllSchedules());
 
-            console.log(scope.states);
-
             scope.toggle = function () {
                 var current;
 

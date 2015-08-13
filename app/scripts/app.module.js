@@ -17,6 +17,7 @@
             'ui.bootstrap',
             'ui.router',
             'ui.select',
+            'ui.bootstrap.collapse',
             'rzModule' // Slider
         ])
         .run(function (editableOptions) {

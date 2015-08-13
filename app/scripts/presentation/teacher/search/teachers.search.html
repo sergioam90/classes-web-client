@@ -1,102 +1,107 @@
 <!-- Main content -->
 <div class="col-sm-9 col-sm-offset-1">
 
-    <div class="panel panel-body">
-        <!-- City and text filters -->
-        <div class="row filter-row">
+    <div class="row panel panel-body">
+        <div class="col-sm-12 col-xs-12">
+            <!-- City and text filters -->
+            <div class="row filter-row">
 
-            <!-- City filter -->
-            <div class="col-sm-4">
-                <ui-select ng-model="vm.searchCriteria.city" theme="bootstrap">
-                    <ui-select-match placeholder="Elija una ciudad...">{{ $select.selected | city }}
-                    </ui-select-match>
-                    <ui-select-choices
-                            repeat="city in vm.cities">
-                        <div ng-bind-html="city | city | highlight: $select.search"></div>
-                    </ui-select-choices>
-                </ui-select>
-            </div>
-
-            <!-- Text filter -->
-            <div class="col-sm-4">
-                <input ng-model="vm.searchCriteria.text"
-                       ng-model-options="{ debounce: 750 }"
-                       ng-change="vm.search()"
-                       type="text"
-                       class="form-control"
-                       placeholder="Nombre o descripcion..."/>
-            </div>
-
-
-        </div>
-
-        <!-- Toggle filters -->
-        <div class="row text-center">
-
-            <!-- Subject filter -->
-            <div class="col-sm-1 col-xs-2">
-                <p class="lead text-success"><i class="fa fa-flask"></i></p>
-            </div>
-
-            <!-- Fee filter -->
-            <div class="col-sm-2 col-xs-3">
-                <fee-filter ng-click="vm.search()" ng-model="vm.searchCriteria.fee"></fee-filter>
-            </div>
-
-            <!-- Home lesson filter -->
-            <div class="col-sm-1 col-xs-2" tooltip="A domicilio">
-                <home-filter ng-click="vm.search()" ng-model="vm.searchCriteria.homeLessons"></home-filter>
-            </div>
-
-            <!-- Degree filter -->
-            <div class="col-sm-1 col-xs-2">
-                <degree-filter ng-click="vm.search()" ng-model="vm.searchCriteria.degree"></degree-filter>
-            </div>
-
-            <!-- Individual lessons -->
-            <div class="col-sm-1 col-xs-2">
-                <individual-filter ng-model="vm.searchCriteria.individualLessons"
-                                   ng-click="vm.search()">
-                </individual-filter>
-            </div>
-
-            <!-- For proper column alignment -->
-            <div class="clearfix visible-xs-block"></div>
-
-            <!-- Rating filter -->
-            <div class="col-sm-2 col-xs-4">
-                <div>
-                    <rating class="text-warning"
-                            tooltip="Calificación"
-                            ng-model="vm.searchCriteria.averageRating">
-                    </rating>
+                <!-- City filter -->
+                <div class="col-sm-4">
+                    <ui-select ng-model="vm.searchCriteria.city" theme="bootstrap">
+                        <ui-select-match placeholder="Elija una ciudad...">{{ $select.selected | city }}
+                        </ui-select-match>
+                        <ui-select-choices
+                                repeat="city in vm.cities">
+                            <div ng-bind-html="city | city | highlight: $select.search"></div>
+                        </ui-select-choices>
+                    </ui-select>
                 </div>
-                mín.
+
+                <!-- Text filter -->
+                <div class="col-sm-4">
+                    <input ng-model="vm.searchCriteria.text"
+                           ng-model-options="{ debounce: 750 }"
+                           ng-change="vm.search()"
+                           type="text"
+                           class="form-control"
+                           placeholder="Nombre o descripcion..."/>
+                </div>
+
+
             </div>
 
-            <!-- Schedule filter -->
-            <div class="col-sm-1 col-xs-2">
-                <schedule-filter ng-model="vm.searchCriteria.schedule"></schedule-filter>
-            </div>
+            <!-- Toggle filters -->
+            <div class="row text-center">
 
-            <!-- Advanced search -->
-            <div class="col-sm-1 col-xs-2">
-                <p class="lead hand-pointer" tooltip="Búsqueda avanzada"
-                   ng-click="vm.advancedVisible = !vm.advancedVisible">
-                    <i class="fa fa-minus" ng-if="vm.advancedVisible"></i>
-                    <i class="fa fa-plus" ng-if="!vm.advancedVisible"></i>
-                </p>
-            </div>
+                <!-- Subject filter -->
+                <div class="col-sm-1 col-xs-2">
+                    <p class="lead text-success"><i class="fa fa-flask"></i></p>
+                </div>
 
-            <!-- Help button -->
-            <div class="col-sm-1 col-xs-2 text-center">
-                <p class="lead" tooltip="Ayuda"><i class="fa fa-question-circle text-primary"></i><br></p>
+                <!-- Fee filter -->
+                <div class="col-sm-2 col-xs-3">
+                    <fee-filter ng-click="vm.search()" ng-model="vm.searchCriteria.fee"></fee-filter>
+                </div>
+
+                <!-- Home lesson filter -->
+                <div class="col-sm-1 col-xs-2" tooltip="A domicilio">
+                    <home-filter ng-click="vm.search()" ng-model="vm.searchCriteria.homeLessons"></home-filter>
+                </div>
+
+                <!-- Degree filter -->
+                <div class="col-sm-1 col-xs-2">
+                    <degree-filter ng-click="vm.search()" ng-model="vm.searchCriteria.degree"></degree-filter>
+                </div>
+
+                <!-- Individual lessons -->
+                <div class="col-sm-1 col-xs-2">
+                    <individual-filter ng-model="vm.searchCriteria.individualLessons"
+                                       ng-click="vm.search()">
+                    </individual-filter>
+                </div>
+
+                <!-- For proper column alignment -->
+                <div class="clearfix visible-xs-block"></div>
+
+                <!-- Rating filter -->
+                <div class="col-sm-2 col-xs-4">
+                    <div>
+                        <rating class="text-warning"
+                                tooltip="Calificación"
+                                ng-model="vm.searchCriteria.averageRating">
+                        </rating>
+                    </div>
+                    mín.
+                </div>
+
+                <!-- Schedule filter -->
+                <div class="col-sm-1 col-xs-2">
+                    <schedule-filter ng-model="vm.searchCriteria.schedule"></schedule-filter>
+                </div>
+
+                <!-- Advanced search -->
+                <div class="col-sm-1 col-xs-2">
+                    <p class="lead hand-pointer" tooltip="Búsqueda avanzada"
+                       ng-click="vm.advancedVisible = !vm.advancedVisible">
+                        <i class="fa fa-minus" ng-if="vm.advancedVisible"></i>
+                        <i class="fa fa-plus" ng-if="!vm.advancedVisible"></i>
+                    </p>
+                </div>
+
+                <!-- Help button -->
+                <div class="col-sm-1 col-xs-2 text-center">
+                    <p class="lead" tooltip="Ayuda"><i class="fa fa-question-circle text-primary"></i><br></p>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Search results -->
     <div class="row">
         <div ng-repeat="teacher in vm.teachersResult" class="col-sm-6 col-xs-12">
-            <teacher-result ng-model="teacher" view-profile="vm.viewProfile(teacher)"></teacher-result>
+
+        <teacher-result ng-model="teacher" view-profile="vm.viewProfile(teacher)"></teacher-result>
         </div>
     </div>
 
