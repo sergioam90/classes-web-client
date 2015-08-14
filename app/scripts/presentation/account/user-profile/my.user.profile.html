@@ -65,8 +65,50 @@
         </div>
     </dd>
 
+    <!-- TODO: Trigger calendar open -->
     <dt>Fecha de nacimiento</dt>
-    <dd>{{ vm.user.birthDate | date:'longDate' }}</dd>
+    <div class="row">
+        <div class="col-sm-6">
+            {{ vm.user.birthDate | date:'longDate' }}
+            <span editable-text="vm.user.birthDate" e-type="hidden" e-form="birthDateForm"></span>
+
+            <span class="input-group-btn pull-right" ng-if="birthDateForm.$visible">
+                <div dropdown>
+                    <button
+                            dropdown-toggle
+                            type="button"
+                            class="btn btn-default btn-sm dropdown-toggle">
+                        <i class="fa fa-calendar"></i>
+                    </button>
+
+                    <div ng-click="$event.stopPropagation()" class="calendar dropdown-menu pull-right">
+                        <datepicker
+                                ng-model="vm.user.birthDate"
+                                show-weeks="false"
+                                datepicker-mode="'year'"
+                                format="YYYY-MM-DD"
+                                starting-day="1"
+                                ></datepicker>
+                    </div>
+                </div>
+            </span>
+        </div>
+        <div class="col-sm-4">
+            <form editable-form name="birthDateForm" onaftersave="vm.saveUser()" ng-show="birthDateForm.$visible">
+                <button type="submit" ng-disabled="genderForm.$waiting" class="btn btn-sm btn-primary">
+                    <i class="fa fa-check"></i>
+                </button>
+                <button type="button" ng-disabled="birthDateForm.$waiting" ng-click="birthDateForm.$cancel()"
+                        class="btn btn-sm btn-default">
+                    <i class="fa fa-close"></i>
+                </button>
+            </form>
+            <button class="btn btn-default btn-sm" ng-click="birthDateForm.$show()" ng-hide="birthDateForm.$visible">
+                <i class="fa fa-pencil"></i>
+            </button>
+        </div>
+    </div>
+
 
     <dt>Imagen de perfil</dt>
     <dd>{{ vm.user.profilePicture }}</dd>

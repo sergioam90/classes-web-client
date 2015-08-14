@@ -18,6 +18,7 @@
             'ui.router',
             'ui.select',
             'ui.bootstrap.collapse',
+            'ui.bootstrap.datepicker',
             'rzModule' // Slider
         ])
         .run(function (editableOptions) {
