@@ -9,10 +9,10 @@
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css" />
-    <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css" />
-    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css" />
-    <link rel="stylesheet" href="bower_components/angularjs-slider/dist/rzslider.css" />
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.css"/>
+    <link rel="stylesheet" href="bower_components/angular-xeditable/dist/css/xeditable.css"/>
+    <link rel="stylesheet" href="bower_components/angular-ui-select/dist/select.css"/>
+    <link rel="stylesheet" href="bower_components/angularjs-slider/dist/rzslider.css"/>
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -66,7 +66,8 @@
                     <!-- Logged in bar -->
                     <ul class="nav navbar-nav navbar-right" ng-show="header.isAuthenticated()">
                         <li ui-sref-active="active"
-                            ng-click="isCollapsed = true">
+                            ng-click="isCollapsed = true"
+                            ng-cloak>
                             <a ui-sref="account.user"><i class="fa fa-user"></i> {{ header.getCurrentUser().firstName }}</a>
                         </li>
                         <li>

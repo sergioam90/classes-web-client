@@ -17,16 +17,24 @@
             degrees: []
         };
 
-        vm.subjects = [];
         vm.degreesNames = [];
         vm.selectedDegrees = [];
+
         vm.cities = CityService.getAllCities();
-        vm.teachersResult = [];
 
         vm.search = search;
-        vm.viewProfile = viewProfile;
+
         vm.moneyTranslate = moneyTranslate;
         vm.clearFilters = clearFilters;
+
+        vm.teachersResult = [];
+        vm.viewProfile = viewProfile;
+
+        vm.subjects = [];
+        vm.selectedSubjects = [];
+        vm.subjectSelect = subjectSelect;
+        vm.subjectUnselect = subjectUnselect;
+        vm.subjectCheckboxChange = subjectCheckboxChange;
 
         initialize();
 
@@ -77,9 +85,16 @@
                 vm.subjects = subjects.plain();
 
                 // If there are subjects in url, set them as selected
-                if (vm.searchCriteria && vm.searchCriteria.subjects) {
+                vm.selectedSubjects = [];
+                if (vm.searchCriteria.subjects) {
                     for (var i = 0; i < vm.subjects.length; i++) {
-                        vm.subjects[i].selected = vm.searchCriteria.subjects.indexOf(vm.subjects[i].id) > -1;
+                        var isSelected = vm.searchCriteria.subjects.indexOf(vm.subjects[i].id) > -1;
+
+                        vm.subjects[i].selected = isSelected;
+
+                        if (isSelected) {
+                            vm.selectedSubjects.push(vm.subjects[i]);
+                        }
                     }
                 }
             });
@@ -100,10 +115,8 @@
 
             // Add subjects ids to search criteria
             searchCriteria.subjects = [];
-            for (var i = 0; i < vm.subjects.length; i++) {
-                if (vm.subjects[i].selected) {
-                    searchCriteria.subjects.push(vm.subjects[i].id);
-                }
+            for (var i = 0; i < vm.selectedSubjects.length; i++) {
+                searchCriteria.subjects.push(vm.selectedSubjects[i].id);
             }
 
             // TODO: Update url with searchCriteria
@@ -128,11 +141,46 @@
 
             loadDefaultValues();
 
-            // TODO: Is this clean?
+            vm.selectedSubjects = [];
+
             for (var i = 0; i < vm.subjects.length; i++) {
                 vm.subjects[i].selected = false;
             }
+
             vm.search();
+        }
+
+        function subjectSelect(item, model) {
+            item.selected = true;
+            vm.search();
+        }
+
+        function subjectUnselect(item, model) {
+            item.selected = false;
+            vm.search();
+        }
+
+        function subjectCheckboxChange(index) {
+            var item = vm.subjects[index];
+
+            var isInSelectedArray = vm.selectedSubjects.indexOf(item) > -1;
+
+            if (item.selected) {
+                if (isInSelectedArray !== item.selected) {
+                    vm.selectedSubjects.push(item);
+                }
+            } else {
+                if (isInSelectedArray !== item.selected) {
+                    var i;
+                    for (i = 0; i < vm.selectedSubjects.length; i++) {
+                        if (vm.selectedSubjects[i].id === item.id) {
+                            break;
+                        }
+                    }
+                    vm.selectedSubjects.splice(i, 1);
+                }
+            }
+
         }
     }
 

@@ -120,6 +120,34 @@
 
                     <tabset justified="true">
 
+                        <!-- Subjects -->
+                        <tab heading="Materias">
+                            <ui-select multiple ng-model="vm.selectedSubjects"
+                                       on-select="vm.subjectSelect($item, $model)"
+                                       on-remove="vm.subjectUnselect($item, $model)"
+                                       theme="bootstrap"
+                                       ng-disabled="disabled">
+                                <ui-select-match placeholder="¿Qué materia buscás?">{{ $item.name }}</ui-select-match>
+                                <ui-select-choices
+                                        repeat="subject in vm.subjects | filter: {name:$select.search}:vm.removeAccents">
+
+                                    <div ng-bind-html="subject.name | highlight: $select.search"></div>
+                                    <div ng-bind-html="subject.level | level"></div>
+
+                                </ui-select-choices>
+                            </ui-select>
+
+                            <hr>
+
+                            <label ng-repeat="subject in vm.subjects">
+                                <input ng-change="vm.subjectCheckboxChange($index)"
+                                       ng-model="subject.selected"
+                                       value="{{ subject.selected }}"
+                                       type="checkbox"/>
+                                {{ subject.name }}
+                            </label>
+                        </tab>
+
                         <!-- Schedule -->
                         <tab heading="Horarios">
                             <div class="checkbox">
@@ -158,17 +186,6 @@
                                        value="{{ vm.selectedDegrees[$index] }}"
                                        type="checkbox"/>
                                 {{ degree | degree }}
-                            </label>
-                        </tab>
-
-                        <!-- Subjects -->
-                        <tab heading="Materias">
-                            <label ng-repeat="subject in vm.subjects">
-                                <input ng-change="vm.search()"
-                                       ng-model="subject.selected"
-                                       value="{{ subject.selected }}"
-                                       type="checkbox"/>
-                                {{ subject.name }}
                             </label>
                         </tab>
 

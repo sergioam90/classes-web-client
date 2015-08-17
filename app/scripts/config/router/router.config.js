@@ -80,7 +80,8 @@
             .state('teachersSearch', {
                 url: '/teacher/search?city?subjects',
                 templateUrl: templateUrlPrefix + 'teacher/search/teachers.search.html',
-                controller: 'TeachersSearchController as vm'
+                controller: 'TeachersSearchController as vm',
+                reloadOnSearch: false
             })
             .state('teacherProfile', {
                 url: '/teachers/{id}',
