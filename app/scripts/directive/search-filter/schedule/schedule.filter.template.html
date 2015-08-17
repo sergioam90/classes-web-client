@@ -1,11 +1,13 @@
 <!-- Home lesson filter -->
-<span ng-click="toggle()" tooltip-enable="{{ !state }}" tooltip="Horario">
+<span tooltip="Horario" class="filter-icon">
 
-    <p class="lead hand-pointer" tooltip="{{ state | schedule }}">
-        <i class="fa fa-sun-o text-muted" ng-if="!state"></i>
-        <i class="fa fa-sun-o text-warning" ng-if="state == 'morning'"></i>
-        <i class="fa fa-question text-primary" ng-if="state == 'afternoon'"></i>
-        <i class="fa fa-moon-o text-info" ng-if="state == 'night'"></i>
-    </p>
+    <!-- Morning icon -->
+    <i ng-click="toggleMorning()" class="fa fa-sun-o" ng-class="morning ? 'text-warning' : 'text-muted'"></i>
+
+    <!-- Afternoon icon -->
+    <i ng-click="toggleAfternoon()" class="fa fa-question" ng-class="afternoon ? 'text-primary' : 'text-muted'"></i>
+
+    <!-- Night icon -->
+    <i ng-click="toggleNight()" class="fa fa-moon-o" ng-class="night ? 'text-info' : 'text-muted'"></i>
 
 </span>

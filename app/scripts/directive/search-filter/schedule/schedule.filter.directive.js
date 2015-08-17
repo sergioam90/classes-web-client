@@ -10,23 +10,19 @@
     function ScheduleFilterDirective(ScheduleService) {
 
         function link(scope, element, attributes) {
+            scope.toggleMorning = function () {
+                scope.morning = scope.morning ? null : '1';
+                scope.search();
+            };
 
-            scope.states = [undefined];
+            scope.toggleAfternoon = function () {
+                scope.afternoon = scope.afternoon ? null : '1';
+                scope.search();
+            };
 
-            scope.states.push.apply(scope.states, ScheduleService.getAllSchedules());
-
-            scope.toggle = function () {
-                var current;
-
-                // Find current degree
-                for (var i = 0; i < scope.states.length; i++) {
-                    if (scope.states[i] === scope.state) {
-                        current = i;
-                        break;
-                    }
-                }
-
-                scope.state = scope.states[(current + 1) % scope.states.length];
+            scope.toggleNight = function () {
+                scope.night = scope.night ? null : '1';
+                scope.search();
             };
         }
 
@@ -34,7 +30,10 @@
             restrict: 'E',
             templateUrl: 'scripts/directive/search-filter/schedule/schedule.filter.template.html',
             scope: {
-                state: '=ngModel'
+                search: '&',
+                morning: '=',
+                afternoon: '=',
+                night: '='
             },
             link: link
         };

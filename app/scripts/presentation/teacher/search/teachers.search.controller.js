@@ -10,38 +10,66 @@
     function TeachersSearchController(TeacherService, Subjects, DegreeService, CityService, $location, $state) {
         var vm = this;
 
+        vm.defaultSearchCriteria = {
+            fee: 400,
+            city: null,
+            subjects: [],
+            degrees: []
+        };
+
         vm.subjects = [];
-        vm.degrees = [];
+        vm.degreesNames = [];
+        vm.selectedDegrees = [];
         vm.cities = CityService.getAllCities();
-
         vm.teachersResult = [];
+
         vm.search = search;
-
         vm.viewProfile = viewProfile;
-
-        var paramSearch = $location.search();
-        vm.searchCriteria = paramSearch ? paramSearch : {};
-
         vm.moneyTranslate = moneyTranslate;
+        vm.clearFilters = clearFilters;
 
         initialize();
 
         /* Implementation */
 
         function initialize() {
+            // We must wait for subject loading from URL
+            loadSearchParams().then(search);
+        }
+
+        function loadSearchParams() {
+            loadDefaultValues();
+
+            var searchParams = $location.search();
+
+            vm.searchCriteria = angular.extend({}, vm.defaultSearchCriteria, searchParams);
+
+            var waitForSubjects = loadSubjects();
+
+            return waitForSubjects;
+        }
+
+        function loadDefaultValues() {
+            // Set default search values
+            vm.searchCriteria = {};
+            angular.copy(vm.defaultSearchCriteria, vm.searchCriteria);
+
+            // Set default schedules
+            vm.schedules = {};
+            angular.copy(vm.defaultSchedules, vm.schedules);
+
+            // Load default degree selection
             loadDegrees();
-
-            // Wait for subject loading to finish before searching
-            loadSubjects().then(search);
-
         }
 
         function loadDegrees() {
-            vm.degrees = [];
+            vm.degreesNames = DegreeService.getAllDegrees();
 
-            angular.forEach(DegreeService.getAllDegrees(), function (value) {
-                vm.degrees.push({name: value});
-            });
+            vm.selectedDegrees = new Array(vm.degreesNames.length);
+
+            for (var i = 0; i < vm.degreesNames.length; i++) {
+                vm.selectedDegrees[i] = true;
+            }
         }
 
         function loadSubjects() {
@@ -50,33 +78,36 @@
 
                 // If there are subjects in url, set them as selected
                 if (vm.searchCriteria && vm.searchCriteria.subjects) {
-                    angular.forEach(vm.subjects, function (value) {
-                        value.selected = vm.searchCriteria.subjects.indexOf(value.id) > -1;
-                    });
+                    for (var i = 0; i < vm.subjects.length; i++) {
+                        vm.subjects[i].selected = vm.searchCriteria.subjects.indexOf(vm.subjects[i].id) > -1;
+                    }
                 }
             });
         }
 
         function search() {
-            var searchCriteria = vm.searchCriteria;
+            var searchCriteria = {};
+
+            angular.copy(vm.searchCriteria, searchCriteria);
 
             // Add degrees to search criteria
             searchCriteria.degrees = [];
-            angular.forEach(vm.degrees, function (value) {
-                if (value.selected) {
-                    searchCriteria.degrees.push(value.name);
+            for (var i = 0; i < vm.selectedDegrees.length; i++) {
+                if (vm.selectedDegrees[i]) {
+                    searchCriteria.degrees.push(vm.degreesNames[i]);
                 }
-            });
+            }
 
             // Add subjects ids to search criteria
             searchCriteria.subjects = [];
-            angular.forEach(vm.subjects, function (value) {
-                if (value.selected) {
-                    searchCriteria.subjects.push(value.id);
+            for (var i = 0; i < vm.subjects.length; i++) {
+                if (vm.subjects[i].selected) {
+                    searchCriteria.subjects.push(vm.subjects[i].id);
                 }
-            });
+            }
 
             // TODO: Update url with searchCriteria
+            $location.search(searchCriteria);
 
             TeacherService.search(searchCriteria).then(function (page) {
 
@@ -93,6 +124,16 @@
             return '$ ' + value;
         }
 
+        function clearFilters() {
+
+            loadDefaultValues();
+
+            // TODO: Is this clean?
+            for (var i = 0; i < vm.subjects.length; i++) {
+                vm.subjects[i].selected = false;
+            }
+            vm.search();
+        }
     }
 
 })();

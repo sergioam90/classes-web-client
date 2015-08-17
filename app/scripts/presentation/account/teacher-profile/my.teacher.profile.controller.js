@@ -14,7 +14,7 @@
         vm.teacher = {};
         vm.reviews = [];
         vm.saveTeacher = saveTeacher;
-        vm.degrees = DegreeService.getAllDegrees();
+        vm.degreesNames = DegreeService.getAllDegrees();
 
         initialize();
 

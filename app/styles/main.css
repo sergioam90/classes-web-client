@@ -119,6 +119,21 @@ html, body {
     margin-bottom: 10px;
 }
 
-.hand-pointer {
+.little-padding {
+    /* Remove unnecessary padding */
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+}
+
+.filter-icon {
+    font-size: 24px;
     cursor: pointer;
+}
+
+.filter-panel {
+    padding: 0 !important;
+}
+
+.invisible {
+    visibility: hidden;
 }

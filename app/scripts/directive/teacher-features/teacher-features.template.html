@@ -55,4 +55,11 @@
             <i class="fa fa-ban fa-stack-2x text-danger"></i>
         </span>
     </span>
+
+    <!-- Schedule -->
+    <span>
+        <i ng-if="teacher.schedule.morning" class="fa fa-sun-o"></i>
+        <i ng-if="teacher.schedule.afternoon" class="fa fa-question"></i>
+        <i ng-if="teacher.schedule.night" class="fa fa-moon-o"></i>
+    </span>
 </div>

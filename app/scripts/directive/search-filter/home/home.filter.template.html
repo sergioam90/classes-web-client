@@ -1,8 +1,8 @@
 <!-- Home lesson filter -->
-<span ng-click="toggle()" tooltip="A domicilio">
+<span ng-click="toggle()" tooltip="A domicilio" class="filter-icon">
 
     <!-- TODO: Add home filter? -->
-    <p ng-if="state" class="lead hand-pointer"><i class="fa fa-car text-success"></i></p>
+    <span ng-if="state"><i class="fa fa-car text-success"></i></span>
 
-    <p ng-if="!state" class="lead hand-pointer"><i class="fa fa-car text-muted"></i></p>
+    <span ng-if="!state"><i class="fa fa-car text-muted"></i></span>
 </span>

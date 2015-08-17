@@ -1,8 +1,7 @@
 <!-- Home lesson filter -->
-<span ng-click="toggle()" tooltip-enable="{{ !state }}" tooltip="Estudios">
+<span ng-click="toggle()" tooltip-enable="{{ !minState }}" tooltip="Estudios">
 
-    <p class="lead hand-pointer">
-        <degree-icon ng-model="state"></degree-icon>
-    </p>
+    <span class="filter-icon"><degree-icon ng-model="degreesNames[minState]"></degree-icon></span>
+    mín.
 
 </span>

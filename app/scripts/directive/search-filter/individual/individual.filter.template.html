@@ -1,7 +1,7 @@
 <!-- Home lesson filter -->
-<span ng-click="toggle()" tooltip-enable="{{ !state }}" tooltip="Individual">
+<span ng-click="toggle()" tooltip-enable="{{ !state }}" tooltip="Individual" class="filter-icon">
 
-    <p ng-if="state" class="lead hand-pointer" tooltip="Individual"><i class="fa fa-user text-success"></i></p>
+    <span ng-if="state" tooltip="Individual"><i class="fa fa-user text-success"></i></span>
 
-    <p ng-if="!state" class="lead hand-pointer"><i class="fa fa-user text-muted"></i></p>
+    <span ng-if="!state"><i class="fa fa-user text-muted"></i></span>
 </span>

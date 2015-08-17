@@ -35,7 +35,7 @@
         }
 
         function processDegrees(degrees) {
-            vm.degrees = degrees.plain();
+            vm.degreesNames = degrees.plain();
         }
 
         function processSubjects(subjects) {
