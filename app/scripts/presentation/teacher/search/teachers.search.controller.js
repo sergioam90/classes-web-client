@@ -5,9 +5,17 @@
         .module('classesClientApp')
         .controller('TeachersSearchController', TeachersSearchController);
 
-    TeachersSearchController.$inject = ['TeacherService', 'Subjects', 'DegreeService', 'CityService', '$location', '$state'];
+    TeachersSearchController.$inject = [
+        'TeacherService',
+        'Subjects',
+        'DegreeService',
+        'CityService',
+        '$location',
+        '$state',
+        '$filter'
+    ];
 
-    function TeachersSearchController(TeacherService, Subjects, DegreeService, CityService, $location, $state) {
+    function TeachersSearchController(TeacherService, Subjects, DegreeService, CityService, $location, $state, $filter) {
         var vm = this;
 
         vm.defaultSearchCriteria = {
@@ -35,6 +43,7 @@
         vm.subjectSelect = subjectSelect;
         vm.subjectUnselect = subjectUnselect;
         vm.subjectCheckboxChange = subjectCheckboxChange;
+        vm.removeAccents = removeAccents;
 
         initialize();
 
@@ -168,6 +177,8 @@
             if (item.selected) {
                 if (isInSelectedArray !== item.selected) {
                     vm.selectedSubjects.push(item);
+
+                    vm.search();
                 }
             } else {
                 if (isInSelectedArray !== item.selected) {
@@ -178,10 +189,23 @@
                         }
                     }
                     vm.selectedSubjects.splice(i, 1);
+
+                    vm.search();
                 }
             }
-
         }
+
+        function removeAccents(textWithAccents, substring) {
+            if (typeof textWithAccents === 'boolean') {
+                return true;
+            }
+            console.log(textWithAccents);
+
+            var textWithoutAccents = $filter('noAccents')(textWithAccents);
+
+            return textWithoutAccents.toLowerCase().indexOf(substring.toLowerCase()) > -1;
+        }
+
     }
 
 })();

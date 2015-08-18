@@ -122,20 +122,25 @@
 
                         <!-- Subjects -->
                         <tab heading="Materias">
-                            <ui-select multiple ng-model="vm.selectedSubjects"
+                            <ui-select multiple
+                                       ng-model="vm.selectedSubjects"
                                        on-select="vm.subjectSelect($item, $model)"
                                        on-remove="vm.subjectUnselect($item, $model)"
                                        theme="bootstrap"
                                        ng-disabled="disabled">
                                 <ui-select-match placeholder="¿Qué materia buscás?">{{ $item.name }}</ui-select-match>
                                 <ui-select-choices
-                                        repeat="subject in vm.subjects | filter: {name:$select.search}:vm.removeAccents">
+                                        repeat="subject in vm.subjects | filter: {name:$select.search, selected: false} : vm.removeAccents">
 
                                     <div ng-bind-html="subject.name | highlight: $select.search"></div>
                                     <div ng-bind-html="subject.level | level"></div>
 
+                                    {{ vm.subjects | filter: { name: $select.search, selected: false} }}
                                 </ui-select-choices>
+                                {{ $select }}
                             </ui-select>
+
+                            {{ vm.subjects }}
 
                             <hr>
 
@@ -144,6 +149,8 @@
                                        ng-model="subject.selected"
                                        value="{{ subject.selected }}"
                                        type="checkbox"/>
+                                {{ subject.selected }}
+
                                 {{ subject.name }}
                             </label>
                         </tab>
