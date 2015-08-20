@@ -1,0 +1,100 @@
+/*
+    This files includes all styles for common header.
+    Classes must be preceded by .common-header.
+*/
+
+/* Reduce navbar size */
+.common-header .navbar-nav > li > a {
+    padding-top: 10px !important;
+    padding-bottom: 10px !important;
+}
+
+.common-header .navbar {
+    min-height: 30px !important
+}
+
+/* navbar */
+.common-header .navbar-default {
+    background-color: white;
+    border-color: white;
+}
+
+/* title */
+.common-header .navbar-default .navbar-brand {
+    height: 32px;
+    padding-top: 10px;
+    color: #ff8400;
+}
+
+.common-header .navbar-default .navbar-brand:hover,
+.common-header .navbar-default .navbar-brand:focus {
+    color: #5E5E5E;
+}
+
+/* link */
+.common-header .navbar-default .navbar-nav > li > a {
+    color: #777;
+}
+
+.common-header .navbar-default .navbar-nav > li > a:hover,
+.common-header .navbar-default .navbar-nav > li > a:focus {
+    color: #333;
+}
+
+.common-header .navbar-default .navbar-nav > .active > a,
+.common-header .navbar-default .navbar-nav > .active > a:hover,
+.common-header .navbar-default .navbar-nav > .active > a:focus {
+    color: #555;
+    background-color: #E7E7E7;
+}
+
+.common-header .navbar-default .navbar-nav > .open > a,
+.common-header .navbar-default .navbar-nav > .open > a:hover,
+.common-header .navbar-default .navbar-nav > .open > a:focus {
+    color: #555;
+    background-color: #D5D5D5;
+}
+
+/* caret */
+.common-header .navbar-default .navbar-nav > .dropdown > a .caret {
+    border-top-color: #777;
+    border-bottom-color: #777;
+}
+
+.common-header .navbar-default .navbar-nav > .dropdown > a:hover .caret,
+.common-header .navbar-default .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: #333;
+    border-bottom-color: #333;
+}
+
+.common-header .navbar-default .navbar-nav > .open > a .caret,
+.common-header .navbar-default .navbar-nav > .open > a:hover .caret,
+.common-header .navbar-default .navbar-nav > .open > a:focus .caret {
+    border-top-color: #555;
+    border-bottom-color: #555;
+}
+
+/* mobile version */
+.common-header .navbar-default .navbar-toggle {
+    border-color: #DDD;
+}
+
+.common-header .navbar-default .navbar-toggle:hover,
+.common-header .navbar-default .navbar-toggle:focus {
+    background-color: #DDD;
+}
+
+.common-header .navbar-default .navbar-toggle .icon-bar {
+    background-color: #CCC;
+}
+
+@media (max-width: 767px) {
+    .common-header .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: #777;
+    }
+
+    .common-header .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+    .common-header .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: #333;
+    }
+}

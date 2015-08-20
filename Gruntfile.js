@@ -425,7 +425,7 @@ module.exports = function (grunt) {
             development: {
                 constants: {
                     appConfig: {
-                        API_SERVER_URL: 'api.classes-bahia.tk:8080'
+                        API_SERVER_URL: 'classes.noip.me:8080'
                     }
                 }
             },

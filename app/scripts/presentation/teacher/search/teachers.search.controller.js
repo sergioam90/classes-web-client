@@ -12,10 +12,11 @@
         'CityService',
         '$location',
         '$state',
-        '$filter'
+        '$filter',
+        '$timeout'
     ];
 
-    function TeachersSearchController(TeacherService, Subjects, DegreeService, CityService, $location, $state, $filter) {
+    function TeachersSearchController(TeacherService, Subjects, DegreeService, CityService, $location, $state, $filter, $timeout) {
         var vm = this;
 
         vm.defaultSearchCriteria = {
@@ -139,7 +140,7 @@
         }
 
         function viewProfile(teacher) {
-            $state.go('teacherProfile', teacher);
+            $state.go('root.teacherProfile', teacher);
         }
 
         function moneyTranslate(value) {
@@ -169,29 +170,17 @@
             vm.search();
         }
 
-        function subjectCheckboxChange(index) {
-            var item = vm.subjects[index];
+        function subjectCheckboxChange(subject) {
 
-            var isInSelectedArray = vm.selectedSubjects.indexOf(item) > -1;
+            if (subject.selected) {
+                vm.selectedSubjects.push(subject);
 
-            if (item.selected) {
-                if (isInSelectedArray !== item.selected) {
-                    vm.selectedSubjects.push(item);
-
-                    vm.search();
-                }
+                vm.search();
             } else {
-                if (isInSelectedArray !== item.selected) {
-                    var i;
-                    for (i = 0; i < vm.selectedSubjects.length; i++) {
-                        if (vm.selectedSubjects[i].id === item.id) {
-                            break;
-                        }
-                    }
-                    vm.selectedSubjects.splice(i, 1);
+                var i = vm.selectedSubjects.indexOf(subject);
+                vm.selectedSubjects.splice(i, 1);
 
-                    vm.search();
-                }
+                vm.search();
             }
         }
 
@@ -199,7 +188,6 @@
             if (typeof textWithAccents === 'boolean') {
                 return true;
             }
-            console.log(textWithAccents);
 
             var textWithoutAccents = $filter('noAccents')(textWithAccents);
 

@@ -3,11 +3,11 @@
 
     angular
         .module('classesClientApp')
-        .controller('MainController', MainController);
+        .controller('HomeController', HomeController);
 
-    MainController.$inject = ['Subjects', 'LevelService', 'CityService', '$filter', '$state'];
+    HomeController.$inject = ['Subjects', 'LevelService', 'CityService', '$filter', '$state', '$document'];
 
-    function MainController(Subjects, LevelService, CityService, $filter, $state) {
+    function HomeController(Subjects, LevelService, CityService, $filter, $state, $document) {
         var vm = this;
 
         vm.subjects = [];
@@ -16,6 +16,7 @@
         vm.removeAccents = removeAccents;
         vm.homeSearch = homeSearch;
         vm.searchCriteria = {};
+        vm.goToHowItWorks = goToHowItWorks;
 
         initialize();
 
@@ -40,7 +41,15 @@
                 searchCriteria.subjects = [vm.searchCriteria.subject.id];
             }
 
-            $state.go('teachersSearch', searchCriteria);
+            $state.go('root.teachersSearch', searchCriteria);
+        }
+
+        function goToHowItWorks() {
+            var element = document.getElementById('how-it-works');
+
+            var container = document.getElementById('how-it-works');
+
+            container.scrollTop(0, 2000);
         }
     }
 

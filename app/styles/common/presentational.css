@@ -1,0 +1,30 @@
+/*
+    This file includes helper classes that define a
+    presentational property.
+    Ex:
+    .full-width {
+        width: 100%
+    }
+*/
+
+.text-white {
+    color: white;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.little-padding {
+    /* Remove unnecessary padding */
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+}
+
+.no-margin {
+    margin-top: 0;
+}

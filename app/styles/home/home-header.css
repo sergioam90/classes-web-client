@@ -1,0 +1,16 @@
+/*
+    This file contains all the styles applied to the home page's header.
+    All the rules must be prefixed with .home-header prefix.
+    Ex:
+    .home-header .navbar-default {
+
+    }
+
+ */
+
+.home-header .navbar-default {
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+    box-shadow: none;
+}
+

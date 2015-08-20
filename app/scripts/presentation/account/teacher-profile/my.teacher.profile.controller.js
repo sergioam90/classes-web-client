@@ -35,8 +35,10 @@
         }
 
         function loadReviews(id){
-            TeacherService.reviews(id).then(function(reviews){
-                vm.reviews = reviews;
+            TeacherService.reviews(id).then(function (page) {
+
+                // TODO: Work with page not just content
+                vm.reviews = page.content;
             });
         }
 

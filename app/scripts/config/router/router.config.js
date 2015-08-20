@@ -19,84 +19,162 @@
 
         // TODO: Define object with states and iterate it (register global properties in foreach loop)
         $stateProvider
-            .state('main', {
-                url: '/',
-                templateUrl: templateUrlPrefix + 'main/main.html',
-                controller: 'MainController as vm'
-            })
-            .state('about', {
-                url: '/about',
-                templateUrl: templateUrlPrefix + 'about/about.html',
-                controller: 'AboutController as vm'
-            }).state('login', {
-                url: '/account/login',
-                templateUrl: templateUrlPrefix + 'account/login/login.html',
-                controller: 'LoginController as vm'
-            })
-            .state('register', {
+            .state('root', {
                 abstract: true,
-                url: '/account/register/{target}',
-                templateUrl: templateUrlPrefix + 'account/register/register.html',
-                controller: 'RegisterController as vm'
-            })
-            .state('register.method', {
-                url: '/method',
-                templateUrl: templateUrlPrefix + 'account/register/register.method.html'
-            })
-            .state('register.personal', {
-                url: '/personal',
-                templateUrl: templateUrlPrefix + 'account/register/register.personal.html'
-            })
-            .state('register.teacher', {
-                url: '/teacher',
-                templateUrl: templateUrlPrefix + 'account/register/teacher/register.teacher.html'
-            })
-            .state('register.student', {
-                url: '/student',
-                templateUrl: templateUrlPrefix + 'account/register/student/register.student.html'
-            })
-            .state('account', {
-                abstract: true,
-                url: '/account',
-                templateUrl: templateUrlPrefix + 'account/account.html',
-                // TODO: for possible future use
-                // controller: 'AccountController as vm'
-            })
-            .state('account.user', {
-                url: '/user',
-                templateUrl: templateUrlPrefix + 'account/user-profile/my.user.profile.html',
-                controller: 'MyUserProfileController as vm'
-            })
-            .state('account.student', {
-                url: '/student',
-                templateUrl: templateUrlPrefix + 'account/student-profile/my.student.profile.html',
-                controller: 'MyStudentProfileController as vm'
-            })
-            .state('account.teacher', {
-                url: '/teacher',
-                templateUrl: templateUrlPrefix + 'account/teacher-profile/my.teacher.profile.html',
-                controller: 'MyTeacherProfileController as vm'
-            })
-            .state('teachersSearch', {
-                url: '/teacher/search?city?subjects',
-                templateUrl: templateUrlPrefix + 'teacher/search/teachers.search.html',
-                controller: 'TeachersSearchController as vm',
-                reloadOnSearch: false
-            })
-            .state('teacherProfile', {
-                url: '/teachers/{id}',
-                templateUrl: templateUrlPrefix + 'teacher/profile/teacher.profile.html',
-                controller: 'TeacherProfileController as vm',
-                resolve: {
-                    teacher: function ($stateParams, TeacherService) {
-                        return TeacherService.getById($stateParams.id);
+                url: '',
+                views: {
+                    'header': {
+                        templateUrl: templateUrlPrefix + 'header/header.html',
+                        controller: 'HeaderController as vm'
+                    },
+                    'footer': {
+                        templateUrl: templateUrlPrefix + 'footer/footer.html'
+                        /*controller: 'FooterController as vm'*/
                     }
                 }
             })
-            .state('maps', {
+            .state('root.home', {
+                url: '/',
+                views: {
+                    'header@': {
+                        templateUrl: templateUrlPrefix + 'header/home/home-header.html',
+                        controller: 'HeaderController as vm'
+                    },
+                    'container@': {
+                        templateUrl: templateUrlPrefix + 'home/home.html',
+                        controller: 'HomeController as vm'
+                    }
+                }
+            })
+            .state('root.about', {
+                url: '/about',
+                views: {
+                    'container@': {
+                        templateUrl: templateUrlPrefix + 'about/about.html',
+                        controller: 'AboutController as vm'
+                    }
+                }
+            }).state('root.login', {
+                url: '/account/login',
+                views: {
+                    'container@': {
+                        templateUrl: templateUrlPrefix + 'account/login/login.html',
+                        controller: 'LoginController as vm'
+                    }
+                }
+            })
+            .state('root.register', {
+                abstract: true,
+                url: '/account/register/{target}',
+                views: {
+                    'container@': {
+                        templateUrl: templateUrlPrefix + 'account/register/register.html',
+                        controller: 'RegisterController as vm'
+                    }
+                }
+            })
+            .state('root.register.method', {
+                url: '/method',
+                views: {
+                    'container@': {
+                        templateUrl: templateUrlPrefix + 'account/register/register.method.html'
+                    }
+                }
+            })
+            .state('root.register.personal', {
+                url: '/personal',
+                views: {
+                    'container@': {
+                        templateUrl: templateUrlPrefix + 'account/register/register.personal.html'
+                    }
+                }
+            })
+            .state('root.register.teacher', {
+                url: '/teacher',
+                views: {
+                    'container@': {
+                        templateUrl: templateUrlPrefix + 'account/register/teacher/register.teacher.html'
+                    }
+                }
+            })
+            .state('root.register.student', {
+                url: '/student',
+                views: {
+                    'container@': {
+                        templateUrl: templateUrlPrefix + 'account/register/student/register.student.html'
+                    }
+                }
+            })
+            .state('root.account', {
+                abstract: true,
+                url: '/account',
+                views: {
+                    'container@': {
+                        templateUrl: templateUrlPrefix + 'account/account.html'
+                        // TODO: for possible future use
+                        // controller: 'AccountController as vm'
+                    }
+                }
+            })
+            .state('root.account.user', {
+                url: '/user',
+                views: {
+                    '': {
+                        templateUrl: templateUrlPrefix + 'account/user-profile/my.user.profile.html',
+                        controller: 'MyUserProfileController as vm'
+                    }
+                }
+            })
+            .state('root.account.student', {
+                url: '/student',
+                views: {
+                    '': {
+                        templateUrl: templateUrlPrefix + 'account/student-profile/my.student.profile.html',
+                        controller: 'MyStudentProfileController as vm'
+                    }
+                }
+            })
+            .state('root.account.teacher', {
+                url: '/teacher',
+                views: {
+                    '': {
+                        templateUrl: templateUrlPrefix + 'account/teacher-profile/my.teacher.profile.html',
+                        controller: 'MyTeacherProfileController as vm'
+                    }
+                }
+            })
+            .state('root.teachersSearch', {
+                url: '/teacher/search?city?subjects',
+                views: {
+                    'container@': {
+                        templateUrl: templateUrlPrefix + 'teacher/search/teachers.search.html',
+                        controller: 'TeachersSearchController as vm',
+                        reloadOnSearch: false
+                    }
+                }
+            })
+            .state('root.teacherProfile', {
+                url: '/teachers/{id}',
+                views: {
+                    'container@': {
+                        templateUrl: templateUrlPrefix + 'teacher/profile/teacher.profile.html',
+                        controller: 'TeacherProfileController as vm',
+                        resolve: {
+                            teacher: function ($stateParams, TeacherService) {
+                                return TeacherService.getById($stateParams.id);
+                            }
+                        }
+                    }
+                }
+            })
+            .state('root.maps', {
                 url: '/maps',
-                templateUrl: templateUrlPrefix + 'maps/maps.html',
-                controller: 'MapsController as vm'
+                views: {
+                    'container@': {
+                        templateUrl: templateUrlPrefix + 'maps/maps.html',
+                        controller: 'MapsController as vm'
+                    }
+                }
             });
 
     }
