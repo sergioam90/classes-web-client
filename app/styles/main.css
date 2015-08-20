@@ -45,8 +45,8 @@ html, body {
 }
 
 .teachers-panel:hover {
-    background: rgba(250, 250, 250, 1);
     cursor: pointer;
+    box-shadow: 0 0 5px #a4a4a4;
 }
 
 .filter-row {

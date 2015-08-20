@@ -40,11 +40,15 @@
         vm.viewProfile = viewProfile;
 
         vm.subjects = [];
-        vm.selectedSubjects = [];
-        vm.subjectSelect = subjectSelect;
-        vm.subjectUnselect = subjectUnselect;
-        vm.subjectCheckboxChange = subjectCheckboxChange;
         vm.removeAccents = removeAccents;
+
+        vm.localSelectStrings = {
+            selectAll: 'Todas',
+            selectNone: 'Ninguna',
+            reset: 'Reiniciar',
+            search: 'Escribí aca para buscar...',
+            nothingSelected: 'Ninguna materia seleccionada'
+        };
 
         initialize();
 
@@ -95,16 +99,17 @@
                 vm.subjects = subjects.plain();
 
                 // If there are subjects in url, set them as selected
-                vm.selectedSubjects = [];
-                if (vm.searchCriteria.subjects) {
-                    for (var i = 0; i < vm.subjects.length; i++) {
-                        var isSelected = vm.searchCriteria.subjects.indexOf(vm.subjects[i].id) > -1;
+                for (var i = 0; i < vm.subjects.length; i++) {
 
-                        vm.subjects[i].selected = isSelected;
+                    // TODO: This should be replaced when multiselect supports filters
+                    var nameWithoutAccents = $filter('noAccents')(vm.subjects[i].name);
+                    var filteredLevel = $filter('level')(vm.subjects[i].level);
 
-                        if (isSelected) {
-                            vm.selectedSubjects.push(vm.subjects[i]);
-                        }
+                    vm.subjects[i].filteredName = nameWithoutAccents;
+                    vm.subjects[i].filteredLevel = ' - ' + filteredLevel;
+
+                    if (vm.searchCriteria.subjects) {
+                        vm.subjects[i].selected = vm.searchCriteria.subjects.indexOf(vm.subjects[i].id) > -1;
                     }
                 }
             });
@@ -125,11 +130,12 @@
 
             // Add subjects ids to search criteria
             searchCriteria.subjects = [];
-            for (var i = 0; i < vm.selectedSubjects.length; i++) {
-                searchCriteria.subjects.push(vm.selectedSubjects[i].id);
+            for (var i = 0; i < vm.subjects.length; i++) {
+                if (vm.subjects[i].selected) {
+                    searchCriteria.subjects.push(vm.subjects[i].id);
+                }
             }
 
-            // TODO: Update url with searchCriteria
             $location.search(searchCriteria);
 
             TeacherService.search(searchCriteria).then(function (page) {
@@ -160,30 +166,6 @@
             vm.search();
         }
 
-        function subjectSelect(item, model) {
-            item.selected = true;
-            vm.search();
-        }
-
-        function subjectUnselect(item, model) {
-            item.selected = false;
-            vm.search();
-        }
-
-        function subjectCheckboxChange(subject) {
-
-            if (subject.selected) {
-                vm.selectedSubjects.push(subject);
-
-                vm.search();
-            } else {
-                var i = vm.selectedSubjects.indexOf(subject);
-                vm.selectedSubjects.splice(i, 1);
-
-                vm.search();
-            }
-        }
-
         function removeAccents(textWithAccents, substring) {
             if (typeof textWithAccents === 'boolean') {
                 return true;
@@ -193,6 +175,7 @@
 
             return textWithoutAccents.toLowerCase().indexOf(substring.toLowerCase()) > -1;
         }
+
 
     }
 

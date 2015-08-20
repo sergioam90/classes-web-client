@@ -145,11 +145,11 @@
             })
             .state('root.teachersSearch', {
                 url: '/teacher/search?city?subjects',
+                reloadOnSearch: false,
                 views: {
                     'container@': {
                         templateUrl: templateUrlPrefix + 'teacher/search/teachers.search.html',
-                        controller: 'TeachersSearchController as vm',
-                        reloadOnSearch: false
+                        controller: 'TeachersSearchController as vm'
                     }
                 }
             })

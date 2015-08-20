@@ -38,12 +38,12 @@
 
                         <!-- Advanced search -->
                         <div class="col-sm-1 col-xs-2">
-                    <span class="filter-icon" tooltip="Búsqueda avanzada"
-                          ng-init="vm.advancedVisible = true"
-                          ng-click="vm.advancedVisible = !vm.advancedVisible">
-                        <i class="fa fa-minus" ng-if="vm.advancedVisible"></i>
-                        <i class="fa fa-plus" ng-if="!vm.advancedVisible"></i>
-                    </span>
+                            <span class="filter-icon" tooltip="Búsqueda avanzada"
+                                  ng-init="vm.advancedVisible = false"
+                                  ng-click="vm.advancedVisible = !vm.advancedVisible">
+                                <i class="fa fa-minus" ng-if="vm.advancedVisible"></i>
+                                <i class="fa fa-plus" ng-if="!vm.advancedVisible"></i>
+                            </span>
                         </div>
 
                         <!-- Help button -->
@@ -99,6 +99,7 @@
                             <div>
                                 <rating class="text-warning filter-icon"
                                         tooltip="Calificación"
+                                        on-change="vm.search()"
                                         ng-model="vm.searchCriteria.averageRating">
                                 </rating>
                             </div>
@@ -124,25 +125,26 @@
 
                                 <!-- Subjects -->
                                 <tab heading="Materias">
-                                    <ui-select multiple
-                                               ng-model="vm.selectedSubjects"
-                                               on-select="vm.subjectSelect($item, $model)"
-                                               on-remove="vm.subjectUnselect($item, $model)"
-                                               theme="bootstrap"
-                                               ng-disabled="disabled">
-                                        <ui-select-match placeholder="¿Qué materia buscás?">{{ $item.name }}
-                                        </ui-select-match>
-                                        <ui-select-choices
-                                                repeat="subject in vm.subjects | filter: {name:$select.search, selected: false} : vm.removeAccents track by subject.id">
-                                            <div ng-bind-html="subject.name"></div>
-                                            <div ng-bind-html="subject.level | level"></div>
-                                        </ui-select-choices>
-                                    </ui-select>
+                                    <div
+                                            isteven-multi-select
+                                            input-model="vm.subjects"
+                                            output-model="outputBrowsers"
+                                            button-label="name filteredLevel"
+                                            item-label="name filteredLevel"
+                                            search-property="filteredName"
+                                            tick-property="selected"
+                                            on-change="vm.search()"
+                                            on-item-click="vm.search()"
+                                            on-select-none="vm.search()"
+                                            on-select-all="vm.search()"
+                                            helper-elements="all none filter"
+                                            translation="vm.localSelectStrings">
+                                    </div>
 
                                     <hr>
 
                                     <label ng-repeat="subject in vm.subjects">
-                                        <input ng-change="vm.subjectCheckboxChange(subject)"
+                                        <input ng-change="vm.search()"
                                                ng-model="subject.selected"
                                                value="{{ subject.selected }}"
                                                type="checkbox"/>

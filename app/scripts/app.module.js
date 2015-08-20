@@ -19,7 +19,8 @@
             'ui.select',
             'ui.bootstrap.collapse',
             'ui.bootstrap.datepicker',
-            'rzModule' // Slider
+            'rzModule', // Slider
+            'isteven-multi-select'
         ])
         .run(function (editableOptions) {
             // TODO: Move

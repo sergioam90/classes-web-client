@@ -63,7 +63,7 @@ module.exports = function (grunt) {
                 tasks: ['newer:jshint:test', 'karma']
             },
             styles: {
-                files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
+                files: ['<%= yeoman.app %>/styles/**/*.css'],
                 tasks: ['newer:copy:styles', 'autoprefixer']
             },
             gruntfile: {
@@ -77,7 +77,7 @@ module.exports = function (grunt) {
                     '<%= yeoman.app %>/scripts/**/*.js',
                     '<%= yeoman.app %>/scripts/**/*.html',
                     '<%= yeoman.app %>/*.html',
-                    '.tmp/styles/{,*/}*.css',
+                    '.tmp/styles/**/*.css',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
             },
@@ -231,7 +231,7 @@ module.exports = function (grunt) {
             dist: {
                 src: [
                     '<%= yeoman.dist %>/scripts/{,*/}*.js',
-                    '<%= yeoman.dist %>/styles/{,*/}*.css',
+                    '<%= yeoman.dist %>/styles/**/*.css',
                     '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
                     '<%= yeoman.dist %>/styles/fonts/*'
                 ]
@@ -260,7 +260,7 @@ module.exports = function (grunt) {
         // Performs rewrites based on filerev and the useminPrepare configuration
         usemin: {
             html: ['<%= yeoman.dist %>/**/*.html'],
-            css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
+            css: ['<%= yeoman.dist %>/styles/**/*.css'],
             options: {
                 assetsDirs: [
                     '<%= yeoman.dist %>',
@@ -393,7 +393,7 @@ module.exports = function (grunt) {
                 expand: true,
                 cwd: '<%= yeoman.app %>/styles',
                 dest: '.tmp/styles/',
-                src: '{,*/}*.css'
+                src: '**/*.css'
             }
         },
 
