@@ -1,70 +1,94 @@
-<span class="home-header">
+<div class="navbar-fixed">
+    <nav class="white">
+        <div class="nav-wrapper">
+            <a ui-sref="root.home" class="brand-logo left orange-text">Profexpress</a>
+            <a data-activates="mobile-demo" data-sidenav="left" data-closeonclick="true" class="button-collapse">
+                <i class="mdi-navigation-menu orange-text"></i>
+            </a>
+            <ul class="side-nav" id="mobile-demo">
 
-    <div id="mainNav"
-         ng-cloak
-         class="home-header navbar navbar-default navbar-fixed-top"
-         ng-class="vm.atTheTop ? 'navbar-inverse' : 'navbar-primary'"
-         role="navigation">
+                <li ui-sref-active="active">
+                    <a ui-sref="root.teachersSearch" class="orange-text">
+                        Buscar profesores
+                    </a>
+                </li>
 
-        <div class="container">
-            <div class="navbar-header">
-
-                <button type="button"
-                        class="navbar-toggle collapsed"
-                        ng-click="isCollapsed = !isCollapsed"
-                        data-toggle="collapse"
-                        data-target="#js-navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-
-                <a class="navbar-brand" ui-sref="root.home">home</a>
-            </div>
-
-            <div class="navbar-collapse collapse"
-                 ng-init="isCollapsed = true"
-                 collapse="isCollapsed"
-                 id="js-navbar-collapse">
-
-                <ul class="nav navbar-nav">
-                    <li ui-sref-active="active">
-                        <a ui-sref="root.teachersSearch"
-                           ng-click="isCollapsed = true">
-                            Buscar profesores
-                        </a>
-                    </li>
-                </ul>
-
-                <!-- Logged in bar -->
-                <ul class="nav navbar-nav navbar-right" ng-show="vm.isAuthenticated()">
+                <!-- Logged in buttons -->
+                <span ng-show="vm.isAuthenticated()">
                     <li ui-sref-active="active"
-                        ng-click="isCollapsed = true"
                         ng-cloak>
-                        <a ui-sref="root.account.user"><i class="fa fa-user"></i> {{ vm.getCurrentUser().firstName
-                            }}</a>
+                        <a ui-sref="root.account.user" class="orange-text"><i
+                                class="material-icons left">account_circle</i>
+                            {{ vm.getCurrentUser().firstName}}
+                        </a>
                     </li>
                     <li>
                         <!-- TODO: Replace click with ui-sref -->
-                        <a href="" ng-click="vm.logout()">Salir</a>
+                        <a href="" ng-click="vm.logout()" class="orange-text">Salir</a>
                     </li>
-                </ul>
+                </span>
 
-                <!-- Logged out bar -->
-                <ul class=" nav navbar-nav navbar-right" ng-show="!vm.isAuthenticated()">
+                <!-- Logged out buttons -->
+                <span ng-show="!vm.isAuthenticated()">
                     <li>
-                        <a ui-sref="root.login" ng-click="isCollapsed = true">Iniciar sesión</a>
+                        <a ui-sref="root.login"
+                           ng-click="isCollapsed = true"
+                           class="orange-text">
+                            Iniciar sesión
+                        </a>
                     </li>
                     <li>
                         <a ui-sref="root.register.method({target: 'teacher'})"
+                           class="orange-text"
                            ng-click="isCollapsed = true">
                             Quiero enseñar
                         </a>
                     </li>
-                </ul>
-            </div>
-        </div>
-    </div>
+                </span>
+            </ul>
 
-</span>
+            <ul class="right" class="hide-on-med-and-down">
+
+                <li ui-sref-active="active">
+                    <a ui-sref="root.teachersSearch" class="orange-text">
+                        Buscar profesores
+                    </a>
+                </li>
+
+                <!-- Logged in buttons -->
+                <span ng-show="vm.isAuthenticated()">
+                    <li ui-sref-active="active"
+                        ng-cloak>
+                        <a ui-sref="root.account.user" class="orange-text"><i
+                                class="material-icons left">account_circle</i>
+                            {{ vm.getCurrentUser().firstName}}
+                        </a>
+                    </li>
+                    <li>
+                        <!-- TODO: Replace click with ui-sref -->
+                        <a href="" ng-click="vm.logout()" class="orange-text">Salir</a>
+                    </li>
+                </span>
+
+                <!-- Logged out buttons -->
+                <span ng-show="!vm.isAuthenticated()">
+                    <li>
+                        <a ui-sref="root.login"
+                           ng-click="isCollapsed = true"
+                           class="orange-text">
+                            Iniciar sesión
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.register.method({target: 'teacher'})"
+                           class="orange-text"
+                           ng-click="isCollapsed = true">
+                            Quiero enseñar
+                        </a>
+                    </li>
+                </span>
+            </ul>
+
+        </div>
+    </nav>
+</div>

@@ -14,13 +14,10 @@
             'restangular',
             'angular-oauth2',
             'xeditable',
-            'ui.bootstrap',
             'ui.router',
-            'ui.select',
-            'ui.bootstrap.collapse',
-            'ui.bootstrap.datepicker',
             'rzModule', // Slider
-            'isteven-multi-select'
+            'isteven-multi-select',
+            'ui.materialize'
         ])
         .run(function (editableOptions) {
             // TODO: Move

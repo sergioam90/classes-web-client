@@ -1,13 +1,14 @@
 <!-- Home lesson filter -->
-<span tooltip="Horario" class="filter-icon">
+<a class="btn-flat filter-icon">
 
     <!-- Morning icon -->
-    <i ng-click="toggleMorning()" class="fa fa-sun-o" ng-class="morning ? 'text-warning' : 'text-muted'"></i>
+    <i ng-click="toggleMorning()" class="fa fa-sun-o" ng-class="morning ? 'orange-text' : 'grey-text'"></i>
 
     <!-- Afternoon icon -->
-    <i ng-click="toggleAfternoon()" class="fa fa-question" ng-class="afternoon ? 'text-primary' : 'text-muted'"></i>
+    <i ng-click="toggleAfternoon()" class="fa fa-question" ng-class="afternoon ? 'blue-text' : 'grey-text'"></i>
 
     <!-- Night icon -->
-    <i ng-click="toggleNight()" class="fa fa-moon-o" ng-class="night ? 'text-info' : 'text-muted'"></i>
+    <i ng-click="toggleNight()" class="fa fa-moon-o" ng-class="night ? 'purple-text' : 'grey-text'"></i>
 
-</span>
+    <p class="filter-description">Horarios</p>
+</a>

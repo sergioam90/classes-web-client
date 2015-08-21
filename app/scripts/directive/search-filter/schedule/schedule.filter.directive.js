@@ -11,6 +11,7 @@
 
         function link(scope, element, attributes) {
             scope.toggleMorning = function () {
+                console.log("click");
                 scope.morning = scope.morning ? null : '1';
                 scope.search();
             };

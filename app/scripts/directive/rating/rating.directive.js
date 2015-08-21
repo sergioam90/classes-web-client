@@ -3,7 +3,8 @@
 
     angular
         .module('classesClientApp')
-        .config(RatingDirective);
+        .config(function () {
+        });
 
     RatingDirective.$inject = ['$provide'];
 

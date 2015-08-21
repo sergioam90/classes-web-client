@@ -26,10 +26,6 @@
                     'header': {
                         templateUrl: templateUrlPrefix + 'header/header.html',
                         controller: 'HeaderController as vm'
-                    },
-                    'footer': {
-                        templateUrl: templateUrlPrefix + 'footer/footer.html'
-                        /*controller: 'FooterController as vm'*/
                     }
                 }
             })
@@ -43,6 +39,10 @@
                     'container@': {
                         templateUrl: templateUrlPrefix + 'home/home.html',
                         controller: 'HomeController as vm'
+                    },
+                    'footer': {
+                        templateUrl: templateUrlPrefix + 'footer/footer.html'
+                        /*controller: 'FooterController as vm'*/
                     }
                 }
             })

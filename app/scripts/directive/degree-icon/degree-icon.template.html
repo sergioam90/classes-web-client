@@ -1,14 +1,14 @@
 <!-- Degree -->
-<span tooltip="{{ degree | degree }}">
+<span>
 
     <!-- Undefined -->
     <i ng-if="!degree"
-       class="fa fa-graduation-cap text-muted">
+       class="fa fa-graduation-cap grey-text">
     </i>
 
     <!-- Undergraduated -->
     <i ng-if="degree == 'Undergraduate'"
-       class="fa fa-graduation-cap text-muted">
+       class="fa fa-graduation-cap grey-text">
     </i>
 
     <!-- Graduated -->
@@ -18,6 +18,6 @@
 
     <!-- Postgraduated -->
     <i ng-if="degree == 'Postgraduate'"
-       class="fa fa-graduation-cap text-warning">
+       class="fa fa-graduation-cap orange-text">
     </i>
 </span>

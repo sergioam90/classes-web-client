@@ -1,27 +1,28 @@
-<div class="row">
+<div class="card">
 
     <!-- Teacher image -->
-    <div class="col-sm-3">
-        <img src="images/mock.jpg" class="img img-responsive">
+    <div class="col s3">
+        <img src="images/mock.jpg" class="responsive-img">
     </div>
 
     <!-- Teacher information -->
-    <div class="col-sm-9">
+    <div class="col s9">
 
         <!-- Teacher name -->
         <div class="row">
-            <div class="col-sm-12">
-                <h5>
-                    <a ui-sref="root.teacherProfile(teacher)"> <!-- TODO: Check others ui-sref with parameters -->
+            <div class="col s12">
+                <h6>
+                    <a class="btn-flat" ui-sref="root.teacherProfile(teacher)">
+                        <!-- TODO: Check others ui-sref with parameters -->
                         {{ teacher.user.firstName }} {{ teacher.user.lastName }}
                     </a>
-                </h5>
+                </h6>
             </div>
         </div>
 
         <!-- Teacher rating -->
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col s12">
                 <h4>
                     <rating ng-if="teacher.averageRating >= 1"
                             class="text-warning"

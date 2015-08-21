@@ -54,8 +54,17 @@ html, body {
 }
 
 .filter-icon {
-    font-size: 24px;
+    font-size: 1.4rem;
     cursor: pointer;
+    margin: 0;
+    padding: 0;
+}
+
+.filter-description {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    margin-top: 0;
+    line-height: normal;
 }
 
 .filter-panel {
@@ -69,4 +78,8 @@ html, body {
 .teacher-bookmark {
     padding-right: 10px;
     margin-top: -5px;
+}
+
+.brand-logo {
+    text-transform: uppercase;
 }
