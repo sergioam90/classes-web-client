@@ -95,8 +95,7 @@ module.exports = function (grunt) {
             // Task to include files into index.html
             options: {
                 basePath: 'app',
-                baseUrl: '/',
-                ordering: 'top-down'
+                baseUrl: '/'
             },
             app: {
                 files: {

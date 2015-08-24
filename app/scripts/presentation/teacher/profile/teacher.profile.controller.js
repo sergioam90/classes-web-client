@@ -80,6 +80,7 @@
         }
 
         function showReviewModal() {
+
             $modal.open({
                 templateUrl: 'scripts/presentation/teacher/profile/review/teacher.profile.review.html',
                 controller: 'ReviewModalController',

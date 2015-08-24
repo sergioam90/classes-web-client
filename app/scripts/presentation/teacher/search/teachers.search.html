@@ -4,24 +4,24 @@
         <div class="col s12 m10 offset-m1">
             <div class="row">
 
-                <div class="col s12 card">
+                <div class="col s12 card filter-card">
 
                     <!-- City and text filters -->
                     <div class="row">
-
-                        <!-- City filter -->
-                        <div class="col s12 m3 hide-on-small-and-down">
-                            <select class="" ng-model="vm.searchCriteria.city" material-select watch>
-                                <option ng-repeat="city in vm.cities">{{city | city}}</option>
-                            </select>
-                        </div>
 
                         <!-- Subject filter -->
                         <div class="col s10 m3">
                             <select class="" ng-model="vm.searchCriteria.singleSelectedSubject" material-select watch>
                                 <option ng-repeat="subject in vm.subjects">
-                                    {{ subject.name }} - {{ subject.level | level }}
+                                    {{ subject.name }}
                                 </option>
+                            </select>
+                        </div>
+
+                        <!-- City filter -->
+                        <div class="col s12 m3 hide-on-small-and-down">
+                            <select class="" ng-model="vm.searchCriteria.city" material-select watch>
+                                <option ng-repeat="city in vm.cities">{{city | city}}</option>
                             </select>
                         </div>
 
@@ -75,13 +75,7 @@
                         <!-- Rating filter -->
                         <div class="col s5 m2">
                             <div>
-                                <i class="fa fa-star-o orange-text"></i>
-                                <i class="fa fa-star-o orange-text"></i>
-                                <i class="fa fa-star-o orange-text"></i>
-                                <i class="fa fa-star-o orange-text"></i>
-                                <i class="fa fa-star-o orange-text"></i>
                                 <rating class="orange-text filter-icon"
-                                        data-tooltip="Calificación"
                                         on-change="vm.search()"
                                         ng-model="vm.searchCriteria.averageRating">
                                 </rating>

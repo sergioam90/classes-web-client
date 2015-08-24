@@ -1,7 +1,7 @@
 <div class="">
     <div class="row">
 
-        <div class="col s12 m8">
+        <div class="col s12 m6 offset-m3">
             <div class="card">
 
                 <!-- Favorite icon -->
@@ -44,15 +44,13 @@
 
                             <!-- Rating -->
                             <div class="col s12 m4">
-                                <h4>
+                                <h5 class="right">
                                     <rating
                                             class="orange-text"
-                                            ng-if="vm.teacher.averageRating > 0"
                                             ng-model="vm.teacher.averageRating"
                                             readonly="true">
                                     </rating>
-                                </h4>
-                                <!-- TODO: Add not available message -->
+                                </h5>
                             </div>
 
                         </div>
@@ -128,12 +126,12 @@
                                 <h3>
                                     <span>
                                         <!-- Male -->
-                                        <i ng-if="vm.teacher.user.gender == 'Male'"
+                                        <i ng-if="vm.teacher.user.gender == 'male'"
                                            class="fa fa-male blue-text">
                                         </i>
 
                                         <!-- Female -->
-                                        <i ng-if="vm.teacher.user.gender == 'Female'"
+                                        <i ng-if="vm.teacher.user.gender == 'female'"
                                            class="fa fa-female purple-text">
                                         </i>
                                     </span>
@@ -249,7 +247,7 @@
             </div>
         </div>
 
-        <div class="col m4 hide-on-small-and-down">
+        <div class="col m3 hide-on-small-and-down">
             <span ng-repeat="teacher in vm.relatedTeachers">
                 <related-teacher ng-model="teacher"></related-teacher>
             </span>

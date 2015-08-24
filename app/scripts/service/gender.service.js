@@ -8,8 +8,8 @@
     function GenderService() {
 
         var gendersNames = {
-            Male: 'Masculino',
-            Female: 'Femenino'
+            male: 'Masculino',
+            female: 'Femenino'
         };
 
         function getGenderName(gender) {

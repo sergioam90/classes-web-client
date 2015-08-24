@@ -40,7 +40,7 @@
                         templateUrl: templateUrlPrefix + 'home/home.html',
                         controller: 'HomeController as vm'
                     },
-                    'footer': {
+                    'footer@': {
                         templateUrl: templateUrlPrefix + 'footer/footer.html'
                         /*controller: 'FooterController as vm'*/
                     }

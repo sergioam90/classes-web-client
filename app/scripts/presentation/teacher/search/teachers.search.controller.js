@@ -26,22 +26,6 @@
             degrees: []
         };
 
-        vm.degreesNames = [];
-        vm.selectedDegrees = [];
-
-        vm.cities = CityService.getAllCities();
-
-        vm.search = search;
-
-        vm.moneyTranslate = moneyTranslate;
-        vm.clearFilters = clearFilters;
-
-        vm.teachersResult = [];
-        vm.viewProfile = viewProfile;
-
-        vm.subjects = [];
-        vm.removeAccents = removeAccents;
-
         vm.localSelectStrings = {
             selectAll: 'Todas',
             selectNone: 'Ninguna',
@@ -49,6 +33,23 @@
             search: 'Escribí aca para buscar...',
             nothingSelected: 'Ninguna materia seleccionada'
         };
+
+        vm.degreesNames = [];
+        vm.selectedDegrees = [];
+
+        vm.subjects = [];
+        vm.singleSelectedSubject = {};
+
+        vm.teachersResult = [];
+
+        vm.cities = CityService.getAllCities();
+
+        /** Functions **/
+        vm.search = search;
+        vm.moneyTranslate = moneyTranslate;
+        vm.clearFilters = clearFilters;
+        vm.viewProfile = viewProfile;
+        vm.removeAccents = removeAccents;
 
         initialize();
 
