@@ -1,9 +1,1 @@
-<span ng-mouseleave="reset()" ng-keydown="onKeydown($event)" tabindex="0" role="slider" aria-valuemin="0"
-      aria-valuemax="{{range.length}}" aria-valuenow="{{value}}">
-    <i ng-repeat="r in range track by $index" ng-mouseenter="enter($index + 1)"
-       ng-click="rate($index + 1)"
-       class="fa"
-       ng-class="$index < value && (r.stateOn || 'fa-star') || (r.stateOff || 'fa-star-o')">
-        <span class="sr-only">({{ $index < value ? '*' : ' ' }})</span>
-    </i>
-</span>
+<span ng-mouseleave="starLeave()"> <span ng-if="!((value === 0) && readonly)" ng-repeat="state in states track by $index"> <i ng-class="statesClasses[state]" ng-mouseover="starHover($index)" ng-click="starClick($index, $event)"></i> </span> <span ng-if="(value === 0) && readonly">Sin calificar</span> </span>
