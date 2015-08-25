@@ -3,3 +3,18 @@
     All the rules must be prefixed with .home-footer parent class.
  */
 
+.home-footer a{
+  color: white;
+}
+@media (max-width: 780px) {
+  .home-footer .col .s12 {
+    text-indent: 0;
+    text-align: center;
+  }
+}
+@media (max-width: 480px) {
+  .home-footer img{
+    padding-top: 10px;
+    height: 60px;
+  }
+}

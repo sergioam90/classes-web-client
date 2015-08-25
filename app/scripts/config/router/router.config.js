@@ -33,14 +33,12 @@
                 url: '/',
                 views: {
                     'header@': {
-                        templateUrl: templateUrlPrefix + 'header/home/home-header.html',
-                        controller: 'HeaderController as vm'
                     },
                     'container@': {
                         templateUrl: templateUrlPrefix + 'home/home.html',
                         controller: 'HomeController as vm'
                     },
-                    'footer': {
+                    'footer@': {
                         templateUrl: templateUrlPrefix + 'footer/footer.html'
                         /*controller: 'FooterController as vm'*/
                     }
