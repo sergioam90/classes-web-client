@@ -33,8 +33,6 @@
                 url: '/',
                 views: {
                     'header@': {
-                        templateUrl: templateUrlPrefix + 'header/home/home-header.html',
-                        controller: 'HeaderController as vm'
                     },
                     'container@': {
                         templateUrl: templateUrlPrefix + 'home/home.html',
