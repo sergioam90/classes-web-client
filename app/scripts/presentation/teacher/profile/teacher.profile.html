@@ -11,9 +11,9 @@
 
                     <span tooltipped data-tooltip="Agregar a favoritos">
                         <i ng-if="vm.teacher.isFavorite"
-                           class="fa fa-bookmark fa-3x green-text"></i>
+                           class="fa fa-bookmark fa-3x yellow-text text-darken-1"></i>
                         <i ng-if="!vm.teacher.isFavorite"
-                           class="fa fa-bookmark-o fa-3x grey-text"></i>
+                           class="fa fa-bookmark-o fa-3x grey-text text-lighten-1"></i>
                     </span>
                 </span>
 
@@ -21,7 +21,7 @@
 
                     <!-- User image -->
                     <div class="col s12 m3 center">
-                        <img src="images/mock.jpg" class="img img-responsive img-thumbnail">
+                        <img src="images/mock.jpg" class="responsive-img">
                     </div>
 
                     <!-- User information -->
@@ -124,17 +124,7 @@
                             <div class="col s6 m3 center feature-container">
 
                                 <h3>
-                                    <span>
-                                        <!-- Male -->
-                                        <i ng-if="vm.teacher.user.gender == 'male'"
-                                           class="fa fa-male blue-text">
-                                        </i>
-
-                                        <!-- Female -->
-                                        <i ng-if="vm.teacher.user.gender == 'female'"
-                                           class="fa fa-female purple-text">
-                                        </i>
-                                    </span>
+                                    <i ng-class="vm.teacher.user.gender | genderIcon"></i>
                                 </h3>
 
                                 <p>{{ vm.teacher.user.gender | gender }}</p>
@@ -168,7 +158,7 @@
                         <h5>Materias que dicto</h5>
 
                         <div class="row">
-                            <div class="col-sm-3" ng-repeat="subject in vm.teacher.subjects">
+                            <div class="col s4" ng-repeat="subject in vm.teacher.subjects">
                                 <subject ng-model="subject"></subject>
                             </div>
                         </div>

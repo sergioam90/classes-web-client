@@ -17,7 +17,8 @@
             'ui.router',
             'rzModule', // Slider
             'isteven-multi-select',
-            'ui.materialize'
+            'ui.materialize',
+            'ngMap'
         ])
         .run(function (editableOptions) {
             // TODO: Move

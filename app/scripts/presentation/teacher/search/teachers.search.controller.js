@@ -38,6 +38,8 @@
         vm.selectedDegrees = [];
 
         vm.subjects = [];
+
+        // TODO: Decide how to implement binding with vm.subjects
         vm.singleSelectedSubject = {};
 
         vm.teachersResult = [];
@@ -131,6 +133,7 @@
 
             // Add subjects ids to search criteria
             searchCriteria.subjects = [];
+
             for (var i = 0; i < vm.subjects.length; i++) {
                 if (vm.subjects[i].selected) {
                     searchCriteria.subjects.push(vm.subjects[i].id);

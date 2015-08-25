@@ -28,3 +28,11 @@
 .no-margin {
     margin-top: 0;
 }
+
+.hand-pointer {
+    cursor: pointer;
+}
+
+.no-margin-row {
+    margin-bottom: 0px;
+}

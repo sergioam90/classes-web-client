@@ -12,8 +12,17 @@
             female: 'Femenino'
         };
 
+        var gendersIcons = {
+            male: 'fa fa-male blue-text',
+            female: 'fa fa-female purple-text'
+        };
+
         function getGenderName(gender) {
             return gendersNames[gender];
+        }
+
+        function getGenderIconClass(gender) {
+            return gendersIcons[gender];
         }
 
         function getAllGenders(){
@@ -31,6 +40,8 @@
 
         return {
             getGenderName: getGenderName,
+
+            getGenderIconClass: getGenderIconClass,
 
             getAllGenders: getAllGenders
         };

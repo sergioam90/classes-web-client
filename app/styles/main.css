@@ -78,6 +78,7 @@ html, body {
 .teacher-bookmark {
     padding-right: 10px;
     margin-top: -5px;
+    cursor: pointer;
 }
 
 .brand-logo {
@@ -86,4 +87,10 @@ html, body {
 
 .card.filter-card {
     overflow: visible;
+}
+
+/* To remove the column padding */
+.container-fluid .row {
+    margin-left: -0.75rem;
+    margin-right: -0.75rem;
 }

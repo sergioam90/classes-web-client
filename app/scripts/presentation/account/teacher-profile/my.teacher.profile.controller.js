@@ -15,6 +15,8 @@
         vm.reviews = [];
         vm.saveTeacher = saveTeacher;
         vm.degreesNames = DegreeService.getAllDegrees();
+        vm.formattedAddress = '';
+        vm.placeChanged = placeChanged;
 
         initialize();
 
@@ -44,15 +46,36 @@
 
         function loadTeacherAddress(){
             MapsService.getAddress(location).then(function (result) {
-                vm.teacher.formattedAddress = result;
+                vm.formattedAddress = result;
             });
         }
 
         function saveTeacher(){
-            TeacherService.saveTeacher(vm.teacher).then(function(teacher){
+            vm.teacher.degree = undefined;
+            vm.teacher.distance = undefined;
+            vm.teacher.location = undefined;
+            vm.teacher.schedule = undefined;
+            vm.teacher.phone = undefined;
+            vm.teacher.subjects = undefined;
+            vm.teacher.user = undefined;
+            vm.teacher.averageRating = undefined;
+            vm.teacher.review = undefined;
+            vm.teacher.isFavorite = undefined;
+
+            var teacher = {id: vm.teacher.id, fee: vm.teacher.fee};
+
+            TeacherService.saveTeacher(teacher).then(function (teacher) {
                 // TODO: Is this ok?
                 vm.teacher = teacher;
             });
+        }
+
+        function placeChanged() {
+            var place = this.getPlace();
+            vm.teacher.location = {
+                latitude: place.geometry.location.G,
+                longitude: place.geometry.location.K
+            };
         }
     }
 })();
