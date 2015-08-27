@@ -11,11 +11,12 @@
     function RouterConfig($stateProvider, $urlRouterProvider, $locationProvider) {
 
         // TODO: Enable this for making urls pretty
-        //$locationProvider.html5Mode(true);
+        $locationProvider.html5Mode(true);
 
         $urlRouterProvider.otherwise('/');
 
-        var templateUrlPrefix = 'scripts/presentation/';
+        // IMPORTANT: DO NOT REFACTOR templateUrl STRINGS, THEY ARE PROCESSED BY USEMIN.
+        // USE ALWAYS THIS PATTERN 'scripts/**/*.html'
 
         // TODO: Define object with states and iterate it (register global properties in foreach loop)
         $stateProvider
@@ -24,7 +25,7 @@
                 url: '',
                 views: {
                     'header': {
-                        templateUrl: templateUrlPrefix + 'header/header.html',
+                        templateUrl: 'scripts/presentation/header/header.html',
                         controller: 'HeaderController as vm'
                     }
                 }
@@ -32,14 +33,13 @@
             .state('root.home', {
                 url: '/',
                 views: {
-                    'header@': {
-                    },
+                    'header@': {},
                     'container@': {
-                        templateUrl: templateUrlPrefix + 'home/home.html',
+                        templateUrl: 'scripts/presentation/home/home.html',
                         controller: 'HomeController as vm'
                     },
                     'footer@': {
-                        templateUrl: templateUrlPrefix + 'footer/footer.html'
+                        templateUrl: 'scripts/presentation/footer/footer.html'
                         /*controller: 'FooterController as vm'*/
                     }
                 }
@@ -48,7 +48,7 @@
                 url: '/about',
                 views: {
                     'container@': {
-                        templateUrl: templateUrlPrefix + 'about/about.html',
+                        templateUrl: 'scripts/presentation/about/about.html',
                         controller: 'AboutController as vm'
                     }
                 }
@@ -56,7 +56,7 @@
                 url: '/account/login',
                 views: {
                     'container@': {
-                        templateUrl: templateUrlPrefix + 'account/login/login.html',
+                        templateUrl: 'scripts/presentation/account/login/login.html',
                         controller: 'LoginController as vm'
                     }
                 }
@@ -66,7 +66,7 @@
                 url: '/account/register/{target}',
                 views: {
                     'container@': {
-                        templateUrl: templateUrlPrefix + 'account/register/register.html',
+                        templateUrl: 'scripts/presentation/account/register/register.html',
                         controller: 'RegisterController as vm'
                     }
                 }
@@ -75,7 +75,7 @@
                 url: '/method',
                 views: {
                     'container@': {
-                        templateUrl: templateUrlPrefix + 'account/register/register.method.html'
+                        templateUrl: 'scripts/presentation/account/register/register.method.html'
                     }
                 }
             })
@@ -83,7 +83,7 @@
                 url: '/personal',
                 views: {
                     'container@': {
-                        templateUrl: templateUrlPrefix + 'account/register/register.personal.html'
+                        templateUrl: 'scripts/presentation/account/register/register.personal.html'
                     }
                 }
             })
@@ -91,7 +91,7 @@
                 url: '/teacher',
                 views: {
                     'container@': {
-                        templateUrl: templateUrlPrefix + 'account/register/teacher/register.teacher.html'
+                        templateUrl: 'scripts/presentation/account/register/teacher/register.teacher.html'
                     }
                 }
             })
@@ -99,7 +99,7 @@
                 url: '/student',
                 views: {
                     'container@': {
-                        templateUrl: templateUrlPrefix + 'account/register/student/register.student.html'
+                        templateUrl: 'scripts/presentation/account/register/student/register.student.html'
                     }
                 }
             })
@@ -108,7 +108,7 @@
                 url: '/account',
                 views: {
                     'container@': {
-                        templateUrl: templateUrlPrefix + 'account/account.html'
+                        templateUrl: 'scripts/presentation/account/account.html'
                         // TODO: for possible future use
                         // controller: 'AccountController as vm'
                     }
@@ -118,7 +118,7 @@
                 url: '/user',
                 views: {
                     '': {
-                        templateUrl: templateUrlPrefix + 'account/user-profile/my.user.profile.html',
+                        templateUrl: 'scripts/presentation/account/user-profile/my.user.profile.html',
                         controller: 'MyUserProfileController as vm'
                     }
                 }
@@ -127,7 +127,7 @@
                 url: '/student',
                 views: {
                     '': {
-                        templateUrl: templateUrlPrefix + 'account/student-profile/my.student.profile.html',
+                        templateUrl: 'scripts/presentation/account/student-profile/my.student.profile.html',
                         controller: 'MyStudentProfileController as vm'
                     }
                 }
@@ -136,7 +136,7 @@
                 url: '/teacher',
                 views: {
                     '': {
-                        templateUrl: templateUrlPrefix + 'account/teacher-profile/my.teacher.profile.html',
+                        templateUrl: 'scripts/presentation/account/teacher-profile/my.teacher.profile.html',
                         controller: 'MyTeacherProfileController as vm'
                     }
                 }
@@ -146,7 +146,7 @@
                 reloadOnSearch: false,
                 views: {
                     'container@': {
-                        templateUrl: templateUrlPrefix + 'teacher/search/teachers.search.html',
+                        templateUrl: 'scripts/presentation/teacher/search/teachers.search.html',
                         controller: 'TeachersSearchController as vm'
                     }
                 }
@@ -155,7 +155,7 @@
                 url: '/teachers/{id}',
                 views: {
                     'container@': {
-                        templateUrl: templateUrlPrefix + 'teacher/profile/teacher.profile.html',
+                        templateUrl: 'scripts/presentation/teacher/profile/teacher.profile.html',
                         controller: 'TeacherProfileController as vm',
                         resolve: {
                             teacher: function ($stateParams, TeacherService) {
@@ -169,7 +169,7 @@
                 url: '/maps',
                 views: {
                     'container@': {
-                        templateUrl: templateUrlPrefix + 'maps/maps.html',
+                        templateUrl: 'scripts/presentation/maps/maps.html',
                         controller: 'MapsController as vm'
                     }
                 }
