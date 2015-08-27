@@ -1,34 +1,40 @@
-<div class="container-fluid">
+<div class="container-fluid little-padding">
     <div class="row">
-        <!-- Main content -->
-        <div class="col s12 m10 offset-m1">
 
-            <div class="row">
+        <!-- Left sidebar -->
+        <div class="col s3 m3">
 
-                <!-- Search filters -->
-                <div class="col s12 card filter-card no-margin-row">
+            <!-- City and text filters -->
+            <div class="card z-depth-2 filter-card">
 
-                    <!-- City and text filters -->
+                <div class="card-content">
+
                     <div class="row">
-
                         <!-- Subject filter -->
-                        <div class="col s10 m3">
-                            <select class="" ng-model="vm.searchCriteria.singleSelectedSubject" material-select watch>
-                                <option ng-repeat="subject in vm.subjects">
-                                    {{ subject.name }}
-                                </option>
-                            </select>
+                        <div class="col s12">
+                            <ui-select multiple ng-model="vm.searchCriteria.subjects" ng-disabled="disabled"
+                                       style="width: 100%;">
+                                <ui-select-match placeholder="Elegí tus materias...">
+                                    {{ $item.name }}
+                                </ui-select-match>
+                                <ui-select-choices
+                                        repeat="subject in vm.subjects | filter:{name:$select.search}:vm.removeAccents">
+                                    <div ng-bind-html="subject.name | highlight: $select.search"></div>
+                                    <div ng-bind-html="subject.level | level"></div>
+                                </ui-select-choices>
+                            </ui-select>
                         </div>
 
                         <!-- City filter -->
-                        <div class="col s12 m3 hide-on-small-and-down">
+                        <div class="col s12 hide-on-small-and-down">
                             <select class="" ng-model="vm.searchCriteria.city" material-select watch>
+                                <option value="" selected disabled>Elegí tu ciudad...</option>
                                 <option ng-repeat="city in vm.cities">{{city | city}}</option>
                             </select>
                         </div>
 
                         <!-- Text filter -->
-                        <div class="col s11 m3 hide-on-small-and-down">
+                        <div class="col s12 hide-on-small-and-down">
                             <input ng-model="vm.searchCriteria.text"
                                    ng-model-options="{ debounce: 750 }"
                                    ng-change="vm.search()"
@@ -36,34 +42,72 @@
                                    class="form-control"
                                    placeholder="Nombre o descripcion..."/>
                         </div>
-
-                        <!-- Advanced search -->
-                        <div class="col s2 m1 hide-on-small-and-down">
-                            <span class="filter-icon" data-tooltip="Búsqueda avanzada"
-                                  ng-init="vm.advancedVisible = false"
-                                  ng-click="vm.advancedVisible = !vm.advancedVisible">
-                                <i class="fa fa-minus" ng-if="vm.advancedVisible"></i>
-                                <i class="fa fa-plus" ng-if="!vm.advancedVisible"></i>
-                            </span>
-                        </div>
-
-                        <!-- Clear filters button -->
-                        <div class="col s2 m1">
-                            <span ng-click="vm.clearFilters()"
-                                  class="center filter-icon"
-                                  data-tooltip="Limpiar filtros">
-                                <i class="fa fa-close blue-text"></i>
-                            </span>
-                        </div>
                     </div>
 
-                    <!-- Basic filters -->
-                    <div class="row center"
-                         ng-show="!vm.advancedVisible">
+                </div>
+
+                <div class="card-action">
+                    <div class="row no-margin-row">
+                        <!-- Clear filters button -->
+                        <button ng-click="vm.clearFilters()"
+                                class="btn-flat center">
+                            Limpiar
+                        </button>
+                        <button class="btn right"
+                                ng-hide="true"
+                                ng-init="vm.advancedVisible = false"
+                                ng-click="vm.advancedVisible = !vm.advancedVisible">
+                            Más
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right content -->
+        <div class="col s9 m9 ">
+
+            <!-- Search filters and order -->
+            <div class="row no-margin-row">
+
+                <div class="card">
+                    <div class="card-content center">
+                        <!-- Rating filter -->
+                        <div class="col s5 m2">
+                            <rating class="orange-text filter-icon"
+                                    on-change="vm.search()"
+                                    ng-model="vm.searchCriteria.averageRating">
+                            </rating>
+                            <p class="filter-description">Puntaje mínimo</p>
+                        </div>
+
+                        <!-- Individual lessons -->
+                        <div class="col s4 m1">
+                            <individual-filter ng-model="vm.searchCriteria.individualLessons"
+                                               ng-click="vm.search()">
+                            </individual-filter>
+                        </div>
+
+                        <!-- Schedule filter -->
+                        <div class="col s4 m2">
+                            <schedule-filter morning="vm.searchCriteria.morning"
+                                             afternoon="vm.searchCriteria.afternoon"
+                                             night="vm.searchCriteria.night"
+                                             ng-click="vm.search()">
+                            </schedule-filter>
+                        </div>
+
+                        <!-- For proper column alignment -->
+                        <div class="clearfix hide-on-med-and-up"></div>
 
                         <!-- Fee filter -->
                         <div class="col s4 m2">
                             <fee-filter ng-click="vm.search()" ng-model="vm.searchCriteria.fee"></fee-filter>
+                        </div>
+
+                        <!-- Home lesson filter -->
+                        <div class="col s3 m1">
+                            <home-filter ng-click="vm.search()" ng-model="vm.searchCriteria.homeLessons"></home-filter>
                         </div>
 
                         <!-- Degree filter -->
@@ -74,265 +118,40 @@
                             </degree-filter>
                         </div>
 
-                        <!-- Rating filter -->
-                        <div class="col s5 m2">
-                            <div>
-                                <rating class="orange-text filter-icon"
-                                        on-change="vm.search()"
-                                        ng-model="vm.searchCriteria.averageRating">
-                                </rating>
-                                <p class="filter-description">Puntaje mínimo</p>
-                            </div>
-                        </div>
-
-                        <!-- For proper column alignment -->
-                        <div class="clearfix hide-on-med-and-up"></div>
-
-                        <!-- Individual lessons -->
-                        <div class="col s4 m1">
-                            <individual-filter ng-model="vm.searchCriteria.individualLessons"
-                                               ng-click="vm.search()">
-                            </individual-filter>
-                        </div>
-
-                        <!-- Home lesson filter -->
-                        <div class="col s3 m1">
-                            <home-filter ng-click="vm.search()" ng-model="vm.searchCriteria.homeLessons"></home-filter>
-                        </div>
-
-                        <!-- Schedule filter -->
-                        <div class="col s5 m2">
-                            <schedule-filter morning="vm.searchCriteria.morning"
-                                             afternoon="vm.searchCriteria.afternoon"
-                                             night="vm.searchCriteria.night"
-                                             ng-click="vm.search()">
-                            </schedule-filter>
-                        </div>
-
-                    </div>
-
-                    <!-- Advanced filters -->
-                    <div class="row" ng-show="vm.advancedVisible">
-
-                        <!-- Tab headings -->
-                        <div class="col s12">
-                            <ul class="tabs" tabs>
-                                <li class="tab col s6">
-                                    <a href="#subjectsTab">Materias</a>
-                                </li>
-                                <li class="tab col s6"><a href="#schedulesTab">Horarios</a></li>
-                                <li class="tab col s6"><a href="#degreesTab">Estudios</a></li>
-                                <li class="tab col s6"><a href="#feeTab">Precio máximo</a></li>
-                                <li class="tab col s6"><a href="#individualLessonsTab">Tipo de clase</a></li>
-                                <li class="tab col s6"><a href="#homeLessonsTab">A domicilio</a></li>
-                            </ul>
-                        </div>
-
-                        <!-- Tab contents -->
-                        <div class="col s12">
-
-                            <!-- Subjects -->
-                            <div id="subjectsTab" class="col s12">
-                                <div
-                                        isteven-multi-select
-                                        input-model="vm.subjects"
-                                        output-model="outputBrowsers"
-                                        button-label="name filteredLevel"
-                                        item-label="name filteredLevel"
-                                        search-property="filteredName"
-                                        tick-property="selected"
-                                        on-change="vm.search()"
-                                        on-item-click="vm.search()"
-                                        on-select-none="vm.search()"
-                                        on-select-all="vm.search()"
-                                        helper-elements="all none filter"
-                                        translation="vm.localSelectStrings">
-                                </div>
-
-                                <div class="divider"></div>
-
-                        <span ng-repeat="subject in vm.subjects">
-                            <input id="subject{{ $index }}"
-                                   ng-change="vm.search()"
-                                   ng-model="subject.selected"
-                                   value="{{ subject.selected }}"
-                                   type="checkbox">
-                            <label for="subject{{ $index }}" class="black-text">{{ subject.name }}</label>
-                        </span>
-                            </div>
-
-                            <!-- Schedule -->
-                            <div id="schedulesTab" class="col s12">
-                                <div class="checkbox">
-                            <span>
-                                <input id="morning"
-                                       ng-change="vm.search()"
-                                       ng-model="vm.searchCriteria.morning"
-                                       value="{{ vm.searchCriteria.morning }}"
-                                       ng-true-value="'1'"
-                                       ng-false-value="null"
-                                       type="checkbox"/>
-                                <label for="morning">Mañana</label>
-                            </span>
-                            <span>
-                                <input id="afternoon"
-                                       ng-change="vm.search()"
-                                       ng-model="vm.searchCriteria.afternoon"
-                                       value="{{ vm.searchCriteria.afternoon }}"
-                                       ng-true-value="'1'"
-                                       ng-false-value="null"
-                                       type="checkbox"/>
-                                <label for="afternoon">Tarde</label>
-                            </span>
-                            <span>
-                                <input id="night"
-                                       ng-change="vm.search()"
-                                       ng-model="vm.searchCriteria.night"
-                                       value="{{ vm.searchCriteria.night }}"
-                                       ng-true-value="'1'"
-                                       ng-false-value="null"
-                                       type="checkbox"/>
-                                <label for="night">Noche</label>
-                            </span>
-                                </div>
-                            </div>
-
-                            <!-- Degree -->
-                            <div id="degreesTab" class="col s12">
-                                <span ng-repeat="degree in vm.degreesNames">
-                                    <input id="degree{{ $index }}"
-                                           ng-change="vm.search()"
-                                           ng-model="vm.selectedDegrees[$index]"
-                                           value="{{ vm.selectedDegrees[$index] }}"
-                                           type="checkbox"/>
-                                    <label for="degree{{ $index }}">
-                                        {{ degree | degree }}
-                                    </label>
-                                </span>
-                            </div>
-
-                            <!-- Fee -->
-                            <div id="feeTab" class="col s12">
-
-                                // TODO: Re render on advanced filters activated (visible on purpose, good idea?)
-                                <rzslider ng-init="vm.searchCriteria.fee = 400"
-                                          rz-slider-on-change="alert('messi')"
-                                          rz-slider-model="vm.searchCriteria.fee"
-                                          rz-slider-translate="vm.moneyTranslate"
-                                          rz-slider-floor="20"
-                                          rz-slider-ceil="400"
-                                          rz-slider-step="20"
-                                          rz-slider-always-show-bar="true">
-                                </rzslider>
-                            </div>
-
-                            <!-- Class audience -->
-                            <div id="individualLessonsTab" class="col s12">
-
-                                <!-- Any option -->
-                                <span>
-                                    <input id="anyAudience"
-                                           type="radio"
-                                           ng-change="vm.search()"
-                                           ng-model="vm.searchCriteria.groupLessons"
-                                           ng-value="undefined">
-                                    <label for="anyAudience"> Cualquiera
-                                    </label>
-                                </span>
-
-                                <!-- Individual class -->
-                                <span>
-                                    <input id="individual"
-                                           type="radio"
-                                           ng-change="vm.search()"
-                                           ng-model="vm.searchCriteria.groupLessons"
-                                           ng-value="false"/>
-                                    <label for="individual">
-                                        Personalizada
-                                    </label>
-                                </span>
-
-                                <!-- Group class -->
-                                <span>
-                                    <input id="group"
-                                           type="radio"
-                                           ng-change="vm.search()"
-                                           ng-model="vm.searchCriteria.groupLessons"
-                                           ng-value="true">
-                                    <label for="group">
-                                        Grupal
-                                    </label>
-                                </span>
-                            </div>
-
-                            <!-- Home lessons -->
-                            <div id="homeLessonsTab" class="col s12">
-
-                                <!-- Any home -->
-                                <span>
-                                    <input id="anyHome"
-                                           type="radio"
-                                           ng-change="vm.search()"
-                                           ng-model="vm.searchCriteria.homeLessons"
-                                           ng-value="undefined">
-                                    <label for="anyHome"> Cualquiera
-                                    </label>
-                                </span>
-
-                                <!-- Not going home -->
-                                <span>
-                                    <input id="notHome"
-                                           type="radio"
-                                           ng-change="vm.search()"
-                                           ng-model="vm.searchCriteria.homeLessons"
-                                           ng-value="false">
-                                    <label for="notHome">
-                                        No va a domicilio
-                                    </label>
-                                </span>
-
-                                <!-- Going home -->
-                                <span>
-                                    <input id="goesHome"
-                                           type="radio"
-                                           ng-change="vm.search()"
-                                           ng-model="vm.searchCriteria.homeLessons"
-                                           ng-value="true">
-                                    <label for="goesHome">
-                                        Va a domicilio
-                                    </label>
-                                </span>
-                            </div>
-
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Search results -->
-                <div class="row">
-                    <div class="col s12">
-                        <div class="col s6 m6 little-padding"
-                             ng-if="!vm.teacherResult.length"
-                             ng-repeat="teacher in vm.teachersResult">
-
-                            <teacher-result ng-model="teacher"
-                                            view-profile="vm.viewProfile(teacher)">
-                            </teacher-result>
+                        <!-- Order -->
+                        <div class="col s3 m3">
+                            <select class="" ng-model="vm.searchCriteria.singleSelectedSubject"
+                                    material-select watch>
+                                <option value="" selected disabled>Elegí tu materia...</option>
+                                <option ng-repeat="subject in vm.subjects">
+                                    {{ subject.name }}
+                                </option>
+                            </select>
                         </div>
                     </div>
                 </div>
 
-                <div class="col s12">
-                    <!-- Nothing found message -->
-                    <h4 class="center" ng-if="!vm.teachersResult.length">
-                        ¡Uh! No hay nadie que cumpla esas condiciones :(
-                    </h4>
+            </div>
 
-                    <p class="lead center" ng-if="!vm.teachersResult.length">
-                        Tip: Revisa los filtros ;)
-                    </p>
+            <!-- Search results -->
+            <div class="row no-margin-row">
+                <div class="col s9 no-padding"
+                     ng-if="!vm.teacherResult.length"
+                     ng-repeat="teacher in vm.teachersResult">
+
+                    <teacher-result ng-model="teacher"
+                                    view-profile="vm.viewProfile(teacher)">
+                    </teacher-result>
                 </div>
+
+                <!-- Nothing found message -->
+                <h4 class="center" ng-if="!vm.teachersResult.length">
+                    ¡Uh! No hay nadie que cumpla esas condiciones :(
+                </h4>
+
+                <p class="lead center" ng-if="!vm.teachersResult.length">
+                    Tip: Revisa los filtros ;)
+                </p>
             </div>
         </div>
     </div>

@@ -99,7 +99,11 @@
 
         function loadSubjects() {
             return Subjects.getList().then(function (subjects) {
-                vm.subjects = subjects.plain();
+                vm.subjects = [];
+
+                for(var i = 0; i < 100; i++){
+                    vm.subjects.push({name: 'test' + i, level: 'Secondary'});
+                }
 
                 // If there are subjects in url, set them as selected
                 for (var i = 0; i < vm.subjects.length; i++) {
