@@ -78,11 +78,13 @@
 
             <input id="individualLessons"
                    type="checkbox"
+                   ng-change="vm.saveTeacher()"
                    ng-model="vm.teacher.individualLessons">
             <label for="individualLessons"> Individuales</label>
 
             <input id="homeLessons"
                    type="checkbox"
+                   ng-change="vm.saveTeacher()"
                    ng-model="vm.teacher.homeLessons">
             <label for="homeLessons"> A domicilio</label>
 
@@ -116,6 +118,7 @@
 
             <input id="hasWatsapp"
                    type="checkbox"
+                   ng-change="vm.saveTeacher()"
                    ng-model="vm.teacher.phone.whatsApp">
             <label for="hasWatsapp"> Tengo WhatsApp</label>
         </div>

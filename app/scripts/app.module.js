@@ -18,6 +18,7 @@
             'rzModule', // Slider
             'isteven-multi-select',
             'ui.materialize',
+            'ui.select',
             'ngMap'
         ])
         .run(function (editableOptions) {

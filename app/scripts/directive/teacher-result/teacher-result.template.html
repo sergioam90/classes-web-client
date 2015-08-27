@@ -1,34 +1,32 @@
-<div class="container-fluid">
-    <div class="card hoverable hand-pointer" ng-click="viewProfile({teacher: teacher})">
+<div class="container-fluid teacher-result">
+    <div class="card hoverable z-depth-1 hand-pointer" ng-click="viewProfile({teacher: teacher})">
         <div class="row no-margin-row valign-wrapper">
 
             <!-- Profile picture -->
-            <div class="col s12 m3 16">
+            <div class="col s3 m3">
                 <img class="responsive-img valign" src="/images/mock.jpg" alt=""/>
             </div>
 
-            <div class="clearfix hide-on-med-and-up"></div>
-
             <!-- Teacher information -->
-            <div class="col s12 m9 16">
+            <div class="col s9 m9">
 
-                <div class="row">
+                <div class="row no-margin-row">
 
                     <!-- Name and more info -->
-                    <div class="col s12 m7">
+                    <div class="col s7 m7">
                         <div class="col s12 m12">
                             <p class="">
                                 <degree-icon ng-model="teacher.degree"></degree-icon>
                                 {{ teacher.user | fullName }}
                             </p>
                         </div>
-                        <div class="col s12 m12 hide-on-small-only">
+                        <div class="col s12 m12">
                             <teacher-features ng-model="teacher"></teacher-features>
                         </div>
                     </div>
 
                     <!-- Rating and fee -->
-                    <div class="col s12 m5 center">
+                    <div class="col s5 m5 center">
                         <div class="col s12 m12">
                             <rating class="orange-text"
                                     ng-model="teacher.averageRating"

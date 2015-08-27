@@ -10,11 +10,18 @@
 .text-white {
     color: white;
 }
+
 .full-width{
   width: 100%;
 }
+
 .full-height {
     height: 100%;
+}
+
+.full-height-vh {
+    /* TODO: This is not fully compatible with most browsers */
+    height: 100vh;
 }
 
 .invisible {
@@ -40,9 +47,9 @@
 .tabs .indicator {
   background-color:#ff8f00 ;
 }
+
 a {
   color: #ffc107;
-}
 }
 
 .hand-pointer {

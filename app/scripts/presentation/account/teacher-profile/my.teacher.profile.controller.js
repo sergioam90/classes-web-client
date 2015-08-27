@@ -51,20 +51,7 @@
         }
 
         function saveTeacher(){
-            vm.teacher.degree = undefined;
-            vm.teacher.distance = undefined;
-            vm.teacher.location = undefined;
-            vm.teacher.schedule = undefined;
-            vm.teacher.phone = undefined;
-            vm.teacher.subjects = undefined;
-            vm.teacher.user = undefined;
-            vm.teacher.averageRating = undefined;
-            vm.teacher.review = undefined;
-            vm.teacher.isFavorite = undefined;
-
-            var teacher = {id: vm.teacher.id, fee: vm.teacher.fee};
-
-            TeacherService.saveTeacher(teacher).then(function (teacher) {
+            TeacherService.saveTeacher(vm.teacher).then(function (teacher) {
                 // TODO: Is this ok?
                 vm.teacher = teacher;
             });
@@ -76,6 +63,7 @@
                 latitude: place.geometry.location.G,
                 longitude: place.geometry.location.K
             };
+            vm.saveTeacher();
         }
     }
 })();
