@@ -9,10 +9,11 @@
         'TeacherService',
         'StudentService',
         'AccountService',
-        'teacher'
+        'teacher',
+        'ModalService'
     ];
 
-    function TeacherProfileController(TeacherService, StudentService, AccountService, teacher) {
+    function TeacherProfileController(TeacherService, StudentService, AccountService, teacher, ModalService) {
 
         var vm = this;
 
@@ -73,7 +74,8 @@
         }
 
         function submitReview(review) {
-            return TeacherService.submitReview(vm.teacher.id, review).then(function () {
+            return TeacherService.
+                submitReview(vm.teacher.id, review).then(function () {
 
                 loadTeacher(vm.teacher.id);
             });
@@ -81,7 +83,7 @@
 
         function showReviewModal() {
 
-            $modal.open({
+            ModalService.open({
                 templateUrl: 'scripts/presentation/teacher/profile/review/teacher.profile.review.html',
                 controller: 'ReviewModalController',
                 controllerAs: 'vm',

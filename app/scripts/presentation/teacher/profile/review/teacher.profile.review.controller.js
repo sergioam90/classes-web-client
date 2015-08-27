@@ -6,9 +6,9 @@
         .controller('ReviewModalController', ReviewModalController);
 
     // Injection is made through resolve attribute
-    ReviewModalController.$inject = ['$modalInstance', 'teacher', 'currentUser', 'submitReview'];
+    ReviewModalController.$inject = ['ModalService', 'teacher', 'currentUser', 'submitReview'];
 
-    function ReviewModalController($modalInstance, teacher, currentUser, submitReview) {
+    function ReviewModalController(ModalService, teacher, currentUser, submitReview) {
         var vm = this;
 
         vm.teacher = teacher;
@@ -40,7 +40,7 @@
             submitReview(vm.review).then(success, error);
 
             function success() {
-                $modalInstance.close();
+                ModalService.close();
             }
 
             function error() {
@@ -49,7 +49,7 @@
         }
 
         function modalDismiss() {
-            $modalInstance.close();
+            ModalService.close();
         }
 
         function onHover(value) {

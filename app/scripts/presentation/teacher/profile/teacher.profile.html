@@ -192,10 +192,13 @@
                         <h5>Calificaciones</h5>
 
                         <div ng-repeat="review in vm.reviews">
-                            <review ng-model="review"></review>
-                            <div class="divider"></div>
+                            <span ng-if="review.student.id !== vm.currentUser.student">
+                                <review ng-model="review"></review>
+                                <div class="divider"></div>
+                            </span>
                         </div>
 
+                        <!-- TODO: Show when teacher has only current student review -->
                         <div ng-if="!vm.reviews.length">
                             <p class="lead">¡Aún no han calificado a este profesor!</p>
                         </div>
