@@ -352,6 +352,9 @@ module.exports = function (grunt) {
         copy: {
             dist: {
                 files: [{
+                    src: '<%= yeoman.app %>/index.html',
+                    dest: '<%= yeoman.dist %>/404.html'
+                }, {
                     expand: true,
                     dot: true,
                     cwd: '<%= yeoman.app %>',
