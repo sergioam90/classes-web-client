@@ -94,3 +94,21 @@ html, body {
     margin-left: -0.75rem;
     margin-right: -0.75rem;
 }
+
+.row.search,
+.col.search {
+    margin: 0;
+    padding: 0;
+}
+
+.card.search {
+    margin: 0.5rem;
+}
+
+.col.search.stacked {
+    margin-bottom: 1rem;
+}
+
+.search-container {
+    padding: 0.5rem;
+}

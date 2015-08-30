@@ -420,7 +420,7 @@ module.exports = function (grunt) {
             development: {
                 constants: {
                     appConfig: {
-                        API_SERVER_URL: 'pure-tundra-6015.herokuapp.com'
+                        API_SERVER_URL: 'classes.noip.me:8080'
                     }
                 }
             },

@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .service('MapsService', MapsService);
 
-    MapsService.$inject = ['$q'];
+    MapsService.$inject = ['$q', 'GeoCoder'];
 
-    function MapsService($q) {
+    function MapsService($q, GeoCoder) {
 
         function getLocationName(placeId) {
             var deferred = $q.defer();
@@ -30,100 +30,62 @@
         function getAddress(coordinates) {
             var deferred = $q.defer();
 
-            var geocoder = new google.maps.Geocoder();
+            var location = {
+                lat: coordinates.latitude,
+                lng: coordinates.longitude
+            };
 
-            // TODO: Harcoded location
-            var latlng = new google.maps.LatLng(-38.7229407,-62.2685386);
-
-            var request = {location: latlng};
-
-            geocoder.geocode(request, function (results, status) {
-                if (status === google.maps.GeocoderStatus.OK) {
-                    deferred.resolve(results[0].formatted_address);
-                } else {
-                    console.log('Geocoding failed. Status: ' + status);
-                    deferred.reject();
-                }
+            GeoCoder.geocode({location: location}).then(function (results) {
+                deferred.resolve(results[0].formatted_address);
+            }, function (error) {
+                deferred.reject(error);
             });
 
             return deferred.promise;
         }
 
-        function createMap(center, mapId, inputId) {
+        function getLocality(place) {
 
-            var mapOptions = {
-                center: center,
-                zoom: 8
-            };
+            var deferred = $q.defer();
 
-            // Create the map
-            var mapCanvas1 = new google.maps.Map(document.getElementById(inputId), mapOptions);
+            // Search for locality name
+            var localityName = '';
 
-            // Create the address autocomplete field
-            var autocomplete = new google.maps.places.Autocomplete(document.getElementById(inputId));
-
-            autocomplete.bindTo('bounds', mapCanvas1);
-
-            var infowindow = new google.maps.InfoWindow();
-
-            var marker = new google.maps.Marker({
-                map: mapCanvas1,
-                anchorPoint: new google.maps.Point(0, -29)
-            });
-
-            google.maps.event.addListener(autocomplete, 'place_changed', function () {
-                // Close info windows and hide marker
-                infowindow.close();
-                marker.setVisible(false);
-
-                // Get place
-                var place = autocomplete.getPlace();
-                if (!place.geometry) {
-                    window.alert("Autocomplete's returned place contains no geometry");
-                    return;
+            // Search in address components
+            for (var i = 0; i < place.address_components.length; i++) {
+                if (localityName !== '') {
+                    break;
                 }
 
-                // If the place has a geometry, then present it on a map.
-                if (place.geometry.viewport) {
-                    mapCanvas1.fitBounds(place.geometry.viewport);
-                } else {
-                    mapCanvas1.setCenter(place.geometry.location);
-                    mapCanvas1.setZoom(17);  // Why 17? Because it looks good.
+                // Search for locality in address_components types
+                for (var j = 0; j < place.address_components[i].types.length; j++) {
+                    if (place.address_components[i].types[j] === 'locality') {
+                        localityName = place.address_components[i].long_name;
+                        break;
+                    }
                 }
+            }
 
-                // Set marker
-                marker.setIcon(/** @type {google.maps.Icon} */({
-                    url: place.icon,
-                    size: new google.maps.Size(71, 71),
-                    origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(17, 34),
-                    scaledSize: new google.maps.Size(35, 35)
-                }));
-                marker.setPosition(place.geometry.location);
-                marker.setVisible(true);
+            // Geocode locality name
+            GeoCoder.geocode({address: localityName}).then(success, error);
 
-                var address = '';
-                if (place.address_components) {
-                    address = [
-                        (place.address_components[0] && place.address_components[0].short_name || ''),
-                        (place.address_components[1] && place.address_components[1].short_name || ''),
-                        (place.address_components[2] && place.address_components[2].short_name || '')
-                    ].join(' ');
-                }
+            function success(result) {
+                console.log(result);
+                deferred.resolve(result[0].place_id);
+            }
 
-                $scope.$apply(function () {
-                    vm.LatLng = place.geometry.location;
-                });
+            function error(error) {
+                console.log(error);
+                deferred.reject();
+            }
 
-                infowindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-                infowindow.open(vm.mapCanvas1, marker);
-            });
+            return deferred.promise;
         }
 
         return {
             getLocationName: getLocationName,
             getAddress: getAddress,
-            createMap: createMap
+            getLocality: getLocality
         };
     }
 })();

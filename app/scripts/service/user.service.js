@@ -13,11 +13,12 @@
 
         vm.me = me;
         vm.saveUser = saveUser;
+        vm.signup = signup;
 
 
         /* Implementation */
 
-        function register(user) {
+        function signup(user) {
             return Users.post(user);
         }
 

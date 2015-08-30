@@ -1,3 +1,4 @@
+<div class="" ng-if="vm.student">
 <dl>
     <!-- Student information -->
     <dt>Ubicación</dt>
@@ -11,21 +12,10 @@
     <dt>Profesores favoritos</dt>
     <dd>
         <div class="row">
-            <div class="col-sm-4" ng-repeat="teacher in vm.favoriteTeachers">
-                <div class="panel panel-body">
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <img src="images/mock.jpg" class="img-responsive">
-                        </div>
-                        <div class="col-sm-10">
-                            <a ui-sref="root.teacherProfile(teacher)">
-                                {{ teacher.user.firstName }} {{ teacher.user.lastName }}
-                            </a>
-                        </div>
-                    </div>
-                </div>
+            <div class="col s12 m4" ng-repeat="teacher in vm.favoriteTeachers">
+                <favorite-teacher ng-model="teacher"></favorite-teacher>
             </div>
-            <div class="col-sm-4" ng-if="!vm.favoriteTeachers.length">
+            <div class="col s12 m4" ng-if="!vm.favoriteTeachers.length">
                 No tienes profesores favoritos
             </div>
         </div>
@@ -71,3 +61,8 @@
         </div>
     </dd>
 </dl>
+</div>
+
+<div class="" ng-if="!vm.student">
+    <a class="btn" ui-sref="root.signup.student">Crear perfil de estudiante</a>
+</div>

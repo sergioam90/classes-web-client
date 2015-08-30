@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .controller('MyTeacherProfileController', MyTeacherProfileController);
 
-    MyTeacherProfileController.$inject = ['TeacherService', 'MapsService', 'DegreeService'];
+    MyTeacherProfileController.$inject = ['TeacherService', 'MapsService', 'DegreeService', 'CityService'];
 
-    function MyTeacherProfileController(TeacherService, MapsService, DegreeService) {
+    function MyTeacherProfileController(TeacherService, MapsService, DegreeService, CityService) {
 
         var vm = this;
 
@@ -33,6 +33,8 @@
                 loadReviews(vm.teacher.id);
 
                 loadTeacherAddress(vm.teacher.location);
+            }, function () {
+                vm.teacher = undefined;
             });
         }
 
@@ -44,13 +46,18 @@
             });
         }
 
-        function loadTeacherAddress(){
+        function loadTeacherAddress(location) {
             MapsService.getAddress(location).then(function (result) {
                 vm.formattedAddress = result;
+                console.log(result);
+            }, function (error) {
+                console.log('Error loading address: ');
+                console.log(error);
             });
         }
 
         function saveTeacher(){
+
             TeacherService.saveTeacher(vm.teacher).then(function (teacher) {
                 // TODO: Is this ok?
                 vm.teacher = teacher;
@@ -59,11 +66,39 @@
 
         function placeChanged() {
             var place = this.getPlace();
-            vm.teacher.location = {
-                latitude: place.geometry.location.G,
-                longitude: place.geometry.location.K
-            };
-            vm.saveTeacher();
+            console.log(place);
+
+
+            MapsService.getLocality(place).then(success, error);
+
+            function success(locality) {
+
+                if (!validLocality(locality)) {
+                    // TODO: Add error handling
+                    console.log('City is not valid');
+
+                    return;
+                }
+
+                vm.teacher.location = {
+                    latitude: place.geometry.location.G,
+                    longitude: place.geometry.location.K,
+                    city: locality
+                };
+
+                console.log(vm.teacher.location);
+
+                vm.saveTeacher();
+            }
+
+            function error(error) {
+                console.log(error);
+            }
+
+            function validLocality(locality) {
+                return CityService.exists(locality);
+            }
+
         }
     }
 })();

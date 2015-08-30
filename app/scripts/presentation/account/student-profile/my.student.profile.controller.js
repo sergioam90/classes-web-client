@@ -31,13 +31,17 @@
 
         function loadStudentData() {
 
-            StudentService.me().then(callback);
+            StudentService.me().then(success, error);
 
-            function callback(student) {
+            function success(student) {
                 vm.student = student;
 
                 loadStudentReviews(vm.student.id);
                 loadStudentFavoriteTeachers();
+            }
+
+            function error() {
+                vm.student = undefined;
             }
         }
 

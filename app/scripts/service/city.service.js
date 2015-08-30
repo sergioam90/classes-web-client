@@ -29,9 +29,14 @@
             return citiesNames[city];
         }
 
+        function exists(city) {
+            return angular.isDefined(citiesNames[city]);
+        }
+
         return {
             getCityName: getCityName,
-            getAllCities: getAllCities
+            getAllCities: getAllCities,
+            exists: exists
         };
     }
 

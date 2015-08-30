@@ -30,6 +30,7 @@
                     }
                 }
             })
+
             .state('root.home', {
                 url: '/',
                 views: {
@@ -44,6 +45,7 @@
                     }
                 }
             })
+
             .state('root.about', {
                 url: '/about',
                 views: {
@@ -52,7 +54,9 @@
                         controller: 'AboutController as vm'
                     }
                 }
-            }).state('root.login', {
+            })
+
+            .state('root.login', {
                 url: '/account/login',
                 views: {
                     'container@': {
@@ -61,48 +65,75 @@
                     }
                 }
             })
-            .state('root.register', {
-                abstract: true,
-                url: '/account/register/{target}',
+
+            .state('root.signup', {
+                url: '/account/signup',
                 views: {
                     'container@': {
-                        templateUrl: 'scripts/presentation/account/register/register.html',
-                        controller: 'RegisterController as vm'
+                        templateUrl: 'scripts/presentation/account/signup/signup.html',
+                        controller: 'SignupController as vm'
                     }
                 }
             })
-            .state('root.register.method', {
-                url: '/method',
+
+            .state('root.signup.user', {
+                url: '/account/signup/user',
                 views: {
                     'container@': {
-                        templateUrl: 'scripts/presentation/account/register/register.method.html'
+                        templateUrl: 'scripts/presentation/account/signup/user/signup.user.html',
+                        controller: 'SignupUserController as vm'
                     }
                 }
             })
-            .state('root.register.personal', {
-                url: '/personal',
+
+            .state('root.signup.socialUser', {
+                url: '/account/signup/socialUser',
                 views: {
                     'container@': {
-                        templateUrl: 'scripts/presentation/account/register/register.personal.html'
+                        templateUrl: 'scripts/presentation/account/signup/social-user/signup.social-user.html'
                     }
                 }
             })
-            .state('root.register.teacher', {
+
+            .state('root.signup.teacher', {
                 url: '/teacher',
                 views: {
                     'container@': {
-                        templateUrl: 'scripts/presentation/account/register/teacher/register.teacher.html'
+                        templateUrl: 'scripts/presentation/account/signup/teacher/signup.teacher.html',
+                        controller: 'SignupTeacherController as vm'
                     }
                 }
             })
+
             .state('root.register.student', {
-                url: '/student',
+                url: '/account/signup/student',
                 views: {
                     'container@': {
-                        templateUrl: 'scripts/presentation/account/register/student/register.student.html'
+                        templateUrl: 'scripts/presentation/account/signup/student/signup.student.html'
                     }
                 }
             })
+
+            .state('root.facebook', {
+                url: '/facebook?code',
+                views: {
+                    'container@': {
+                        templateUrl: 'scripts/presentation/account/signup/method/facebook/facebook.template.html',
+                        controller: 'FacebookController as vm'
+                    }
+                }
+            })
+
+            .state('root.verification', {
+                url: '/user/{id}/verification?code',
+                views: {
+                    'container@': {
+                        templateUrl: 'scripts/presentation/account/signup/method/local/local.template.html',
+                        controller: 'LocalController as vm'
+                    }
+                }
+            })
+
             .state('root.account', {
                 abstract: true,
                 url: '/account',
@@ -114,6 +145,7 @@
                     }
                 }
             })
+
             .state('root.account.user', {
                 url: '/user',
                 views: {
@@ -123,6 +155,7 @@
                     }
                 }
             })
+
             .state('root.account.student', {
                 url: '/student',
                 views: {
@@ -132,6 +165,7 @@
                     }
                 }
             })
+
             .state('root.account.teacher', {
                 url: '/teacher',
                 views: {
@@ -141,6 +175,7 @@
                     }
                 }
             })
+
             .state('root.teachersSearch', {
                 url: '/teacher/search?city?subjects',
                 reloadOnSearch: false,
@@ -151,6 +186,7 @@
                     }
                 }
             })
+
             .state('root.teacherProfile', {
                 url: '/teachers/{id}',
                 views: {
@@ -165,6 +201,7 @@
                     }
                 }
             })
+
             .state('root.maps', {
                 url: '/maps',
                 views: {
