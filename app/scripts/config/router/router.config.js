@@ -135,7 +135,6 @@
                 url: '/facebook?code',
                 views: {
                     'container@': {
-                        templateUrl: 'scripts/presentation/account/signup/method/facebook/facebook.template.html',
                         controller: 'FacebookController as vm'
                     }
                 }
