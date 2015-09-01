@@ -16,8 +16,6 @@
         vm.review = {};
         vm.modalSubmitReview = modalSubmitReview;
         vm.modalDismiss = modalDismiss;
-        vm.onHover = onHover;
-        vm.onLeave = onLeave;
 
         vm.titles = [
             'Malísimo',
@@ -50,14 +48,6 @@
 
         function modalDismiss() {
             ModalService.close();
-        }
-
-        function onHover(value) {
-            vm.currentTitle = vm.titles[value - 1];
-        }
-
-        function onLeave() {
-            vm.currentTitle = vm.titles[vm.teacher.review.rating - 1];
         }
 
     }

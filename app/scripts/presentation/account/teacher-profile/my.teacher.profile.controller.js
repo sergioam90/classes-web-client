@@ -5,13 +5,13 @@
         .module('classesClientApp')
         .controller('MyTeacherProfileController', MyTeacherProfileController);
 
-    MyTeacherProfileController.$inject = ['TeacherService', 'MapsService', 'DegreeService', 'CityService'];
+    MyTeacherProfileController.$inject = ['teacher', 'TeacherService', 'MapsService', 'DegreeService', 'CityService'];
 
-    function MyTeacherProfileController(TeacherService, MapsService, DegreeService, CityService) {
+    function MyTeacherProfileController(teacher, TeacherService, MapsService, DegreeService, CityService) {
 
         var vm = this;
 
-        vm.teacher = {};
+        vm.teacher = teacher;
         vm.reviews = [];
         vm.saveTeacher = saveTeacher;
         vm.degreesNames = DegreeService.getAllDegrees();
@@ -23,22 +23,18 @@
         /* Implementation */
 
         function initialize() {
-            loadTeacher();
+            if (vm.teacher) {
+                loadTeacher();
+            }
         }
 
-        function loadTeacher(){
-            TeacherService.me().then(function (teacher) {
-                vm.teacher = teacher;
+        function loadTeacher() {
+            loadReviews(vm.teacher.id);
 
-                loadReviews(vm.teacher.id);
-
-                loadTeacherAddress(vm.teacher.location);
-            }, function () {
-                vm.teacher = undefined;
-            });
+            loadTeacherAddress(vm.teacher.location);
         }
 
-        function loadReviews(id){
+        function loadReviews(id) {
             TeacherService.reviews(id).then(function (page) {
 
                 // TODO: Work with page not just content
@@ -56,7 +52,7 @@
             });
         }
 
-        function saveTeacher(){
+        function saveTeacher() {
 
             TeacherService.saveTeacher(vm.teacher).then(function (teacher) {
                 // TODO: Is this ok?
@@ -66,8 +62,6 @@
 
         function placeChanged() {
             var place = this.getPlace();
-            console.log(place);
-
 
             MapsService.getLocality(place).then(success, error);
 
@@ -85,8 +79,6 @@
                     longitude: place.geometry.location.K,
                     city: locality
                 };
-
-                console.log(vm.teacher.location);
 
                 vm.saveTeacher();
             }

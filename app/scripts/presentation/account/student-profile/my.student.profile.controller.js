@@ -5,13 +5,13 @@
         .module('classesClientApp')
         .controller('MyStudentProfileController', MyStudentProfileController);
 
-    MyStudentProfileController.$inject = ['StudentService', 'UserService'];
+    MyStudentProfileController.$inject = ['student', 'StudentService', 'UserService'];
 
-    function MyStudentProfileController(StudentService, UserService) {
+    function MyStudentProfileController(student, StudentService, UserService) {
 
         var vm = this;
 
-        vm.student = {};
+        vm.student = student;
         vm.madeReviews = [];
         vm.favoriteTeachers = [];
 
@@ -20,13 +20,14 @@
         // Edit functions
         vm.editUser = editUser;
 
-
         initialize();
 
         /* Implementation */
 
         function initialize() {
-            loadStudentData();
+            if (vm.student) {
+                loadStudentData();
+            }
         }
 
         function loadStudentData() {
@@ -59,8 +60,8 @@
             });
         }
 
-        function removeReview(teacherId) {
-            StudentService.removeReview(teacherId).then(function () {
+        function removeReview(teacher) {
+            StudentService.removeReview(teacher).then(function () {
                 loadStudentReviews(vm.student.id);
             });
         }

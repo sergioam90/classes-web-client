@@ -8,14 +8,15 @@
             </div>
 
             <!-- Review comment and student name -->
-            <div class="col s8">
+            <div class="col s7">
 
                 <!-- Student name and date -->
                 <div class="row">
 
-                    <!-- Student name -->
-                    <div class="col s9">
-                        {{ review.student.user.firstName }} {{ review.student.user.lastName }}
+                    <!-- Student or teacher name -->
+                    <div class="col s12">
+                        <span ng-if="!forStudent">{{ review.student.user | fullName }}</span>
+                        <span ng-if="forStudent">{{ review.teacher.user | fullName }}</span>
                         <rating class="orange-text"
                                 readonly="true"
                                 ng-model="review.rating">
@@ -35,6 +36,13 @@
                     </div>
                 </div>
 
+            </div>
+
+            <!-- Review controls -->
+            <div class="col s1" ng-if="forStudent">
+                <a class="btn-flat" ng-click="deleteReview({ teacher: review.teacher.id })">
+                    <i class="material-icons">close</i>
+                </a>
             </div>
         </div>
     </div>

@@ -30,7 +30,6 @@
                     }
                 }
             })
-
             .state('root.home', {
                 url: '/',
                 views: {
@@ -67,7 +66,7 @@
             })
 
             .state('root.signup', {
-                url: '/account/signup',
+                url: '/signup?target',
                 views: {
                     'container@': {
                         templateUrl: 'scripts/presentation/account/signup/signup.html',
@@ -77,7 +76,7 @@
             })
 
             .state('root.signup.user', {
-                url: '/account/signup/user',
+                url: '/user',
                 views: {
                     'container@': {
                         templateUrl: 'scripts/presentation/account/signup/user/signup.user.html',
@@ -87,10 +86,20 @@
             })
 
             .state('root.signup.socialUser', {
-                url: '/account/signup/socialUser',
+                url: '/socialUser',
                 views: {
                     'container@': {
-                        templateUrl: 'scripts/presentation/account/signup/social-user/signup.social-user.html'
+                        templateUrl: 'scripts/presentation/account/signup/social-user/signup.social-user.html',
+                        controller: 'SignupSocialUserController as vm',
+                        resolve: {
+                            user: function(UserService){
+                                return UserService.me().then(function (user) {
+                                    return user;
+                                }, function (error) {
+                                    // TODO: Handle errors
+                                });
+                            }
+                        }
                     }
                 }
             })
@@ -100,21 +109,29 @@
                 views: {
                     'container@': {
                         templateUrl: 'scripts/presentation/account/signup/teacher/signup.teacher.html',
-                        controller: 'SignupTeacherController as vm'
+                        controller: 'SignupTeacherController as vm',
+                        resolve: {
+                            user: function(UserService){
+                                return UserService.me().then(function(user){
+                                    return user;
+                                });
+                            }
+                        }
                     }
                 }
             })
 
-            .state('root.register.student', {
-                url: '/account/signup/student',
+            .state('root.signup.student', {
+                url: '/student',
                 views: {
                     'container@': {
-                        templateUrl: 'scripts/presentation/account/signup/student/signup.student.html'
+                        templateUrl: 'scripts/presentation/account/signup/student/signup.student.html',
+                        controller: 'SignupStudentController as vm'
                     }
                 }
             })
 
-            .state('root.facebook', {
+            .state('root.facebookCallback', {
                 url: '/facebook?code',
                 views: {
                     'container@': {
@@ -124,7 +141,7 @@
                 }
             })
 
-            .state('root.verification', {
+            .state('root.userVerification', {
                 url: '/user/{id}/verification?code',
                 views: {
                     'container@': {
@@ -140,8 +157,6 @@
                 views: {
                     'container@': {
                         templateUrl: 'scripts/presentation/account/account.html'
-                        // TODO: for possible future use
-                        // controller: 'AccountController as vm'
                     }
                 }
             })
@@ -151,7 +166,17 @@
                 views: {
                     '': {
                         templateUrl: 'scripts/presentation/account/user-profile/my.user.profile.html',
-                        controller: 'MyUserProfileController as vm'
+                        controller: 'MyUserProfileController as vm',
+                        resolve: {
+                            user: function (AccountService) {
+                                return AccountService.loadUser().then(function (user) {
+                                    return user;
+                                }, function (error) {
+                                    // TODO: Should we redirect home?
+                                    return undefined;
+                                });
+                            }
+                        }
                     }
                 }
             })
@@ -161,7 +186,16 @@
                 views: {
                     '': {
                         templateUrl: 'scripts/presentation/account/student-profile/my.student.profile.html',
-                        controller: 'MyStudentProfileController as vm'
+                        controller: 'MyStudentProfileController as vm',
+                        resolve: {
+                            student: function (StudentService) {
+                                return StudentService.me().then(function (student) {
+                                    return student;
+                                }, function (error) {
+                                    return undefined;
+                                });
+                            }
+                        }
                     }
                 }
             })
@@ -171,13 +205,22 @@
                 views: {
                     '': {
                         templateUrl: 'scripts/presentation/account/teacher-profile/my.teacher.profile.html',
-                        controller: 'MyTeacherProfileController as vm'
+                        controller: 'MyTeacherProfileController as vm',
+                        resolve: {
+                            teacher: function (TeacherService) {
+                                return TeacherService.me().then(function (teacher) {
+                                    return teacher;
+                                }, function (error) {
+                                    return undefined;
+                                });
+                            }
+                        }
                     }
                 }
             })
 
             .state('root.teachersSearch', {
-                url: '/teacher/search?city?subjects',
+                url: '/teacher/search',
                 reloadOnSearch: false,
                 views: {
                     'container@': {

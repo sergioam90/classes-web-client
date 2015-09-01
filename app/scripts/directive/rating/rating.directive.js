@@ -115,12 +115,15 @@
                     for(var i = index + 1; i < scope.states.length; i++){
                         scope.states[i] = emptyStar;
                     }
+
+                    setCurrentTitle(index + 1);
                 }
             }
 
             function starLeave(){
                 if(!angular.isDefined(scope.readonly)){
                     updateStatesHalf(scope.value);
+                    setCurrentTitle(scope.value);
                 }
             }
 
@@ -134,6 +137,10 @@
                     }
                 }
             }
+
+            function setCurrentTitle(value) {
+                scope.currentTitle = scope.titles[value - 1];
+            }
         }
 
         return {
@@ -143,7 +150,9 @@
                 statesClasses: '=',
                 readonly: '@',
                 onChange: '&',
-                discrete: '@'
+                discrete: '@',
+                currentTitle: '=',
+                titles: '='
             },
             templateUrl: 'scripts/directive/rating/rating.template.html',
             link: link

@@ -1,5 +1,11 @@
 <div class="" ng-if="vm.teacher">
 
+    <div class="row">
+        <div class="col s12">
+            <teacher-result ng-model="vm.teacher"></teacher-result>
+        </div>
+    </div>
+
     <!-- Description and rating -->
     <div class="row">
 
@@ -67,9 +73,36 @@
         <div class="col s12">
             <h5>Clases</h5>
 
-            <p>
-                Precio: $ {{ vm.teacher.fee }}
-            </p>
+            <div class="row">
+                <div class="col s12">
+                    <h5>Precio</h5>
+                    <span editable-number="vm.teacher.fee" e-step="10" e-required e-form="feeForm">
+                        $ {{ vm.teacher.fee }}
+                    </span>
+
+                    <form editable-form name="feeForm" onaftersave="vm.saveTeacher()"
+                          ng-show="feeForm.$visible">
+                        <button type="submit"
+                                ng-disabled="feeForm.$waiting"
+                                class="btn-flat">
+                            <i class="fa fa-check"></i>
+                        </button>
+                        <button type="button"
+                                ng-disabled="feeForm.$waiting"
+                                ng-click="feeForm.$cancel()"
+                                class="btn-flat">
+                            <i class="fa fa-close"></i>
+                        </button>
+                    </form>
+
+                    <button class="btn-flat"
+                            ng-click="feeForm.$show()"
+                            ng-hide="feeForm.$visible">
+                        <i class="fa fa-pencil"></i>
+                    </button>
+                </div>
+            </div>
+
             <input id="groupLessons"
                    type="checkbox"
                    ng-change="vm.saveTeacher()"
@@ -120,24 +153,24 @@
     <div class="row">
         <div class="col s12">
             <h5>Teléfono</h5>
-            <span editable-text="vm.teacher.phone.number" e-required e-form="phoneNumberPhone">
+            <span editable-text="vm.teacher.phone.number" e-required e-form="phoneNumberForm">
                 {{ vm.teacher.phone.number }}
             </span>
 
-            <form editable-form name="phoneNumberPhone" onaftersave="vm.saveTeacher()"
-                  ng-show="phoneNumberPhone.$visible">
-                <button type="submit" ng-disabled="phoneNumberPhone.$waiting" class="btn-flat">
+            <form editable-form name="phoneNumberForm" onaftersave="vm.saveTeacher()"
+                  ng-show="phoneNumberForm.$visible">
+                <button type="submit" ng-disabled="phoneNumberForm.$waiting" class="btn-flat">
                     <i class="fa fa-check"></i>
                 </button>
-                <button type="button" ng-disabled="phoneNumberPhone.$waiting"
-                        ng-click="phoneNumberPhone.$cancel()"
+                <button type="button" ng-disabled="phoneNumberForm.$waiting"
+                        ng-click="phoneNumberForm.$cancel()"
                         class="btn-flat">
                     <i class="fa fa-close"></i>
                 </button>
             </form>
             <button class="btn-flat"
-                    ng-click="phoneNumberPhone.$show()"
-                    ng-hide="phoneNumberPhone.$visible">
+                    ng-click="phoneNumberForm.$show()"
+                    ng-hide="phoneNumberForm.$visible">
                 <i class="fa fa-pencil"></i>
             </button>
 
@@ -165,12 +198,11 @@
     <div class="row">
         <div class="col s12">
             <h5>Dirección</h5>
-            {{ vm.teacher.location }}
 
             <input places-auto-complete="" size="80" ng-model="address" types="['address']"
                    on-place-changed="vm.placeChanged(place)" class="ng-pristine ng-valid"
                    placeholder="Ingrese su ubicación..." autocomplete="on">
-            {{ address }}
+
             <p>{{ vm.formattedAddress }}</p>
             <img class="responsive-img"
                  src="https://maps.googleapis.com/maps/api/staticmap?size=300x300&maptype=roadmap&markers={{ vm.teacher.location.latitude }},{{ vm.teacher.location.longitude }}"/>

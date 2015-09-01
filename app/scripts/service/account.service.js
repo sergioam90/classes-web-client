@@ -30,7 +30,8 @@
 
         function loadUser() {
             return UserService.me().then(function (user) {
-                return vm.me = user;
+                vm.me = user;
+                return user;
             });
         }
 
@@ -46,8 +47,9 @@
                 vm.logout();
             }
 
-            console.log(OAuthToken);
             OAuthToken.setToken(token);
+
+            return vm.loadUser();
         }
 
         function logout() {

@@ -172,16 +172,17 @@
                                 Mi calificación
                                 <button ng-if="vm.teacher.review"
                                         ng-click="vm.showReviewModal()"
-                                        class="btn btn-default btn-sm"
-                                        tooltipped data-tooltip="Editar"
-                                        tooltip-placement="right">
+                                        class="btn-flat">
                                     <i class="fa fa-pencil"></i>
                                 </button>
                             </h5>
-                            <review ng-if="vm.teacher.review" ng-model="vm.teacher.review"></review>
+                            <review ng-if="vm.teacher.review"
+                                    for-student="true"
+                                    delete-review="vm.removeReview(teacher)"
+                                    ng-model="vm.teacher.review"></review>
                             <div ng-if="!vm.teacher.review" class="text-center">
                                 <button ng-click="vm.showReviewModal()"
-                                        class="btn btn-primary btn-lg">
+                                        class="btn">
                                     Calificar
                                 </button>
                             </div>

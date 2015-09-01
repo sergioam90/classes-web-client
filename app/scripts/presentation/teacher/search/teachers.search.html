@@ -12,8 +12,12 @@
                     <div class="row">
                         <!-- Subject filter -->
                         <div class="col s12">
-                            <ui-select multiple ng-model="vm.searchCriteria.subjects" ng-disabled="disabled"
-                                       style="width: 100%;">
+                            <ui-select multiple
+                                       ng-model="vm.searchCriteria.subjects"
+                                       ng-disabled="disabled"
+                                       class="full-width"
+                                       on-select="vm.search()"
+                                       on-remove="vm.search()">
                                 <ui-select-match placeholder="Elegí tus materias...">
                                     {{ $item.name }}
                                 </ui-select-match>
@@ -27,21 +31,25 @@
 
                         <!-- City filter -->
                         <div class="col s12 hide-on-small-and-down">
-                            <select class="" ng-model="vm.searchCriteria.city" material-select watch>
+                            <select class=""
+                                    ng-model="vm.searchCriteria.city"
+                                    ng-change="vm.search()"
+                                    material-select
+                                    watch>
                                 <option value="" selected disabled>Elegí tu ciudad...</option>
-                                <option ng-repeat="city in vm.cities">{{city | city}}</option>
+                                <option ng-repeat="city in vm.cities" ng-value="city">{{ city | city }}</option>
                             </select>
                         </div>
 
                         <!-- Text filter -->
-                        <div class="col s12 hide-on-small-and-down">
+                        <input-field class="col s12 hide-on-small-and-down">
                             <input ng-model="vm.searchCriteria.text"
                                    ng-model-options="{ debounce: 750 }"
                                    ng-change="vm.search()"
                                    type="text"
                                    class="form-control"
                                    placeholder="Nombre o descripcion..."/>
-                        </div>
+                        </input-field>
                     </div>
 
                 </div>
@@ -69,7 +77,6 @@
 
             <!-- Search filters and order -->
             <div class="row search">
-
                 <!-- Filters -->
                 <div class="col s9 search">
 
@@ -130,13 +137,6 @@
                 <!-- Order -->
                 <div class="col s3 search">
                     <div class="card z-depth-2 search">
-                        <select class="" ng-model="vm.searchCriteria.singleSelectedSubject"
-                                material-select watch>
-                            <option value="" selected disabled>Elegí tu materia...</option>
-                            <option ng-repeat="subject in vm.subjects">
-                                {{ subject.name }}
-                            </option>
-                        </select>
                     </div>
                 </div>
 
@@ -144,6 +144,8 @@
 
             <!-- Search results -->
             <div class="row search">
+
+                <!-- Results -->
                 <div class="col s9 search"
                      ng-if="!vm.teacherResult.length"
                      ng-repeat="teacher in vm.teachersResult">
@@ -152,14 +154,38 @@
                                     view-profile="vm.viewProfile(teacher)">
                     </teacher-result>
 
-                    <!-- Nothing found message -->
-                    <h4 class="center" ng-if="!vm.teachersResult.length">
-                        ¡Uh! No hay nadie que cumpla esas condiciones :(
-                    </h4>
+                </div>
 
-                    <p class="lead center" ng-if="!vm.teachersResult.length">
-                        Tip: Revisa los filtros ;)
-                    </p>
+                <!-- Searching spinner -->
+                <div class="col s9">
+                    <div class="center" ng-if="vm.searching">
+                        <div class="preloader-wrapper big active">
+                            <div class="spinner-layer spinner-yellow-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Nothing found message -->
+                <div class="col s9">
+                    <div ng-if="!vm.teachersResult.length && !vm.searching">
+                        <h4 class="center">
+                            ¡Uh! No hay nadie que cumpla esas condiciones :(
+                        </h4>
+
+                        <p class="center">
+                            Tip: Revisa los filtros ;)
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>

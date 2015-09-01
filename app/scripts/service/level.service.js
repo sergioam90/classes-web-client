@@ -7,8 +7,8 @@
 
     function LevelService(){
         var levelsNames = {
-            Secondary: 'Secundario',
-            University: 'Universitario'
+            secondary: 'Secundario',
+            university: 'Universitario'
         };
 
         function getAllLevels(){

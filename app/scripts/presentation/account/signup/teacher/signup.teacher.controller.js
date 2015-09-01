@@ -5,9 +5,17 @@
         .module('classesClientApp')
         .controller('SignupTeacherController', SignupTeacherController);
 
-    SignupTeacherController.$inject = ['TeacherService', 'UserService', 'DegreeService', 'Subjects', 'MapsService', 'CityService'];
+    SignupTeacherController.$inject = [
+        'user',
+        'TeacherService',
+        'DegreeService',
+        'Subjects',
+        'MapsService',
+        'CityService',
+        '$state'
+    ];
 
-    function SignupTeacherController(TeacherService, UserService, DegreeService, Subjects, MapsService, CityService) {
+    function SignupTeacherController(user, TeacherService, DegreeService, Subjects, MapsService, CityService, $state) {
         var vm = this;
 
         vm.teacher = {
@@ -22,7 +30,8 @@
                 afternoon: false,
                 night: false
             },
-            averageRating: 0
+            averageRating: 0,
+            user: user
         };
 
         vm.degrees = [];
@@ -36,10 +45,6 @@
         /* Implementation */
 
         function initialize() {
-            UserService.me().then(function (user) {
-                vm.teacher.user = user.plain();
-            });
-
             vm.degrees = DegreeService.getAllDegrees();
 
             Subjects.getList().then(function (result) {
@@ -60,7 +65,9 @@
                 }
             }
 
-            TeacherService.signupTeacher(vm.teacher);
+            TeacherService.signupTeacher(vm.teacher).then(function () {
+                $state.go('root.account.teacher');
+            });
         }
 
         function placeChanged() {

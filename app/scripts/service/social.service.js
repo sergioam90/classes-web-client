@@ -15,14 +15,13 @@
         }
 
         function getFacebookAuthorizationUrl() {
-            // TODO: Improve
-            return $http({
-                method: 'GET',
-                headers: {
-                    "Accept": "text/plain"
-                }, url: 'http://classes.noip.me:8080/social/facebook/authorization-url'
-            });
-            //return Restangular.one('social').one('facebook').one('authorization-url').get();
+            return Restangular.one('social').one('facebook').one('authorization-url').customGET(
+                '',
+                undefined,
+                {
+                    'Accept': 'text/plain'
+                }
+            );
         }
 
         return {

@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .controller('FacebookController', FacebookController);
 
-    FacebookController.$inject = ['SocialService', '$location', 'AccountService', '$state'];
+    FacebookController.$inject = ['SocialService', '$location', 'AccountService', 'UserService', '$state'];
 
-    function FacebookController(SocialService, $location, AccountService, $state) {
+    function FacebookController(SocialService, $location, AccountService, UserService, $state) {
         var vm = this;
 
         // TODO: Check code existance
@@ -21,13 +21,20 @@
         function authSuccess(token) {
             token = token.plain();
 
-            console.log(token);
-
-            AccountService.loginWithToken(token);
-
             // TODO: Check errors
 
-            $state.go('root.confirm');
+            AccountService.loginWithToken(token).then(function () {
+
+                // Check if user is confirmed or not
+                UserService.me().then(function (user) {
+                    if (user.confirmed) {
+                        $state.go('root.account.user');
+                    } else {
+                        $state.go('root.signup.socialUser');
+                    }
+                });
+            });
+
         }
 
         function authError(error) {

@@ -26,21 +26,12 @@
             degrees: []
         };
 
-        vm.localSelectStrings = {
-            selectAll: 'Todas',
-            selectNone: 'Ninguna',
-            reset: 'Reiniciar',
-            search: 'Escribí aca para buscar...',
-            nothingSelected: 'Ninguna materia seleccionada'
-        };
+        vm.searching = true;
 
         vm.degreesNames = [];
         vm.selectedDegrees = [];
 
         vm.subjects = [];
-
-        // TODO: Decide how to implement binding with vm.subjects
-        vm.singleSelectedSubject = {};
 
         vm.teachersResult = [];
 
@@ -59,7 +50,7 @@
 
         function initialize() {
             // We must wait for subject loading from URL
-            loadSearchParams().then(search);
+            loadSearchParams().then(vm.search);
         }
 
         function loadSearchParams() {
@@ -99,26 +90,15 @@
 
         function loadSubjects() {
             return Subjects.getList().then(function (subjects) {
-                vm.subjects = [];
-
-                for(var i = 0; i < 100; i++){
-                    vm.subjects.push({name: 'test' + i, level: 'Secondary'});
-                }
+                vm.subjects = subjects.plain();
 
                 // If there are subjects in url, set them as selected
                 for (var i = 0; i < vm.subjects.length; i++) {
-
-                    // TODO: This should be replaced when multiselect supports filters
-                    var nameWithoutAccents = $filter('noAccents')(vm.subjects[i].name);
-                    var filteredLevel = $filter('level')(vm.subjects[i].level);
-
-                    vm.subjects[i].filteredName = nameWithoutAccents;
-                    vm.subjects[i].filteredLevel = ' - ' + filteredLevel;
-
                     if (vm.searchCriteria.subjects) {
                         vm.subjects[i].selected = vm.searchCriteria.subjects.indexOf(vm.subjects[i].id) > -1;
                     }
                 }
+
             });
         }
 
@@ -138,18 +118,20 @@
             // Add subjects ids to search criteria
             searchCriteria.subjects = [];
 
-            for (var i = 0; i < vm.subjects.length; i++) {
-                if (vm.subjects[i].selected) {
-                    searchCriteria.subjects.push(vm.subjects[i].id);
-                }
+            for (var i = 0; i < vm.searchCriteria.subjects.length; i++) {
+                searchCriteria.subjects.push(vm.searchCriteria.subjects[i].id);
             }
 
             $location.search(searchCriteria);
 
+            vm.searching = true;
+
             TeacherService.search(searchCriteria).then(function (page) {
 
+                vm.searching = false;
                 // TODO: Work with full page object
                 vm.teachersResult = page.content;
+
             });
         }
 
@@ -183,7 +165,6 @@
 
             return textWithoutAccents.toLowerCase().indexOf(substring.toLowerCase()) > -1;
         }
-
 
     }
 

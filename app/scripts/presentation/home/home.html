@@ -81,7 +81,7 @@
                         </a>
                     </li>
                     <li>
-                        <a ui-sref="root.register.method({target: 'teacher'})"
+                        <a ui-sref="root.signup"
 
                            ng-click="isCollapsed = true">
                             Quiero enseñar
@@ -105,7 +105,7 @@
 
                 <!-- Subject (with level) -->
                 <div class="col s12 m4 l4">
-                    <ui-select ng-model="vm.searchCriteria.subject[0]">
+                    <ui-select ng-model="vm.searchCriteria.subject">
                         <ui-select-match placeholder="Elija una asignatura...">{{ $select.selected.name }}
                         </ui-select-match>
                         <ui-select-choices
@@ -133,10 +133,10 @@
                 <!-- Search teacher button -->
                 <div class="col s12 m4 l4 text-center valign valign-wrapper">
 
-                    <button class="waves-effect waves-light btn-large white-text"
-                            style="border: 2px solid rgba(255, 255, 255, 0.6);line-height: 50px; font-size: 1.4em;background-color: rgba(255, 255, 255, 0.5)"
-                            type="submit"><i
-                            class="fa fa-search"></i> Buscar profesores
+                    <button ng-click="vm.homeSearch()"
+                            class="waves-effect waves-light btn-large white-text"
+                            style="border: 2px solid rgba(255, 255, 255, 0.6);line-height: 50px; font-size: 1.4em;background-color: rgba(255, 255, 255, 0.5)">
+                        <i class="fa fa-search"></i> Buscar profesores
                     </button>
                 </div>
             </div>

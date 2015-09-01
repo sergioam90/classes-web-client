@@ -8,9 +8,9 @@
     function DegreeService() {
 
         var degreesNames = {
-            Undergraduate: 'No graduado',
-            Graduate: 'Graduado',
-            Postgraduate: 'Superior a graduado'
+            undergraduate: 'No graduado',
+            graduate: 'Graduado',
+            postgraduate: 'Superior a graduado'
         };
 
         function getDegreeName(degree) {

@@ -40,6 +40,8 @@ module.exports = function (grunt) {
                 // JS files to be included by includeSource task into index.html
                 'scripts/app.module.js',
                 'scripts/app.constant.js',
+                'scripts/app.static.config',
+                'scripts/app.config',
                 'scripts/*.js',
                 'scripts/**/*.js'
             ],
@@ -414,7 +416,7 @@ module.exports = function (grunt) {
                 space: '  ',
                 wrap: "(function(){ 'use strict';\n\n {%= __ngModule %}}\n)();",
                 name: 'appConstant',
-                dest: '.tmp/scripts/app.config.js'
+                dest: '.tmp/scripts/app.static.config.js'
             },
             // Environment targets
             development: {

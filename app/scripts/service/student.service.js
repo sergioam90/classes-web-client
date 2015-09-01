@@ -18,12 +18,17 @@
         vm.addAsFavorite = addAsFavorite;
         vm.removeFavoriteTeacher = removeFavoriteTeacher;
         vm.removeReview = removeReview;
+        vm.signupStudent = signupStudent;
 
 
         /* Implementation */
 
         function me() {
             return Students.one('me').get();
+        }
+
+        function signupStudent(student) {
+            return Students.post(student);
         }
 
         function madeReviews(id) {

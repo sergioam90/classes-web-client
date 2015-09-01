@@ -28,7 +28,7 @@
         function logout() {
             AccountService.logout();
 
-            $state.go('root.main');
+            $state.go('root.home');
         }
     }
 

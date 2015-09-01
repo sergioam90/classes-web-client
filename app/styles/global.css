@@ -112,3 +112,13 @@ html, body {
 .search-container {
     padding: 0.5rem;
 }
+
+/* Fix angular-materialize padding in input-field's label */
+.input-field label {
+    left: 0;
+}
+
+/* Fix active nav link not being hightlighted */
+nav ul li.active {
+    background-color: rgba(0, 0, 0, 0.1);
+}

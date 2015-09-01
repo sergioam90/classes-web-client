@@ -38,10 +38,16 @@
                     </li>
                     <li>
 
-                        <!-- root.register.method({target: 'teacher'})" -->
-                        <a ui-sref="root.register()"
+                        <a ui-sref="root.signup({ target: 'teacher' })"
                            ng-click="isCollapsed = true">
                             Quiero enseñar
+                        </a>
+                    </li>
+                    <li>
+
+                        <a ui-sref="root.signup({ target: 'student' })"
+                           ng-click="isCollapsed = true">
+                            Quiero aprender
                         </a>
                     </li>
                 </span>
@@ -80,9 +86,15 @@
                     </li>
                     <li>
                         <!-- root.register.method({target: 'teacher'})" -->
-                        <a ui-sref="root.signup"
+                        <a ui-sref="root.signup({ target: 'teacher' })"
                            ng-click="isCollapsed = true">
                             Quiero enseñar
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.signup({ target: 'student' })"
+                           ng-click="isCollapsed = true">
+                            Quiero aprender
                         </a>
                     </li>
                 </span>
