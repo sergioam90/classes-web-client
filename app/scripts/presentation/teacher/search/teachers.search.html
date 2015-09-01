@@ -30,7 +30,7 @@
                         </div>
 
                         <!-- City filter -->
-                        <div class="col s12 hide-on-small-and-down">
+                        <div class="col s12">
                             <select class=""
                                     ng-model="vm.searchCriteria.city"
                                     ng-change="vm.search()"
@@ -42,7 +42,7 @@
                         </div>
 
                         <!-- Text filter -->
-                        <input-field class="col s12 hide-on-small-and-down">
+                        <input-field class="col s12">
                             <input ng-model="vm.searchCriteria.text"
                                    ng-model-options="{ debounce: 750 }"
                                    ng-change="vm.search()"

@@ -15,7 +15,9 @@
         </div>
 
         <div class="row">
-            <h4 class="center">{{ vm.currentTitle }}</h4>
+            // TODO: Dirty hiding
+            <h4 class="center" ng-if="!vm.currentTitle" style="visibility: hidden">Text</h4>
+            <h4 class="center" ng-if="vm.currentTitle">{{ vm.currentTitle }}</h4>
 
             <h2 class="center">
                 <rating class="orange-text"

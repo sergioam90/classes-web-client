@@ -200,7 +200,7 @@
                         </div>
 
                         <!-- TODO: Show when teacher has only current student review -->
-                        <div ng-if="!vm.reviews.length">
+                        <div ng-if="!vm.reviews.length || vm.reviews[0].student.id == vm.currentUser.student">
                             <p class="lead">¡Aún no han calificado a este profesor!</p>
                         </div>
 

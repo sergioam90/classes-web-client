@@ -139,7 +139,9 @@
             }
 
             function setCurrentTitle(value) {
-                scope.currentTitle = scope.titles[value - 1];
+                if (angular.isDefined(scope.titles)) {
+                    scope.currentTitle = scope.titles[value - 1];
+                }
             }
         }
 
