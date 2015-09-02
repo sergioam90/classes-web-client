@@ -19,7 +19,7 @@
         function initialize() {
 
             // Get Facebook authorization url
-            SocialService.getFacebookAuthorizationUrl().then(function (url) {
+            SocialService.getFacebookAuthorizationUrl(vm.target).then(function (url) {
                 vm.facebookUrl = url;
             }, function (error) {
                 console.log(error);

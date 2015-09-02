@@ -5,19 +5,24 @@
         .module('classesClientApp')
         .factory('SocialService', SocialService);
 
-    SocialService.$inject = ['Restangular', '$http'];
+    SocialService.$inject = ['Restangular'];
 
-    function SocialService(Restangular, $http) {
+    function SocialService(Restangular) {
 
-        function getFacebookAuthorization(code) {
+        function getFacebookAuthorization(code, target) {
 
-            return Restangular.one('social').one('facebook').one('authorization').get({code: code});
+            return Restangular.one('social').one('facebook').one('authorization').get({
+                code: code,
+                target: target
+            });
         }
 
-        function getFacebookAuthorizationUrl() {
+        function getFacebookAuthorizationUrl(target) {
             return Restangular.one('social').one('facebook').one('authorization-url').customGET(
                 '',
-                undefined,
+                {
+                    target: target
+                },
                 {
                     'Accept': 'text/plain'
                 }

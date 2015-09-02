@@ -6,6 +6,8 @@
         .controller('TeachersSearchController', TeachersSearchController);
 
     TeachersSearchController.$inject = [
+        'user',
+        'student',
         'TeacherService',
         'Subjects',
         'DegreeService',
@@ -16,8 +18,11 @@
         '$timeout'
     ];
 
-    function TeachersSearchController(TeacherService, Subjects, DegreeService, CityService, $location, $state, $filter, $timeout) {
+    function TeachersSearchController(user, student, TeacherService, Subjects, DegreeService, CityService, $location, $state, $filter, $timeout) {
         var vm = this;
+
+        vm.user = user;
+        vm.student = student;
 
         vm.defaultSearchCriteria = {
             fee: 400,

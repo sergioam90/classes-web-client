@@ -23,6 +23,9 @@
                         <div class="col s12 m12">
                             <teacher-features ng-model="teacher"></teacher-features>
                         </div>
+                        <div clas="col s12" ng-if="teacher.distance">
+                            <h5><i class="fa fa-marker"></i> {{ teacher.distance | number:1 }} km</h5>
+                        </div>
                     </div>
 
                     <!-- Rating and fee -->

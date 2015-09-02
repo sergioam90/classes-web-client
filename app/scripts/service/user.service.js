@@ -14,6 +14,7 @@
         vm.me = me;
         vm.saveUser = saveUser;
         vm.signup = signup;
+        vm.confirm = confirm;
 
 
         /* Implementation */
@@ -28,6 +29,10 @@
 
         function saveUser(user){
             return Users.one('me').customPUT(user);
+        }
+
+        function confirm(user) {
+            return Users.one('me').one('confirmation').customPUT(user);
         }
 
     }

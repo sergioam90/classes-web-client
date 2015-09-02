@@ -142,6 +142,33 @@
 
             </div>
 
+            <!-- Information message -->
+            <div class="row search">
+
+                <div class="col s9">
+                    <div class="card orange lighten-5">
+
+                        <!-- No signed up user -->
+                        <div class="card-content" ng-if="!vm.user">
+                            Inicie sesión para incluir en los resultados la distancia aproximada
+                            <a ui-sref="root.login" class="btn-flat right">Iniciar sesion</a>
+                        </div>
+
+                        <!-- No signed up student -->
+                        <div class="card-content" ng-if="vm.user && !vm.student">
+                            Cree su perfil de estudiante para incluir en los resultados la distancia aproximada
+                            <a ui-sref="root.signup.student" class="btn-flat right">Crear mi perfil de estudiante</a>
+                        </div>
+
+                        <!-- Signed up student with no distance -->
+                        <div class="card-content" ng-if="vm.user && vm.student && !vm.student.location">
+                            Defina su ubicación para incluir en los resultados la distancia aproximada
+                            <a ui-sref="root.account.student" class="btn-flat right">Definir mi ubicación</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Search results -->
             <div class="row search">
 

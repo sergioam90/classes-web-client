@@ -92,7 +92,7 @@
                         templateUrl: 'scripts/presentation/account/signup/social-user/signup.social-user.html',
                         controller: 'SignupSocialUserController as vm',
                         resolve: {
-                            user: function(UserService){
+                            user: function (UserService) {
                                 return UserService.me().then(function (user) {
                                     return user;
                                 }, function (error) {
@@ -111,8 +111,8 @@
                         templateUrl: 'scripts/presentation/account/signup/teacher/signup.teacher.html',
                         controller: 'SignupTeacherController as vm',
                         resolve: {
-                            user: function(UserService){
-                                return UserService.me().then(function(user){
+                            user: function (UserService) {
+                                return UserService.me().then(function (user) {
                                     return user;
                                 });
                             }
@@ -132,7 +132,7 @@
             })
 
             .state('root.facebookCallback', {
-                url: '/facebook?code',
+                url: '/facebook?code&target',
                 views: {
                     'container@': {
                         controller: 'FacebookController as vm'
@@ -224,7 +224,23 @@
                 views: {
                     'container@': {
                         templateUrl: 'scripts/presentation/teacher/search/teachers.search.html',
-                        controller: 'TeachersSearchController as vm'
+                        controller: 'TeachersSearchController as vm',
+                        resolve: {
+                            user: function (AccountService) {
+                                return AccountService.loadUser().then(function (user) {
+                                    return user;
+                                }, function (error) {
+                                    return undefined;
+                                });
+                            },
+                            student: function (StudentService) {
+                                return StudentService.me().then(function (student) {
+                                    return student;
+                                }, function (error) {
+                                    return undefined;
+                                });
+                            }
+                        }
                     }
                 }
             })
