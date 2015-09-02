@@ -30,7 +30,7 @@
                     if (user.confirmed) {
                         $state.go('root.account.user');
                     } else {
-                        $state.go('root.signup.socialUser');
+                        $state.go('root.signup.socialUser', {target: params.target});
                     }
                 });
             });

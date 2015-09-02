@@ -5,10 +5,12 @@
         .module('classesClientApp')
         .controller('SignupSocialUserController', SignupSocialUserController);
 
-    SignupSocialUserController.$inject = ['user', 'UserService', '$state'];
+    SignupSocialUserController.$inject = ['user', 'UserService', '$state', '$location'];
 
-    function SignupSocialUserController(user, UserService, $state) {
+    function SignupSocialUserController(user, UserService, $state, $location) {
         var vm = this;
+
+        var target = $location.search().target;
 
         vm.user = user;
         vm.sendConfirmation = sendConfirmation;
@@ -19,7 +21,11 @@
 
             // TODO: Handle errors
             UserService.confirm(vm.user).then(function () {
-                $state.go('root.account.user');
+                if (angular.isDefined(target)) {
+                    $state.go('root.signup.' + target);
+                } else {
+                    $state.go('root.account.user');
+                }
             });
         }
     }

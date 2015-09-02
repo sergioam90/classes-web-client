@@ -429,7 +429,7 @@ module.exports = function (grunt) {
             production: {
                 constants: {
                     appConfig: {
-                        API_SERVER_URL: 'pure-tundra-6015.herokuapp.com'
+                        API_SERVER_URL: 'classes-bahia.herokuapp.com'
                     }
                 }
             }
