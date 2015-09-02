@@ -11,7 +11,7 @@
         var vm = this;
 
         vm.target = $stateParams.target;
-        r
+
         initialize();
 
         /* Implementation */
