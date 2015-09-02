@@ -131,6 +131,15 @@
                 }
             })
 
+            .state('root.signup.emailSent', {
+                url: '/emailSent',
+                views: {
+                    'container@': {
+                        templateUrl: 'scripts/presentation/account/signup/user/confirmation/signup.user.confirmation.html'
+                    }
+                }
+            })
+
             .state('root.facebookCallback', {
                 url: '/facebook?code&target',
                 views: {
@@ -144,7 +153,6 @@
                 url: '/user/{id}/verification?code',
                 views: {
                     'container@': {
-                        templateUrl: 'scripts/presentation/account/signup/method/local/local.template.html',
                         controller: 'LocalController as vm'
                     }
                 }

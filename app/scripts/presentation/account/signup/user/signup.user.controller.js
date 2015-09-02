@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .controller('SignupUserController', SignupUserController);
 
-    SignupUserController.$inject = ['UserService', '$stateParams'];
+    SignupUserController.$inject = ['UserService', '$stateParams', '$state'];
 
-    function SignupUserController(UserService, $stateParams) {
+    function SignupUserController(UserService, $stateParams, $state) {
         var vm = this;
 
         vm.user = {};
@@ -20,7 +20,7 @@
             vm.user.target = vm.target;
 
             UserService.signup(vm.user).then(function () {
-                // TODO: Show waiting for confirmation message
+                $state.go('root.signup.emailSent');
             }, function (error) {
                 // TODO: Handle error
                 console.log('Error creating user');

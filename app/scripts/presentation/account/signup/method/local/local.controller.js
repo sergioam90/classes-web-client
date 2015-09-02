@@ -11,10 +11,10 @@
         var vm = this;
 
         // TODO: Handle errors
-        vm.id = $stateParams.id;
-        vm.code = $location.search().code;
+        var id = $stateParams.id;
+        var code = $location.search().code;
 
-        LocalService.sendVerification(vm.id, vm.code).then(function (token) {
+        LocalService.sendVerification(id, code).then(function (token) {
             token = token.plain();
 
             AccountService.loginWithToken(token).then(function (user) {
