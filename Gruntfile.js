@@ -292,6 +292,9 @@ module.exports = function (grunt) {
 
         imagemin: {
             dist: {
+                options: {
+                    optimizationLevel: 7,
+                },
                 files: [{
                     expand: true,
                     cwd: '<%= yeoman.app %>/images',
@@ -442,6 +445,13 @@ module.exports = function (grunt) {
                 message: 'Auto-generated commit by Grunt build'
             },
             src: '**/*'
+        },
+
+        // TODO: Fill if necessary
+        'divshot:push': {
+            production: {
+                // options
+            }
         }
     });
 
@@ -479,7 +489,8 @@ module.exports = function (grunt) {
         'filerev',
         'usemin',
         'htmlmin',
-        'gh-pages'
+        'gh-pages',
+        'divshot:push:production'
     ]);
 
     grunt.registerTask('default', [

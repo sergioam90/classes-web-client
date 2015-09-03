@@ -1,0 +1,11 @@
+{
+  "name": "classes-web-client",
+  "root": "dist",
+  "cache_control": {
+    "index.html": false,
+    "**": 3000000
+  },
+  "routes": {
+    "**": "index.html"
+  }
+}
