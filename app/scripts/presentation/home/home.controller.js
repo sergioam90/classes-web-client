@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['Subjects', 'LevelService', 'CityService', '$filter', '$state', '$document'];
+    HomeController.$inject = ['Subjects', 'LevelService', 'CityService', '$filter', '$state', '$location'];
 
-    function HomeController(Subjects, LevelService, CityService, $filter, $state, $document) {
+    function HomeController(Subjects, LevelService, CityService, $filter, $state, $location) {
         var vm = this;
 
         vm.subjects = [];

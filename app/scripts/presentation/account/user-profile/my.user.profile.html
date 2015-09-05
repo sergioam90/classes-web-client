@@ -1,8 +1,8 @@
 <div class="row">
     <div class="col s12 m3">
-        <img src="images/mock.jpg" class="responsive-img">
+        <img ng-src="{{ vm.user.imageUrl }}" class="responsive-img" alt="Profile picture">
 
-        <p>Miembro desde {{ vm.user.createdOn | date:'longDate' }}</p>
+        <p>Miembro desde {{ vm.user.createdAt | date:'longDate' }}</p>
     </div>
     <div class="col s12 m9">
 
@@ -116,4 +116,4 @@
             starting-day="1"
             ></datepicker>
 
-    </dl>
+</div>

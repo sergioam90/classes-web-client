@@ -12,11 +12,12 @@
         var facebookEndPoint = location.protocol + '//' + location.host + '/facebook';
 
 
-        function getFacebookAuthorization(code) {
+        function getFacebookAuthorization(code, target) {
+            var uri = facebookEndPoint + (target ? '?target=' + target : '');
 
             return Restangular.one('social').one('facebook').one('authorization').customPOST({
                 code: code,
-                uri: facebookEndPoint
+                uri: uri
             });
         }
 

@@ -100,7 +100,7 @@
         <h4 class="white-text" style="text-shadow:-2px 3px 0px rgba(1,1,1,0.4)">Buscá tu profesor</h4>
 
 
-        <form action="" ng-submit="vm.homeSearch()" class="text-center">
+        <form ng-submit="vm.homeSearch()" class="text-center">
             <div class="row form-group" style="margin:5% 10% 5% 10%">
 
                 <!-- Subject (with level) -->
@@ -133,7 +133,7 @@
                 <!-- Search teacher button -->
                 <div class="col s12 m4 l4 text-center valign valign-wrapper">
 
-                    <button ng-click="vm.homeSearch()"
+                    <button type="submit"
                             class="waves-effect waves-light btn-large white-text"
                             style="border: 2px solid rgba(255, 255, 255, 0.6);line-height: 50px; font-size: 1.4em;background-color: rgba(255, 255, 255, 0.5)">
                         <i class="fa fa-search"></i> Buscar profesores

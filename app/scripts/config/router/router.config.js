@@ -263,7 +263,7 @@
             })
 
             .state('root.teachersSearch', {
-                url: '/teacher/search',
+                url: '/teacher/search?city?subjects',
                 reloadOnSearch: false,
                 views: {
                     'container@': {

@@ -12,7 +12,7 @@
         // TODO: Check code existance
         var params = $location.search();
 
-        SocialService.getFacebookAuthorization(params.code).then(authSuccess, authError);
+        SocialService.getFacebookAuthorization(params.code, params.target).then(authSuccess, authError);
 
         /* Implementation */
 

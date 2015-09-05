@@ -22,7 +22,7 @@
                                     {{ $item.name }}
                                 </ui-select-match>
                                 <ui-select-choices
-                                        repeat="subject in vm.subjects | filter:{name:$select.search}:vm.removeAccents">
+                                        repeat="subject in vm.subjects | filter:{name:$select.search}:vm.removeAccents track by subject.id">
                                     <div ng-bind-html="subject.name | highlight: $select.search"></div>
                                     <div ng-bind-html="subject.level | level"></div>
                                 </ui-select-choices>
@@ -78,6 +78,8 @@
                         <div class="card-content center">
                             <!-- Rating filter -->
                             <div class="col s5 m3">
+
+                                <!-- TODO: BUG - Calls search() on initialization -->
                                 <rating class="orange-text filter-icon"
                                         on-change="vm.search()"
                                         ng-model="vm.searchCriteria.averageRating">

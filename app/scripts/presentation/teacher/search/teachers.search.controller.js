@@ -58,18 +58,6 @@
             loadSearchParams().then(vm.search);
         }
 
-        function loadSearchParams() {
-            loadDefaultValues();
-
-            var searchParams = $location.search();
-
-            vm.searchCriteria = angular.extend({}, vm.defaultSearchCriteria, searchParams);
-
-            var waitForSubjects = loadSubjects();
-
-            return waitForSubjects;
-        }
-
         function loadDefaultValues() {
             // Set default search values
             vm.searchCriteria = {};
@@ -81,6 +69,24 @@
 
             // Load default degree selection
             loadDegrees();
+        }
+
+        function loadSearchParams() {
+            loadDefaultValues();
+
+            // Load query string params
+            var searchParams = angular.copy($location.search());
+
+            // This case is for a single subject taken as a string not as an array
+            if (searchParams.subjects && !angular.isArray(searchParams.subjects)) {
+                searchParams.subjects = [searchParams.subjects];
+            }
+
+            angular.extend(vm.searchCriteria, searchParams);
+
+            var waitForSubjects = loadSubjects();
+
+            return waitForSubjects;
         }
 
         function loadDegrees() {
@@ -100,7 +106,14 @@
                 // If there are subjects in url, set them as selected
                 for (var i = 0; i < vm.subjects.length; i++) {
                     if (vm.searchCriteria.subjects) {
-                        vm.subjects[i].selected = vm.searchCriteria.subjects.indexOf(vm.subjects[i].id) > -1;
+                        var index = vm.searchCriteria.subjects.indexOf(vm.subjects[i].id);
+
+                        vm.subjects[i].selected = index > -1;
+
+                        // TODO: Dirty fix
+                        if (index > -1) {
+                            vm.searchCriteria.subjects[index] = vm.subjects[i];
+                        }
                     }
                 }
 
@@ -108,9 +121,8 @@
         }
 
         function search() {
-            var searchCriteria = {};
-
-            angular.copy(vm.searchCriteria, searchCriteria);
+            console.log('search');
+            var searchCriteria = angular.copy(vm.searchCriteria);
 
             // Add degrees to search criteria
             searchCriteria.degrees = [];
