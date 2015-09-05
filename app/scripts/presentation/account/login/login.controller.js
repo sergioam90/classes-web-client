@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .controller('LoginController', LoginController);
 
-    LoginController.$inject = ['AccountService', '$routeParams', '$location', '$rootScope', 'SocialService'];
+    LoginController.$inject = ['AccountService', '$rootScope', 'SocialService', 'InterruptionService'];
 
-    function LoginController(AccountService, $routeParams, $location, $rootScope, SocialService) {
+    function LoginController(AccountService, $rootScope, SocialService, InterruptionService) {
         var vm = this;
 
         vm.isAuthenticated = isAuthenticated;
@@ -24,7 +24,7 @@
         function initialize() {
 
             // Get Facebook authorization url
-            SocialService.getFacebookAuthorizationUrl().then(function (url) {
+            SocialService.getFacebookAuthorizationUrl(null).then(function (url) {
                 vm.facebookUrl = url;
             }, function (error) {
                 console.log(error);
@@ -39,8 +39,7 @@
 
         function login() {
             AccountService.login(vm.user).then(function () {
-                // TODO: Check this, maybe update to ui-router.
-                $location.path($routeParams.redirectUrl || '/');
+                InterruptionService.restore();
             });
         }
 

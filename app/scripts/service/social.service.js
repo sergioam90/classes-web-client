@@ -9,19 +9,24 @@
 
     function SocialService(Restangular) {
 
-        function getFacebookAuthorization(code, target) {
+        var facebookEndPoint = location.protocol + '//' + location.host + '/facebook';
 
-            return Restangular.one('social').one('facebook').one('authorization').get({
+
+        function getFacebookAuthorization(code) {
+
+            return Restangular.one('social').one('facebook').one('authorization').customPOST({
                 code: code,
-                target: target
+                uri: facebookEndPoint
             });
         }
 
         function getFacebookAuthorizationUrl(target) {
+            var uri = facebookEndPoint + (target ? '?target=' + target : '');
+
             return Restangular.one('social').one('facebook').one('authorization-url').customGET(
                 '',
                 {
-                    target: target
+                    uri: uri
                 },
                 {
                     'Accept': 'text/plain'

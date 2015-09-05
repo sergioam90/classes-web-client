@@ -30,7 +30,7 @@
 
                 <!-- Logged out buttons -->
                 <span ng-show="!vm.isAuthenticated()">
-                    <li>
+                    <li ui-sref-active="active">
                         <a ui-sref="root.login"
                            ng-click="isCollapsed = true">
                             Iniciar sesión
@@ -78,7 +78,7 @@
 
                 <!-- Logged out buttons -->
                 <span ng-show="!vm.isAuthenticated()">
-                    <li>
+                    <li ui-sref-active="active">
                         <a ui-sref="root.login"
                            ng-click="isCollapsed = true">
                             Iniciar sesión

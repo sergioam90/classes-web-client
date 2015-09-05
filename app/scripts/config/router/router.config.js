@@ -30,6 +30,7 @@
                     }
                 }
             })
+
             .state('root.home', {
                 url: '/',
                 views: {
@@ -55,6 +56,8 @@
                 }
             })
 
+            /* User states */
+
             .state('root.login', {
                 url: '/account/login',
                 views: {
@@ -62,6 +65,9 @@
                         templateUrl: 'scripts/presentation/account/login/login.html',
                         controller: 'LoginController as vm'
                     }
+                },
+                data: {
+                    isInterruption: true
                 }
             })
 
@@ -72,35 +78,9 @@
                         templateUrl: 'scripts/presentation/account/signup/signup.html',
                         controller: 'SignupController as vm'
                     }
-                }
-            })
-
-            .state('root.signup.user', {
-                url: '/user',
-                views: {
-                    'container@': {
-                        templateUrl: 'scripts/presentation/account/signup/user/signup.user.html',
-                        controller: 'SignupUserController as vm'
-                    }
-                }
-            })
-
-            .state('root.signup.socialUser', {
-                url: '/socialUser',
-                views: {
-                    'container@': {
-                        templateUrl: 'scripts/presentation/account/signup/social-user/signup.social-user.html',
-                        controller: 'SignupSocialUserController as vm',
-                        resolve: {
-                            user: function (UserService) {
-                                return UserService.me().then(function (user) {
-                                    return user;
-                                }, function (error) {
-                                    // TODO: Handle errors
-                                });
-                            }
-                        }
-                    }
+                },
+                data: {
+                    isInterruption: true
                 }
             })
 
@@ -118,6 +98,9 @@
                             }
                         }
                     }
+                },
+                data: {
+                    isInterruption: true
                 }
             })
 
@@ -128,6 +111,24 @@
                         templateUrl: 'scripts/presentation/account/signup/student/signup.student.html',
                         controller: 'SignupStudentController as vm'
                     }
+                },
+                data: {
+                    isInterruption: true
+                }
+            })
+
+            /* Local user states */
+
+            .state('root.signup.user', {
+                url: '/user',
+                views: {
+                    'container@': {
+                        templateUrl: 'scripts/presentation/account/signup/user/signup.user.html',
+                        controller: 'SignupUserController as vm'
+                    }
+                },
+                data: {
+                    isInterruption: true
                 }
             })
 
@@ -137,26 +138,61 @@
                     'container@': {
                         templateUrl: 'scripts/presentation/account/signup/user/confirmation/signup.user.confirmation.html'
                     }
-                }
-            })
-
-            .state('root.facebookCallback', {
-                url: '/facebook?code&target',
-                views: {
-                    'container@': {
-                        controller: 'FacebookController as vm'
-                    }
+                },
+                data: {
+                    isInterruption: true
                 }
             })
 
             .state('root.userVerification', {
-                url: '/user/{id}/verification?code',
+                url: '/user/{id}/verification?code?redirectUri',
                 views: {
                     'container@': {
-                        controller: 'LocalController as vm'
+                        controller: 'UserVerificationController as vm'
                     }
+                },
+                data: {
+                    isInterruption: true
                 }
             })
+
+            /* Social user states */
+
+            .state('root.signup.socialUser', {
+                url: '/socialUser',
+                views: {
+                    'container@': {
+                        templateUrl: 'scripts/presentation/account/signup/social-user/signup.social-user.html',
+                        controller: 'SignupSocialUserController as vm',
+                        resolve: {
+                            user: function (UserService) {
+                                return UserService.me().then(function (user) {
+                                    return user;
+                                }, function (error) {
+                                    // TODO: Handle errors
+                                });
+                            }
+                        }
+                    }
+                },
+                data: {
+                    isInterruption: true
+                }
+            })
+
+            .state('root.facebookCallback', {
+                url: '/facebook?code',
+                views: {
+                    'container@': {
+                        controller: 'FacebookController as vm'
+                    }
+                },
+                data: {
+                    isInterruption: true
+                }
+            })
+
+            /* Account states */
 
             .state('root.account', {
                 abstract: true,

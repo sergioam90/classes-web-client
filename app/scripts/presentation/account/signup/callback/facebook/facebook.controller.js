@@ -5,16 +5,14 @@
         .module('classesClientApp')
         .controller('FacebookController', FacebookController);
 
-    FacebookController.$inject = ['SocialService', '$location', 'AccountService', 'UserService', '$state'];
+    FacebookController.$inject = ['SocialService', '$location', 'AccountService', 'UserService', '$state', 'InterruptionService'];
 
-    function FacebookController(SocialService, $location, AccountService, UserService, $state) {
-        var vm = this;
+    function FacebookController(SocialService, $location, AccountService, UserService, $state, InterruptionService) {
 
         // TODO: Check code existance
-
         var params = $location.search();
 
-        SocialService.getFacebookAuthorization(params.code, params.target).then(authSuccess, authError);
+        SocialService.getFacebookAuthorization(params.code).then(authSuccess, authError);
 
         /* Implementation */
 
@@ -28,9 +26,9 @@
                 // Check if user is confirmed or not
                 UserService.me().then(function (user) {
                     if (user.confirmed) {
-                        $state.go('root.account.user');
+                        InterruptionService.restore();
                     } else {
-                        $state.go('root.signup.socialUser', {target: params.target});
+                        $state.go('root.signup.socialUser');
                     }
                 });
             });

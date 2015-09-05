@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .controller('AccountController', AccountController);
 
-    AccountController.$inject = ['AccountService', 'Students', 'Subjects', 'Teachers', '$scope', '$state'];
+    AccountController.$inject = [];
 
-    function AccountController(AccountService, Students, Subjects, Teachers, $scope, $state) {
+    function AccountController() {
         var vm = this;
 
     }

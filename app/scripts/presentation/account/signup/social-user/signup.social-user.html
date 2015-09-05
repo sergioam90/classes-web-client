@@ -74,10 +74,20 @@
             <!-- Navigation buttons -->
             <div class="row">
                 <div class="col s12">
-                    <a ui-sref="root.signup" class="btn-flat">Anterior</a>
-                    <a ng-click="vm.sendConfirmation()"
-                       class="btn right">Siguiente</a>
+                    <div ng-if="!vm.user.target">
+                        <div class="col s12">
+                            <a ng-click="vm.confirmAsTeacher()"
+                               class="btn right">Quiero Enseñar</a>
+                            <a ng-click="vm.confirmAsStudent()"
+                               class="btn right">Quiero Aprender</a>
+                        </div>
+                    </div>
+                    <div ng-if="vm.user.target">
+                        <a ng-click="vm.sendConfirmation()"
+                           class="btn right">Siguiente</a>
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>

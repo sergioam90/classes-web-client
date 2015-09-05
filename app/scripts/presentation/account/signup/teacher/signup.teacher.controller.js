@@ -12,10 +12,10 @@
         'Subjects',
         'MapsService',
         'CityService',
-        '$state'
+        'InterruptionService'
     ];
 
-    function SignupTeacherController(user, TeacherService, DegreeService, Subjects, MapsService, CityService, $state) {
+    function SignupTeacherController(user, TeacherService, DegreeService, Subjects, MapsService, CityService, InterruptionService) {
         var vm = this;
 
         vm.teacher = {
@@ -66,7 +66,7 @@
             }
 
             TeacherService.signupTeacher(vm.teacher).then(function () {
-                $state.go('root.account.teacher');
+                InterruptionService.restore();
             });
         }
 
@@ -74,14 +74,13 @@
             var place = this.getPlace();
             console.log(place);
 
-
             MapsService.getLocality(place).then(success, error);
 
             function success(locality) {
 
                 if (!validLocality(locality)) {
                     // TODO: Add error handling
-                    console.log('City is not valid');
+                    alert('City is not valid');
 
                     return;
                 }
@@ -91,8 +90,6 @@
                     longitude: place.geometry.location.K,
                     city: locality
                 };
-
-                console.log(vm.teacher.location);
             }
 
             function error(error) {

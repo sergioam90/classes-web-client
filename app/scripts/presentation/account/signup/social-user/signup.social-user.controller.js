@@ -5,28 +5,46 @@
         .module('classesClientApp')
         .controller('SignupSocialUserController', SignupSocialUserController);
 
-    SignupSocialUserController.$inject = ['user', 'UserService', '$state', '$location'];
+    SignupSocialUserController.$inject = ['user', 'UserService', '$state'];
 
-    function SignupSocialUserController(user, UserService, $state, $location) {
+    function SignupSocialUserController(user, UserService, $state) {
         var vm = this;
 
-        var target = $location.search().target;
-
         vm.user = user;
+
         vm.sendConfirmation = sendConfirmation;
+
+        vm.confirmAsStudent = confirmAsStudent;
+        vm.confirmAsTeacher = confirmAsTeacher;
+
 
         /* Implementation */
 
-        function sendConfirmation() {
+        function sendConfirmation(target) {
+            var finalTarget = target || vm.user.target;
 
-            // TODO: Handle errors
-            UserService.confirm(vm.user).then(function () {
-                if (angular.isDefined(target)) {
-                    $state.go('root.signup.' + target);
-                } else {
-                    $state.go('root.account.user');
-                }
-            });
+            if (finalTarget) {
+
+                var tempUser = angular.copy(user);
+
+                tempUser.target = finalTarget;
+
+                // TODO: Handle errors
+                UserService.confirm(tempUser).then(function () {
+                    $state.go('root.signup.' + tempUser.target);
+                });
+            } else {
+                // TODO: Handle errors
+                alert('Not user target defined');
+            }
+        }
+
+        function confirmAsTeacher() {
+            sendConfirmation('teacher');
+        }
+
+        function confirmAsStudent() {
+            sendConfirmation('student');
         }
     }
 })();

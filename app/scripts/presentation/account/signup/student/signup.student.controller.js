@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .controller('SignupStudentController', SignupStudentController);
 
-    SignupStudentController.$inject = ['StudentService', 'MapsService', 'CityService', '$state'];
+    SignupStudentController.$inject = ['StudentService', 'MapsService', 'CityService', 'InterruptionService'];
 
-    function SignupStudentController(StudentService, MapsService, CityService, $state) {
+    function SignupStudentController(StudentService, MapsService, CityService, InterruptionService) {
         var vm = this;
 
         vm.student = {};
@@ -25,7 +25,7 @@
         function signupStudent() {
             // TODO: Handle errors
             StudentService.signupStudent(vm.student).then(function () {
-                $state.go('root.account.student');
+                InterruptionService.restore();
             });
         }
 
