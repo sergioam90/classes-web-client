@@ -139,7 +139,7 @@
                 searchCriteria.subjects.push(vm.searchCriteria.subjects[i].id);
             }
 
-            $location.search(searchCriteria);
+            $location.replace().search(searchCriteria);
 
             vm.searching = true;
 
