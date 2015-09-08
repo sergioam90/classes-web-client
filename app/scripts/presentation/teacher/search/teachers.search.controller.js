@@ -108,10 +108,6 @@
             vm.degreesNames = DegreeService.getAllDegrees();
 
             vm.selectedDegrees = new Array(vm.degreesNames.length);
-
-            for (var i = 0; i < vm.degreesNames.length; i++) {
-                vm.selectedDegrees[i] = true;
-            }
         }
 
         function loadSubjects() {
@@ -181,8 +177,9 @@
 
             $location.replace().search(searchCriteria);
 
-            vm.searching = true;
+            // Remove previous results and show spinner
             vm.teachersResult = [];
+            vm.searching = true;
 
             TeacherService.search(searchCriteria).then(function (page) {
 
@@ -200,16 +197,12 @@
                 return undefined;
             }
 
-            if (criteria.distance) {
-                sort.push('distance,' + criteria.distance);
-            }
-
-            if (criteria.fee) {
-                sort.push('fee,' + criteria.fee);
-            }
-
-            if (criteria.averageRating) {
-                sort.push('averageRating,' + criteria.averageRating);
+            for (var key in criteria) {
+                if (criteria.hasOwnProperty(key)) {
+                    if (criteria[key]) {
+                        sort.push(key + ',' + criteria[key]);
+                    }
+                }
             }
 
             return sort;

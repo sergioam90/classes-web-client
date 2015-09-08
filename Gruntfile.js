@@ -282,7 +282,7 @@ module.exports = function (grunt) {
         imagemin: {
             dist: {
                 options: {
-                    optimizationLevel: 7,
+                    optimizationLevel: 7
                 },
                 files: [{
                     expand: true,
@@ -392,9 +392,6 @@ module.exports = function (grunt) {
             server: [
                 'copy:styles'
             ],
-            test: [
-                'copy:styles'
-            ],
             dist: [
                 'copy:styles',
                 'newer:imagemin',
@@ -490,7 +487,7 @@ module.exports = function (grunt) {
                 'filerev',
                 'usemin',
                 'htmlmin',
-                'gh-pages',
+                //'gh-pages',
                 'divshot:push:production'
             ]);
         }
