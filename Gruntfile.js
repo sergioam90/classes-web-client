@@ -25,12 +25,7 @@ module.exports = function (grunt) {
     // Configurable paths for the application
     var appConfig = {
         app: require('./bower.json').appPath || 'app',
-        dist: 'dist',
-        tmpPath: {
-            src: '.tmpPath',
-            internal: '.tmp',
-            external: 'D:\\Desktop\\classes\\.tmp'
-        }
+        dist: 'dist'
     };
 
     // Define the configuration for all the tasks
@@ -88,7 +83,7 @@ module.exports = function (grunt) {
                     '<%= yeoman.app %>/scripts/**/*.html',
                     '<%= yeoman.app %>/scripts/**/*.css',
                     '<%= yeoman.app %>/*.html',
-                    '<%= grunt.file.read(yeoman.tmpPath.src) %>/styles/**/*.css',
+                    '.tmp/styles/**/*.css',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
             },
@@ -130,7 +125,7 @@ module.exports = function (grunt) {
                     middleware: function (connect) {
                         return [
                             require('connect-modrewrite')(['!^.*(\\.css|\\.html|\\.ico|\\.jpg|\\.js|\\.png|\\.woff2).*$ /index.html [L]']),
-                            connect.static(grunt.file.read('.target')),
+                            connect.static('.tmp'),
                             connect().use(
                                 '/bower_components',
                                 connect.static('./bower_components')
@@ -178,13 +173,13 @@ module.exports = function (grunt) {
                 files: [{
                     dot: true,
                     src: [
-                        '<%= grunt.file.read(yeoman.tmpPath.src) %>',
+                        '.tmp',
                         '<%= yeoman.dist %>/{,*/}*',
                         '!<%= yeoman.dist %>/.git{,*/}*'
                     ]
                 }]
             },
-            server: '<%= grunt.file.read(yeoman.tmpPath.src) %>'
+            server: '.tmp'
         },
 
         // Add vendor prefixed styles
@@ -198,17 +193,17 @@ module.exports = function (grunt) {
                 },
                 files: [{
                     expand: true,
-                    cwd: '<%= grunt.file.read(yeoman.tmpPath.src) %>/styles/',
+                    cwd: '.tmp/styles/',
                     src: '**/*.css',
-                    dest: '<%= grunt.file.read(yeoman.tmpPath.src) %>/styles/'
+                    dest: '.tmp/styles/'
                 }]
             },
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= grunt.file.read(yeoman.tmpPath.src) %>/styles/',
+                    cwd: '.tmp/styles/',
                     src: '**/*.css',
-                    dest: '<%= grunt.file.read(yeoman.tmpPath.src) %>/styles/'
+                    dest: '.tmp/styles/'
                 }]
             }
         },
@@ -329,9 +324,9 @@ module.exports = function (grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= grunt.file.read(yeoman.tmpPath.src) %>/concat/scripts',
+                    cwd: '.tmp/concat/scripts',
                     src: '*.js',
-                    dest: '<%= grunt.file.read(yeoman.tmpPath.src) %>/concat/scripts'
+                    dest: '.tmp/concat/scripts'
                 }]
             }
         },
@@ -364,7 +359,7 @@ module.exports = function (grunt) {
                     ]
                 }, {
                     expand: true,
-                    cwd: '<%= grunt.file.read(yeoman.tmpPath.src) %>/images',
+                    cwd: '.tmp/images',
                     dest: '<%= yeoman.dist %>/images',
                     src: ['generated/*']
                 }, {
@@ -382,7 +377,7 @@ module.exports = function (grunt) {
             styles: {
                 expand: true,
                 cwd: '<%= yeoman.app %>',
-                dest: '<%= grunt.file.read(yeoman.tmpPath.src) %>/styles/',
+                dest: '.tmp/styles/',
                 src: '**/*.css'
             }
         },
@@ -406,7 +401,7 @@ module.exports = function (grunt) {
                 space: '  ',
                 wrap: "(function(){ 'use strict';\n\n {%= __ngModule %}}\n)();",
                 name: 'appConstant',
-                dest: '<%= grunt.file.read(yeoman.tmpPath.src) %>/scripts/app.static.config.js'
+                dest: '.tmp/scripts/app.static.config.js'
             },
             // Environment targets
             development: {
@@ -444,14 +439,8 @@ module.exports = function (grunt) {
 
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
 
-        grunt.file.write(appConfig.tmpPath.src, appConfig.tmpPath.internal);
-
         if (target === 'dist') {
             return grunt.task.run(['build', 'connect:dist:livereload', 'watch']);
-        }
-
-        if (target === 'externalTmp') {
-            grunt.file.write(appConfig.tmpPath.src, appConfig.tmpPath.external);
         }
 
         grunt.task.run([
@@ -467,8 +456,6 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('build', '', function () {
-
-            grunt.file.write(appConfig.tmpPath.src, appConfig.tmpPath.internal);
 
             grunt.task.run([
                 'clean:dist',
