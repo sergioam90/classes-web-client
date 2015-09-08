@@ -3,11 +3,11 @@
 
     angular
         .module('classesClientApp')
-        .directive('ratingSort', RatingSortDirective);
+        .directive('sortControl', SortControlDirective);
 
-    RatingSortDirective.$inject = ['SortStatesService'];
+    SortControlDirective.$inject = ['SortStatesService'];
 
-    function RatingSortDirective(SortStatesService) {
+    function SortControlDirective(SortStatesService) {
 
         function link(scope, element, attributes) {
 
@@ -18,10 +18,12 @@
 
         return {
             restrict: 'E',
-            templateUrl: 'scripts/directive/sort/rating/sort.rating.template.html',
+            templateUrl: 'scripts/directive/sort/control/sort.control.template.html',
             scope: {
-                state: '=ngModel'
-
+                state: '=ngModel',
+                text: '@',
+                iconClass: '@',
+                iconColorClass: '@'
             },
             link: link
         };

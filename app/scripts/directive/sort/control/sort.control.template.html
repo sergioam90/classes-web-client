@@ -1,0 +1,41 @@
+<!-- Distance sort -->
+<div class="row no-margin-row sort-control">
+
+    <!-- Desktop view -->
+    <div class="col s12 hide-on-small-only" ng-click="toggle()">
+        <div class="row no-margin-row filter-icon valign-wrapper">
+
+            <!-- Sort icon -->
+            <div class="col m4 sort-icon valign">
+                <span ng-if="state === 'ASC'">
+                    <i class="fa fa-long-arrow-up blue-text"></i>
+                    <i class="fa" ng-class="[iconClass, iconColorClass]"></i>
+                </span>
+                <span ng-if="state === 'DESC'">
+                    <i class="fa fa-long-arrow-down blue-text"></i>
+                    <i class="fa" ng-class="[iconClass, iconColorClass]"></i>
+                </span>
+                <span ng-if="state == undefined">
+                    <i class="fa muted-text" ng-class="iconClass"></i>
+                </span>
+            </div>
+
+            <!-- Sort description -->
+            <div class="col m8 valign">
+                <div class="filter-description left-align">{{ text }}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile view -->
+    <div class="col s12 hide-on-med-and-up" ng-click="toggle()">
+        <div class="row no-margin-row filter-icon">
+            <span ng-if="state === 'ASC'">ASC</span>
+            <span ng-if="state === 'DESC'">DESC</span>
+            <span ng-if="state == undefined">X</span>
+        </div>
+        <div class="row no-margin-row">
+            <div class="filter-description">{{ text }}</div>
+        </div>
+    </div>
+</div>

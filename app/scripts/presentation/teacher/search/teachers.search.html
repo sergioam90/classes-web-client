@@ -145,21 +145,30 @@
                 <div class="col s12 m3 search">
                     <div class="card z-depth-2 search">
                         <div class="row no-margin-row center">
-                            <div class="col s4">
-                                <distance-sort ng-click="vm.search()"
-                                               ng-model="vm.searchCriteria.sort.distance">
-                                </distance-sort>
-                            </div>
-                            <div class="col s4">
-                                <fee-sort ng-click="vm.search()"
-                                          ng-model="vm.searchCriteria.sort.fee">
-                                </fee-sort>
-                            </div>
-                            <div class="col s4">
-                                <rating-sort ng-click="vm.search()"
-                                             ng-model="vm.searchCriteria.sort.averageRating">
-                                </rating-sort>
-                            </div>
+
+                            <!-- Distance sort -->
+                            <sort-control ng-click="vm.search()"
+                                          ng-model="vm.searchCriteria.sort.distance"
+                                          text="Ordenar por distancia"
+                                          icon-class="fa-map-marker"
+                                          icon-color-class="red-text text-darken-2">
+                            </sort-control>
+
+                            <!-- Rating sort -->
+                            <sort-control ng-click="vm.search()"
+                                          ng-model="vm.searchCriteria.sort.averageRating"
+                                          text="Ordenar por puntaje"
+                                          icon-class="fa-star"
+                                          icon-color-class="amber-text">
+                            </sort-control>
+
+                            <!-- Fee sort -->
+                            <sort-control ng-click="vm.search()"
+                                          ng-model="vm.searchCriteria.sort.fee"
+                                          text="Ordenar por precio"
+                                          icon-class="fa-money"
+                                          icon-color-class="green-text text-darken-2">
+                            </sort-control>
                         </div>
                     </div>
                 </div>
