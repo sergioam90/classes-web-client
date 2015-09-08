@@ -1,56 +1,28 @@
 <!-- Teacher features container -->
-<span>
+<span class="teacher-feature">
+
+    <!-- Degree -->
+    <degree-icon ng-model="teacher.degree"></degree-icon>
+
     <!-- Individual lessons -->
     <span>
-
-        <!-- Individual lessons -->
-        <span ng-if="!teacher.individualLessons">
-            <i class="fa fa-user blue-text"></i>
-        </span>
-
-        <!-- TODO: Add "not individual classes"? -->
+        <i class="fa fa-user"
+           ng-class="teacher.individualLessons ? 'feature-enabled' : 'muted-text'">
+        </i>
     </span>
 
     <!-- Group lessons -->
     <span>
-
-        <!-- Group lessons -->
-        <span ng-if="teacher.groupLessons">
-            <i class="fa fa-users green-text"></i>
-        </span>
-
+        <i class="fa fa-users"
+           ng-class="teacher.groupLessons ? 'feature-enabled' : 'muted-text'">
+        </i>
     </span>
 
     <!-- Class location -->
     <span>
-        <!-- Home class -->
-        <span ng-if="teacher.homeLessons">
-            <i class="fa fa-car blue-text"></i>
-        </span>
-
-        <!-- No home class -->
-        <span ng-if="!teacher.homeLessons">
-            <i class="fa fa-car grey-text"></i>
-        </span>
+        <i class="fa fa-car"
+           ng-class="teacher.homeLessons ? 'feature-enabled' : 'muted-text'">
+        </i>
     </span>
 
-    <!-- Whatsapp availability -->
-    <span>
-        <!-- Has whatsapp -->
-        <span ng-if="teacher.phone.whatsApp">
-            <i class="fa fa-whatsapp green-text"></i>
-        </span>
-
-        <!-- Doesn't have whatsapp -->
-        <span ng-if="!teacher.phone.whatsApp">
-            <i class="fa fa-whatsapp grey-text"></i>
-        </span>
-    </span>
-
-    <!-- Schedule -->
-    <span>
-        <i ng-if="teacher.schedule.morning" class="fa fa-sun-o orange-text"></i>
-        <i ng-if="teacher.schedule.afternoon" class="fa fa-question blue-text"></i>
-        <i ng-if="teacher.schedule.night" class="fa fa-moon-o purple-text"></i>
-    </span>
 </span>

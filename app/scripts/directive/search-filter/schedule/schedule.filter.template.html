@@ -1,14 +1,23 @@
 <!-- Home lesson filter -->
-<a class="btn-flat filter-icon">
+<a class="btn-flat filter-icon teacher-schedule">
 
     <!-- Morning icon -->
-    <i ng-click="toggleMorning()" class="fa fa-sun-o" ng-class="morning ? 'orange-text' : 'grey-text'"></i>
+    <i ng-click="toggleMorning()"
+       class="fa fa-sun-o"
+       ng-class="morning ? 'schedule-morning-enabled' : 'muted-text'">
+    </i>
 
     <!-- Afternoon icon -->
-    <i ng-click="toggleAfternoon()" class="fa fa-question" ng-class="afternoon ? 'blue-text' : 'grey-text'"></i>
+    <i ng-click="toggleAfternoon()"
+       class="fa fa-question"
+       ng-class="afternoon ? 'schedule-afternoon-enabled' : 'muted-text'">
+    </i>
 
     <!-- Night icon -->
-    <i ng-click="toggleNight()" class="fa fa-moon-o" ng-class="night ? 'purple-text' : 'grey-text'"></i>
+    <i ng-click="toggleNight()"
+       class="fa fa-moon-o"
+       ng-class="night ? 'schedule-night-enabled' : 'muted-text'">
+    </i>
 
     <p class="filter-description">Horarios</p>
 </a>

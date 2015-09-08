@@ -1,0 +1,13 @@
+
+.teacher-schedule .schedule-morning-enabled {
+    color: red;
+}
+
+.teacher-schedule .schedule-afternoon-enabled {
+    color: blue;
+}
+
+.teacher-schedule .schedule-night-enabled {
+    color: purple;
+}
+

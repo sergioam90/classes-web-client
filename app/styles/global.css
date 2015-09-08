@@ -126,3 +126,7 @@ html, body {
 nav ul li.active {
     background-color: rgba(0, 0, 0, 0.1);
 }
+
+.muted-text {
+    color: #c6c6c6;
+}
