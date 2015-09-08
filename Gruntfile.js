@@ -124,7 +124,7 @@ module.exports = function (grunt) {
                     open: true,
                     middleware: function (connect) {
                         return [
-                            require('connect-modrewrite')(['^[^\\.]*$ /index.html [L]']),
+                            require('connect-modrewrite')(['!^.*(\\.css|\\.html|\\.ico|\\.jpg|\\.js|\\.png|\\.woff2).*$ /index.html [L]']),
                             connect.static('.tmp'),
                             connect().use(
                                 '/bower_components',
@@ -320,6 +320,7 @@ module.exports = function (grunt) {
                 options: {
                     collapseWhitespace: true,
                     conservativeCollapse: true,
+                    removeComments: true,
                     collapseBooleanAttributes: true,
                     removeCommentsFromCDATA: true,
                     removeOptionalTags: true

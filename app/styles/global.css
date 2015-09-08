@@ -7,7 +7,8 @@
 
 html, body {
     padding: 0;
-    min-height: 100%;
+    font-weight: 300;
+    color: #000;
 
     /* This hides horizontal scroll bar */
     overflow-x: hidden;
@@ -15,6 +16,9 @@ html, body {
 
     background: #F4F4F4;
     font-family: 'Roboto', sans-serif;
+
+    /* TODO: Hack to avoid scroll bars in search */
+    min-height: 100vh;
 }
 
 /* This class is used in all views except home */

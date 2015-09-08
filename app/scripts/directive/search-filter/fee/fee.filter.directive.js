@@ -26,7 +26,7 @@
                     }
 
                 scope.state = scope.states[current];
-            }
+            };
         }
 
         return {

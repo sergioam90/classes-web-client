@@ -14,7 +14,8 @@
             var halfStar = 1;
             var emptyStar = 2;
 
-            scope.defaultClasses = ['fa fa-star', 'fa fa-star-half-o', 'fa fa-star-o'];
+            // TODO: Make style for grey text
+            scope.defaultClasses = ['fa fa-star', 'fa fa-star-half-o', 'fa fa-star grey-text'];
             scope.defaultStates = [emptyStar, emptyStar, emptyStar, emptyStar, emptyStar];
             scope.states = scope.defaultStates.slice();
             scope.round = round;

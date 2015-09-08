@@ -28,7 +28,14 @@
             fee: 400,
             city: null,
             subjects: [],
-            degrees: []
+            degrees: [],
+            latitude: null,
+            longitude: null,
+            sort: {
+                distance: undefined,
+                averageRating: undefined,
+                fee: undefined
+            }
         };
 
         vm.searching = true;
@@ -82,6 +89,14 @@
                 searchParams.subjects = [searchParams.subjects];
             }
 
+            // This case is for a single sort taken as a string not as an array
+            if (searchParams.sort && !angular.isArray(searchParams.sort)) {
+                searchParams.sort = [searchParams.sort];
+            }
+
+            // Load sort search params
+            searchParams.sort = getSortSearchParameters(searchParams.sort);
+
             angular.extend(vm.searchCriteria, searchParams);
 
             var waitForSubjects = loadSubjects();
@@ -120,6 +135,22 @@
             });
         }
 
+        function getSortSearchParameters(sortParams) {
+            if (sortParams) {
+                var sortObject = {};
+                for (var i = 0; i < sortParams.length; i++) {
+                    var name = sortParams[i].split(',')[0];
+                    var value = sortParams[i].split(',')[1];
+
+                    sortObject[name] = value;
+                }
+
+                return sortObject;
+            }
+
+            return undefined;
+        }
+
         function search() {
             console.log('search');
             var searchCriteria = angular.copy(vm.searchCriteria);
@@ -139,9 +170,19 @@
                 searchCriteria.subjects.push(vm.searchCriteria.subjects[i].id);
             }
 
+            searchCriteria.sort = prepareSortCriteria(vm.searchCriteria.sort);
+
+            if (student) {
+                if (student.location) {
+                    searchCriteria.latitude = student.location.latitude;
+                    searchCriteria.longitude = student.location.longitude;
+                }
+            }
+
             $location.replace().search(searchCriteria);
 
             vm.searching = true;
+            vm.teachersResult = [];
 
             TeacherService.search(searchCriteria).then(function (page) {
 
@@ -150,6 +191,28 @@
                 vm.teachersResult = page.content;
 
             });
+        }
+
+        function prepareSortCriteria(criteria) {
+            var sort = [];
+
+            if (!criteria) {
+                return undefined;
+            }
+
+            if (criteria.distance) {
+                sort.push('distance,' + criteria.distance);
+            }
+
+            if (criteria.fee) {
+                sort.push('fee,' + criteria.fee);
+            }
+
+            if (criteria.averageRating) {
+                sort.push('averageRating,' + criteria.averageRating);
+            }
+
+            return sort;
         }
 
         function viewProfile(teacher) {
