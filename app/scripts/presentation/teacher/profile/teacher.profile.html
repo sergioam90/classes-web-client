@@ -1,56 +1,80 @@
-<div class="">
+<div class="teacher-profile">
     <div class="row">
 
         <div class="col s12 m9">
-            <div class="card">
+            <div class="row">
+                <div class="col m10">
+                    <div class="card">
+                        <!-- Favorite icon -->
+						<span class="teacher-bookmark right"
+                              ng-if="vm.currentUser.student && vm.currentUser.teacher !== vm.teacher.id"
+                              ng-click="vm.toggleFavorite(vm.teacher)">
 
-                <!-- Favorite icon -->
-                <span class="teacher-bookmark right"
-                      ng-if="vm.currentUser.student && vm.currentUser.teacher !== vm.teacher.id"
-                      ng-click="vm.toggleFavorite(vm.teacher)">
+							<span tooltipped data-tooltip="Agregar a favoritos">
+								<i ng-if="vm.teacher.isFavorite"
+                                   class="fa fa-heart fa-4x orange-text text-darken-1"></i>
+								<i ng-if="!vm.teacher.isFavorite"
+                                   class="fa fa-heart-o fa-4x muted-text text-lighten-1"></i>
+							</span>
+						</span>
 
-                    <span tooltipped data-tooltip="Agregar a favoritos">
-                        <i ng-if="vm.teacher.isFavorite"
-                           class="fa fa-bookmark fa-3x yellow-text text-darken-1"></i>
-                        <i ng-if="!vm.teacher.isFavorite"
-                           class="fa fa-bookmark-o fa-3x muted-text text-lighten-1"></i>
-                    </span>
-                </span>
-
-                <div class="row">
-
-                    <!-- User image -->
-                    <div class="col s12 m3 center">
-                        <img src="images/mock.jpg" class="responsive-img" alt="Profile picture">
-                    </div>
-
-                    <!-- User information -->
-                    <div class="col s12 m8">
-
-                        <!-- Name and degree -->
                         <div class="row">
+                            <!-- User image -->
+                            <div class="col s12 m3 center">
+                                <img src="images/mock.jpg" class="responsive-img" alt="Profile picture">
+                            </div>
 
-                            <!-- User name -->
+                            <!-- User information -->
                             <div class="col s12 m8">
 
-                                <div style="font-size: 4rem; font-weight: 200;">
-                                    <!-- Username -->
-                                    {{ vm.teacher.user | fullName }} Apellidolargo
+                                <!-- Name and degree -->
+                                <div class="row">
+
+                                    <!-- User name -->
+                                    <div class="col s12 m8">
+
+                                        <div style="font-size: 4rem; font-weight: 200;">
+                                            <!-- Username -->
+                                            {{ vm.teacher.user | fullName }} Apellidolargo
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Rating -->
+                                    <div class="col s12 m4">
+                                        <h5 class="right">
+                                        </h5>
+                                    </div>
+
                                 </div>
-
                             </div>
-
-                            <!-- Rating -->
-                            <div class="col s12 m4">
-                                <h5 class="right">
-                                </h5>
-                            </div>
-
                         </div>
                     </div>
                 </div>
 
+                <div class="col m2">
+                    <div class="card">
+                        <!-- Age -->
+                        <div class="center feature-container">
+                            <h3>{{ vm.teacher.user.birthDate | age }}</h3>
+
+                            <p>Edad</p>
+                        </div>
+
+                        <div class="clearfix hide-on-med-and-up"></div>
+
+                        <!-- Gender -->
+                        <div class="center feature-container">
+                            <h3>
+                                <i ng-class="vm.teacher.user.gender | genderIcon"></i>
+                            </h3>
+
+                            <p>{{ vm.teacher.user.gender | gender }}</p>
+                        </div>
+                    </div>
+                </div>
             </div>
+
             <div class="card">
 
                 <!-- Favorite icon -->
@@ -199,17 +223,17 @@
                         <div class="divider"></div>
 
                         <!-- Email -->
-                        <h4>
+                        <div>
                             <i class="fa fa-envelope fa-fw"></i>
                             {{ vm.teacher.user.email }}
-                        </h4>
+                        </div>
 
                         <div class="divider"></div>
 
                         <!-- Location -->
-                        <h4>
+                        <div>
                             <i class="fa fa-map-marker text-danger fa-fw"></i>{{ vm.teacher.location.city | city }}
-                        </h4>
+                        </div>
 
                         <div class="divider"></div>
 
