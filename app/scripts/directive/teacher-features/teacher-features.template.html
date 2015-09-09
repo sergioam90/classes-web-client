@@ -1,28 +1,33 @@
 <!-- Teacher features container -->
 <span class="teacher-feature">
 
-    <!-- Degree -->
-    <degree-icon ng-model="teacher.degree"></degree-icon>
+    <div class="row no-margin-row">
 
-    <!-- Individual lessons -->
-    <span>
-        <i class="fa fa-user"
-           ng-class="teacher.individualLessons ? 'feature-enabled' : 'muted-text'">
-        </i>
-    </span>
+        <!-- Degree -->
+        <div class="col s3">
+            <degree-icon ng-model="teacher.degree"></degree-icon>
+        </div>
 
-    <!-- Group lessons -->
-    <span>
-        <i class="fa fa-users"
-           ng-class="teacher.groupLessons ? 'feature-enabled' : 'muted-text'">
-        </i>
-    </span>
+        <!-- Class audience -->
+        <div class="col s6">
 
-    <!-- Class location -->
-    <span>
-        <i class="fa fa-car"
-           ng-class="teacher.homeLessons ? 'feature-enabled' : 'muted-text'">
-        </i>
-    </span>
+            <!-- Individual lessons -->
+            <i class="fa fa-user"
+               ng-class="teacher.individualLessons ? 'feature-enabled' : 'muted-text'">
+            </i>
+
+            <!-- Group lessons -->
+            <i class="fa fa-users"
+               ng-class="teacher.groupLessons ? 'feature-enabled' : 'muted-text'">
+            </i>
+        </div>
+
+        <!-- Class location -->
+        <div class="col s3">
+            <i class="fa fa-car"
+               ng-class="teacher.homeLessons ? 'feature-enabled' : 'muted-text'">
+            </i>
+        </div>
+    </div>
 
 </span>
