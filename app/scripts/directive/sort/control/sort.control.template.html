@@ -3,26 +3,36 @@
 
     <!-- Desktop view -->
     <div class="col s12 hide-on-small-only" ng-click="toggle()">
-        <div class="row no-margin-row filter-icon valign-wrapper">
 
-            <!-- Sort icon -->
-            <div class="col m4 sort-icon valign">
+        <!-- Sort icon -->
+        <div class="row no-margin-row filter-icon center">
+            <div class="col s12 sort-icon valign">
                 <span ng-if="state === 'ASC'">
-                    <i class="fa fa-long-arrow-up blue-text"></i>
-                    <i class="fa" ng-class="[iconClass, iconColorClass]"></i>
+                    <div class="col s3">
+                        <i class="fa fa-long-arrow-up blue-text"></i>
+                    </div>
+                    <div class="col s6">
+                        <i class="fa" ng-class="[iconClass, iconColorClass]"></i>
+                    </div>
                 </span>
                 <span ng-if="state === 'DESC'">
-                    <i class="fa fa-long-arrow-down blue-text"></i>
-                    <i class="fa" ng-class="[iconClass, iconColorClass]"></i>
+                    <div class="col s3">
+                        <i class="fa fa-long-arrow-down blue-text"></i>
+                    </div>
+                    <div class="col s6">
+                        <i class="fa" ng-class="[iconClass, iconColorClass]"></i>
+                    </div>
                 </span>
                 <span ng-if="state == undefined">
                     <i class="fa muted-text" ng-class="iconClass"></i>
                 </span>
             </div>
+        </div>
 
-            <!-- Sort description -->
-            <div class="col m8 valign">
-                <div class="filter-description left-align">{{ text }}</div>
+        <!-- Sort description -->
+        <div class="row no-margin-row filter-description">
+            <div class="col s12 valign">
+                <div class="filter-description center">{{ text }}</div>
             </div>
         </div>
     </div>
