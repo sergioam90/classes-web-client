@@ -16,7 +16,7 @@
                     <div class="row">
 
                         <!-- Degree -->
-                        <div class="col s5" input-field>
+                        <div class="col s4" input-field>
                             <select id="degree"
                                     ng-model="vm.teacher.degree"
                                     material-select
@@ -29,7 +29,7 @@
                         </div>
 
                         <!-- Phone -->
-                        <div class="col s4">
+                        <div class="col s3">
                             <div class="input-field">
                                 <label for="phone">Teléfono</label>
                                 <input id="phone" type="text" ng-model="vm.teacher.phone.number"
@@ -44,6 +44,16 @@
                             <div class="center">
                                 <input id="whatsapp" type="checkbox" ng-model="vm.teacher.phone.whatsApp">
                                 <label for="whatsapp"></label>
+                            </div>
+                        </div>
+
+                        <!-- SMS -->
+                        <div class="col s2">
+                            <label for="sms" class="text-center"><i class="fa fa-sms"></i> SMS</label>
+
+                            <div class="center">
+                                <input id="sms" type="checkbox" ng-model="vm.teacher.phone.sms">
+                                <label for="sms"></label>
                             </div>
                         </div>
                     </div>
