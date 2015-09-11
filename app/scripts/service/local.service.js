@@ -10,7 +10,7 @@
     function LocalService(Restangular) {
 
         function sendVerification(id, code) {
-            return Restangular.one('users').one(id).one('verification').customPUT({verificationCode: code});
+            return Restangular.one('users').one(id).one('verification').customPOST({verificationCode: code});
         }
 
         return {

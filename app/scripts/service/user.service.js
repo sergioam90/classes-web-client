@@ -32,7 +32,7 @@
         }
 
         function confirm(user) {
-            return Users.one('me').one('confirmation').customPUT(user);
+            return Users.one('me').one('confirmation').customPOST(user);
         }
 
     }
