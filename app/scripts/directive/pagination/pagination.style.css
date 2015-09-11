@@ -1,0 +1,13 @@
+
+.custom-pagination li {
+    padding: 0;
+}
+
+.custom-pagination li a {
+    padding: 0 10px;
+    font-size: 1.8rem;
+}
+
+.custom-pagination li.active {
+    background: #ffc107;
+}

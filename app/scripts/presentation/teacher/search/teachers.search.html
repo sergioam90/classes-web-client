@@ -16,8 +16,8 @@
                                        ng-model="vm.searchCriteria.subjects"
                                        ng-disabled="disabled"
                                        class="full-width"
-                                       on-select="vm.search()"
-                                       on-remove="vm.search()">
+                                       on-select="vm.filterSearch()"
+                                       on-remove="vm.filterSearch()">
                                 <ui-select-match placeholder="Elegí tus materias...">
                                     {{ $item.name }}
                                 </ui-select-match>
@@ -33,7 +33,7 @@
                         <div class="col s12" ng-if="showMore">
                             <select class=""
                                     ng-model="vm.searchCriteria.city"
-                                    ng-change="vm.search()"
+                                    ng-change="vm.filterSearch()"
                                     material-select
                                     watch>
                                 <option value="" selected disabled>Elegí tu ciudad...</option>
@@ -45,7 +45,7 @@
                         <input-field class="col s12" ng-if="showMore">
                             <input ng-model="vm.searchCriteria.text"
                                    ng-model-options="{ debounce: 750 }"
-                                   ng-change="vm.search()"
+                                   ng-change="vm.filterSearch()"
                                    type="text"
                                    class="form-control"
                                    placeholder="Nombre o descripcion..."/>
@@ -89,7 +89,7 @@
 
                                 <!-- TODO: BUG - Calls search() on initialization -->
                                 <rating class="orange-text filter-icon"
-                                        on-change="vm.search()"
+                                        on-change="vm.filterSearch()"
                                         ng-model="vm.searchCriteria.averageRating">
                                 </rating>
                                 <p class="filter-description">Puntaje mínimo</p>
@@ -98,7 +98,7 @@
                             <!-- Individual lessons -->
                             <div class="col s6 m2">
                                 <individual-filter ng-model="vm.searchCriteria.individualLessons"
-                                                   ng-click="vm.search()">
+                                                   ng-click="vm.filterSearch()">
                                 </individual-filter>
                             </div>
 
@@ -110,13 +110,13 @@
                                 <schedule-filter morning="vm.searchCriteria.morning"
                                                  afternoon="vm.searchCriteria.afternoon"
                                                  night="vm.searchCriteria.night"
-                                                 ng-click="vm.search()">
+                                                 ng-click="vm.filterSearch()">
                                 </schedule-filter>
                             </div>
 
                             <!-- Fee filter -->
                             <div class="col s6 m2">
-                                <fee-filter ng-click="vm.search()" ng-model="vm.searchCriteria.fee"></fee-filter>
+                                <fee-filter ng-click="vm.filterSearch()" ng-model="vm.searchCriteria.fee"></fee-filter>
                             </div>
 
                             <!-- For proper column alignment -->
@@ -124,13 +124,13 @@
 
                             <!-- Home lesson filter -->
                             <div class="col s6 m1">
-                                <home-filter ng-click="vm.search()"
+                                <home-filter ng-click="vm.filterSearch()"
                                              ng-model="vm.searchCriteria.homeLessons"></home-filter>
                             </div>
 
                             <!-- Degree filter -->
                             <div class="col s6 m2">
-                                <degree-filter ng-click="vm.search()"
+                                <degree-filter ng-click="vm.filterSearch()"
                                                degrees-names="vm.degreesNames"
                                                selected-degrees="vm.selectedDegrees">
                                 </degree-filter>
@@ -156,7 +156,7 @@
 
                                 <!-- Distance sort -->
                                 <div class="col s4">
-                                    <sort-control ng-click="vm.search()"
+                                    <sort-control ng-click="vm.filterSearch()"
                                                   ng-model="vm.searchCriteria.sort.distance"
                                                   text="Distancia"
                                                   icon-class="fa-map-marker"
@@ -166,7 +166,7 @@
 
                                 <!-- Rating sort -->
                                 <div class="col s4">
-                                    <sort-control ng-click="vm.search()"
+                                    <sort-control ng-click="vm.filterSearch()"
                                                   ng-model="vm.searchCriteria.sort.averageRating"
                                                   text="Puntaje"
                                                   icon-class="fa-star"
@@ -176,7 +176,7 @@
 
                                 <!-- Fee sort -->
                                 <div class="col s4">
-                                    <sort-control ng-click="vm.search()"
+                                    <sort-control ng-click="vm.filterSearch()"
                                                   ng-model="vm.searchCriteria.sort.fee"
                                                   text="Precio"
                                                   icon-class="fa-usd"
@@ -221,15 +221,30 @@
             <!-- Search results -->
             <div class="row search">
 
+                <!-- Pagination -->
+                <div class="col s12 m9" ng-if="!vm.searching">
+                    <my-pagination ng-model="vm.teachersResult"
+                                   max-shown="10"
+                                   page-select="vm.pageSelect(number)"
+                                   target-url="{{ vm.getCurrentUrl() }}"></my-pagination>
+                </div>
+
                 <!-- Results -->
                 <div class="col s12 m9 search"
-                     ng-if="!vm.teacherResult.length"
-                     ng-repeat="teacher in vm.teachersResult">
+                     ng-repeat="teacher in vm.teachersResult.content">
 
                     <teacher-result ng-model="teacher"
                                     view-profile="vm.viewProfile(teacher)">
                     </teacher-result>
 
+                </div>
+
+                <!-- Pagination -->
+                <div class="col s12 m9" ng-if="!vm.searching">
+                    <my-pagination ng-model="vm.teachersResult"
+                                   max-shown="10"
+                                   page-select="vm.pageSelect(number)"
+                                   target-url="{{ vm.getCurrentUrl() }}"></my-pagination>
                 </div>
 
                 <!-- Searching spinner -->
@@ -251,9 +266,10 @@
                     </div>
                 </div>
 
-                <!-- Nothing found message -->
-                <div class="col s12 m9">
-                    <div ng-if="!vm.teachersResult.length && !vm.searching">
+                <span ng-if="!vm.teachersResult.content.length && !vm.searching">
+
+                    <!-- Nothing found message -->
+                    <div class="col s12 m9" ng-if="vm.teachersResult.number === 0">
                         <h4 class="center">
                             ¡Uh! No hay nadie que cumpla esas condiciones :(
                         </h4>
@@ -262,7 +278,21 @@
                             Tip: Revisa los filtros ;)
                         </p>
                     </div>
-                </div>
+
+                    <!-- No items in page message -->
+                    <div class="col s12 m9" ng-if="vm.teachersResult.number !== 0">
+                        <h4 class="center">
+                            Algo raro paso... la página {{ vm.parseInt(vm.searchCriteria.page) + 1 }} no existe...
+                        </h4>
+
+                        <p class="center">
+                            Tip 1: No te enojes :P<br>
+                            Tip 2: Probá volviendo a la página 1
+                        </p>
+                    </div>
+                </span>
+
+            </div>
             </div>
         </div>
     </div>

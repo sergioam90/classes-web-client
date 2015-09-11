@@ -50,11 +50,16 @@
         vm.cities = CityService.getAllCities();
 
         /** Functions **/
-        vm.search = search;
+        vm.filterSearch = filterSearch;
         vm.moneyTranslate = moneyTranslate;
         vm.clearFilters = clearFilters;
         vm.viewProfile = viewProfile;
         vm.removeAccents = removeAccents;
+        vm.getCurrentUrl = getCurrentUrl;
+
+        vm.pageSelect = pageSelect;
+
+        vm.parseInt = parseInt;
 
         initialize();
 
@@ -62,7 +67,9 @@
 
         function initialize() {
             // We must wait for subject loading from URL
-            loadSearchParams().then(vm.search);
+            loadSearchParams().then(function () {
+                search(prepareSearchCriteria());
+            });
         }
 
         function loadDefaultValues() {
@@ -147,8 +154,34 @@
             return undefined;
         }
 
-        function search() {
+        function filterSearch() {
+            // Reset page number
+            vm.searchCriteria.page = 0;
+
+            // Make actual search
+            search(prepareSearchCriteria());
+            //$state.go('root.teachersSearch', prepareSearchCriteria());
+        }
+
+        function search(searchCriteria) {
             console.log('search');
+
+            $location.replace().search(searchCriteria);
+
+            // Remove previous results and show spinner
+            vm.teachersResult = [];
+            vm.searching = true;
+
+            TeacherService.search(searchCriteria).then(function (page) {
+                page = page.plain();
+
+                vm.searching = false;
+
+                vm.teachersResult = page;
+            });
+        }
+
+        function prepareSearchCriteria(number) {
             var searchCriteria = angular.copy(vm.searchCriteria);
 
             // Add degrees to search criteria
@@ -175,19 +208,12 @@
                 }
             }
 
-            $location.replace().search(searchCriteria);
+            // Read page number
+            if (angular.isDefined(number)) {
+                searchCriteria.page = number;
+            }
 
-            // Remove previous results and show spinner
-            vm.teachersResult = [];
-            vm.searching = true;
-
-            TeacherService.search(searchCriteria).then(function (page) {
-
-                vm.searching = false;
-                // TODO: Work with full page object
-                vm.teachersResult = page.content;
-
-            });
+            return searchCriteria;
         }
 
         function prepareSortCriteria(criteria) {
@@ -206,6 +232,10 @@
             }
 
             return sort;
+        }
+
+        function pageSelect(number) {
+            search(prepareSearchCriteria(number));
         }
 
         function viewProfile(teacher) {
@@ -237,6 +267,10 @@
             var textWithoutAccents = $filter('noAccents')(textWithAccents);
 
             return textWithoutAccents.toLowerCase().indexOf(substring.toLowerCase()) > -1;
+        }
+
+        function getCurrentUrl() {
+            return $location.url();
         }
 
     }
