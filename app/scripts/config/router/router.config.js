@@ -268,23 +268,7 @@
                 views: {
                     'container@': {
                         templateUrl: 'scripts/presentation/teacher/search/teachers.search.html',
-                        controller: 'TeachersSearchController as vm',
-                        resolve: {
-                            user: function (AccountService) {
-                                return AccountService.loadUser().then(function (user) {
-                                    return user;
-                                }, function (error) {
-                                    return undefined;
-                                });
-                            },
-                            student: function (StudentService) {
-                                return StudentService.me().then(function (student) {
-                                    return student;
-                                }, function (error) {
-                                    return undefined;
-                                });
-                            }
-                        }
+                        controller: 'TeachersSearchController as vm'
                     }
                 }
             })

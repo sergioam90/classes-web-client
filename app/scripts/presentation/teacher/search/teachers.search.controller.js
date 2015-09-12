@@ -6,8 +6,8 @@
         .controller('TeachersSearchController', TeachersSearchController);
 
     TeachersSearchController.$inject = [
-        'user',
-        'student',
+        'StudentService',
+        'UserService',
         'TeacherService',
         'Subjects',
         'DegreeService',
@@ -18,11 +18,12 @@
         '$timeout'
     ];
 
-    function TeachersSearchController(user, student, TeacherService, Subjects, DegreeService, CityService, $location, $state, $filter, $timeout) {
+    function TeachersSearchController(StudentService, UserService, TeacherService, Subjects, DegreeService, CityService, $location, $state, $filter, $timeout) {
         var vm = this;
 
-        vm.user = user;
-        vm.student = student;
+        vm.loadedUserAndStudent = false;
+        vm.student = undefined;
+        vm.user = undefined;
 
         vm.defaultSearchCriteria = {
             fee: 400,
@@ -66,9 +67,27 @@
         /* Implementation */
 
         function initialize() {
+            // Load Student and user
+            loadUserAndStudent();
+
             // We must wait for subject loading from URL
             loadSearchParams().then(function () {
                 search(prepareSearchCriteria());
+            });
+        }
+
+        function loadUserAndStudent() {
+            UserService.me().then(function (user) {
+                vm.user = user;
+
+                StudentService.me().then(function (student) {
+                    vm.student = student;
+                }).finally(function () {
+                    vm.loadedUserAndStudent = true;
+                });
+
+            }).finally(function () {
+                vm.loadedUserAndStudent = true;
             });
         }
 
@@ -201,10 +220,10 @@
 
             searchCriteria.sort = prepareSortCriteria(vm.searchCriteria.sort);
 
-            if (student) {
-                if (student.location) {
-                    searchCriteria.latitude = student.location.latitude;
-                    searchCriteria.longitude = student.location.longitude;
+            if (vm.student) {
+                if (vm.student.location) {
+                    searchCriteria.latitude = vm.student.location.latitude;
+                    searchCriteria.longitude = vm.student.location.longitude;
                 }
             }
 
@@ -256,7 +275,7 @@
                 vm.subjects[i].selected = false;
             }
 
-            vm.search();
+            vm.filterSearch();
         }
 
         function removeAccents(textWithAccents, substring) {
