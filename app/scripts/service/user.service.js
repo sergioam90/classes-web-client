@@ -24,7 +24,11 @@
         }
 
         function me() {
-            return Users.one('me').get();
+            return Users.one('me').get().then(function (user) {
+                user.birthDate = moment(user.birthDate).format();
+
+                return user;
+            });
         }
 
         function saveUser(user){
