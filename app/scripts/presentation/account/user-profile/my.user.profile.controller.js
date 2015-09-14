@@ -15,6 +15,11 @@
         vm.saveUser = saveUser;
         vm.genders = GenderService.getAllGenders();
 
+        // Hack to make datepicker close definitely
+        vm.onClose = function () {
+            document.activeElement.blur();
+        };
+
         initialize();
 
         /* Implementation */

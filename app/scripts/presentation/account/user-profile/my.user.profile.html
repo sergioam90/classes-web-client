@@ -85,6 +85,7 @@
                                    today="Hoy"
                                    clear="Limpiar"
                                    close="Cerrar"
+                                   on-close="vm.onClose()"
                                    select-years="15">
                     </span>
 
@@ -114,6 +115,7 @@
             datepicker-mode="'year'"
             format="YYYY-MM-DD"
             starting-day="1"
+            on-close="vm.onClose()"
             ></datepicker>
 
 </div>
