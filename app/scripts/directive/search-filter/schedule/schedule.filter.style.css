@@ -1,0 +1,32 @@
+/* Schedule */
+
+.schedule a + a {
+    margin-left: 3px;
+}
+
+.schedule a.morning:hover .fa,
+.schedule a.morning.on .fa {
+    color: #dfff16;
+}
+
+.schedule a.morning.on:hover .fa {
+    color: rgba(223, 255, 22, 0.51);
+}
+
+.schedule a.afternoon:hover .fa,
+.schedule a.afternoon.on .fa {
+    color: #ff702a;
+}
+
+.schedule a.afternoon.on:hover .fa {
+    color: rgba(255, 112, 42, 0.51);
+}
+
+.schedule a.night:hover .fa,
+.schedule a.night.on .fa {
+    color: purple;
+}
+
+.schedule a.night.on:hover .fa {
+    color: rgba(128, 0, 128, 0.51);
+}

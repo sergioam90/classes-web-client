@@ -1,12 +1,9 @@
-<div class="row no-margin-row">
-    <div class="col s12">
-		<span ng-mouseleave="starLeave()">
-            <span ng-if="value !== 0 || !readonly"
-                  ng-repeat="state in states track by $index">
-            <i ng-class="statesClasses[state]"
-               ng-mouseover="starHover($index)"
-               ng-click="starClick($index, $event)"></i>
-            </span>
-        </span>
-    </div>
-</div>
+<span ng-if="value !== 0 || !readonly">
+    <a href=""
+       ng-mouseleave="starLeave()"
+       ng-click="starClick($index, $event)"
+       ng-mouseover="starHover($index)"
+       ng-repeat="state in states track by $index">
+        <i ng-class="statesClasses[state]"></i>
+    </a>
+</span>

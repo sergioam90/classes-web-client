@@ -74,68 +74,65 @@
         </div>
 
         <!-- Right content -->
-        <div class="col s12 m9 search">
+        <div class="col s12 m9 ">
 
             <!-- Search filters and order -->
-            <div class="row search">
+            <div class="row no-margin-row">
 
                 <!-- Filters -->
-                <div class="col s12 m9 search">
+                <div class="col s12 m9 ">
 
-                    <div class="card z-depth-2 search">
-                        <div class="row no-margin-row card-content center">
-                            <!-- Rating filter -->
-                            <div class="col s6 m3">
+                    <div class="card z-depth-2 search-filters">
+                        <div class="card-content">
+                            <div class="row no-margin-row">
+                                <!-- Rating filter -->
+                                <div class="col c20s10 m5 c20l5 average-rating">
 
-                                <!-- TODO: BUG - Calls search() on initialization -->
-                                <rating class="orange-text filter-icon"
-                                        on-change="vm.filterSearch()"
-                                        ng-model="vm.searchCriteria.averageRating">
-                                </rating>
-                                <p class="filter-description">Puntaje mínimo</p>
+                                    <!-- TODO: BUG - Calls search() on initialization -->
+                                    <rating class="orange-text filter-icon"
+                                            on-change="vm.filterSearch()"
+                                            ng-model="vm.searchCriteria.averageRating">
+                                    </rating>
+                                    <p class="filter-description">Puntaje mínimo</p>
+                                </div>
+
+                                <!-- Individual lessons -->
+                                <div class="col c20s10 m3 c20l3 button individual-lessons">
+                                    <individual-filter ng-model="vm.searchCriteria.individualLessons"
+                                                       ng-click="vm.filterSearch()">
+                                    </individual-filter>
+                                </div>
+
+                                <!-- Schedule filter -->
+                                <div class="col c20s10 m4 c20l3 schedule">
+                                    <schedule-filter morning="vm.searchCriteria.morning"
+                                                     afternoon="vm.searchCriteria.afternoon"
+                                                     night="vm.searchCriteria.night"
+                                                     ng-click="vm.filterSearch()">
+                                    </schedule-filter>
+                                </div>
+
+                                <!-- Fee filter -->
+                                <div class="col c20s10 m4 c20l3 button fee">
+                                    <fee-filter ng-click="vm.filterSearch()"
+                                                ng-model="vm.searchCriteria.fee"></fee-filter>
+                                </div>
+
+                                <!-- Home lesson filter -->
+                                <div class="col c20s10 m4 c20l3 button home-lessons">
+                                    <home-filter ng-click="vm.filterSearch()"
+                                                 ng-model="vm.searchCriteria.homeLessons"></home-filter>
+                                </div>
+
+                                <!-- Degree filter -->
+                                <div class="col c20s10 m4 c20l3 button degrees">
+                                    <degree-filter ng-click="vm.filterSearch()"
+                                                   degrees-names="vm.degreesNames"
+                                                   selected-degrees="vm.selectedDegrees">
+                                    </degree-filter>
+                                </div>
+
                             </div>
-
-                            <!-- Individual lessons -->
-                            <div class="col s6 m2">
-                                <individual-filter ng-model="vm.searchCriteria.individualLessons"
-                                                   ng-click="vm.filterSearch()">
-                                </individual-filter>
-                            </div>
-
-                            <!-- For proper column alignment -->
-                            <div class="clearfix hide-on-med-and-up"></div>
-
-                            <!-- Schedule filter -->
-                            <div class="col s6 m2">
-                                <schedule-filter morning="vm.searchCriteria.morning"
-                                                 afternoon="vm.searchCriteria.afternoon"
-                                                 night="vm.searchCriteria.night"
-                                                 ng-click="vm.filterSearch()">
-                                </schedule-filter>
-                            </div>
-
-                            <!-- Fee filter -->
-                            <div class="col s6 m2">
-                                <fee-filter ng-click="vm.filterSearch()" ng-model="vm.searchCriteria.fee"></fee-filter>
-                            </div>
-
-                            <!-- For proper column alignment -->
-                            <div class="clearfix hide-on-med-and-up"></div>
-
-                            <!-- Home lesson filter -->
-                            <div class="col s6 m1">
-                                <home-filter ng-click="vm.filterSearch()"
-                                             ng-model="vm.searchCriteria.homeLessons"></home-filter>
-                            </div>
-
-                            <!-- Degree filter -->
-                            <div class="col s6 m2">
-                                <degree-filter ng-click="vm.filterSearch()"
-                                               degrees-names="vm.degreesNames"
-                                               selected-degrees="vm.selectedDegrees">
-                                </degree-filter>
-                            </div>
-
                         </div>
                     </div>
 
