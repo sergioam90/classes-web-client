@@ -40,23 +40,23 @@
         }
 
         function addAsFavorite(teacherId) {
-            return Students.one('me').all('favorite-teachers').post({id: teacherId});
+            return Students.one('me').all('favorite-teachers').one(teacherId).put();
         }
 
-        function removeFavoriteTeacher(teacherId){
+        function removeFavoriteTeacher(teacherId) {
             return Students.one('me').all('favorite-teachers').one(teacherId).remove();
         }
 
-        function toggleFavorite(teacher){
-            if(teacher.isFavorite){
+        function toggleFavorite(teacher) {
+            if (teacher.isFavorite) {
                 return removeFavoriteTeacher(teacher.id);
             }
 
             return addAsFavorite(teacher.id);
         }
 
-        function removeReview(teacherId){
-            return Teachers.one(teacherId).one('reviews').remove();
+        function removeReview(teacherId) {
+            return Teachers.one(teacherId).one('reviews').one('mine').remove();
         }
     }
 

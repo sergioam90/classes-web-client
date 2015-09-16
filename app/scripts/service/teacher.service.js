@@ -44,7 +44,7 @@
         }
 
         function submitReview(teacherId, review) {
-            return Teachers.one(teacherId).all('reviews').post(review);
+            return Teachers.one(teacherId).all('reviews').one('mine').put(review);
         }
 
         function saveTeacher(teacher) {
