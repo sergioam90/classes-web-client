@@ -5,15 +5,18 @@
         .module('classesClientApp')
         .service('LevelService', LevelService);
 
-    function LevelService(){
+    function LevelService() {
         var levelsNames = {
             secondary: 'Secundario',
             university: 'Universitario',
             tertiary: 'Terciario',
-            primary: 'Primario'
+            primary: 'Primario',
+            begginer: 'Básico',
+            intermediate: 'Intermedio',
+            advanced: 'Avanzado'
         };
 
-        function getAllLevels(){
+        function getAllLevels() {
             var keys = [];
 
             for (var key in levelsNames) {
@@ -25,7 +28,7 @@
             return keys;
         }
 
-        function getLevelName(level){
+        function getLevelName(level) {
             return levelsNames[level];
         }
 
