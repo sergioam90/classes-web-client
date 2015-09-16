@@ -32,7 +32,7 @@
         }
 
         function madeReviews(id) {
-            return Students.one(id).one('made-reviews').get();
+            return Students.one(id).one('reviews-made').get();
         }
 
         function favoriteTeachers() {
