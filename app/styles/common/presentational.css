@@ -11,8 +11,8 @@
     color: white;
 }
 
-.full-width{
-  width: 100%;
+.full-width {
+    width: 100%;
 }
 
 .full-height {
@@ -39,17 +39,19 @@
 }
 
 .tabs .tab a {
-  color: #424242 ;
+    color: #424242;
 }
+
 .tabs .tab a:hover {
-  color: grey;
+    color: grey;
 }
+
 .tabs .indicator {
-  background-color:#ff8f00 ;
+    background-color: #ff8f00;
 }
 
 a {
-  color: #ffc107;
+    color: #ffc107;
 }
 
 .hand-pointer {
