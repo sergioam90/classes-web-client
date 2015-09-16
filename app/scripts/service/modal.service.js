@@ -16,6 +16,12 @@
                 return;
             }
 
+            modal.element.children().closeModal({
+                complete: destroy
+            });
+        }
+
+        function destroy() {
             modal.scope.$destroy();
             modal.element.remove();
 
@@ -45,6 +51,7 @@
 
         return {
             close: close,
+            destroy: destroy,
             getOptions: getOptions,
             open: open
         };
