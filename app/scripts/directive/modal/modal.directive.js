@@ -11,8 +11,22 @@
 
         var options = null;
 
-        function close() {
-            ModalService.close();
+        function create(scope, element) {
+            var template = options.template;
+            var templateUrl = options.templateUrl;
+
+            if (angular.isUndefined(template)) {
+                template = $templateRequest(templateUrl);
+            }
+
+            $q.when(template).then(function (template) {
+                var html = $compile(template)(scope);
+                element.append(html);
+
+                html.openModal({
+                    complete: ModalService.destroy
+                });
+            });
         }
 
         function getDependencies() {
@@ -57,29 +71,11 @@
                         scope[controllerAs] = instance;
                     }
 
-                    open(scope, element);
+                    create(scope, element);
                 });
             } else {
-                open(scope, element);
+                create(scope, element);
             }
-        }
-
-        function open(scope, element) {
-            var template = options.template;
-            var templateUrl = options.templateUrl;
-
-            if (angular.isUndefined(template)) {
-                template = $templateRequest(templateUrl);
-            }
-
-            $q.when(template).then(function (template) {
-                var html = $compile(template)(scope);
-                element.append(html);
-
-                html.openModal({
-                    complete: close
-                });
-            });
         }
 
         return {
