@@ -101,7 +101,7 @@
             return Subjects.getList().then(function (subjects) {
                 vm.subjects = [];
 
-                for(var i = 0; i < 100; i++){
+                for (var i = 0; i < 100; i++) {
                     vm.subjects.push({name: 'test' + i, level: 'Secondary'});
                 }
 

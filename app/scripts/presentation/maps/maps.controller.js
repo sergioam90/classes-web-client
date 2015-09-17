@@ -102,19 +102,19 @@
         var teachers = [
             {
                 name: 'Messi',
-                address: { lat: -30.0001, lng: -62.0001 }
+                address: {lat: -30.0001, lng: -62.0001}
             },
             {
                 name: 'Diego',
-                address: { lat: -30.02, lng: -62.01 }
+                address: {lat: -30.02, lng: -62.01}
             },
             {
                 name: 'Carlitos',
-                address: { lat: -30.01, lng: -62.02 }
+                address: {lat: -30.01, lng: -62.02}
             },
             {
                 name: 'Kun',
-                address: { lat: -30.02, lng: -62.02 }
+                address: {lat: -30.02, lng: -62.02}
             }
         ];
 
@@ -132,7 +132,7 @@
                 teacher: teacher,
                 visible: true
             });
-            google.maps.event.addListener(marker, 'click', function(){
+            google.maps.event.addListener(marker, 'click', function () {
                 $scope.$apply(function () {
                     vm.selectedTeacher = marker.teacher;
                 });

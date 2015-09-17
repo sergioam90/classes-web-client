@@ -26,7 +26,7 @@
             loadTeacher();
         }
 
-        function loadTeacher(){
+        function loadTeacher() {
             TeacherService.me().then(function (teacher) {
                 vm.teacher = teacher;
 
@@ -36,7 +36,7 @@
             });
         }
 
-        function loadReviews(id){
+        function loadReviews(id) {
             TeacherService.reviews(id).then(function (page) {
 
                 // TODO: Work with page not just content
@@ -44,13 +44,13 @@
             });
         }
 
-        function loadTeacherAddress(){
+        function loadTeacherAddress() {
             MapsService.getAddress(location).then(function (result) {
                 vm.formattedAddress = result;
             });
         }
 
-        function saveTeacher(){
+        function saveTeacher() {
             TeacherService.saveTeacher(vm.teacher).then(function (teacher) {
                 // TODO: Is this ok?
                 vm.teacher = teacher;

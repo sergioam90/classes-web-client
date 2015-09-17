@@ -17,7 +17,7 @@
             return degreesNames[degree];
         }
 
-        function getAllDegrees(){
+        function getAllDegrees() {
             var keys = [];
 
             for (var key in degreesNames) {

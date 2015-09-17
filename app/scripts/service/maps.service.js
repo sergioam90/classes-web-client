@@ -33,7 +33,7 @@
             var geocoder = new google.maps.Geocoder();
 
             // TODO: Harcoded location
-            var latlng = new google.maps.LatLng(-38.7229407,-62.2685386);
+            var latlng = new google.maps.LatLng(-38.7229407, -62.2685386);
 
             var request = {location: latlng};
 

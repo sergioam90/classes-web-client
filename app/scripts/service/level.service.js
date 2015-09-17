@@ -5,13 +5,13 @@
         .module('classesClientApp')
         .service('LevelService', LevelService);
 
-    function LevelService(){
+    function LevelService() {
         var levelsNames = {
             Secondary: 'Secundario',
             University: 'Universitario'
         };
 
-        function getAllLevels(){
+        function getAllLevels() {
             var keys = [];
 
             for (var key in levelsNames) {
@@ -23,7 +23,7 @@
             return keys;
         }
 
-        function getLevelName(level){
+        function getLevelName(level) {
             return levelsNames[level];
         }
 

@@ -5,12 +5,12 @@
         .module('classesClientApp')
         .service('CityService', CityService);
 
-    function CityService(){
+    function CityService() {
         var citiesNames = {
             ChIJvQIT3Ku87ZUREXoeJI3Y0XY: 'Bahía Blanca'
         };
 
-        function getAllCities(){
+        function getAllCities() {
             var keys = [];
 
             for (var key in citiesNames) {
@@ -25,7 +25,7 @@
             return keys;
         }
 
-        function getCityName(city){
+        function getCityName(city) {
             return citiesNames[city];
         }
 

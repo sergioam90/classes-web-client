@@ -25,7 +25,7 @@
             return gendersIcons[gender];
         }
 
-        function getAllGenders(){
+        function getAllGenders() {
             var keys = [];
 
             for (var key in gendersNames) {

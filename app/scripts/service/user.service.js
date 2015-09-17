@@ -25,7 +25,7 @@
             return Users.one('me').get();
         }
 
-        function saveUser(user){
+        function saveUser(user) {
             return Users.one('me').customPUT(user);
         }
 

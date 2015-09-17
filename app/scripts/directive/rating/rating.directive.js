@@ -7,7 +7,7 @@
 
     function RatingDirective() {
 
-        function link(scope, elem, attr){
+        function link(scope, elem, attr) {
 
             // TODO: Use states as string not as harcoded numbers?
             var fullStar = 0;
@@ -26,9 +26,9 @@
 
             /** Implementation **/
 
-            function initialize(){
+            function initialize() {
 
-                if(!angular.isDefined(scope.statesClasses)){
+                if (!angular.isDefined(scope.statesClasses)) {
                     scope.statesClasses = scope.defaultClasses.slice();
                 }
 
@@ -39,8 +39,8 @@
 
             }
 
-            function updateStates(newValue){
-                if(angular.isDefined(scope.discrete)){
+            function updateStates(newValue) {
+                if (angular.isDefined(scope.discrete)) {
                     updateStatesDiscrete(newValue);
                 } else {
                     updateStatesHalf(newValue);
@@ -65,7 +65,7 @@
                 scope.states = scope.defaultStates.slice();
 
                 // If newValue is not defined, leave default state
-                if(newValue === undefined){
+                if (newValue === undefined) {
                     return;
                 }
 
@@ -103,31 +103,31 @@
                 return float;
             }
 
-            function starHover(index){
-                if(!angular.isDefined(scope.readonly)){
+            function starHover(index) {
+                if (!angular.isDefined(scope.readonly)) {
 
                     // Fill up to index
-                    for(var i = 0; i <= index; i++){
+                    for (var i = 0; i <= index; i++) {
                         scope.states[i] = fullStar;
                     }
 
                     // Empty past index
-                    for(var i = index + 1; i < scope.states.length; i++){
+                    for (var i = index + 1; i < scope.states.length; i++) {
                         scope.states[i] = emptyStar;
                     }
                 }
             }
 
-            function starLeave(){
-                if(!angular.isDefined(scope.readonly)){
+            function starLeave() {
+                if (!angular.isDefined(scope.readonly)) {
                     updateStatesHalf(scope.value);
                 }
             }
 
-            function starClick(index, event){
+            function starClick(index, event) {
                 event.stopPropagation();
-                if(!angular.isDefined(scope.readonly)){
-                    if(scope.value !== index + 1) {
+                if (!angular.isDefined(scope.readonly)) {
+                    if (scope.value !== index + 1) {
                         scope.value = index + 1;
                     } else {
                         scope.value = undefined;

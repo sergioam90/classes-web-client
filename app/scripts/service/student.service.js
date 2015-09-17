@@ -38,19 +38,19 @@
             return Students.one('me').all('favorite-teachers').post({id: teacherId});
         }
 
-        function removeFavoriteTeacher(teacherId){
+        function removeFavoriteTeacher(teacherId) {
             return Students.one('me').all('favorite-teachers').one(teacherId).remove();
         }
 
-        function toggleFavorite(teacher){
-            if(teacher.isFavorite){
+        function toggleFavorite(teacher) {
+            if (teacher.isFavorite) {
                 return removeFavoriteTeacher(teacher.id);
             }
 
             return addAsFavorite(teacher.id);
         }
 
-        function removeReview(teacherId){
+        function removeReview(teacherId) {
             return Teachers.one(teacherId).one('reviews').remove();
         }
     }

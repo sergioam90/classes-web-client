@@ -2,19 +2,68 @@
     This file contains all the styles applied to the home page's footer.
     All the rules must be prefixed with .home-footer parent class.
  */
+.home-footer {
+    text-align: left;
+}
 
-.home-footer a{
-  color: white;
+.home-footer p {
+    font-size: 1.1rem;
 }
-@media (max-width: 780px) {
-  .home-footer .col .s12 {
-    text-indent: 0;
-    text-align: center;
-  }
+
+.home-footer ul li {
+    line-height: 1.6rem;
 }
-@media (max-width: 480px) {
-  .home-footer img{
-    padding-top: 10px;
-    height: 60px;
-  }
+
+.home-footer a {
+    color: white;
+    font-size: 1rem;
+}
+
+.home-footer #facebook:hover {
+    color: #3b5998;
+}
+
+.home-footer #twitter:hover {
+    color: #4099FF;
+}
+
+.home-footer #instagram:hover {
+    color: #125688;
+}
+
+.home-footer #rights:hover {
+    text-decoration: underline;
+}
+
+.home-footer #legalrights p, .home-footer #legalrights a {
+    font-size: 0.9rem;
+}
+
+@media (min-width: 993px) {
+    .home-footer #app {
+        margin-top: 2rem;
+        margin-bottom: 0.5rem;
+    }
+}
+
+@media (min-width: 601px) {
+    .home-footer #apps {
+        margin-top: 1rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .home-footer {
+        text-align: center;
+    }
+}
+
+.home-footer #legalrights {
+    border-top: 1px solid #424242;
+    background-color: #0C0C0C;
+}
+
+.home-footer #paddignfooter {
+    padding-top: 4%;
+    padding-bottom: 3%;
 }

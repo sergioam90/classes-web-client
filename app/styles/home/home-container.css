@@ -2,118 +2,212 @@
     This file contains all the styles applied to the home page's container.
     All the rules must be prefixed with .home-header parent class.
 */
+.home-container nav {
+    box-shadow: none;
+}
 
 .home-container {
     background-color: white;
 }
 
-.home-container .fondofijo{
-  background: url(images/fondo.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;position: absolute;width: 100%;height: 100%
-}
-.home-container h5{
-  font-size: 1.2em;
-}
-.home-container .paddingtop{
-  margin-top: 40px;
+.home-container .gif-border {
+    border: 2px solid #616161;
 }
 
-.home-container .content-tabs{
-  padding-top: 3em;
+#front-background-img {
+    background: url(/images/fondo.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100%;
 }
-.home-container .box-solution{
-  padding:0 0.85rem;
+
+@media (min-width: 993px) {
+    .home-container .nav-wrapper {
+        padding: 0 3rem;
+    }
 }
-.home-container #comentarios{
-  padding:1% 5% 0.01% 5%;
-}
-.home-container #comentarios h5 {
-  font-size: 1.2em;
-}
-@media (max-width: 1200px){
-  .home-container #comentarios{
-    padding: 0 0 0 0;
-  }
-}
+
 @media (max-width: 992px) {
-  .home-container #comentarios {
-    -ms-transform: rotate(-2deg); /* IE 9 */
-    -webkit-transform: rotate(-2deg); /* Safari */
-    transform: rotate(-2deg);
-    margin-left: -10px;
-    margin-right: -10px;
-  }
-  .home-container #divisioncomentarios{
-    border-top: 7px solid white;
-  }
+    .home-container .nav-wrapper {
+        padding: 0 0.5rem;
+    }
 }
 
-@media (max-width: 480px){
-  .home-container #comentarios{
-    font-size: 0.8em;
-  }
+.home-container #log-in {
+    background: url(/images/buttonbackground.png) no-repeat center;
+    width: 150px;
+    height: 50px;
+    line-height: 50px;
 }
-.home-container .material-icons {
-  font-size: 10em;
+
+.home-container header {
+    margin-top: 15vh;
+    height: 85vh;
+    margin-left: auto;
+    margin-right: auto;
 }
-.home-container #cantbusquedas h5{
-  font-size: 3em;
-  margin: 0;
+
+.home-container .main-browser {
+    padding-bottom: 1rem;
 }
-.home-container #cantbusquedas h5 b{
-  font-size: 1.5em;
+
+@media (min-width: 993px) {
+    .home-container #main-title {
+        margin-left: 3rem;
+        margin-right: 3rem;
+        line-height: 0.8rem;
+    }
 }
-@media (max-width: 480px) {
-  .home-container #cantbusquedas{
-    font-size: 60%;}
-  .home-container #cantbusquedas h5{
-    text-align: center;
-  }
-  .home-container #materias{
+
+@media (max-width: 992px) {
+    .home-container #main-title {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .home-container header {
+        margin-top: 5vh;
+        padding-bottom: 0vh;
+    }
+
+    .home-container header h1 {
+        font-size: 2.5rem;
+    }
+}
+
+.home-container #main-title, .home-container #nav-title {
+    font-family: 'Love Ya Like A Sister', cursive;
+}
+
+.home-container #angle-down {
+    text-shadow: -2px 3px 0px rgba(1, 1, 1, 0.4);
+    font-size: 3rem;
+    height: 10vh;
+}
+
+.home-container h1 {
+    margin-bottom: 3rem;
+    font-size: 4.5rem;
+}
+
+@media (max-width: 600px) {
+    .home-container h1 {
+        font-size: 3rem;
+    }
+}
+
+.tabs .tab a.active {
+    color: white;
+}
+
+#tabs ul li a.active {
+    background-color: #ffca28;
+}
+
+.tabs .indicator {
     display: none;
-  }
 }
-.home-container .float-none {
-  float: none;
+
+.home-container .tab-text {
+    font-size: 1.3rem;
 }
-.home-container #cantbusquedas .col.s6, .home-container #cantbusquedas .col.m9{
-  margin-left: auto;
-  margin-right: auto;
+
+.home-container #how-it-works {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
 }
-.home-container #cajaredes{
-  margin-right: 40px;
-  width: 180px;
-  height: 80px;
-  border-radius: 15px 15px 0 0;
-  background-color: #e0e0e0;
-  border:2px solid rgba(0, 0, 0, 0.1);
-  padding: 15px 10px 20px 10px;
-  position: fixed;
-  right: 0;
-  bottom: 0;
+
+.home-container .tabs {
+    font-size: 1.4rem;
 }
-.home-container #preguntas{
-  position: fixed;
-  right: 0;
-  bottom: 0;
-  padding-right: 250px;
-  padding-left: 30px;
-  line-height: 2.4em;
-  border-radius: 15px 0 0 0;
-  background-image: url("/images/barrapreguntas.png");
-  background-repeat: no-repeat;
-  background-position: center;
+
+.home-container .tab-top-border {
+    border-top: 2px solid #ffca28;
 }
-@media (max-width: 1000px) {
-  .home-container #preguntas{
-    display: none;
-  }
+
+.home-container .content-tabs {
+    margin-top: 2.5rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 }
-@media (max-width: 601px) {
-  .home-container #cajaredes {
-    display: none;
-  }
+
+.home-container .img-comments {
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 3px solid #ffc107;
+}
+
+.home-container .ballooncomment {
+    border-radius: 25px 25px 25px 0px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1rem;
+}
+
+.home-container .ballooncomment, .home-container .ballooncomment i, .home-container .ballooncomment b {
+    color: #0C0C0C;
+    font-size: 1.1rem;
+}
+
+.home-container #comments {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-image: url(/images/comentarios.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center center;
+}
+
+@media (max-width: 932px) {
+    .home-container #comments {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+    }
+
+    .home-container #mobiledivisioncomments {
+        padding-top: 3rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .home-container .ballooncomment {
+        border-radius: 0px 25px 25px 25px;
+    }
+}
+
+.home-container #ready {
+    padding-top: 5.5rem;
+    padding-bottom: 7rem;
+}
+
+.home-container #paddingapprovebutton {
+    padding-bottom: 1rem;
+}
+
+@media (max-width: 600px) {
+    .home-container #ready {
+        padding-top: 3.5rem;
+        padding-bottom: 5rem;
+    }
+}
+
+.home-container #faq {
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    background-color: orange;
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+
+.home-container #faqs {
+    padding: 16px
+}
+
+@media (max-width: 600px) {
+    .home-container #faq {
+        display: none;
+    }
 }

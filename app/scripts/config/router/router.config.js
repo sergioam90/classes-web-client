@@ -44,6 +44,20 @@
                     }
                 }
             })
+            .state('root.early', {
+                url: '/earlysignup',
+                views: {
+                    'header@': {},
+                    'container@': {
+                        templateUrl: 'scripts/presentation/teacher/early-signup/early-signup.html',
+                        controller: 'HomeController as vm'
+                    },
+                    'footer@': {
+                        templateUrl: 'scripts/presentation/footer/footer.html'
+                        /*controller: 'FooterController as vm'*/
+                    }
+                }
+            })
             .state('root.about', {
                 url: '/about',
                 views: {

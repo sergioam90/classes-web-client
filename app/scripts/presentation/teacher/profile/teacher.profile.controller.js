@@ -77,8 +77,8 @@
             return TeacherService.
                 submitReview(vm.teacher.id, review).then(function () {
 
-                loadTeacher(vm.teacher.id);
-            });
+                    loadTeacher(vm.teacher.id);
+                });
         }
 
         function showReviewModal() {

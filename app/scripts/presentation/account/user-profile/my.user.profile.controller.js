@@ -23,13 +23,13 @@
             loadUser();
         }
 
-        function loadUser(){
+        function loadUser() {
             AccountService.loadUser().then(function (user) {
                 vm.user = user;
             });
         }
 
-        function saveUser(){
+        function saveUser() {
             vm.user.birthDate = moment(vm.user.birthDate).format('YYYY-MM-DD');
 
             UserService.saveUser(vm.user).then(loadUser);
