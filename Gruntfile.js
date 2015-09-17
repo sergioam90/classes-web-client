@@ -40,7 +40,7 @@ module.exports = function (grunt) {
                 // JS files to be included by includeSource task into index.html
                 'scripts/app.module.js',
                 'scripts/app.constant.js',
-                'scripts/app.static.config',
+                'scripts/app.static.config.js',
                 'scripts/app.config',
                 'scripts/*.js',
                 'scripts/**/*.js'
@@ -124,7 +124,7 @@ module.exports = function (grunt) {
                     open: true,
                     middleware: function (connect) {
                         return [
-                            require('connect-modrewrite')(['!^.*(\\.css|\\.html|\\.ico|\\.jpg|\\.js|\\.png|\\.woff2).*$ /index.html [L]']),
+                            require('connect-modrewrite')(['!^.*(\\.css|\\.html|\\.ico|\\.jpg|\\.gif|\\.js|\\.png|\\.woff2).*$ /index.html [L]']),
                             connect.static('.tmp'),
                             connect().use(
                                 '/bower_components',
