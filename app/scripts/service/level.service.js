@@ -11,7 +11,7 @@
             university: 'Universitario',
             tertiary: 'Terciario',
             primary: 'Primario',
-            begginer: 'Básico',
+            beginner: 'Básico',
             intermediate: 'Intermedio',
             advanced: 'Avanzado'
         };
