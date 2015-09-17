@@ -6,6 +6,8 @@
         .controller('TeachersSearchController', TeachersSearchController);
 
     TeachersSearchController.$inject = [
+        'StudentService',
+        'UserService',
         'TeacherService',
         'Subjects',
         'DegreeService',
@@ -16,62 +18,77 @@
         '$timeout'
     ];
 
-    function TeachersSearchController(TeacherService, Subjects, DegreeService, CityService, $location, $state, $filter, $timeout) {
+    function TeachersSearchController(StudentService, UserService, TeacherService, Subjects, DegreeService, CityService, $location, $state, $filter, $timeout) {
         var vm = this;
+
+        vm.loadedUserAndStudent = false;
+        vm.student = undefined;
+        vm.user = undefined;
 
         vm.defaultSearchCriteria = {
             fee: 400,
             city: null,
             subjects: [],
-            degrees: []
+            degrees: [],
+            latitude: null,
+            longitude: null,
+            sort: {
+                distance: undefined,
+                averageRating: undefined,
+                fee: undefined
+            }
         };
 
-        vm.localSelectStrings = {
-            selectAll: 'Todas',
-            selectNone: 'Ninguna',
-            reset: 'Reiniciar',
-            search: 'Escribí aca para buscar...',
-            nothingSelected: 'Ninguna materia seleccionada'
-        };
+        vm.searching = true;
 
         vm.degreesNames = [];
         vm.selectedDegrees = [];
 
         vm.subjects = [];
 
-        // TODO: Decide how to implement binding with vm.subjects
-        vm.singleSelectedSubject = {};
-
         vm.teachersResult = [];
 
         vm.cities = CityService.getAllCities();
 
         /** Functions **/
-        vm.search = search;
+        vm.filterSearch = filterSearch;
         vm.moneyTranslate = moneyTranslate;
         vm.clearFilters = clearFilters;
         vm.viewProfile = viewProfile;
         vm.removeAccents = removeAccents;
+        vm.getCurrentUrl = getCurrentUrl;
+
+        vm.pageSelect = pageSelect;
+
+        vm.parseInt = parseInt;
 
         initialize();
 
         /* Implementation */
 
         function initialize() {
+            // Load Student and user
+            loadUserAndStudent();
+
             // We must wait for subject loading from URL
-            loadSearchParams().then(search);
+            loadSearchParams().then(function () {
+                search(prepareSearchCriteria());
+            });
         }
 
-        function loadSearchParams() {
-            loadDefaultValues();
+        function loadUserAndStudent() {
+            UserService.me().then(function (user) {
+                vm.user = user;
 
-            var searchParams = $location.search();
+                StudentService.me().then(function (student) {
+                    vm.student = student;
+                }).finally(function () {
+                    vm.loadedUserAndStudent = true;
+                });
 
-            vm.searchCriteria = angular.extend({}, vm.defaultSearchCriteria, searchParams);
-
-            var waitForSubjects = loadSubjects();
-
-            return waitForSubjects;
+            }).finally(function () {
+                vm.loadedUserAndStudent = true;
+            });
         }
 
         function loadDefaultValues() {
@@ -87,45 +104,104 @@
             loadDegrees();
         }
 
+        function loadSearchParams() {
+            loadDefaultValues();
+
+            // Load query string params
+            var searchParams = angular.copy($location.search());
+
+            // This case is for a single subject taken as a string not as an array
+            if (searchParams.subjects && !angular.isArray(searchParams.subjects)) {
+                searchParams.subjects = [searchParams.subjects];
+            }
+
+            // This case is for a single sort taken as a string not as an array
+            if (searchParams.sort && !angular.isArray(searchParams.sort)) {
+                searchParams.sort = [searchParams.sort];
+            }
+
+            // Load sort search params
+            searchParams.sort = getSortSearchParameters(searchParams.sort);
+
+            angular.extend(vm.searchCriteria, searchParams);
+
+            var waitForSubjects = loadSubjects();
+
+            return waitForSubjects;
+        }
+
         function loadDegrees() {
             vm.degreesNames = DegreeService.getAllDegrees();
 
             vm.selectedDegrees = new Array(vm.degreesNames.length);
-
-            for (var i = 0; i < vm.degreesNames.length; i++) {
-                vm.selectedDegrees[i] = true;
-            }
         }
 
         function loadSubjects() {
             return Subjects.getList().then(function (subjects) {
-                vm.subjects = [];
-
-                for (var i = 0; i < 100; i++) {
-                    vm.subjects.push({name: 'test' + i, level: 'Secondary'});
-                }
+                vm.subjects = subjects.plain();
 
                 // If there are subjects in url, set them as selected
                 for (var i = 0; i < vm.subjects.length; i++) {
-
-                    // TODO: This should be replaced when multiselect supports filters
-                    var nameWithoutAccents = $filter('noAccents')(vm.subjects[i].name);
-                    var filteredLevel = $filter('level')(vm.subjects[i].level);
-
-                    vm.subjects[i].filteredName = nameWithoutAccents;
-                    vm.subjects[i].filteredLevel = ' - ' + filteredLevel;
-
                     if (vm.searchCriteria.subjects) {
-                        vm.subjects[i].selected = vm.searchCriteria.subjects.indexOf(vm.subjects[i].id) > -1;
+                        var index = vm.searchCriteria.subjects.indexOf(vm.subjects[i].id);
+
+                        vm.subjects[i].selected = index > -1;
+
+                        // TODO: Dirty fix
+                        if (index > -1) {
+                            vm.searchCriteria.subjects[index] = vm.subjects[i];
+                        }
                     }
                 }
+
             });
         }
 
-        function search() {
-            var searchCriteria = {};
+        function getSortSearchParameters(sortParams) {
+            if (sortParams) {
+                var sortObject = {};
+                for (var i = 0; i < sortParams.length; i++) {
+                    var name = sortParams[i].split(',')[0];
+                    var value = sortParams[i].split(',')[1];
 
-            angular.copy(vm.searchCriteria, searchCriteria);
+                    sortObject[name] = value;
+                }
+
+                return sortObject;
+            }
+
+            return undefined;
+        }
+
+        function filterSearch() {
+            // Reset page number
+            vm.searchCriteria.page = 0;
+
+            // Make actual search
+            search(prepareSearchCriteria());
+            //$state.go('root.teachersSearch', prepareSearchCriteria());
+        }
+
+        function search(searchCriteria) {
+            console.log('search');
+
+            $location.replace().search(searchCriteria);
+
+            // Remove previous results and show spinner
+            vm.teachersResult = [];
+            vm.searching = true;
+
+            TeacherService.search(searchCriteria).then(function (page) {
+                page = page.plain();
+
+                vm.searching = false;
+
+                vm.teachersResult = page;
+            });
+        }
+
+        function prepareSearchCriteria(number) {
+            var searchCriteria = angular.copy(vm.searchCriteria);
 
             // Add degrees to search criteria
             searchCriteria.degrees = [];
@@ -138,19 +214,47 @@
             // Add subjects ids to search criteria
             searchCriteria.subjects = [];
 
-            for (var i = 0; i < vm.subjects.length; i++) {
-                if (vm.subjects[i].selected) {
-                    searchCriteria.subjects.push(vm.subjects[i].id);
+            for (var i = 0; i < vm.searchCriteria.subjects.length; i++) {
+                searchCriteria.subjects.push(vm.searchCriteria.subjects[i].id);
+            }
+
+            searchCriteria.sort = prepareSortCriteria(vm.searchCriteria.sort);
+
+            if (vm.student) {
+                if (vm.student.location) {
+                    searchCriteria.latitude = vm.student.location.latitude;
+                    searchCriteria.longitude = vm.student.location.longitude;
                 }
             }
 
-            $location.search(searchCriteria);
+            // Read page number
+            if (angular.isDefined(number)) {
+                searchCriteria.page = number;
+            }
 
-            TeacherService.search(searchCriteria).then(function (page) {
+            return searchCriteria;
+        }
 
-                // TODO: Work with full page object
-                vm.teachersResult = page.content;
-            });
+        function prepareSortCriteria(criteria) {
+            var sort = [];
+
+            if (!criteria) {
+                return undefined;
+            }
+
+            for (var key in criteria) {
+                if (criteria.hasOwnProperty(key)) {
+                    if (criteria[key]) {
+                        sort.push(key + ',' + criteria[key]);
+                    }
+                }
+            }
+
+            return sort;
+        }
+
+        function pageSelect(number) {
+            search(prepareSearchCriteria(number));
         }
 
         function viewProfile(teacher) {
@@ -171,7 +275,7 @@
                 vm.subjects[i].selected = false;
             }
 
-            vm.search();
+            vm.filterSearch();
         }
 
         function removeAccents(textWithAccents, substring) {
@@ -184,6 +288,9 @@
             return textWithoutAccents.toLowerCase().indexOf(substring.toLowerCase()) > -1;
         }
 
+        function getCurrentUrl() {
+            return $location.url();
+        }
 
     }
 

@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .controller('HomeController', HomeController);
 
-    HomeController.$inject = ['Subjects', 'LevelService', 'CityService', '$filter', '$state', '$document'];
+    HomeController.$inject = ['Subjects', 'LevelService', 'CityService', '$filter', '$state', '$location'];
 
-    function HomeController(Subjects, LevelService, CityService, $filter, $state, $document) {
+    function HomeController(Subjects, LevelService, CityService, $filter, $state, $location) {
         var vm = this;
 
         vm.subjects = [];
@@ -16,7 +16,6 @@
         vm.removeAccents = removeAccents;
         vm.homeSearch = homeSearch;
         vm.searchCriteria = {};
-        vm.goToHowItWorks = goToHowItWorks;
 
         initialize();
 
@@ -35,21 +34,15 @@
         }
 
         function homeSearch() {
-            var searchCriteria = vm.searchCriteria;
+            var searchCriteria = {};
+
+            searchCriteria.city = vm.searchCriteria.city;
 
             if (vm.searchCriteria.subject) {
-                searchCriteria.subjects = [vm.searchCriteria.subject.id];
+                searchCriteria.subjects = vm.searchCriteria.subject.id;
             }
 
             $state.go('root.teachersSearch', searchCriteria);
-        }
-
-        function goToHowItWorks() {
-            var element = document.getElementById('how-it-works');
-
-            var container = document.getElementById('how-it-works');
-
-            container.scrollTop(0, 2000);
         }
     }
 

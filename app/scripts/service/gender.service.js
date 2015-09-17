@@ -8,8 +8,8 @@
     function GenderService() {
 
         var gendersNames = {
-            male: 'Masculino',
-            female: 'Femenino'
+            male: 'Hombre',
+            female: 'Mujer'
         };
 
         var gendersIcons = {

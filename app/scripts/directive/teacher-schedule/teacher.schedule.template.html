@@ -1,0 +1,32 @@
+<!-- Home lesson filter -->
+<div class="row filter-icon teacher-schedule">
+
+    <!-- Morning icon -->
+    <div class="col s2 offset-s4">
+
+        <i class="fa fa-sun-o"
+           ng-class="schedule.morning ? 'schedule-morning-enabled' : 'muted-text'">
+        </i>
+
+    </div>
+
+    <!-- Afternoon icon -->
+    <div class="col s2">
+
+        <i class="fa fa-question"
+           ng-class="schedule.afternoon ? 'schedule-afternoon-enabled' : 'muted-text'">
+        </i>
+
+    </div>
+
+    <!-- Night icon -->
+    <div class="col s2">
+
+        <i class="fa fa-moon-o"
+           ng-class="schedule.night ? 'schedule-night-enabled' : 'muted-text'">
+        </i>
+
+    </div>
+
+
+</div>

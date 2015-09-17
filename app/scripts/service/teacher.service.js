@@ -18,12 +18,17 @@
         vm.submitReview = submitReview;
         vm.saveTeacher = saveTeacher;
         vm.search = search;
+        vm.signupTeacher = signupTeacher;
 
 
         /* Implementation */
 
         function me() {
             return Teachers.one('me').get();
+        }
+
+        function signupTeacher(teacher) {
+            return Teachers.post(teacher);
         }
 
         function reviews(id) {
@@ -39,7 +44,7 @@
         }
 
         function submitReview(teacherId, review) {
-            return Teachers.one(teacherId).all('reviews').post(review);
+            return Teachers.one(teacherId).all('reviews').one('mine').customPUT(review);
         }
 
         function saveTeacher(teacher) {

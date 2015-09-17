@@ -10,7 +10,9 @@
             restrict: 'E',
             templateUrl: 'scripts/directive/review/review.template.html',
             scope: {
-                review: '=ngModel'
+                review: '=ngModel',
+                forStudent: '@',
+                deleteReview: '&'
             }
         };
     }

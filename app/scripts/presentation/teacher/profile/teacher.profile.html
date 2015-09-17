@@ -1,7 +1,80 @@
-<div class="">
+<div class="teacher-profile">
     <div class="row">
 
-        <div class="col s12 m6 offset-m3">
+        <div class="col s12 m9">
+            <div class="row">
+                <div class="col m10">
+                    <div class="card">
+                        <!-- Favorite icon -->
+						<span class="teacher-bookmark right"
+                              ng-if="vm.currentUser.student && vm.currentUser.teacher !== vm.teacher.id"
+                              ng-click="vm.toggleFavorite(vm.teacher)">
+
+							<span tooltipped data-tooltip="Agregar a favoritos">
+								<i ng-if="vm.teacher.isFavorite"
+                                   class="fa fa-heart fa-4x orange-text text-darken-1"></i>
+								<i ng-if="!vm.teacher.isFavorite"
+                                   class="fa fa-heart-o fa-4x muted-text text-lighten-1"></i>
+							</span>
+						</span>
+
+                        <div class="row">
+                            <!-- User image -->
+                            <div class="col s12 m3 center">
+                                <img src="images/mock.jpg" class="responsive-img" alt="Profile picture">
+                            </div>
+
+                            <!-- User information -->
+                            <div class="col s12 m8">
+
+                                <!-- Name and degree -->
+                                <div class="row">
+
+                                    <!-- User name -->
+                                    <div class="col s12 m8">
+
+                                        <div style="font-size: 4rem; font-weight: 200;">
+                                            <!-- Username -->
+                                            {{ vm.teacher.user | fullName }} Apellidolargo
+                                        </div>
+
+                                    </div>
+
+                                    <!-- Rating -->
+                                    <div class="col s12 m4">
+                                        <h5 class="right">
+                                        </h5>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col m2">
+                    <div class="card">
+                        <!-- Age -->
+                        <div class="center feature-container">
+                            <h3>{{ vm.teacher.user.birthDate | age }}</h3>
+
+                            <p>Edad</p>
+                        </div>
+
+                        <div class="clearfix hide-on-med-and-up"></div>
+
+                        <!-- Gender -->
+                        <div class="center feature-container">
+                            <h3>
+                                <i ng-class="vm.teacher.user.gender | genderIcon"></i>
+                            </h3>
+
+                            <p>{{ vm.teacher.user.gender | gender }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="card">
 
                 <!-- Favorite icon -->
@@ -21,7 +94,7 @@
 
                     <!-- User image -->
                     <div class="col s12 m3 center">
-                        <img src="images/mock.jpg" class="responsive-img">
+                        <img src="images/mock.jpg" class="responsive-img" alt="Profile picture">
                     </div>
 
                     <!-- User information -->
@@ -31,15 +104,16 @@
                         <div class="row">
 
                             <!-- User name -->
-                            <div class="col s12 m7">
+                            <div class="col s12 m8">
 
-                                <h4>
-                                    <!-- Degree -->
-                                    <degree-icon ng-model="vm.teacher.degree"></degree-icon>
-
+                                <div style="font-size: 1.8rem; font-weight: 200;">
                                     <!-- Username -->
                                     {{ vm.teacher.user | fullName }}
-                                </h4>
+                                </div>
+
+                                <div>
+                                    {{ vm.teacher.distance | number:1 }} km
+                                </div>
                             </div>
 
                             <!-- Rating -->
@@ -54,48 +128,19 @@
                             </div>
 
                         </div>
-
-                        <!-- Icon bar -->
-                        <div class="row">
-                            <div class="col s8">
-                                <h4>
-                                    <teacher-features ng-model="vm.teacher"></teacher-features>
-                                </h4>
-                            </div>
-                            <div class="col s4">
-                                <h4>$ {{ vm.teacher.fee }}</h4>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Information tabs -->
-                <div class="row">
+            </div>
 
-                    <!-- Tab headings -->
-                    <div class="col s12">
-                        <ul class="tabs" tabs>
-                            <li class="tab col s4">
-                                <a href="#infoTab">
-                                    Información
-                                </a>
-                            </li>
-                            <li class="tab col s4">
-                                <a href="#reviewsTab">
-                                    Opiniones
-                                </a>
-                            </li>
-                            <li class="tab col s4">
-                                <a href="#contactTab">
-                                    Contacto
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
 
-                    <!-- Details tab -->
-                    <div id="infoTab" class="col s12">
+            <!-- Information tabs -->
+            <div class="row">
 
+                <!-- Details tab -->
+                <div id="infoTab" class="col s6">
+
+                    <div class="card card-content">
                         <!-- Description -->
                         <h5 class="center">{{ vm.teacher.description }}</h5>
 
@@ -163,80 +208,86 @@
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Reviews tab -->
-                    <div id="reviewsTab" class="col s12">
-
-                        <div ng-if="vm.currentUser.student && vm.currentUser.teacher != vm.teacher.id">
-                            <h5>
-                                Mi calificación
-                                <button ng-if="vm.teacher.review"
-                                        ng-click="vm.showReviewModal()"
-                                        class="btn btn-default btn-sm"
-                                        tooltipped data-tooltip="Editar"
-                                        tooltip-placement="right">
-                                    <i class="fa fa-pencil"></i>
-                                </button>
-                            </h5>
-                            <review ng-if="vm.teacher.review" ng-model="vm.teacher.review"></review>
-                            <div ng-if="!vm.teacher.review" class="text-center">
-                                <button ng-click="vm.showReviewModal()"
-                                        class="btn btn-primary btn-lg">
-                                    Calificar
-                                </button>
-                            </div>
-                            <div class="divider"></div>
-                        </div>
-
-                        <!-- Recieved reviews -->
-                        <h5>Calificaciones</h5>
-
-                        <div ng-repeat="review in vm.reviews">
-                            <span ng-if="review.student.id !== vm.currentUser.student">
-                                <review ng-model="review"></review>
-                                <div class="divider"></div>
-                            </span>
-                        </div>
-
-                        <!-- TODO: Show when teacher has only current student review -->
-                        <div ng-if="!vm.reviews.length">
-                            <p class="lead">¡Aún no han calificado a este profesor!</p>
-                        </div>
-
-                    </div>
-
-                    <!-- Contact tab -->
-                    <div id="contactTab" class="col s12">
+                <!-- Contact tab -->
+                <div id="contactTab" class="col s6">
+                    <div class="card">
 
                         <!-- Phone -->
-                        <h4>
+                        <div>
                             <i class="fa fa-phone blue-text fa-fw"></i>
                             <span>  {{ vm.teacher.phone.number }}  </span>
-                        </h4>
+
+                            <!-- TODO: Show whatsapp and SMS -->
+                        </div>
 
                         <div class="divider"></div>
 
                         <!-- Email -->
-                        <h4>
+                        <div>
                             <i class="fa fa-envelope fa-fw"></i>
                             {{ vm.teacher.user.email }}
-                        </h4>
+                        </div>
 
                         <div class="divider"></div>
 
                         <!-- Location -->
-                        <h4>
+                        <div>
                             <i class="fa fa-map-marker text-danger fa-fw"></i>{{ vm.teacher.location.city | city }}
-                        </h4>
+                        </div>
 
                         <div class="divider"></div>
 
                         {{ vm.teacher.location }}
-
                     </div>
 
                 </div>
 
+            </div>
+
+            <div class="row">
+                <!-- Reviews tab -->
+                <div id="reviewsTab" class="col s12 card">
+
+                    <div ng-if="vm.currentUser.student && vm.currentUser.teacher != vm.teacher.id">
+                        <h5>
+                            Mi calificación
+                            <button ng-if="vm.teacher.review"
+                                    ng-click="vm.showReviewModal()"
+                                    class="btn-flat">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                        </h5>
+                        <review ng-if="vm.teacher.review"
+                                for-student="true"
+                                delete-review="vm.removeReview(teacher)"
+                                ng-model="vm.teacher.review"></review>
+                        <div ng-if="!vm.teacher.review" class="text-center">
+                            <button ng-click="vm.showReviewModal()"
+                                    class="btn">
+                                Calificar
+                            </button>
+                        </div>
+                        <div class="divider"></div>
+                    </div>
+
+                    <!-- Recieved reviews -->
+                    <h5>Calificaciones</h5>
+
+                    <div ng-repeat="review in vm.reviews">
+                            <span ng-if="review.student.id !== vm.currentUser.student">
+                                <review ng-model="review"></review>
+                                <div class="divider"></div>
+                            </span>
+                    </div>
+
+                    <!-- TODO: Show when teacher has only current student review -->
+                    <div ng-if="!vm.reviews.length || vm.reviews[0].student.id == vm.currentUser.student">
+                        <p class="lead">¡Aún no han calificado a este profesor!</p>
+                    </div>
+
+                </div>
             </div>
         </div>
 

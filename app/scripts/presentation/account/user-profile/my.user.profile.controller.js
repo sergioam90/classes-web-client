@@ -5,22 +5,26 @@
         .module('classesClientApp')
         .controller('MyUserProfileController', MyUserProfileController);
 
-    MyUserProfileController.$inject = ['UserService', 'AccountService', 'GenderService'];
+    MyUserProfileController.$inject = ['user', 'UserService', 'AccountService', 'GenderService'];
 
-    function MyUserProfileController(UserService, AccountService, GenderService) {
+    function MyUserProfileController(user, UserService, AccountService, GenderService) {
 
         var vm = this;
 
-        vm.user = {};
+        vm.user = user;
         vm.saveUser = saveUser;
         vm.genders = GenderService.getAllGenders();
+
+        // Hack to make datepicker close definitely
+        vm.onClose = function () {
+            document.activeElement.blur();
+        };
 
         initialize();
 
         /* Implementation */
 
         function initialize() {
-            loadUser();
         }
 
         function loadUser() {

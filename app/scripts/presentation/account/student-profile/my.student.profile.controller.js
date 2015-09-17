@@ -5,13 +5,13 @@
         .module('classesClientApp')
         .controller('MyStudentProfileController', MyStudentProfileController);
 
-    MyStudentProfileController.$inject = ['StudentService', 'UserService'];
+    MyStudentProfileController.$inject = ['student', 'StudentService', 'UserService'];
 
-    function MyStudentProfileController(StudentService, UserService) {
+    function MyStudentProfileController(student, StudentService, UserService) {
 
         var vm = this;
 
-        vm.student = {};
+        vm.student = student;
         vm.madeReviews = [];
         vm.favoriteTeachers = [];
 
@@ -20,24 +20,29 @@
         // Edit functions
         vm.editUser = editUser;
 
-
         initialize();
 
         /* Implementation */
 
         function initialize() {
-            loadStudentData();
+            if (vm.student) {
+                loadStudentData();
+            }
         }
 
         function loadStudentData() {
 
-            StudentService.me().then(callback);
+            StudentService.me().then(success, error);
 
-            function callback(student) {
+            function success(student) {
                 vm.student = student;
 
                 loadStudentReviews(vm.student.id);
                 loadStudentFavoriteTeachers();
+            }
+
+            function error() {
+                vm.student = undefined;
             }
         }
 
@@ -55,8 +60,8 @@
             });
         }
 
-        function removeReview(teacherId) {
-            StudentService.removeReview(teacherId).then(function () {
+        function removeReview(teacher) {
+            StudentService.removeReview(teacher).then(function () {
                 loadStudentReviews(vm.student.id);
             });
         }

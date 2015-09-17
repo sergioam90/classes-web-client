@@ -3,45 +3,40 @@
 
         <div class="row">
 
+            <div class="col s2">
+                <img ng-src="{{ vm.teacher.user.imageUrl }}" class="responsive-img" alt="Profile picture">
+            </div>
+
+            <div class="col s10">
+                <h4>
+                    Calificación de {{ vm.currentUser | fullName }}
+                </h4>
+            </div>
         </div>
 
         <div class="row">
+            // TODO: Dirty hiding
+            <h4 class="center" ng-if="!vm.currentTitle" style="visibility: hidden">Text</h4>
+            <h4 class="center" ng-if="vm.currentTitle">{{ vm.currentTitle }}</h4>
 
-
-            <div class="col s2">
-                <img src="images/mock.jpg" class="responsive-img">
-            </div>
-
-            <div class="col s9">
-                <h4 class="modal-title text-white">
-                    Calificación de {{ vm.currentUser.firstName }} {{ vm.currentUser.lastName }}
-                </h4>
-            </div>
-
-            <div class="col s1 right">
-                <button type="button" class="close" ng-click="vm.modalDismiss()" aria-hidden="true">×</button>
-            </div>
+            <h2 class="center">
+                <rating class="orange-text"
+                        titles="vm.titles"
+                        current-title="vm.currentTitle"
+                        ng-model="vm.review.rating">
+                </rating>
+            </h2>
+            <textarea class="form-control" type="text" ng-model="vm.review.comment" maxlength="256"></textarea>
         </div>
-
-        <h4 class="center">{{ vm.currentTitle }}</h4>
-
-        <h2 class="center">
-            <rating class="orange-text"
-                    ng-model="vm.review.rating"
-                    on-hover="vm.onHover(value)"
-                    on-leave="vm.onLeave()">
-            </rating>
-        </h2>
-        <textarea class="form-control" type="text" ng-model="vm.review.comment" maxlength="256"></textarea>
     </div>
 
     <div class="modal-footer">
-        <a class="modal-action modal-close waves-effect waves-green btn-flat">
-            Close
-        </a>
         <a class="modal-action modal-close waves-effect waves-green btn"
            ng-click="vm.modalSubmitReview()">
             Calificar
+        </a>
+        <a class="modal-action modal-close waves-effect waves-green btn-flat">
+            Cerrar
         </a>
     </div>
 

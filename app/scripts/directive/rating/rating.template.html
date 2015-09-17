@@ -1,10 +1,9 @@
-<span ng-mouseleave="starLeave()">
-	<span ng-if="!((value === 0) && readonly)"
-          ng-repeat="state in states track by $index">
-    <i ng-class="statesClasses[state]"
+<span ng-if="value !== 0 || !readonly">
+    <a href=""
+       ng-mouseleave="starLeave()"
+       ng-click="starClick($index, $event)"
        ng-mouseover="starHover($index)"
-       ng-click="starClick($index, $event)"></i>
-    </span>
-
-    <span ng-if="(value === 0) && readonly">Sin calificar</span>
+       ng-repeat="state in states track by $index">
+        <i ng-class="statesClasses[state]"></i>
+    </a>
 </span>

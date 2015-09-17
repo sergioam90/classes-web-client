@@ -18,6 +18,7 @@
         vm.addAsFavorite = addAsFavorite;
         vm.removeFavoriteTeacher = removeFavoriteTeacher;
         vm.removeReview = removeReview;
+        vm.signupStudent = signupStudent;
 
 
         /* Implementation */
@@ -26,8 +27,12 @@
             return Students.one('me').get();
         }
 
+        function signupStudent(student) {
+            return Students.post(student);
+        }
+
         function madeReviews(id) {
-            return Students.one(id).one('made-reviews').get();
+            return Students.one(id).one('reviews-made').get();
         }
 
         function favoriteTeachers() {
@@ -35,7 +40,7 @@
         }
 
         function addAsFavorite(teacherId) {
-            return Students.one('me').all('favorite-teachers').post({id: teacherId});
+            return Students.one('me').all('favorite-teachers').one(teacherId).put();
         }
 
         function removeFavoriteTeacher(teacherId) {
@@ -51,7 +56,7 @@
         }
 
         function removeReview(teacherId) {
-            return Teachers.one(teacherId).one('reviews').remove();
+            return Teachers.one(teacherId).one('reviews').one('mine').remove();
         }
     }
 

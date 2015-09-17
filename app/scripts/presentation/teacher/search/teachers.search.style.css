@@ -1,0 +1,63 @@
+
+.teachers-search .sort-panel-title {
+    margin-top: -0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.teachers-search .info-action {
+    padding: 0 1rem;
+}
+
+.search-filters {
+    font-family: Roboto, sans-serif;
+    font-size: .7rem;
+    line-height: 1;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.search-filters a {
+    color: inherit;
+}
+
+.search-filters .button a {
+    display: block;
+    height: 100%;
+    padding: 16px 8px;
+}
+
+.search-filters .button a:hover {
+    background-color: #f2f2f2;
+    outline: 1px solid #efefef;
+    outline-offset: -1px;
+}
+
+.search-filters .button a:active {
+    background-color: #f2f2f2;
+    outline-color: #e8e8e8;
+}
+
+.search-filters .card-content {
+    height: 80px;
+    padding: 0;
+}
+
+.search-filters .col {
+    height: 100%;
+    padding: 16px 8px;
+}
+
+.search-filters .col.button {
+    padding: 0;
+}
+
+.search-filters .fa {
+    color: #c6c6c6;
+    font-size: 1.4rem;
+    margin-bottom: 8px;
+}
+
+.search-filters .row {
+    height: 100%;
+    margin-bottom: 0;
+}

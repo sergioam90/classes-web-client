@@ -1,7 +1,7 @@
 <div class=".home-header navbar-fixed ">
     <nav class="amber">
         <div class="nav-wrapper container">
-            <a ui-sref="root.home" class="brand-logo left">Profexpress</a>
+            <a ui-sref="root.home" class="brand-logo left">La sala</a>
             <a data-activates="mobile-demo" data-sidenav="left" data-closeonclick="true" class="button-collapse">
                 <i class="mdi-navigation-menu"></i>
             </a>
@@ -30,16 +30,24 @@
 
                 <!-- Logged out buttons -->
                 <span ng-show="!vm.isAuthenticated()">
-                    <li>
+                    <li ui-sref-active="active">
                         <a ui-sref="root.login"
                            ng-click="isCollapsed = true">
                             Iniciar sesión
                         </a>
                     </li>
                     <li>
-                        <a ui-sref="root.register.method({target: 'teacher'})"
+
+                        <a ui-sref="root.signup.method({ target: 'teacher' })"
                            ng-click="isCollapsed = true">
                             Quiero enseñar
+                        </a>
+                    </li>
+                    <li>
+
+                        <a ui-sref="root.signup.method({ target: 'student' })"
+                           ng-click="isCollapsed = true">
+                            Quiero aprender
                         </a>
                     </li>
                 </span>
@@ -70,16 +78,23 @@
 
                 <!-- Logged out buttons -->
                 <span ng-show="!vm.isAuthenticated()">
-                    <li>
+                    <li ui-sref-active="active">
                         <a ui-sref="root.login"
                            ng-click="isCollapsed = true">
                             Iniciar sesión
                         </a>
                     </li>
                     <li>
-                        <a ui-sref="root.register.method({target: 'teacher'})"
+                        <!-- root.register.method({target: 'teacher'})" -->
+                        <a ui-sref="root.signup.method({ target: 'teacher' })"
                            ng-click="isCollapsed = true">
                             Quiero enseñar
+                        </a>
+                    </li>
+                    <li>
+                        <a ui-sref="root.signup.method({ target: 'student' })"
+                           ng-click="isCollapsed = true">
+                            Quiero aprender
                         </a>
                     </li>
                 </span>

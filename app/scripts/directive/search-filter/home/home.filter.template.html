@@ -1,14 +1,6 @@
 <!-- Home lesson filter -->
-<span ng-click="toggle()" class="filter-icon">
-
-    <!-- TODO: Add home filter? -->
-    <span ng-if="state">
-        <i class="fa fa-car green-text"></i>
-        <p class="filter-description">A domicilio</p>
-    </span>
-
-    <span ng-if="!state">
-        <i class="fa fa-car grey-text"></i>
-        <p class="filter-description">A domicilio</p>
-    </span>
-</span>
+<a ng-class="state ? 'on' : 'muted-text'" href="">
+    <i class="fa fa-car"></i>
+    <br>
+    ¿Va a domicilio?
+</a>

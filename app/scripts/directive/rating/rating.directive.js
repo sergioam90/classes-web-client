@@ -14,7 +14,8 @@
             var halfStar = 1;
             var emptyStar = 2;
 
-            scope.defaultClasses = ['fa fa-star', 'fa fa-star-half-o', 'fa fa-star-o'];
+            // TODO: Make style for grey text
+            scope.defaultClasses = ['fa fa-star on', 'fa fa-star-half-o on', 'fa fa-star muted-text'];
             scope.defaultStates = [emptyStar, emptyStar, emptyStar, emptyStar, emptyStar];
             scope.states = scope.defaultStates.slice();
             scope.round = round;
@@ -115,12 +116,15 @@
                     for (var i = index + 1; i < scope.states.length; i++) {
                         scope.states[i] = emptyStar;
                     }
+
+                    setCurrentTitle(index + 1);
                 }
             }
 
             function starLeave() {
                 if (!angular.isDefined(scope.readonly)) {
                     updateStatesHalf(scope.value);
+                    setCurrentTitle(scope.value);
                 }
             }
 
@@ -134,6 +138,12 @@
                     }
                 }
             }
+
+            function setCurrentTitle(value) {
+                if (angular.isDefined(scope.titles)) {
+                    scope.currentTitle = scope.titles[value - 1];
+                }
+            }
         }
 
         return {
@@ -143,7 +153,9 @@
                 statesClasses: '=',
                 readonly: '@',
                 onChange: '&',
-                discrete: '@'
+                discrete: '@',
+                currentTitle: '=',
+                titles: '='
             },
             templateUrl: 'scripts/directive/rating/rating.template.html',
             link: link

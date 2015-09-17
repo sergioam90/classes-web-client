@@ -23,6 +23,7 @@
         vm.toggleFavorite = toggleFavorite;
         vm.submitReview = submitReview;
         vm.showReviewModal = showReviewModal;
+        vm.removeReview = removeReview;
 
         initialize();
 
@@ -44,11 +45,6 @@
             TeacherService.getById(id).then(function (teacher) {
                 vm.teacher = teacher;
 
-                // TODO: Ask to send empty object if student didn't make a review
-                if (!vm.teacher.review) {
-                    vm.teacher.review = {};
-                }
-
                 loadRelatedTeachers(vm.teacher.id);
                 loadReviews(vm.teacher.id);
             });
@@ -69,6 +65,14 @@
 
         function toggleFavorite(teacher) {
             StudentService.toggleFavorite(teacher).then(function () {
+                loadTeacher(vm.teacher.id);
+            });
+        }
+
+        function removeReview(teacherId) {
+            StudentService.removeReview(teacherId).then(function () {
+                loadReviews(vm.teacher.id);
+
                 loadTeacher(vm.teacher.id);
             });
         }

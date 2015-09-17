@@ -1,13 +1,9 @@
 <!-- Home lesson filter -->
-<span ng-click="toggle()" class="filter-icon">
+<a href="" ng-click="toggle()"
+   class="individual-lessons"
+   ng-class="state ? 'on' : 'muted-text'">
 
-    <span ng-if="state">
-        <i class="fa fa-user green-text"></i>
-        <p class="filter-description">Clases individuales</p>
-    </span>
-
-    <span ng-if="!state">
-        <i class="fa fa-user grey-text"></i>
-        <p class="filter-description">Clases individuales</p>
-    </span>
-</span>
+    <i class="fa fa-user"></i>
+    <br>
+    Clases individuales
+</a>

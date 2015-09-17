@@ -15,6 +15,7 @@
         vm.login = login;
         vm.logout = logout;
         vm.loadUser = loadUser;
+        vm.loginWithToken = loginWithToken;
         vm.me = {};
 
         initialize();
@@ -29,7 +30,8 @@
 
         function loadUser() {
             return UserService.me().then(function (user) {
-                return vm.me = user;
+                vm.me = user;
+                return user;
             });
         }
 
@@ -38,6 +40,16 @@
                 vm.logout();
             }
             return OAuth.getAccessToken(user).then(vm.loadUser);
+        }
+
+        function loginWithToken(token) {
+            if (vm.isAuthenticated()) {
+                vm.logout();
+            }
+
+            OAuthToken.setToken(token);
+
+            return vm.loadUser();
         }
 
         function logout() {

@@ -1,24 +1,28 @@
-<div class="container-fluid little-padding">
-    <div class="row">
+<div class="search-container teachers-search">
+    <div class="row search">
 
         <!-- Left sidebar -->
-        <div class="col s3 m3">
+        <div class="col s12 m3 search">
 
             <!-- City and text filters -->
-            <div class="card z-depth-2 filter-card">
+            <div class="card z-depth-2 filter-card search">
 
                 <div class="card-content">
 
-                    <div class="row">
+                    <div class="row no-margin-row">
                         <!-- Subject filter -->
                         <div class="col s12">
-                            <ui-select multiple ng-model="vm.searchCriteria.subjects" ng-disabled="disabled"
-                                       style="width: 100%;">
+                            <ui-select multiple
+                                       ng-model="vm.searchCriteria.subjects"
+                                       ng-disabled="disabled"
+                                       class="full-width"
+                                       on-select="vm.filterSearch()"
+                                       on-remove="vm.filterSearch()">
                                 <ui-select-match placeholder="Elegí tus materias...">
                                     {{ $item.name }}
                                 </ui-select-match>
                                 <ui-select-choices
-                                    repeat="subject in vm.subjects | filter:{name:$select.search}:vm.removeAccents">
+                                        repeat="subject in vm.subjects | filter:{name:$select.search}:vm.removeAccents track by subject.id">
                                     <div ng-bind-html="subject.name | highlight: $select.search"></div>
                                     <div ng-bind-html="subject.level | level"></div>
                                 </ui-select-choices>
@@ -26,38 +30,43 @@
                         </div>
 
                         <!-- City filter -->
-                        <div class="col s12 hide-on-small-and-down">
-                            <select class="" ng-model="vm.searchCriteria.city" material-select watch>
+                        <div class="col s12" ng-if="showMore">
+                            <select class=""
+                                    ng-model="vm.searchCriteria.city"
+                                    ng-change="vm.filterSearch()"
+                                    material-select
+                                    watch>
                                 <option value="" selected disabled>Elegí tu ciudad...</option>
-                                <option ng-repeat="city in vm.cities">{{city | city}}</option>
+                                <option ng-repeat="city in vm.cities" ng-value="city">{{ city | city }}</option>
                             </select>
                         </div>
 
                         <!-- Text filter -->
-                        <div class="col s12 hide-on-small-and-down">
+                        <input-field class="col s12" ng-if="showMore">
                             <input ng-model="vm.searchCriteria.text"
                                    ng-model-options="{ debounce: 750 }"
-                                   ng-change="vm.search()"
+                                   ng-change="vm.filterSearch()"
                                    type="text"
                                    class="form-control"
                                    placeholder="Nombre o descripcion..."/>
-                        </div>
+                        </input-field>
                     </div>
 
                 </div>
 
                 <div class="card-action">
                     <div class="row no-margin-row">
+
+                        <!-- Show more button -->
+                        <button ng-init="showMore = false" ng-click="showMore = !showMore"
+                                class="btn-flat left">
+                            {{ showMore ? 'Menos' : 'Más' }}
+                        </button>
+
                         <!-- Clear filters button -->
                         <button ng-click="vm.clearFilters()"
-                                class="btn-flat center">
-                            Limpiar
-                        </button>
-                        <button class="btn right"
-                                ng-hide="true"
-                                ng-init="vm.advancedVisible = false"
-                                ng-click="vm.advancedVisible = !vm.advancedVisible">
-                            Más
+                                class="btn-flat right">
+                            Limpiar filtros
                         </button>
                     </div>
                 </div>
@@ -65,94 +74,254 @@
         </div>
 
         <!-- Right content -->
-        <div class="col s9 m9 ">
+        <div class="col s12 m9 ">
 
             <!-- Search filters and order -->
             <div class="row no-margin-row">
 
-                <div class="card">
-                    <div class="card-content center">
-                        <!-- Rating filter -->
-                        <div class="col s5 m2">
-                            <rating class="orange-text filter-icon"
-                                    on-change="vm.search()"
-                                    ng-model="vm.searchCriteria.averageRating">
-                            </rating>
-                            <p class="filter-description">Puntaje mínimo</p>
+                <!-- Filters -->
+                <div class="col s12 m9 ">
+
+                    <div class="card z-depth-2 search-filters">
+                        <div class="card-content">
+                            <div class="row no-margin-row">
+                                <!-- Rating filter -->
+                                <div class="col c20s10 m5 c20l5 average-rating">
+
+                                    <!-- TODO: BUG - Calls search() on initialization -->
+                                    <rating class="orange-text filter-icon"
+                                            on-change="vm.filterSearch()"
+                                            ng-model="vm.searchCriteria.averageRating">
+                                    </rating>
+                                    <p class="filter-description">Puntaje mínimo</p>
+                                </div>
+
+                                <!-- Individual lessons -->
+                                <div class="col c20s10 m3 c20l3 button individual-lessons">
+                                    <individual-filter ng-model="vm.searchCriteria.individualLessons"
+                                                       ng-click="vm.filterSearch()">
+                                    </individual-filter>
+                                </div>
+
+                                <!-- Schedule filter -->
+                                <div class="col c20s10 m4 c20l3 schedule">
+                                    <schedule-filter morning="vm.searchCriteria.morning"
+                                                     afternoon="vm.searchCriteria.afternoon"
+                                                     night="vm.searchCriteria.night"
+                                                     ng-click="vm.filterSearch()">
+                                    </schedule-filter>
+                                </div>
+
+                                <!-- Fee filter -->
+                                <div class="col c20s10 m4 c20l3 button fee">
+                                    <fee-filter ng-click="vm.filterSearch()"
+                                                ng-model="vm.searchCriteria.fee"></fee-filter>
+                                </div>
+
+                                <!-- Home lesson filter -->
+                                <div class="col c20s10 m4 c20l3 button home-lessons">
+                                    <home-filter ng-click="vm.filterSearch()"
+                                                 ng-model="vm.searchCriteria.homeLessons"></home-filter>
+                                </div>
+
+                                <!-- Degree filter -->
+                                <div class="col c20s10 m4 c20l3 button degrees">
+                                    <degree-filter ng-click="vm.filterSearch()"
+                                                   degrees-names="vm.degreesNames"
+                                                   selected-degrees="vm.selectedDegrees">
+                                    </degree-filter>
+                                </div>
+
+                            </div>
                         </div>
+                    </div>
 
-                        <!-- Individual lessons -->
-                        <div class="col s4 m1">
-                            <individual-filter ng-model="vm.searchCriteria.individualLessons"
-                                               ng-click="vm.search()">
-                            </individual-filter>
-                        </div>
+                </div>
 
-                        <!-- Schedule filter -->
-                        <div class="col s4 m2">
-                            <schedule-filter morning="vm.searchCriteria.morning"
-                                             afternoon="vm.searchCriteria.afternoon"
-                                             night="vm.searchCriteria.night"
-                                             ng-click="vm.search()">
-                            </schedule-filter>
-                        </div>
+                <!-- Sort panel -->
+                <div class="col s12 m3 search">
+                    <div class="card z-depth-2 search">
+                        <div class="card-content">
 
-                        <!-- For proper column alignment -->
-                        <div class="clearfix hide-on-med-and-up"></div>
+                            <!-- Sort title -->
+                            <div class="row no-margin-row center sort-panel-title">
+                                <div class="filter-description">Ordenar por</div>
+                            </div>
 
-                        <!-- Fee filter -->
-                        <div class="col s4 m2">
-                            <fee-filter ng-click="vm.search()" ng-model="vm.searchCriteria.fee"></fee-filter>
-                        </div>
+                            <!-- Sort controls -->
+                            <div class="row no-margin-row">
 
-                        <!-- Home lesson filter -->
-                        <div class="col s3 m1">
-                            <home-filter ng-click="vm.search()" ng-model="vm.searchCriteria.homeLessons"></home-filter>
-                        </div>
+                                <!-- Distance sort -->
+                                <div class="col s4">
+                                    <sort-control ng-click="vm.filterSearch()"
+                                                  ng-model="vm.searchCriteria.sort.distance"
+                                                  text="Distancia"
+                                                  icon-class="fa-map-marker"
+                                                  icon-color-class="red-text text-darken-2">
+                                    </sort-control>
+                                </div>
 
-                        <!-- Degree filter -->
-                        <div class="col s3 m1">
-                            <degree-filter ng-click="vm.search()"
-                                           degrees-names="vm.degreesNames"
-                                           selected-degrees="vm.selectedDegrees">
-                            </degree-filter>
-                        </div>
+                                <!-- Rating sort -->
+                                <div class="col s4">
+                                    <sort-control ng-click="vm.filterSearch()"
+                                                  ng-model="vm.searchCriteria.sort.averageRating"
+                                                  text="Puntaje"
+                                                  icon-class="fa-star"
+                                                  icon-color-class="amber-text">
+                                    </sort-control>
+                                </div>
 
-                        <!-- Order -->
-                        <div class="col s3 m3">
-                            <select class="" ng-model="vm.searchCriteria.singleSelectedSubject"
-                                    material-select watch>
-                                <option value="" selected disabled>Elegí tu materia...</option>
-                                <option ng-repeat="subject in vm.subjects">
-                                    {{ subject.name }}
-                                </option>
-                            </select>
+                                <!-- Fee sort -->
+                                <div class="col s4">
+                                    <sort-control ng-click="vm.filterSearch()"
+                                                  ng-model="vm.searchCriteria.sort.fee"
+                                                  text="Precio"
+                                                  icon-class="fa-usd"
+                                                  icon-color-class="green-text text-darken-2">
+                                    </sort-control>
+                                </div>
+
+                            </div>
                         </div>
                     </div>
                 </div>
 
             </div>
 
+            <!-- Information message -->
+            <div class="row search" ng-if="vm.loadedUserAndStudent && !vm.student.location">
+
+                <div class="col s12 m9">
+                    <div class="card orange lighten-5">
+                        <div class="row no-margin-row valign-wrapper">
+
+                            <!-- Messages -->
+                            <div class="col s8 valign">
+
+                                <!-- No signed up user -->
+                                <p ng-if="!vm.user">
+                                    Inicie sesión para incluir la distancia aproximada en los resultados
+                                </p>
+
+                                <!-- No signed up student -->
+                                <p ng-if="vm.user && !vm.student">
+                                    Cree su perfil de estudiante para incluir en los resultados la distancia
+                                    aproximada
+                                </p>
+
+                                <!-- Signed up student with no distance -->
+                                <p ng-if="vm.user && vm.student && !vm.student.location">Defina su ubicación para
+                                    incluir en los resultados la distancia aproximada</p>
+
+                            </div>
+
+                            <!-- Actions -->
+                            <div class="col s4 valign">
+
+                                <!-- No signed up user -->
+                                <a ui-sref="root.login"
+                                   class="info-action btn-flat right"
+                                   ng-if="!vm.user">
+                                    Iniciar sesion
+                                </a>
+
+
+                                <!-- No signed up student -->
+                                <a ui-sref="root.signup.student"
+                                   class="info-action btn-flat right"
+                                   ng-if="vm.user && !vm.student">
+                                    Crear mi perfil
+                                </a>
+
+                                <!-- Signed up student with no distance -->
+                                <a ui-sref="root.account.student"
+                                   class="info-action btn-flat right"
+                                   ng-if="vm.user && vm.student && !vm.student.location">
+                                    Definir mi ubicación
+                                </a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Search results -->
-            <div class="row no-margin-row">
-                <div class="col s9 no-padding"
-                     ng-if="!vm.teacherResult.length"
-                     ng-repeat="teacher in vm.teachersResult">
+            <div class="row search">
+
+                <!-- Pagination -->
+                <div class="col s12 m9" ng-if="!vm.searching">
+                    <my-pagination ng-model="vm.teachersResult"
+                                   max-shown="10"
+                                   page-select="vm.pageSelect(number)"
+                                   target-url="{{ vm.getCurrentUrl() }}"></my-pagination>
+                </div>
+
+                <!-- Results -->
+                <div class="col s12 m9 search"
+                     ng-repeat="teacher in vm.teachersResult.content">
 
                     <teacher-result ng-model="teacher"
                                     view-profile="vm.viewProfile(teacher)">
                     </teacher-result>
+
                 </div>
 
-                <!-- Nothing found message -->
-                <h4 class="center" ng-if="!vm.teachersResult.length">
-                    ¡Uh! No hay nadie que cumpla esas condiciones :(
-                </h4>
+                <!-- Pagination -->
+                <div class="col s12 m9" ng-if="!vm.searching">
+                    <my-pagination ng-model="vm.teachersResult"
+                                   max-shown="10"
+                                   page-select="vm.pageSelect(number)"
+                                   target-url="{{ vm.getCurrentUrl() }}"></my-pagination>
+                </div>
 
-                <p class="lead center" ng-if="!vm.teachersResult.length">
-                    Tip: Revisa los filtros ;)
-                </p>
+                <!-- Searching spinner -->
+                <div class="col s12 m9">
+                    <div class="center" ng-if="vm.searching">
+                        <div class="preloader-wrapper big active">
+                            <div class="spinner-layer spinner-yellow-only">
+                                <div class="circle-clipper left">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="gap-patch">
+                                    <div class="circle"></div>
+                                </div>
+                                <div class="circle-clipper right">
+                                    <div class="circle"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <span ng-if="!vm.teachersResult.content.length && !vm.searching">
+
+                    <!-- Nothing found message -->
+                    <div class="col s12 m9" ng-if="vm.teachersResult.number === 0">
+                        <h4 class="center">
+                            ¡Uh! No hay nadie que cumpla esas condiciones :(
+                        </h4>
+
+                        <p class="center">
+                            Tip: Revisa los filtros ;)
+                        </p>
+                    </div>
+
+                    <!-- No items in page message -->
+                    <div class="col s12 m9" ng-if="vm.teachersResult.number !== 0">
+                        <h4 class="center">
+                            Algo raro paso... la página {{ vm.parseInt(vm.searchCriteria.page) + 1 }} no existe...
+                        </h4>
+
+                        <p class="center">
+                            Tip 1: No te enojes :P<br>
+                            Tip 2: Probá volviendo a la página 1
+                        </p>
+                    </div>
+                </span>
+
             </div>
         </div>
     </div>
+</div>
 </div>

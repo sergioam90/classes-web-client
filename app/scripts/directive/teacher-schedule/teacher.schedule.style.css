@@ -1,0 +1,16 @@
+
+.teacher-schedule .schedule-morning-enabled {
+    color: #ddd100;
+}
+
+.teacher-schedule .schedule-afternoon-enabled {
+    color: #ff9252;
+}
+
+.teacher-schedule .schedule-night-enabled {
+    color: purple;
+}
+
+.teacher-schedule .col {
+    padding: 0 0;
+}

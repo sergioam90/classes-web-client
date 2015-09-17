@@ -1,0 +1,28 @@
+<ul class="pagination custom-pagination">
+
+    <!-- Previous page -->
+    <li ng-class="page.first ? 'disabled' : 'waves-effect' ">
+        <a ng-class="page.last ? 'disabled' : 'waves-effect' "
+           ng-click="previous()">
+            <i class="material-icons">chevron_left</i>
+        </a>
+    </li>
+
+    <!-- Max pages -->
+    <li ng-class="(number === page.number + 1) ? 'active' : 'waves-effect' "
+        ng-repeat="number in range(page.totalPages) track by $index">
+        <a ng-if="number > 0"
+           ng-click="pageSelect({number: number - 1})">
+            {{ number }}
+        </a>
+        <a ng-if="number < 0">...</a>
+    </li>
+
+    <!-- Next page -->
+    <li ng-class="page.last ? 'disabled' : 'waves-effect' ">
+        <a ng-class="page.last ? 'disabled' : 'waves-effect' "
+           ng-click="next()">
+            <i class="material-icons">chevron_right</i>
+        </a>
+    </li>
+</ul>

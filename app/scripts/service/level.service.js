@@ -7,8 +7,13 @@
 
     function LevelService() {
         var levelsNames = {
-            Secondary: 'Secundario',
-            University: 'Universitario'
+            secondary: 'Secundario',
+            university: 'Universitario',
+            tertiary: 'Terciario',
+            primary: 'Primario',
+            beginner: 'Básico',
+            intermediate: 'Intermedio',
+            advanced: 'Avanzado'
         };
 
         function getAllLevels() {

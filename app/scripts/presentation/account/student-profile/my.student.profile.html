@@ -1,73 +1,48 @@
-<dl>
-    <!-- Student information -->
-    <dt>Ubicación</dt>
-    <dd>
-        {{ vm.student.location }}
-        <div ng-if="!vm.student.location">
-            No has indicado tu ubicación
-        </div>
-    </dd>
+<div class="" ng-if="vm.student">
+    <div class="row">
 
-    <dt>Profesores favoritos</dt>
-    <dd>
-        <div class="row">
-            <div class="col-sm-4" ng-repeat="teacher in vm.favoriteTeachers">
-                <div class="panel panel-body">
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <img src="images/mock.jpg" class="img-responsive">
-                        </div>
-                        <div class="col-sm-10">
-                            <a ui-sref="root.teacherProfile(teacher)">
-                                {{ teacher.user.firstName }} {{ teacher.user.lastName }}
-                            </a>
-                        </div>
-                    </div>
+        <!-- Location -->
+        <div class="col s12 m8">
+            <div class="row">
+                <h5>Ubicación</h5>
+
+                <img class="responsive-img"
+                     src="https://maps.googleapis.com/maps/api/staticmap?size=300x300&maptype=roadmap&markers={{ vm.student.location.latitude }},{{ vm.student.location.longitude }}"/>
+
+                <div ng-if="!vm.student.location">
+                    No has indicado tu ubicación
                 </div>
             </div>
-            <div class="col-sm-4" ng-if="!vm.favoriteTeachers.length">
-                No tienes profesores favoritos
-            </div>
-        </div>
-    </dd>
 
-    <!-- Student reviews -->
-    <dt>Reseñas hechas</dt>
-    <dd>
-        <div class="row">
-            <div class="col-sm-4" ng-repeat="review in vm.madeReviews">
-                <div class="panel panel-body">
-                    <div class="row">
-                        <div class="col-sm-3">
-                            <img src="images/mock.jpg" class="img-responsive img-rounded">
-                        </div>
-                        <div class="col-sm-9">
-                            <div class="row">
-                                <div class="col-sm-10">
-                                    <a ui-sref="root.teacherProfile(review.teacher)">
-                                        {{ review.teacher.user.firstName }}
-                                        {{ review.teacher.user.lastName }}
-                                    </a>
+            <div class="row">
+                <h5>Opiniones</h5>
 
-                                    <rating ng-model="review.rating" readonly="true"></rating>
-                                </div>
-                                <div class="col-sm-2">
-                                    <button class="btn btn-xs btn-danger"
-                                            ng-click="vm.removeReview(review.teacher.id)">
-                                        <i class="fa fa-remove"></i>
-                                    </button>
-                                </div>
-                            </div>
-
-                            <p class="lead">{{ review.comment }}</p>
-
-                        </div>
-                    </div>
+                <div class="col s12" ng-repeat="review in vm.madeReviews">
+                    <review for-student="true" ng-model="review" delete-review="vm.removeReview(teacher)"></review>
+                </div>
+                <div ng-if="!vm.madeReviews.length">
+                    Aún no has dado ninguna opinión
                 </div>
             </div>
         </div>
-        <div ng-if="!vm.madeReviews.length">
-            Aún no has hecho una reseña
+
+        <!-- Favorite teachers -->
+        <div class="col s12 m4">
+            <div class="row">
+                <h5>Profesores favoritos</h5>
+            </div>
+            <div class="row">
+                <div class="col s12" ng-repeat="teacher in vm.favoriteTeachers">
+                    <favorite-teacher ng-model="teacher"></favorite-teacher>
+                </div>
+                <div class="col s12" ng-if="!vm.favoriteTeachers.length">
+                    No tienes profesores favoritos
+                </div>
+            </div>
         </div>
-    </dd>
-</dl>
+    </div>
+</div>
+
+<div class="" ng-if="!vm.student">
+    <a class="btn" ui-sref="root.signup.student">Crear perfil de estudiante</a>
+</div>

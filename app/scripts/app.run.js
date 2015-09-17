@@ -5,13 +5,22 @@
         .module('classesClientApp')
         .run(Run);
 
-    Run.$inject = ['$rootScope'];
+    Run.$inject = ['$rootScope', 'InterruptionService'];
 
-    function Run($rootScope) {
+    function Run($rootScope, InterruptionService) {
 
-        // Watch for state change to home to apply custom styles
-        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-            $rootScope.isHome = toState.name === 'root.home';
+        $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+
+            // TODO: Improve design
+
+            // TODO: Check second conditoion. Used when coming from nowhere, initial search.
+            if (toState.data && fromState.name !== '') {
+                if (toState.data.isInterruption) {
+                    if (!fromState.data || !fromState.data.isInterruption) {
+                        InterruptionService.interrupt();
+                    }
+                }
+            }
         });
     }
 

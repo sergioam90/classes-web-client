@@ -1,3 +1,37 @@
 
 .teacher-result {
+    font-size: 1.8rem;
+}
+
+.teacher-result .profile-pic-border {
+    border-right: 5px solid orange;
+}
+
+.teacher-result .teacher-name {
+    margin: 0;
+    font-weight: 200;
+}
+
+.teacher-result .teacher-description {
+    color: #6F6E6E;
+    font-size: 1rem;
+    margin-top: 0;
+}
+
+.teacher-result .right-column-border {
+    border-left: 1px solid #d8d8d8;
+}
+
+.teacher-result .teacher-rating {
+    color: orange;
+    font-size: 2rem;
+    font-weight: 100;
+}
+
+.teacher-result .teacher-fee {
+    font-weight: 200;
+}
+
+.teacher-result .teacher-distance {
+    font-size: 1.2rem;
 }

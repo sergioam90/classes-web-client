@@ -1,23 +1,18 @@
 <!-- Degree -->
-<span>
+<span class="degrees">
 
-    <!-- Undefined -->
-    <i ng-if="!degree"
-       class="fa fa-graduation-cap grey-text">
-    </i>
-
-    <!-- Undergraduated -->
-    <i ng-if="degree == 'Undergraduate'"
-       class="fa fa-graduation-cap grey-text">
+    <!-- Undefined or undergraduated -->
+    <i ng-if="!degree || degree == 'undergraduate'"
+       class="fa fa-graduation-cap muted-text">
     </i>
 
     <!-- Graduated -->
-    <i ng-if="degree == 'Graduate'"
-       class="fa fa-graduation-cap text-default">
+    <i ng-if="degree == 'graduate'"
+       class="fa fa-graduation-cap on-1">
     </i>
 
     <!-- Postgraduated -->
-    <i ng-if="degree == 'Postgraduate'"
-       class="fa fa-graduation-cap orange-text">
+    <i ng-if="degree == 'postgraduate'"
+       class="fa fa-graduation-cap on-2">
     </i>
 </span>

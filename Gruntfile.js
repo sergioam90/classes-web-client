@@ -40,6 +40,8 @@ module.exports = function (grunt) {
                 // JS files to be included by includeSource task into index.html
                 'scripts/app.module.js',
                 'scripts/app.constant.js',
+                'scripts/app.static.config',
+                'scripts/app.config',
                 'scripts/*.js',
                 'scripts/**/*.js'
             ],
@@ -56,7 +58,7 @@ module.exports = function (grunt) {
             },
             js: {
                 files: ['<%= yeoman.app %>/scripts/**.js'],
-                tasks: ['newer:jshint:all'],
+                tasks: ['includeSource', 'newer:jshint:all'],
                 options: {
                     livereload: '<%= connect.options.livereload %>'
                 }
@@ -67,7 +69,7 @@ module.exports = function (grunt) {
             },
             styles: {
                 files: ['<%= yeoman.app %>/**/*.css'],
-                tasks: ['newer:copy:styles', 'autoprefixer']
+                tasks: ['newer:copy:styles', 'includeSource', 'autoprefixer']
             },
             gruntfile: {
                 files: ['Gruntfile.js']
@@ -122,7 +124,7 @@ module.exports = function (grunt) {
                     open: true,
                     middleware: function (connect) {
                         return [
-                            require('connect-modrewrite')(['^[^\\.]*$ /index.html [L]']),
+                            require('connect-modrewrite')(['!^.*(\\.css|\\.html|\\.ico|\\.jpg|\\.js|\\.png|\\.woff2).*$ /index.html [L]']),
                             connect.static('.tmp'),
                             connect().use(
                                 '/bower_components',
@@ -131,22 +133,6 @@ module.exports = function (grunt) {
                             connect().use(
                                 '/app/styles',
                                 connect.static('./app/styles')
-                            ),
-                            connect.static(appConfig.app)
-                        ];
-                    }
-                }
-            },
-            test: {
-                options: {
-                    port: 9001,
-                    middleware: function (connect) {
-                        return [
-                            connect.static('.tmp'),
-                            connect.static('test'),
-                            connect().use(
-                                '/bower_components',
-                                connect.static('./bower_components')
                             ),
                             connect.static(appConfig.app)
                         ];
@@ -290,6 +276,9 @@ module.exports = function (grunt) {
 
         imagemin: {
             dist: {
+                options: {
+                    optimizationLevel: 7
+                },
                 files: [{
                     expand: true,
                     cwd: '<%= yeoman.app %>/images',
@@ -315,6 +304,7 @@ module.exports = function (grunt) {
                 options: {
                     collapseWhitespace: true,
                     conservativeCollapse: true,
+                    removeComments: true,
                     collapseBooleanAttributes: true,
                     removeCommentsFromCDATA: true,
                     removeOptionalTags: true
@@ -352,6 +342,9 @@ module.exports = function (grunt) {
         copy: {
             dist: {
                 files: [{
+                    src: '<%= yeoman.app %>/index.html',
+                    dest: '<%= yeoman.dist %>/404.html'
+                }, {
                     expand: true,
                     dot: true,
                     cwd: '<%= yeoman.app %>',
@@ -394,9 +387,6 @@ module.exports = function (grunt) {
             server: [
                 'copy:styles'
             ],
-            test: [
-                'copy:styles'
-            ],
             dist: [
                 'copy:styles',
                 'newer:imagemin',
@@ -411,20 +401,20 @@ module.exports = function (grunt) {
                 space: '  ',
                 wrap: "(function(){ 'use strict';\n\n {%= __ngModule %}}\n)();",
                 name: 'appConstant',
-                dest: '.tmp/scripts/app.config.js'
+                dest: '.tmp/scripts/app.static.config.js'
             },
             // Environment targets
             development: {
                 constants: {
                     appConfig: {
-                        API_SERVER_URL: 'pure-tundra-6015.herokuapp.com'
+                        API_SERVER_URL: 'classes.noip.me:8080'
                     }
                 }
             },
             production: {
                 constants: {
                     appConfig: {
-                        API_SERVER_URL: 'pure-tundra-6015.herokuapp.com'
+                        API_SERVER_URL: 'classes-bahia.herokuapp.com'
                     }
                 }
             }
@@ -437,10 +427,18 @@ module.exports = function (grunt) {
                 message: 'Auto-generated commit by Grunt build'
             },
             src: '**/*'
+        },
+
+        // TODO: Fill if necessary
+        'divshot:push': {
+            production: {
+                // options
+            }
         }
     });
 
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
+
         if (target === 'dist') {
             return grunt.task.run(['build', 'connect:dist:livereload', 'watch']);
         }
@@ -457,28 +455,35 @@ module.exports = function (grunt) {
         ]);
     });
 
-    grunt.registerTask('build', [
-        'clean:dist',
-        'ngconstant:production',
-        'includeSource',
-        'wiredep',
-        'useminPrepare',
-        'concurrent:dist',
-        'autoprefixer',
-        'concat',
-        'ngAnnotate',
-        'copy:dist',
-        'cdnify',
-        'cssmin',
-        'newer:uglify',
-        'filerev',
-        'usemin',
-        'htmlmin',
-        'gh-pages'
-    ]);
+    grunt.registerTask('build', '', function () {
+
+            grunt.task.run([
+                'clean:dist',
+                'ngconstant:production',
+                'includeSource',
+                'wiredep',
+                'useminPrepare',
+                'concurrent:dist',
+                'autoprefixer',
+                'concat',
+                'ngAnnotate',
+                'copy:dist',
+                'cdnify',
+                'cssmin',
+                'newer:uglify',
+                'filerev',
+                'usemin',
+                'htmlmin',
+                //'gh-pages',
+                'divshot:push:production'
+            ]);
+        }
+    )
+    ;
 
     grunt.registerTask('default', [
         'newer:jshint',
         'build'
     ]);
-};
+}
+;
