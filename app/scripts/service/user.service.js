@@ -33,8 +33,6 @@
             return Users.one('me').get().then(function (user) {
                 user.birthDate = moment(user.birthDate).format();
 
-                console.log(user.birthDate);
-
                 return user;
             });
         }
