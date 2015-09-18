@@ -64,12 +64,12 @@
             vm.teacher.subjects = [];
 
             for (var i = 0; i < vm.subjects.length; i++) {
-                if (vm.subjects[i].selected) {
+                if (vm.subjects[i].$$selected) {
                     // Add to send array
                     vm.teacher.subjects.push(vm.subjects[i]);
 
                     // Clear subject selection
-                    vm.teacher.subjects[vm.teacher.subjects.length - 1].selected = undefined;
+                    vm.teacher.subjects[vm.teacher.subjects.length - 1].$$selected = undefined;
                 }
             }
 

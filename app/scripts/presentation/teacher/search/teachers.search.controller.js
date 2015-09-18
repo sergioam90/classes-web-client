@@ -145,7 +145,7 @@
                     if (vm.searchCriteria.subjects) {
                         var index = vm.searchCriteria.subjects.indexOf(vm.subjects[i].id);
 
-                        vm.subjects[i].selected = index > -1;
+                        vm.subjects[i].$$selected = index > -1;
 
                         // TODO: Dirty fix
                         if (index > -1) {
@@ -272,7 +272,7 @@
             vm.selectedSubjects = [];
 
             for (var i = 0; i < vm.subjects.length; i++) {
-                vm.subjects[i].selected = false;
+                vm.subjects[i].$$selected = false;
             }
 
             vm.filterSearch();
