@@ -1,0 +1,42 @@
+.subject-unselect button {
+    background-color: aquamarine;
+    border: 0;
+    border-radius: 19px;
+    color: blue;
+    float: left;
+    font-size: 1.2em;
+    height: 38px;
+    margin-right: 12px;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    width: 38px;
+}
+
+.subject-unselect button:hover {
+    background-color: yellow;
+    color: gray;
+}
+
+.subject-unselect button:active {
+    background-color: pink;
+    color: black;
+}
+
+.subject-unselect div {
+    background-color: orange;
+    border: 1px solid red;
+    border-radius: 20px 0 0 20px;
+    color: black;
+    font-size: .85em;
+    height: 40px;
+    line-height: 19px;
+    padding: 0 12px 0 0;
+}
+
+.subject-unselect div + div {
+    margin-top: 6px;
+}

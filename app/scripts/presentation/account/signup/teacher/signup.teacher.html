@@ -15,10 +15,8 @@
                     <div class="col s12">
                         <div class="field-title">¿De qué materias te gustaría dar clases?</div>
 
-                        <div ng-repeat="subject in vm.subjects">
-                            <input id="subject{{ $index }}" type="checkbox" ng-model="subject.selected">
-                            <label for="subject{{ $index }}">{{ subject.name }}</label>
-                        </div>
+                        <subject-unselect ng-model="vm.subjects"></subject-unselect>
+                        <subject-select ng-model="vm.subjects"></subject-select>
                     </div>
 
                     <!-- Degree -->

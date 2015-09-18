@@ -1,0 +1,17 @@
+<div class="subject-select" ng-mousedown="onMousedown()">
+    <input
+            type="text"
+            placeholder="Materias"
+            ng-blur="onBlur()"
+            ng-change="onChange()"
+            ng-focus="onFocus()"
+            ng-model="query"
+            >
+
+    <div ng-if="showDropdown">
+        <button class="truncate" ng-repeat="subject in results" ng-if="!subject.$$selected" ng-click="select(subject)">
+            <b>{{ subject.name }}</b><br>
+            {{ subject.level | level }}
+        </button>
+    </div>
+</div>
