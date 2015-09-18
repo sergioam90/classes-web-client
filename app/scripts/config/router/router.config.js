@@ -32,7 +32,7 @@
             })
 
             .state('root.home', {
-                url: '/',
+                url: '/home',
                 views: {
                     'header@': {},
                     'container@': {
@@ -47,7 +47,7 @@
             })
 
             .state('root.early', {
-                url: '/early',
+                url: '/',
                 views: {
                     'header@': {},
                     'container@': {
