@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .run(Run);
 
-    Run.$inject = ['$rootScope', 'InterruptionService'];
+    Run.$inject = ['$rootScope', 'InterruptionService', 'SignupStepService'];
 
-    function Run($rootScope, InterruptionService) {
+    function Run($rootScope, InterruptionService, SignupStepService) {
 
         $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
 
@@ -20,6 +20,12 @@
                         InterruptionService.interrupt();
                     }
                 }
+            }
+        });
+
+        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+            if (toState.data && toState.data.stepNumber) {
+                SignupStepService.setCurrentStep(toState.data.stepNumber);
             }
         });
     }

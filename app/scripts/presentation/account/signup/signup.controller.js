@@ -5,12 +5,12 @@
         .module('classesClientApp')
         .controller('SignupController', SignupController);
 
-    SignupController.$inject = ['SocialService', '$stateParams'];
+    SignupController.$inject = ['SignupStepService'];
 
-    function SignupController(SocialService, $stateParams) {
+    function SignupController(SignupStepService) {
         var vm = this;
 
-        var target = $stateParams.target || null;
+        vm.getCurrentStep = getCurrentStep;
 
         initialize();
 
@@ -18,10 +18,10 @@
 
         function initialize() {
 
-            // Get Facebook authorization url
-            SocialService.getFacebookAuthorizationUrl(target).then(function (url) {
-                vm.facebookUrl = url;
-            });
+        }
+
+        function getCurrentStep() {
+            return SignupStepService.getCurrentStep();
         }
 
     }

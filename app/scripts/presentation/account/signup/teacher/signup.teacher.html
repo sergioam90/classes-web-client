@@ -6,16 +6,25 @@
         </div>
 
         <div class="col s12 card">
-            <!-- Professional information -->
-            <div class="row">
+            <div class="card-content">
 
-                <!-- First column -->
-                <div class="col s8">
+                <!-- Subjects and degree step -->
+                <div ng-if="vm.stepOffset === 0" class="row">
 
-                    <!-- First row -->
-                    <div class="row">
+                    <!-- Subjects -->
+                    <div class="col s12">
+                        <div class="field-title">¿De qué materias te gustaría dar clases?</div>
 
-                        <!-- Degree -->
+                        <div ng-repeat="subject in vm.subjects">
+                            <input id="subject{{ $index }}" type="checkbox" ng-model="subject.selected">
+                            <label for="subject{{ $index }}">{{ subject.name }}</label>
+                        </div>
+                    </div>
+
+                    <!-- Degree -->
+                    <div class="col s12">
+                        <div class="field-title">¿Cuál es tu nivel de estudios?</div>
+
                         <div class="col s4" input-field>
                             <select id="degree"
                                     ng-model="vm.teacher.degree"
@@ -25,125 +34,19 @@
                                 <option ng-repeat="degree in vm.degrees" ng-value="degree">{{ degree | degree }}
                                 </option>
                             </select>
-                            <label for="degree">Mis estudios</label>
-                        </div>
-
-                        <!-- Phone -->
-                        <div class="col s3">
-                            <div class="input-field">
-                                <label for="phone">Teléfono</label>
-                                <input id="phone" type="text" ng-model="vm.teacher.phone.number"
-                                       placeholder="2914356546">
-                            </div>
-                        </div>
-
-                        <!-- Whatsapp -->
-                        <div class="col s3">
-                            <label for="whatsapp" class="text-center"><i class="fa fa-whatsapp"></i> Whatsapp</label>
-
-                            <div class="center">
-                                <input id="whatsapp" type="checkbox" ng-model="vm.teacher.phone.whatsApp">
-                                <label for="whatsapp"></label>
-                            </div>
-                        </div>
-
-                        <!-- SMS -->
-                        <div class="col s2">
-                            <label for="sms" class="text-center"><i class="fa fa-sms"></i> SMS</label>
-
-                            <div class="center">
-                                <input id="sms" type="checkbox" ng-model="vm.teacher.phone.sms">
-                                <label for="sms"></label>
-                            </div>
                         </div>
                     </div>
 
-                    <!-- Second row -->
-                    <div class="row">
-
-                        <!-- Subjects -->
-                        <div class="col s9">
-                            <label>Materias que dicto</label>
-
-                            <div ng-repeat="subject in vm.subjects">
-                                <input id="subject{{ $index }}" type="checkbox" ng-model="subject.selected">
-                                <label for="subject{{ $index }}">{{ subject.name }}</label>
-                            </div>
-                        </div>
-
-                        <!-- Fee -->
-                        <div class="col s3">
-                            <label>Precio</label>
-
-                            <span>$</span>
-                            <input placeholder="80" type="number" min="0"
-                                   ng-model="vm.teacher.fee">
-                        </div>
-
-                        <!-- Class details -->
-                        <div class="col s12">
-                            <label for="details">Detalles de las clases</label>
-
-                            <div id="details">
-                                <input id="groupLessons"
-                                       type="checkbox"
-                                       ng-model="vm.teacher.groupLessons">
-                                <label for="groupLessons"> Grupales</label>
-
-                                <input id="individualLessons"
-                                       type="checkbox"
-                                       ng-model="vm.teacher.individualLessons">
-                                <label for="individualLessons"> Individuales</label>
-
-                                <input id="homeLessons"
-                                       type="checkbox"
-                                       ng-model="vm.teacher.homeLessons">
-                                <label for="homeLessons"> A domicilio</label>
-                            </div>
-                        </div>
-
-                        <!-- Schedule -->
-                        <div class="col s12">
-                            <label for="schedule">Horarios</label>
-
-                            <div id="schedule">
-                                <input id="morning"
-                                       type="checkbox"
-                                       ng-model="vm.teacher.schedule.morning">
-                                <label for="morning"> Mañana</label>
-
-                                <input id="afternoon"
-                                       type="checkbox"
-                                       ng-model="vm.teacher.schedule.afternoon">
-                                <label for="afternoon"> Tarde</label>
-
-                                <input id="night"
-                                       type="checkbox"
-                                       ng-model="vm.teacher.schedule.night">
-                                <label for="night"> Noche</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Third row -->
-                    <div class="row">
-                        <div class="col s12">
-                            <label for="description">Mi descripción</label>
-                            <!-- TODO: Check description length -->
-                        <textarea id="description"
-                                  class="materialize-textarea"
-                                  ng-model="vm.teacher.description"
-                                  placeholder="Escriba una breve descripción sobre usted">
-                        </textarea>
-                        </div>
-                    </div>
                 </div>
 
-                <!-- Second column -->
-                <div class="col s4">
-                    <label>Ubicación</label>
+                <!-- Class info step -->
+                <div ng-if="vm.stepOffset === 1" class="row">
 
-                    <div>
+                    <!-- Location -->
+                    <div class="col s12">
+                        <div class="field-title">¿Cuál es la direccion de tu casa o el lugar donde das clases
+                            particulares?
+                        </div>
                         <input places-auto-complete="" size="" ng-model="address" types="['address']"
                                on-place-changed="vm.placeChanged(place)" class="ng-pristine ng-valid"
                                placeholder="Ingrese su ubicación..." autocomplete="on">
@@ -153,16 +56,135 @@
                         <img class="responsive-img"
                              src="https://maps.googleapis.com/maps/api/staticmap?size=300x300&maptype=roadmap&markers={{ vm.teacher.location.latitude }},{{ vm.teacher.location.longitude }}"/>
                     </div>
-                </div>
 
-                <!-- Second row -->
-                <div class="row">
+                    <!-- Home lessons -->
                     <div class="col s12">
-                        <a ng-click="vm.signupTeacher()" class="btn right">Finalizar</a>
+                        <div class="field-title">¿Das también clases a domicilio?</div>
+                        <input id="homeLessons"
+                               type="checkbox"
+                               ng-model="vm.teacher.homeLessons">
+                        <label for="homeLessons"> A domicilio</label>
+                    </div>
+
+                    <!-- Schedule -->
+                    <div class="col s12">
+                        <div class="field-title">¿En qué horarios das clases normalmente?</div>
+
+                        <div id="schedule">
+                            <input id="morning"
+                                   type="checkbox"
+                                   ng-model="vm.teacher.schedule.morning">
+                            <label for="morning"> Mañana</label>
+
+                            <input id="afternoon"
+                                   type="checkbox"
+                                   ng-model="vm.teacher.schedule.afternoon">
+                            <label for="afternoon"> Tarde</label>
+
+                            <input id="night"
+                                   type="checkbox"
+                                   ng-model="vm.teacher.schedule.night">
+                            <label for="night"> Noche</label>
+                        </div>
+                        Podés seleccionar mas de una opción
+                    </div>
+
+                    <!-- Lesson audience -->
+                    <div class="col s12">
+                        <div class="field-title">¿Cómo son las clases que das?</div>
+                        <input id="groupLessons"
+                               type="checkbox"
+                               ng-model="vm.teacher.groupLessons">
+                        <label for="groupLessons"> Grupales</label>
+
+                        <input id="individualLessons"
+                               type="checkbox"
+                               ng-model="vm.teacher.individualLessons">
+                        <label for="individualLessons"> Individuales</label>
+                    </div>
+
+                    <!-- Fee -->
+                    <div class="col s12">
+                        <div class="field-title">¿Qué precio cobras por hora de clase?</div>
+
+                        <span>$</span>
+                        <input placeholder="80" type="number" min="0"
+                               ng-model="vm.teacher.fee">
                     </div>
                 </div>
-                {{ vm.subjects }}
+
+                <!-- Contact information -->
+                <div ng-if="vm.stepOffset === 2" class="row">
+
+                    <!-- Phone -->
+                    <div class="col s12">
+                        <div class="field-title">
+                            ¿Cuál es el número de teléfono al que querés ser contactado?
+                        </div>
+
+                        <div class="input-field">
+                            <input type="text"
+                                   ng-model="vm.teacher.phone.number"
+                                   placeholder="2914356546">
+                        </div>
+                    </div>
+
+                    <!-- SMS -->
+                    <div class="col s12">
+                        <div class="field-title">
+                            ¿Recibís mensajes de texto de tus alumnos?
+                        </div>
+                        <div class="center">
+                            <input id="sms" type="checkbox" ng-model="vm.teacher.phone.sms">
+                            <label for="sms"></label>
+                        </div>
+                    </div>
+
+                    <!-- Whatsapp -->
+                    <div class="col s12">
+                        <div class="field-title">
+                            ¿Recibís mensajes de whatsapp?
+                        </div>
+
+                        <div class="center">
+                            <input id="whatsapp" type="checkbox" ng-model="vm.teacher.phone.whatsApp">
+                            <label for="whatsapp"></label>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="col s12">
+                        <div class="field-title">
+                            Por último, ¿hay algo que no te hayamos preguntado que creas que
+                            es importante que tus alumnos sepan?
+                        </div>
+
+                        <!-- TODO: Check description length -->
+                    <textarea id="description"
+                              class="materialize-textarea"
+                              ng-model="vm.teacher.description"
+                              placeholder="Escriba una breve descripción sobre usted">
+                    </textarea>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="divider"></div>
+
+            <!-- Action buttons -->
+            <div class="row no-margin-row">
+                <a class="btn-flat"
+                   ng-if="vm.stepOffset !== 0"
+                   ng-click="vm.previousStep()">
+                    Anterior
+                </a>
+                <a class="btn-flat right"
+                   ng-click="vm.nextStep()">
+                    Siguiente
+                </a>
             </div>
         </div>
     </div>
+</div>
 </div>

@@ -9,7 +9,7 @@
 
     function SocialService(Restangular) {
 
-        var facebookEndPoint = location.protocol + '//' + location.host + '/facebook';
+        var facebookEndPoint = location.protocol + '//' + location.host + '/signup/facebook';
 
 
         function getFacebookAuthorization(code, target) {

@@ -12,12 +12,14 @@
         'Subjects',
         'MapsService',
         'CityService',
-        'InterruptionService'
+        'InterruptionService',
+        'SignupStepService'
     ];
 
-    function SignupTeacherController(user, TeacherService, DegreeService, Subjects, MapsService, CityService, InterruptionService) {
+    function SignupTeacherController(user, TeacherService, DegreeService, Subjects, MapsService, CityService, InterruptionService, SignupStepService) {
         var vm = this;
 
+        /* Default teacher values */
         vm.teacher = {
             groupLessons: false,
             homeLessons: false,
@@ -37,8 +39,14 @@
         vm.degrees = [];
         vm.subjects = [];
 
+        var internalSteps = 2;
+        var signupTeacherStepNumber = SignupStepService.getCurrentStep();
+        vm.stepOffset = 0;
+
         vm.placeChanged = placeChanged;
         vm.signupTeacher = signupTeacher;
+        vm.nextStep = nextStep;
+        vm.previousStep = previousStep;
 
         initialize();
 
@@ -102,5 +110,20 @@
 
         }
 
+        function nextStep() {
+            if (vm.stepOffset >= internalSteps) {
+                //$state.go('root.home');
+            } else {
+                vm.stepOffset++;
+                SignupStepService.setCurrentStep(signupTeacherStepNumber + vm.stepOffset);
+            }
+        }
+
+        function previousStep() {
+            if (vm.stepOffset > 0) {
+                vm.stepOffset--;
+                SignupStepService.setCurrentStep(signupTeacherStepNumber + vm.stepOffset);
+            }
+        }
     }
 })();
