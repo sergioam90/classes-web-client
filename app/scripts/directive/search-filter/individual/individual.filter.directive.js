@@ -8,11 +8,12 @@
 
         function link(scope, element, attributes) {
             scope.toggle = function () {
-                if (scope.state)
+                if (scope.state) {
                     scope.state = undefined;
-                else
+                } else {
                     scope.state = true;
-            }
+                }
+            };
         }
 
         return {

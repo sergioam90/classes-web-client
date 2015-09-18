@@ -86,7 +86,7 @@
                         <div class="card-content">
                             <div class="row no-margin-row">
                                 <!-- Rating filter -->
-                                <div class="col c20s10 m5 c20l5 average-rating">
+                                <div class="col c20s10 m5 c20l5">
 
                                     <!-- TODO: BUG - Calls search() on initialization -->
                                     <rating class="orange-text filter-icon"
@@ -97,14 +97,14 @@
                                 </div>
 
                                 <!-- Individual lessons -->
-                                <div class="col c20s10 m3 c20l3 button individual-lessons">
+                                <div class="col c20s10 m3 c20l3 button">
                                     <individual-filter ng-model="vm.searchCriteria.individualLessons"
                                                        ng-click="vm.filterSearch()">
                                     </individual-filter>
                                 </div>
 
                                 <!-- Schedule filter -->
-                                <div class="col c20s10 m4 c20l3 schedule">
+                                <div class="col c20s10 m4 c20l3">
                                     <schedule-filter morning="vm.searchCriteria.morning"
                                                      afternoon="vm.searchCriteria.afternoon"
                                                      night="vm.searchCriteria.night"
@@ -113,19 +113,19 @@
                                 </div>
 
                                 <!-- Fee filter -->
-                                <div class="col c20s10 m4 c20l3 button fee">
+                                <div class="col c20s10 m4 c20l3 button">
                                     <fee-filter ng-click="vm.filterSearch()"
                                                 ng-model="vm.searchCriteria.fee"></fee-filter>
                                 </div>
 
                                 <!-- Home lesson filter -->
-                                <div class="col c20s10 m4 c20l3 button home-lessons">
+                                <div class="col c20s10 m4 c20l3 button">
                                     <home-filter ng-click="vm.filterSearch()"
                                                  ng-model="vm.searchCriteria.homeLessons"></home-filter>
                                 </div>
 
                                 <!-- Degree filter -->
-                                <div class="col c20s10 m4 c20l3 button degrees">
+                                <div class="col c20s10 m4 c20l3 button">
                                     <degree-filter ng-click="vm.filterSearch()"
                                                    degrees-names="vm.degreesNames"
                                                    selected-degrees="vm.selectedDegrees">

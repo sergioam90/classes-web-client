@@ -1,10 +1,10 @@
-/* Average rating */
+/* Rating */
 
-.average-rating a + a {
+.rating a + a {
     margin-left: 1px;
 }
 
-.average-rating i.on {
+.rating i.on {
     color: #ff9800;
 }
 

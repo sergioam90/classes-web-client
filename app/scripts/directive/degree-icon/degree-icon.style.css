@@ -1,13 +1,9 @@
 /* Degrees */
 
-.degrees i.on-1 .fa {
+.degrees .on-1.fa {
     color: #000;
 }
 
-.degrees i.on-2 .fa {
+.degrees .on-2.fa {
     color: #ff9800;
-}
-
-.degrees i.on-2 .fa {
-    color: #c6c6c6;
 }
