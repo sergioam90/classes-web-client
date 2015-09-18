@@ -44,8 +44,8 @@
                 }
 
                 vm.student.location = {
-                    latitude: place.geometry.location.G,
-                    longitude: place.geometry.location.K,
+                    latitude: place.geometry.location.lat(),
+                    longitude: place.geometry.location.lng(),
                     city: locality
                 };
             }

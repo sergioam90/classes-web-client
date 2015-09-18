@@ -74,7 +74,8 @@
             }
 
             TeacherService.signupTeacher(vm.teacher).then(function () {
-                InterruptionService.restore();
+                alert('registered successfully');
+                //InterruptionService.restore();
             });
         }
 
@@ -94,8 +95,8 @@
                 }
 
                 vm.teacher.location = {
-                    latitude: place.geometry.location.G,
-                    longitude: place.geometry.location.K,
+                    latitude: place.geometry.location.lat(),
+                    longitude: place.geometry.location.lng(),
                     city: locality
                 };
             }
@@ -112,7 +113,7 @@
 
         function nextStep() {
             if (vm.stepOffset >= internalSteps) {
-                //$state.go('root.home');
+                vm.signupTeacher();
             } else {
                 vm.stepOffset++;
                 SignupStepService.setCurrentStep(signupTeacherStepNumber + vm.stepOffset);
