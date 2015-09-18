@@ -26,8 +26,6 @@
             scope.$on('$destroy', onDestroy);
             $document.on('click', onDocumentClick);
 
-            search();
-
             function isMatch(subject) {
                 var query = scope.query;
                 var processedQuery = processString(query);
@@ -72,6 +70,7 @@
             }
 
             function onFocus() {
+                search();
                 scope.showDropdown = true;
             }
 

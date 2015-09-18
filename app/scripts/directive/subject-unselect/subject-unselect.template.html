@@ -1,10 +1,10 @@
 <div class="subject-unselect">
-    <div class="truncate" ng-repeat="subject in subjects" ng-if="subject.$$selected">
+    <div ng-repeat="subject in subjects" ng-if="subject.$$selected">
+        <b>{{ subject.name }}</b><br>
+        {{ subject.level | level }}
+
         <button class="material-icons" ng-click="unselect(subject)">
             close
         </button>
-
-        <b>{{ subject.name }}</b><br>
-        {{ subject.level | level }}
     </div>
 </div>

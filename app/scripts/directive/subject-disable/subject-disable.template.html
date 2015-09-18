@@ -1,0 +1,17 @@
+<div class="subject-disable">
+    <div ng-repeat="level in levels">
+        <input
+                id="subject-disable-{{ level.id }}"
+                type="checkbox"
+                ng-disabled="subjects.length === 0"
+                ng-change="onChange(level)"
+                ng-false-value="true"
+                ng-model="level.$$disabled"
+                ng-true-value="false"
+                >
+
+        <label for="subject-disable-{{ level.id }}">
+            {{ level.id | level }}
+        </label>
+    </div>
+</div>

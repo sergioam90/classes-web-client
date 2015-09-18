@@ -25,7 +25,8 @@
             homeLessons: false,
             individualLessons: false,
             phone: {
-                whatsApp: false
+                whatsApp: false,
+                sms: false
             },
             schedule: {
                 morning: false,

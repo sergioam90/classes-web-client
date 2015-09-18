@@ -1,19 +1,20 @@
 .subject-unselect button {
     background-color: aquamarine;
     border: 0;
-    border-radius: 19px;
+    border-radius: 12px;
     color: blue;
-    float: left;
-    font-size: 1.2em;
-    height: 38px;
-    margin-right: 12px;
+    font-size: 1em;
+    height: 24px;
+    position: absolute;
+    right: 3px;
+    top: 3px;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     user-select: none;
-    width: 38px;
+    width: 24px;
 }
 
 .subject-unselect button:hover {
@@ -29,14 +30,13 @@
 .subject-unselect div {
     background-color: orange;
     border: 1px solid red;
-    border-radius: 20px 0 0 20px;
+    border-radius: 16px;
     color: black;
-    font-size: .85em;
-    height: 40px;
-    line-height: 19px;
-    padding: 0 12px 0 0;
-}
-
-.subject-unselect div + div {
-    margin-top: 6px;
+    float: left;
+    font-size: .8em;
+    height: 32px;
+    line-height: 13px;
+    margin: 3px;
+    padding: 2px 36px 2px 12px;
+    position: relative;
 }

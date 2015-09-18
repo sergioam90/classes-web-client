@@ -4,12 +4,17 @@
             placeholder="Materias"
             ng-blur="onBlur()"
             ng-change="onChange()"
+            ng-disabled="subjects.length === 0"
             ng-focus="onFocus()"
             ng-model="query"
             >
 
     <div ng-if="showDropdown">
-        <button class="truncate" ng-repeat="subject in results" ng-if="!subject.$$selected" ng-click="select(subject)">
+        <button
+                ng-repeat="subject in results"
+                ng-if="!subject.$$disabled && !subject.$$selected"
+                ng-click="select(subject)"
+                >
             <b>{{ subject.name }}</b><br>
             {{ subject.level | level }}
         </button>
