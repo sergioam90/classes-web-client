@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+        <div class="col s12 card">
+            <div class="card-content">
+
+                Le enviamos un email para verificar la cuenta.
+                1. Revisá tu casilla.
+                2. Buscá el email que te enviamos.
+                3. Hacé click en Activar cuenta.
+                4. Seguí las instrucciones y volvé que vamos a estar esperando.
+
+                <!-- Waiting spinner -->
+                <div class="center" ng-if="vm.waiting">
+                    <div class="preloader-wrapper big active">
+                        <div class="spinner-layer spinner-yellow-only">
+                            <div class="circle-clipper left">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="gap-patch">
+                                <div class="circle"></div>
+                            </div>
+                            <div class="circle-clipper right">
+                                <div class="circle"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TODO: Check button text -->
+            <div class="card-action">
+                <a ng-click="vm.restoreState()" class="btn-flat right">Ir a la busqueda</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="container">
+
+    <div class="card">
+
+        <!-- Message -->
+        <div class="card-content">
+            <div ng-if="vm.working">
+                Estamos verificando tu email... Danos unos segundos!
+            </div>
+
+            <div ng-if="!vm.working">
+                ¡Muy bien! Ya verificamos tu email :)
+                Cerrá esta ventana y sigamos en la que estabamos trabajando
+            </div>
+
+            <!-- Waiting spinner -->
+            <div class="center" ng-if="vm.working">
+                <div class="preloader-wrapper big active">
+                    <div class="spinner-layer spinner-yellow-only">
+                        <div class="circle-clipper left">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="gap-patch">
+                            <div class="circle"></div>
+                        </div>
+                        <div class="circle-clipper right">
+                            <div class="circle"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
