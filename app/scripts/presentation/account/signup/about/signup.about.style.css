@@ -1,0 +1,12 @@
+.signup-about h4 {
+    font-size: 1.4rem;
+    text-indent: 1rem;
+}
+
+.signup-about #card-container {
+    padding: 2rem;
+}
+
+.signup-about p {
+    font-size: 1.1rem;
+}

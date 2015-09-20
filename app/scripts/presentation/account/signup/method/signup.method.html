@@ -1,13 +1,38 @@
-<div class="container">
+<div class=" card signup-method">
 
-    <div class="row">
+    <div id="card-container" class="row no-margin-row valign-wrapper">
+        <div class="col s12 m6 card-content valign">
+            <p>Registrarte con las redes sociales hace mas fácil y rápido que te crees una cuenta, porque nos permite
+                completar automáticamente parte de los datos que despueé te vamos a pedir, como una foto para tu perfil
+                de profesor, tu nombre y apellido o tu edad.</p>
 
-        <div class="col s12 card">
-            <a ng-href="{{ vm.facebookUrl }}" class="btn">FB signup</a>
-
-            <a ui-sref="root.signup.localUser" class="btn">Login Local</a>
-
+            <p>Que te registres con Face o Google no nos permite acceder a tus amigos o publicar desde tu cuenta, por
+                eso no tenés que preocuparte.</p>
         </div>
+        <div class="col s12 m5 offset-m1 valign">
+            <div class="row"><a id="facebook-button" ng-href="{{ vm.facebookUrl }}"
+                                class="waves-effect btn-large full-width">
+                <div class="col s2 center-align"><i class="fa fa-facebook"></i></div>
+                <div class="col s10 left-align">Registrarme con Facebook</div>
+            </a></div>
+            <div class="row"><a id="google-button" ng-href="{{ vm.facebookUrl }}"
+                                class="waves-effect btn-large full-width">
+                <div class="col s2 center-align"><i class="fa fa-google"></i></div>
+                <div class="col s10 left-align">Registrarme con Google</div>
+            </a></div>
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="email" type="email" class="validate">
+                            <label for="email" data-error="wrong" data-success="right">Registrarme con mi Email</label>
+                        </div>
+                    </div>
+                    <button class="waves-effect waves-light btn amber" type="submit" name="action">Enviar
+                </form>
+            </div>
+        </div>
+
+
     </div>
 </div>
-

@@ -1,0 +1,33 @@
+.signup-method p {
+    text-indent: 1rem;
+    padding-bottom: 1rem;
+    font-size: 1.1rem;
+}
+
+.signup-method .btn-large {
+    padding: 0;
+}
+
+.signup-method .s2 {
+    border-right: 2px solid white;
+}
+
+.signup-method #facebook-button {
+    background-color: #3b5998;
+}
+
+.signup-method #facebook-button:hover {
+    background-color: #2A4580;
+}
+
+.signup-method #google-button {
+    background-color: #DD4B39;
+}
+
+.signup-method #google-button:hover {
+    background-color: #CA3423;
+}
+
+.signup-method #card-container {
+    padding: 2rem;
+}
