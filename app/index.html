@@ -46,10 +46,14 @@
     <link href="scripts/directive/search-filter/individual/individual.filer.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/directive/search-filter/schedule/schedule.filter.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/directive/sort/control/sort.control.style.css" rel="stylesheet" type="text/css">
+    <link href="scripts/directive/subject-select/subject-select.style.css" rel="stylesheet" type="text/css">
+    <link href="scripts/directive/subject-unselect/subject-unselect.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/directive/subject/subject.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/directive/teacher-features/teacher-features.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/directive/teacher-result/teacher-result.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/directive/teacher-schedule/teacher.schedule.style.css" rel="stylesheet" type="text/css">
+    <link href="scripts/presentation/account/signup/about/signup.about.style.css" rel="stylesheet" type="text/css">
+    <link href="scripts/presentation/account/signup/method/signup.method.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/presentation/teacher/early-signup/early-signup.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/presentation/teacher/profile/teacher.profile.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/presentation/teacher/search/teachers.search.style.css" rel="stylesheet" type="text/css">
@@ -140,6 +144,8 @@
 <script src="scripts/directive/search-filter/individual/individual.filter.directive.js"></script>
 <script src="scripts/directive/search-filter/schedule/schedule.filter.directive.js"></script>
 <script src="scripts/directive/sort/control/sort.control.directive.js"></script>
+<script src="scripts/directive/subject-select/subject-select.directive.js"></script>
+<script src="scripts/directive/subject-unselect/subject-unselect.directive.js"></script>
 <script src="scripts/directive/subject/subject.directive.js"></script>
 <script src="scripts/directive/teacher-features/teacher-features.directive.js"></script>
 <script src="scripts/directive/teacher-result/teacher-result.directive.js"></script>
@@ -160,14 +166,17 @@
 <script src="scripts/presentation/about/about.controller.js"></script>
 <script src="scripts/presentation/account/account.controller.js"></script>
 <script src="scripts/presentation/account/login/login.controller.js"></script>
-<script src="scripts/presentation/account/signup/callback/facebook/facebook.controller.js"></script>
-<script src="scripts/presentation/account/signup/callback/local/local.controller.js"></script>
+<script src="scripts/presentation/account/signup/about/signup.about.controller.js"></script>
+<script src="scripts/presentation/account/signup/callback/facebook/signup.facebook.controller.js"></script>
+<script src="scripts/presentation/account/signup/callback/local/local-user.verification.controller.js"></script>
+<script
+    src="scripts/presentation/account/signup/local-user/confirmation/signup.local-user.confirmation.controller.js"></script>
+<script src="scripts/presentation/account/signup/local-user/signup.local-user.controller.js"></script>
+<script src="scripts/presentation/account/signup/method/signup.method.controller.js"></script>
 <script src="scripts/presentation/account/signup/signup.controller.js"></script>
 <script src="scripts/presentation/account/signup/social-user/signup.social-user.controller.js"></script>
 <script src="scripts/presentation/account/signup/student/signup.student.controller.js"></script>
 <script src="scripts/presentation/account/signup/teacher/signup.teacher.controller.js"></script>
-<script src="scripts/presentation/account/signup/user/confirmation/signup.user.confirmation.controller.js"></script>
-<script src="scripts/presentation/account/signup/user/signup.user.controller.js"></script>
 <script src="scripts/presentation/account/student-profile/my.student.profile.controller.js"></script>
 <script src="scripts/presentation/account/teacher-profile/my.teacher.profile.controller.js"></script>
 <script src="scripts/presentation/account/user-profile/my.user.profile.controller.js"></script>
@@ -188,6 +197,7 @@
 <script src="scripts/service/maps.service.js"></script>
 <script src="scripts/service/modal.service.js"></script>
 <script src="scripts/service/schedule.service.js"></script>
+<script src="scripts/service/signup.step.service.js"></script>
 <script src="scripts/service/social.service.js"></script>
 <script src="scripts/service/sort.states.service.js"></script>
 <script src="scripts/service/storage.service.js"></script>
