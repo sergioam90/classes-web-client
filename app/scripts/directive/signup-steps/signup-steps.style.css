@@ -1,0 +1,61 @@
+.signup-steps {
+    font-family: Roboto, sans-serif;
+    font-size: .8rem;
+    text-transform: uppercase;
+}
+
+.signup-steps button {
+    /*background-color: green;
+    color: white;*/
+    display: block;
+    font-size: 1.4em;
+    margin: 0 auto 8px auto;
+
+}
+
+.signup-steps button:hover {
+    /*background-color: lightgreen;
+    color: beige;*/
+}
+
+.signup-steps button:active {
+    /*background-color: darkgreen;
+    color: yellow;*/
+}
+
+.signup-steps button:disabled {
+    /*background-color: yellow !important;
+    color: red !important;*/
+}
+
+.signup-steps div {
+    display: inline-block;
+    margin: 16px 0;
+    min-width: 128px;
+    text-align: center;
+}
+
+.signup-steps .current-step {
+    font-weight: bold;
+}
+
+.signup-steps .current-step button {
+    /*background-color: black;
+    color: white;*/
+    font-size: 2.4em;
+}
+
+.signup-steps .current-step button:hover {
+    /*background-color: white;
+    color: black;*/
+}
+
+.signup-steps .current-step button:active {
+    /*background-color: aquamarine;
+    color: white;*/
+}
+
+.signup-steps .current-step button:disabled {
+    /*background-color: pink !important;
+    color: green !important;*/
+}

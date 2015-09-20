@@ -1,0 +1,10 @@
+<div class="signup-steps">
+    <div ng-repeat="step in steps" ng-class="{ 'current-step': isCurrentStep($index) }"
+         ng-style="{ 'width': 100 / steps.length + '%' }">
+        <button class="btn-floating btn-large" ng-click="setCurrentStep($index)" ng-disabled="!step.clickable">
+            {{ $index + 1 }}
+        </button>
+
+        {{ step.title }}
+    </div>
+</div>

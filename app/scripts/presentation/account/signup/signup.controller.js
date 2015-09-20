@@ -12,6 +12,37 @@
 
         vm.getCurrentStep = getCurrentStep;
 
+        vm.steps = [
+            {
+                title: 'Introducción',
+                clickable: false
+            },
+            {
+                title: 'Login',
+                clickable: false
+            },
+            {
+                title: 'Datos personales',
+                clickable: false
+            },
+            {
+                title: 'Materias',
+                clickable: true
+            },
+            {
+                title: 'Sobre tus clases',
+                clickable: true
+            },
+            {
+                title: 'Contacto',
+                clickable: true
+            },
+            {
+                title: 'Premium',
+                clickable: true
+            }
+        ];
+
         initialize();
 
         /* Implementation */
