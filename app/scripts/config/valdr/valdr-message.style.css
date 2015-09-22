@@ -1,0 +1,24 @@
+
+.valdr-message.ng-pristine {
+    display: none;
+}
+
+form.submitted .valdr-message.ng-pristine {
+    display: block !important;
+}
+
+.valdr-message.invalid {
+    color: red;
+}
+
+.valdr-invalid-dirty-touched-group input.valid {
+    border-color: red !important;
+    box-shadow: 0 1px 0 0 red !important;
+}
+
+input.ng-invalid.ng-dirty:not(.ng-pristine),
+input.ng-invalid.ng-touched:not(.ng-pristine) {
+    border-color: red !important;
+    box-shadow: 0 1px 0 0 red !important;
+}
+

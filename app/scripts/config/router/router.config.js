@@ -46,7 +46,7 @@
                 },
                 resolve: {
                     title: function() {
-                        return 'root.home'; // TODO: set proper title
+                        return 'Inicio';
                     }
                 },
                 onEnter: onEnter
@@ -64,7 +64,7 @@
                 },
                 resolve: {
                     title: function() {
-                        return 'root.early'; // TODO: set proper title
+                        return 'Inicio';
                     }
                 },
                 onEnter: onEnter
@@ -80,7 +80,7 @@
                 },
                 resolve: {
                     title: function() {
-                        return 'root.about'; // TODO: set proper title
+                        return 'Nosotros';
                     }
                 },
                 onEnter: onEnter
@@ -98,7 +98,7 @@
                 },
                 resolve: {
                     title: function() {
-                        return 'root.login'; // TODO: set proper title
+                        return 'Iniciar sesión';
                     }
                 },
                 onEnter: onEnter,
@@ -127,7 +127,7 @@
                 controller: 'SignupAboutController as vm',
                 resolve: {
                     title: function() {
-                        return 'root.signup.about'; // TODO: set proper title
+                        return 'Información';
                     }
                 },
                 onEnter: onEnter,
@@ -143,7 +143,7 @@
                 controller: 'SignupMethodController as vm',
                 resolve: {
                     title: function() {
-                        return 'root.signup.method'; // TODO: set proper title
+                        return 'Método';
                     }
                 },
                 onEnter: onEnter,
@@ -164,7 +164,7 @@
                         });
                     },
                     title: function() {
-                        return 'root.signup.teacher'; // TODO: set proper title
+                        return 'Registro - Profesor';
                     }
                 },
                 onEnter: onEnter,
@@ -180,13 +180,28 @@
                 controller: 'SignupStudentController as vm',
                 resolve: {
                     title: function() {
-                        return 'root.signup.student'; // TODO: set proper title
+                        return 'Registro - Estudiante';
                     }
                 },
                 onEnter: onEnter,
                 data: {
                     isInterruption: true,
                     stepNumber: 4
+                }
+            })
+
+            .state('root.signup.plan', {
+                url: '/plan',
+                templateUrl: 'scripts/presentation/account/signup/plan/signup.plan.html',
+                resolve: {
+                    title: function () {
+                        return 'Plan';
+                    }
+                },
+                onEnter: onEnter,
+                data: {
+                    isInterruption: true,
+                    stepNumber: 7
                 }
             })
 

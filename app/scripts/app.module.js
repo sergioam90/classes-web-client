@@ -19,7 +19,9 @@
             'isteven-multi-select',
             'ui.materialize',
             'ui.select',
-            'ngMap'
+            'ngMap',
+            'valdr',
+            'pascalprecht.translate'
         ])
         .run(function (editableOptions) {
             // TODO: Move
