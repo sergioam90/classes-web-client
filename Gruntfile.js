@@ -407,14 +407,14 @@ module.exports = function (grunt) {
             development: {
                 constants: {
                     appConfig: {
-                        API_SERVER_URL: 'classes.noip.me:8080'
+                        API_SERVER_URL: 'http://classes.noip.me:8080'
                     }
                 }
             },
             production: {
                 constants: {
                     appConfig: {
-                        API_SERVER_URL: 'classes-bahia.herokuapp.com'
+                        API_SERVER_URL: 'https://api.upclaz.com'
                     }
                 }
             }
