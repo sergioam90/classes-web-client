@@ -10,3 +10,83 @@
 .signup-about p {
     font-size: 1.1rem;
 }
+
+.premium-plan p {
+    -webkit-margin-before: 0.7rem;
+    -webkit-margin-after: 0.7rem;
+}
+
+.premium-plan #price-plan-1 {
+    background-color: #00AAA1;
+    border-radius: 100%;
+    line-height: 120px;
+    width: 120px;
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.premium-plan #price-plan-2 {
+    background-color: #00AA76;
+    border-radius: 100%;
+    line-height: 120px;
+    width: 120px;
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.premium-plan #price-plan-3 {
+    background-color: #00AA3F;
+    border-radius: 100%;
+    line-height: 120px;
+    width: 120px;
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.5rem;
+    color: white;
+}
+
+.premium-plan #border-plan-1 {
+    border: 1px solid #212121;
+    border-radius: 1rem 0 0 1rem;
+    border-right: none;
+    overflow: hidden;
+}
+
+.premium-plan #border-plan-2 {
+    border: 2px solid #212121;
+    overflow: hidden;
+}
+
+.premium-plan #border-plan-3 {
+    border: 1px solid #212121;
+    border-radius: 0 1rem 1rem 0;
+    border-left: none;
+    overflow: hidden;
+}
+
+.premium-plan p {
+    font-size: 1rem;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.premium-plan .title-plan h5 {
+    line-height: 4rem;
+    border-bottom: 1px dashed grey;
+    margin: 0;
+}
+
+.premium-plan #card-container-plan {
+    padding: 2rem;
+}
+
+.premium-plan .s2 {
+    padding: 0;
+}
