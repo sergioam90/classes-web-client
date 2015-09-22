@@ -121,7 +121,7 @@ module.exports = function (grunt) {
             },
             livereload: {
                 options: {
-                    open: true,
+                    open: false,
                     middleware: function (connect) {
                         return [
                             require('connect-modrewrite')(['!^.*(\\.css|\\.html|\\.ico|\\.jpg|\\.gif|\\.js|\\.png|\\.woff2).*$ /index.html [L]']),
