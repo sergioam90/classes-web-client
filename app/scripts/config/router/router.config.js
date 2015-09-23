@@ -116,6 +116,9 @@
                 url: '/signup?target',
                 abstract: true,
                 views: {
+                    'header@': {
+                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html'
+                    },
                     'container@': {
                         templateUrl: 'scripts/presentation/account/signup/signup.html',
                         controller: 'SignupController as vm'
