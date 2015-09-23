@@ -55,7 +55,9 @@
             .state('root.early', {
                 url: '/',
                 views: {
-                    'header@': {},
+                    'header@': {
+                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html'
+                    },
                     'container@': {
                         templateUrl: 'scripts/presentation/teacher/early-signup/early-signup.html',
                         controller: 'HomeController as vm'
@@ -73,6 +75,9 @@
             .state('root.about', {
                 url: '/about',
                 views: {
+                    'header@': {
+                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html'
+                    },
                     'container@': {
                         templateUrl: 'scripts/presentation/about/about.html',
                         controller: 'AboutController as vm'

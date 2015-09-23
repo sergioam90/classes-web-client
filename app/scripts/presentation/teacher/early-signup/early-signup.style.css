@@ -1,6 +1,6 @@
 @media (max-width: 992px) {
     .early-signup h1 {
-        font-size: 3rem;
+        font-size: 2.5rem;
     }
 }
 
@@ -22,6 +22,7 @@
 
 .early-signup h5 {
     color: white;
+    font-size: 1.8rem;
 }
 
 .early-signup #background-img {
@@ -38,6 +39,12 @@
     padding-bottom: 3rem;
 }
 
+@media (max-width: 600px) {
+    .early-signup .padding {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+}
 .early-signup .title-grey-h5 h5 {
     text-shadow: none;
     color: #212121;
@@ -48,6 +55,12 @@
     padding-bottom: 15vh;
 }
 
+@media (max-width: 600px) {
+    .early-signup .padding-ready {
+        padding-top: 5vh;
+        padding-bottom: 5vh;
+    }
+}
 .early-signup #step-by-step h6 {
     font-size: 1.3rem;
     text-indent: 1rem;
@@ -74,5 +87,24 @@
 @media (max-width: 600px) {
     .early-signup #step-by-step-cel {
         display: inline;
+    }
+}
+
+.early-signup #footer-early {
+    color: #4C4C4C;
+    text-align: center;
+    font-family: 'Love Ya Like A Sister', cursive;
+    letter-spacing: 0.5rem;
+}
+
+@media (max-width: 992px) {
+    .early-signup #footer-early {
+        letter-spacing: 0.2rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .early-signup #button-link-step-by-step {
+        margin-top: 1rem;
     }
 }
