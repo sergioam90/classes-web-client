@@ -2,7 +2,7 @@
     <div class="card-content">
 
         <div class="row">
-            <div class="col s12">
+            <div class="col s8 offset-s2">
 
                 <form novalidate
                       name="userSignupForm"
@@ -16,7 +16,7 @@
                         <div class="col s12 field-title">¿Cómo te llamás?</div>
 
                         <!-- First Name -->
-                        <input-field class="col s12 m3 offset-m3" valdr-form-group>
+                        <input-field class="col s12 m3" valdr-form-group>
                             <input id="firstName"
                                    type="text"
                                    class="validate"
@@ -49,7 +49,7 @@
 
                         <div class="col s12 field-title">¿Género?</div>
 
-                        <div class="col s6 offset-s3 center">
+                        <div class="col s6">
                             <input-field>
 
                                 <!-- Male -->
@@ -86,7 +86,7 @@
 
                         <div class="col s12 field-title">¿Cuál es tu email?</div>
 
-                        <input-field class="col s12 m4 offset-m4" valdr-form-group>
+                        <input-field class="col s12 m4" valdr-form-group>
                             <input type="email"
                                    id="email"
                                    name="email"
@@ -104,22 +104,9 @@
                             ¿En qué fecha naciste?
                         </div>
 
-                        <div class="col s12 m4 offset-m4" valdr-form-group>
-                            <input input-date
-                                   name="birthDate"
-                                   type="text"
-                                   ng-model="vm.user.birthDate"
-                                   value="{{ vm.user.birthDate | date:longDate }}"
-                                   format="yyyy-mm-dd"
-                                   months-full="{{ month }}"
-                                   months-short="{{ monthShort }}"
-                                   weekdays-full="{{ weekdaysFull }}"
-                                   weekdays-short="{{ weekdaysShort }}"
-                                   weekdays-letter="{{ weekdaysLetter }}"
-                                   today="Hoy"
-                                   clear="Limpiar"
-                                   close="Cerrar"
-                                   select-years="15">
+                        <div class="col s12 m4">
+                            <div date-picker="start" view="year" min-view="date" ng-model="vm.user.birthDate"></div>
+
                         </div>
                     </div>
 
@@ -131,7 +118,7 @@
                         </div>
 
                         <!-- New password -->
-                        <input-field class="col s12 m3 offset-m3" valdr-form-group>
+                        <input-field class="col s12 m4" valdr-form-group>
                             <input type="password"
                                    id="password"
                                    name="password"
@@ -141,7 +128,7 @@
                         </input-field>
 
                         <!-- Confirm password -->
-                        <input-field class="col s12 m3">
+                        <input-field class="col s12 m4">
                             <input type="password"
                                    id="confirmPassword"
                                    name="confirmPassword"
@@ -150,7 +137,7 @@
                         </input-field>
 
                         <!-- Award -->
-                        <div class="col s12 m3 center"
+                        <div class="col s12"
                              ng-show="vm.showAwardButton(userSignupForm)">
                             <div class="row">
                                 <a href=""
@@ -169,7 +156,7 @@
 
                     <!-- Profile picture -->
                     <div class="row">
-                        <img src="images/mock.jpg" class="img-responsive" alt="Profile picture">
+                        <!--<img src="images/mock.jpg" class="img-responsive" alt="Profile picture">-->
                     </div>
 
                 </form>

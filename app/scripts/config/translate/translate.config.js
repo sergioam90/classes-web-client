@@ -23,5 +23,7 @@
         });
 
         $translateProvider.preferredLanguage('es_ar');
+
+        $translateProvider.useSanitizeValueStrategy('sanitize');
     }
 })();

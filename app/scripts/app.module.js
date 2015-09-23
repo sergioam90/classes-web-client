@@ -21,7 +21,8 @@
             'ui.select',
             'ngMap',
             'valdr',
-            'pascalprecht.translate'
+            'pascalprecht.translate',
+            'datePicker'
         ])
         .run(function (editableOptions) {
             // TODO: Move

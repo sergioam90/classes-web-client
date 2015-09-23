@@ -684,5 +684,6 @@ nav ul li.active {
 }
 
 form .field-title {
-    text-align: center;
+    margin-top: 10px;
+    font-weight: 400;
 }
