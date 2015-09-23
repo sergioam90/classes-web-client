@@ -3,7 +3,11 @@
   "root": "dist",
   "cache_control": {
     "index.html": false,
-    "**": 3000000
+    "/font/**": 30000000,
+    "/fonts/**": 30000000,
+    "/images/**": 30000000,
+    "/scripts/**": 30000000,
+    "/styles/**": 30000000
   },
   "routes": {
     "**": "index.html"
