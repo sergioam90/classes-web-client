@@ -1,13 +1,16 @@
 .subject-unselect button {
-    background-color: aquamarine;
+    background-color: transparent;
     border: 0;
     border-radius: 12px;
-    color: blue;
-    font-size: 1em;
+    color: #666;
+    font-weight: 0;
+    font-size: 2em;
     height: 24px;
+    padding: 0;
     position: absolute;
     right: 3px;
-    top: 3px;
+    text-align: center;
+    top: 6px;
     -khtml-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
@@ -18,25 +21,24 @@
 }
 
 .subject-unselect button:hover {
-    background-color: yellow;
-    color: gray;
+    opacity: 0.8;
 }
 
 .subject-unselect button:active {
-    background-color: pink;
+    /*background-color: pink;*/
     color: black;
 }
 
 .subject-unselect div {
-    background-color: orange;
-    border: 1px solid red;
+    background-color: whitesmoke;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 0px 10px 0 rgba(0, 0, 0, 0.12);
     border-radius: 16px;
-    color: black;
+    color: #333;
     float: left;
     font-size: .8em;
-    height: 32px;
+    height: 36px;
     line-height: 13px;
     margin: 3px;
-    padding: 2px 36px 2px 12px;
+    padding: 6px 36px 4px 12px;
     position: relative;
 }
