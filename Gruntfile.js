@@ -121,7 +121,7 @@ module.exports = function (grunt) {
             },
             livereload: {
                 options: {
-                    open: true,
+                    open: false,
                     middleware: function (connect) {
                         return [
                             require('connect-modrewrite')(['!^.*(\\.css|\\.html|\\.ico|\\.jpg|\\.gif|\\.js|\\.png|\\.woff2).*$ /index.html [L]']),
@@ -390,7 +390,7 @@ module.exports = function (grunt) {
             dist: [
                 'copy:styles',
                 'newer:imagemin',
-                'svgmin'
+                'newer:svgmin'
             ]
         },
 
@@ -407,14 +407,14 @@ module.exports = function (grunt) {
             development: {
                 constants: {
                     appConfig: {
-                        API_SERVER_URL: 'classes.noip.me:8080'
+                        API_SERVER_URL: 'http://classes.noip.me:8080'
                     }
                 }
             },
             production: {
                 constants: {
                     appConfig: {
-                        API_SERVER_URL: 'classes-bahia.herokuapp.com'
+                        API_SERVER_URL: 'https://api.upclaz.com'
                     }
                 }
             }

@@ -682,3 +682,8 @@ nav ul li.active {
         margin-left: 100%;
     }
 }
+
+form .field-title {
+    margin-top: 10px;
+    font-weight: 400;
+}

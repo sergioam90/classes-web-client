@@ -2,87 +2,193 @@
     <div class="card-content">
 
         <div class="row">
-            <div class="col s2">
-                <img src="images/mock.jpg" class="img-responsive" alt="Profile picture">
-            </div>
+            <div class="col s8 offset-s2">
 
-            <div class="col s10">
+                <form novalidate
+                      name="userSignupForm"
+                      id="userSignupForm"
+                      ng-class="vm.submittedForm ? 'submitted' : ''"
+                      valdr-type="User">
 
-                <!-- First row -->
-                <div class="row">
+                    <!-- Name -->
+                    <div class="row">
 
-                    <!-- First Name -->
-                    <input-field class="col s4">
-                        <input type="text" placeholder="Lionel" ng-model="vm.user.firstName" required>
-                        <label>Nombre</label>
-                    </input-field>
+                        <div class="col s12 field-title">¿Cómo te llamás?</div>
 
-                    <!-- Last Name -->
-                    <input-field class="col s4">
-                        <input placeholder="Messi" type="text" ng-model="vm.user.lastName" required>
-                        <label>Apellido</label>
-                    </input-field>
+                        <!-- First Name -->
+                        <input-field class="col s12 m3" valdr-form-group>
+                            <input id="firstName"
+                                   type="text"
+                                   class="validate"
+                                   name="firstName"
+                                   ng-model="vm.user.firstName" required="">
+                            <label for="firstName">
+                                Nombre
+                            </label>
+
+                            <div ng-show="userSignupForm.$submitted || userSignupForm.firstName.$touched">
+                                <div ng-show="userSignupForm.firstName.$errors">Error</div>
+                            </div>
+                            {{ userSignupForm.$errors }}
+                        </input-field>
+
+                        <!-- Last Name -->
+                        <input-field class="col s12 m3" valdr-form-group>
+                            <input type="text"
+                                   id="lastName"
+                                   name="lastName"
+                                   class="validate"
+                                   ng-model="vm.user.lastName">
+                            <label for="lastName">Apellido</label>
+                        </input-field>
+
+                    </div>
 
                     <!-- Gender -->
-                    <div class="col s4">
-                        <label>Género</label>
+                    <div class="row">
 
-                        <div>
-                            <input id="maleRadio" type="radio" ng-model="vm.user.gender" value="male">
-                            <label for="maleRadio">Hombre</label>
-                            <input id="femaleRadio" type="radio" ng-model="vm.user.gender" value="female">
-                            <label for="femaleRadio">Mujer</label>
+                        <div class="col s12 field-title">¿Género?</div>
+
+                        <div class="col s6">
+                            <input-field>
+
+                                <!-- Male -->
+                                <input id="maleRadio"
+                                       type="radio"
+                                       name="gender"
+                                       ng-model="vm.user.gender"
+                                       value="male"
+                                       required>
+                                <label for="maleRadio">Hombre</label>
+
+                                <!-- Female -->
+                                <input id="femaleRadio"
+                                       name="gender"
+                                       type="radio"
+                                       ng-model="vm.user.gender"
+                                       value="female"
+                                       required>
+                                <label for="femaleRadio">Mujer</label>
+                            </input-field>
+
+                            <!-- Error message -->
+                            <div class="valdr-message invalid"
+                                 ng-class="userSignupForm.gender.$pristine ? 'ng-pristine' : ''"
+                                 ng-if="userSignupForm.gender.$invalid">
+                                Seleccioná tu género
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- Email -->
+                    <div class="row">
+
+                        <div class="col s12 field-title">¿Cuál es tu email?</div>
+
+                        <input-field class="col s12 m4" valdr-form-group>
+                            <input type="email"
+                                   id="email"
+                                   name="email"
+                                   class="validate"
+                                   ng-model="vm.user.email"
+                                   ng-model-options="{ updateOn: 'blur' }">
+                            <label for="email">Email</label>
+                        </input-field>
+
+                    </div>
+
+                    <!-- Birth date -->
+                    <div class="row">
+                        <div class="col s12 field-title">
+                            ¿En qué fecha naciste?
+                        </div>
+
+                        <div class="col s12 m4">
+                            <div date-picker="start" view="year" min-view="date" ng-model="vm.user.birthDate"></div>
+
                         </div>
                     </div>
-                </div>
 
-                <!-- Second row -->
-                <div class="row">
-                    <input-field class="col s6">
-                        <input type="email" placeholder="lio@gmail.com" ng-model="vm.user.email" required>
-                        <label>Email</label>
-                    </input-field>
-                    <div class="col s6">
-                        <label>Fecha de nacimiento</label>
-                        <input input-date
-                               required
-                               type="text"
-                               ng-model="vm.user.birthDate"
-                               value="{{ vm.user.birthDate | date:longDate }}"
-                               format="yyyy-mm-dd"
-                               months-full="{{ month }}"
-                               months-short="{{ monthShort }}"
-                               weekdays-full="{{ weekdaysFull }}"
-                               weekdays-short="{{ weekdaysShort }}"
-                               weekdays-letter="{{ weekdaysLetter }}"
-                               today="Hoy"
-                               clear="Limpiar"
-                               close="Cerrar"
-                               select-years="15">
+                    <!-- Password -->
+                    <div class="row">
+
+                        <div class="col s12 field-title">
+                            Ahora, lo más difícil (te lo vamos a recompensar ;) )
+                        </div>
+
+                        <!-- New password -->
+                        <input-field class="col s12 m4" valdr-form-group>
+                            <input type="password"
+                                   id="password"
+                                   name="password"
+                                   ng-model="vm.user.password"
+                                   ng-model-options="{ updateOn: 'blur' }">
+                            <label for="password">Nueva contraseña</label>
+                        </input-field>
+
+                        <!-- Confirm password -->
+                        <input-field class="col s12 m4">
+                            <input type="password"
+                                   id="confirmPassword"
+                                   name="confirmPassword"
+                                   ng-model="confirmPassword">
+                            <label for="confirmPassword">Confirmar contraseña</label>
+                        </input-field>
+
+                        <!-- Award -->
+                        <div class="col s12"
+                             ng-show="vm.showAwardButton(userSignupForm)">
+                            <div class="row">
+                                <a href=""
+                                   class="btn"
+                                   ng-init="showAward = false"
+                                   ng-click="showAward = !showAward">
+                                    Mostrar sorpresa
+                                </a>
+                            </div>
+                            <div class="row">
+                                <img src="images/award.gif" alt="Tu premio" ng-show="showAward">
+                            </div>
+                        </div>
+
                     </div>
-                </div>
 
-                <!-- Third row -->
-                <div class="row">
-                    <input-field class="col s6">
-                        <input type="password" placeholder="Contraseña" ng-model="vm.user.password" required>
-                        <label>Contraseña</label>
-                    </input-field>
-                    <input-field class="col s6">
-                        <input type="password" placeholder="Confirmar contraseña" required>
-                        <label>Confirmar contraseña</label>
-                    </input-field>
-                </div>
+                    <!-- Profile picture -->
+                    <div class="row">
+                        <!--<img src="images/mock.jpg" class="img-responsive" alt="Profile picture">-->
+                    </div>
+
+                </form>
             </div>
         </div>
 
         <!-- Navigation buttons -->
         <div class="row">
+
             <div class="col s12">
+
+                <!-- Previous button -->
                 <a ui-sref="root.signup.method" class="btn-flat">Anterior</a>
-                <a ng-click="vm.sendConfirmation()"
-                   class="btn right">Siguiente</a>
+
+                <!-- Next button -->
+                <div class="right">
+                    <div class="row">
+                        <div class="col s12">
+                            <span class="red-text right" ng-show="userSignupForm.$invalid">
+                                Hay campos inválidos o sin completar
+                            </span>
+                        </div>
+                        <div class="col s12">
+                            <button class="btn right"
+                                    ng-click="vm.sendConfirmation(userSignupForm)">
+                                Siguiente
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
         </div>
 
     </div>

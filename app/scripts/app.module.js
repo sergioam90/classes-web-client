@@ -19,7 +19,10 @@
             'isteven-multi-select',
             'ui.materialize',
             'ui.select',
-            'ngMap'
+            'ngMap',
+            'valdr',
+            'pascalprecht.translate',
+            'datePicker'
         ])
         .run(function (editableOptions) {
             // TODO: Move

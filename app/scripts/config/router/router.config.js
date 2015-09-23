@@ -43,7 +43,13 @@
                         templateUrl: 'scripts/presentation/footer/footer.html'
                         /*controller: 'FooterController as vm'*/
                     }
-                }
+                },
+                resolve: {
+                    title: function() {
+                        return 'Inicio';
+                    }
+                },
+                onEnter: onEnter
             })
 
             .state('root.early', {
@@ -57,7 +63,13 @@
                         controller: 'HomeController as vm'
                     },
                     'footer@': {}
-                }
+                },
+                resolve: {
+                    title: function() {
+                        return 'Inicio';
+                    }
+                },
+                onEnter: onEnter
             })
 
             .state('root.about', {
@@ -70,7 +82,13 @@
                         templateUrl: 'scripts/presentation/about/about.html',
                         controller: 'AboutController as vm'
                     }
-                }
+                },
+                resolve: {
+                    title: function() {
+                        return 'Nosotros';
+                    }
+                },
+                onEnter: onEnter
             })
 
             /* User states */
@@ -83,6 +101,12 @@
                         controller: 'LoginController as vm'
                     }
                 },
+                resolve: {
+                    title: function() {
+                        return 'Iniciar sesión';
+                    }
+                },
+                onEnter: onEnter,
                 data: {
                     isInterruption: true
                 }
@@ -106,6 +130,12 @@
                 url: '/about',
                 templateUrl: 'scripts/presentation/account/signup/about/signup.about.html',
                 controller: 'SignupAboutController as vm',
+                resolve: {
+                    title: function() {
+                        return 'Información';
+                    }
+                },
+                onEnter: onEnter,
                 data: {
                     isInterruption: true,
                     stepNumber: 1
@@ -116,6 +146,12 @@
                 url: '/method',
                 templateUrl: 'scripts/presentation/account/signup/method/signup.method.html',
                 controller: 'SignupMethodController as vm',
+                resolve: {
+                    title: function() {
+                        return 'Método';
+                    }
+                },
+                onEnter: onEnter,
                 data: {
                     isInterruption: true,
                     stepNumber: 2
@@ -131,8 +167,12 @@
                         return UserService.me().then(function (user) {
                             return user;
                         });
+                    },
+                    title: function() {
+                        return 'Registro - Profesor';
                     }
                 },
+                onEnter: onEnter,
                 data: {
                     isInterruption: true,
                     stepNumber: 4
@@ -143,9 +183,30 @@
                 url: '/student',
                 templateUrl: 'scripts/presentation/account/signup/student/signup.student.html',
                 controller: 'SignupStudentController as vm',
+                resolve: {
+                    title: function() {
+                        return 'Registro - Estudiante';
+                    }
+                },
+                onEnter: onEnter,
                 data: {
                     isInterruption: true,
                     stepNumber: 4
+                }
+            })
+
+            .state('root.signup.plan', {
+                url: '/plan',
+                templateUrl: 'scripts/presentation/account/signup/plan/signup.plan.html',
+                resolve: {
+                    title: function () {
+                        return 'Plan';
+                    }
+                },
+                onEnter: onEnter,
+                data: {
+                    isInterruption: true,
+                    stepNumber: 7
                 }
             })
 
@@ -155,6 +216,12 @@
                 url: '/localUser',
                 templateUrl: 'scripts/presentation/account/signup/local-user/signup.local-user.html',
                 controller: 'SignupLocalUserController as vm',
+                resolve: {
+                    title: function() {
+                        return 'root.signup.localUser'; // TODO: set proper title
+                    }
+                },
+                onEnter: onEnter,
                 data: {
                     isInterruption: true,
                     stepNumber: 3
@@ -165,6 +232,12 @@
                 url: '/emailSent',
                 templateUrl: 'scripts/presentation/account/signup/local-user/confirmation/signup.local-user.confirmation.html',
                 controller: 'LocalUserConfirmationController as vm',
+                resolve: {
+                    title: function() {
+                        return 'root.signup.emailSent'; // TODO: set proper title
+                    }
+                },
+                onEnter: onEnter,
                 data: {
                     isInterruption: true,
                     stepNumber: 3
@@ -179,6 +252,12 @@
                         controller: 'UserVerificationController as vm'
                     }
                 },
+                resolve: {
+                    title: function() {
+                        return 'root.userVerification'; // TODO: set proper title
+                    }
+                },
+                onEnter: onEnter,
                 data: {
                     isInterruption: true
                 }
@@ -197,8 +276,12 @@
                         }, function (error) {
                             // TODO: Handle errors
                         });
+                    },
+                    title: function() {
+                        return 'root.signup.socialUser'; // TODO: set proper title
                     }
                 },
+                onEnter: onEnter,
                 data: {
                     isInterruption: true,
                     stepNumber: 3
@@ -209,6 +292,12 @@
                 url: '/facebook?code',
                 templateUrl: 'scripts/presentation/account/signup/callback/facebook/signup.facebook.template.html',
                 controller: 'SignupFacebookController as vm',
+                resolve: {
+                    title: function() {
+                        return 'root.signup.facebook'; // TODO: set proper title
+                    }
+                },
+                onEnter: onEnter,
                 data: {
                     isInterruption: true,
                     stepNumber: 3
@@ -244,7 +333,13 @@
                             }
                         }
                     }
-                }
+                },
+                resolve: {
+                    title: function() {
+                        return 'root.account.user'; // TODO: set proper title
+                    }
+                },
+                onEnter: onEnter
             })
 
             .state('root.account.student', {
@@ -263,7 +358,13 @@
                             }
                         }
                     }
-                }
+                },
+                resolve: {
+                    title: function() {
+                        return 'root.account.student'; // TODO: set proper title
+                    }
+                },
+                onEnter: onEnter
             })
 
             .state('root.account.teacher', {
@@ -282,7 +383,13 @@
                             }
                         }
                     }
-                }
+                },
+                resolve: {
+                    title: function() {
+                        return 'root.account.teacher'; // TODO: set proper title
+                    }
+                },
+                onEnter: onEnter
             })
 
             .state('root.teachersSearch', {
@@ -293,7 +400,13 @@
                         templateUrl: 'scripts/presentation/teacher/search/teachers.search.html',
                         controller: 'TeachersSearchController as vm'
                     }
-                }
+                },
+                resolve: {
+                    title: function() {
+                        return 'root.teachersSearch'; // TODO: set proper title
+                    }
+                },
+                onEnter: onEnter
             })
 
             .state('root.teacherProfile', {
@@ -308,7 +421,13 @@
                             }
                         }
                     }
-                }
+                },
+                resolve: {
+                    title: function() {
+                        return 'root.teacherProfile'; // TODO: set proper title
+                    }
+                },
+                onEnter: onEnter
             })
 
             .state('root.maps', {
@@ -318,9 +437,20 @@
                         templateUrl: 'scripts/presentation/maps/maps.html',
                         controller: 'MapsController as vm'
                     }
-                }
+                },
+                resolve: {
+                    title: function() {
+                        return 'root.maps'; // TODO: set proper title
+                    }
+                },
+                onEnter: onEnter
             });
+    }
 
+    onEnter.$inject = ['TitleService', 'title'];
+
+    function onEnter(TitleService, title) {
+        TitleService.setCurrentTitle(title);
     }
 
 })
