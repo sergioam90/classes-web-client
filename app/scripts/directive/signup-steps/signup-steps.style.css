@@ -35,6 +35,8 @@
     text-align: center;
 }
 
+/* Current step */
+
 .signup-steps .current-step {
     font-weight: bold;
 }
@@ -56,6 +58,55 @@
 }
 
 .signup-steps .current-step button:disabled {
+    /*background-color: pink !important;
+    color: green !important;*/
+}
+
+/* Past step */
+
+.signup-steps .past-step {
+}
+
+.signup-steps .past-step button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.signup-steps .past-step button:hover {
+    /*background-color: white;
+    color: black;*/
+}
+
+.signup-steps .past-step button:active {
+    /*background-color: aquamarine;
+    color: white;*/
+}
+
+.signup-steps .past-step button:disabled {
+    /*background-color: pink !important;
+    color: green !important;*/
+}
+
+/* Future step */
+.signup-steps .future-step {
+}
+
+.signup-steps .future-step button {
+    background-color: #a4a4a4;
+    color: white;
+}
+
+.signup-steps .future-step button:hover {
+    /*background-color: white;
+    color: black;*/
+}
+
+.signup-steps .future-step button:active {
+    /*background-color: aquamarine;
+    color: white;*/
+}
+
+.signup-steps .future-step button:disabled {
     /*background-color: pink !important;
     color: green !important;*/
 }
