@@ -12,7 +12,9 @@
         // TODO: Check code existance
         var params = $location.search();
 
-        SocialService.getFacebookAuthorization(params.code, params.target).then(authSuccess, authError);
+        var target = $state.current.data.target;
+
+        SocialService.getFacebookAuthorization(params.code, target).then(authSuccess, authError);
 
         /* Implementation */
 
@@ -28,7 +30,7 @@
                     if (user.confirmed) {
                         InterruptionService.restore();
                     } else {
-                        $state.go('root.signup.socialUser');
+                        $state.go('root.signup-' + target + '.step.social-user');
                     }
                 });
             });

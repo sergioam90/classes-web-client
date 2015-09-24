@@ -22,7 +22,8 @@
             'ngMap',
             'valdr',
             'pascalprecht.translate',
-            'datePicker'
+            'datePicker',
+            'cloudinary'
         ])
         .run(function (editableOptions) {
             // TODO: Move

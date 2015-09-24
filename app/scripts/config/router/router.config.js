@@ -112,16 +112,17 @@
                 }
             })
 
-            .state('root.signup', {
-                url: '/signup?target',
+            /*  Teacher signup */
+
+            .state('root.signup-teacher', {
+                url: '/signup/teacher',
                 abstract: true,
                 views: {
                     'header@': {
                         templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html'
                     },
                     'container@': {
-                        templateUrl: 'scripts/presentation/account/signup/signup.html',
-                        controller: 'SignupController as vm'
+                        templateUrl: 'scripts/presentation/account/signup/teacher/signup.teacher.html'
                     }
                 },
                 data: {
@@ -129,9 +130,9 @@
                 }
             })
 
-            .state('root.signup.about', {
+            .state('root.signup-teacher.about', {
                 url: '/about',
-                templateUrl: 'scripts/presentation/account/signup/about/signup.about.html',
+                templateUrl: 'scripts/presentation/account/signup/teacher/about/signup.about.html',
                 controller: 'SignupAboutController as vm',
                 resolve: {
                     title: function() {
@@ -140,12 +141,11 @@
                 },
                 onEnter: onEnter,
                 data: {
-                    isInterruption: true,
-                    stepNumber: 1
+                    isInterruption: true
                 }
             })
 
-            .state('root.signup.method', {
+            .state('root.signup-teacher.method', {
                 url: '/method',
                 templateUrl: 'scripts/presentation/account/signup/method/signup.method.html',
                 controller: 'SignupMethodController as vm',
@@ -157,13 +157,94 @@
                 onEnter: onEnter,
                 data: {
                     isInterruption: true,
-                    stepNumber: 2
+                    target: 'teacher'
                 }
             })
 
-            .state('root.signup.teacher', {
-                url: '/teacher',
-                templateUrl: 'scripts/presentation/account/signup/teacher/signup.teacher.html',
+            .state('root.signup-teacher.step', {
+                url: '/step',
+                abstract: true,
+                templateUrl: 'scripts/presentation/account/signup/teacher/step/signup.teacher.step.html',
+                controller: 'SignupTeacherStepController as vm',
+                data: {
+                    isInterruption: true
+                }
+            })
+
+            .state('root.signup-teacher.step.local-user', {
+                url: '/local-user',
+                templateUrl: 'scripts/presentation/account/signup/local-user/signup.local-user.html',
+                controller: 'SignupLocalUserController as vm',
+                resolve: {
+                    title: function() {
+                        return 'Registro';
+                    }
+                },
+                onEnter: onEnter,
+                data: {
+                    isInterruption: true,
+                    target: 'teacher'
+                }
+            })
+
+            .state('root.signup-teacher.step.email-sent', {
+                url: '/email-sent',
+                templateUrl: 'scripts/presentation/account/signup/local-user/email-sent/signup.local-user.email-sent.html',
+                controller: 'SignupLocalUserEmailSentController as vm',
+                resolve: {
+                    title: function() {
+                        return 'Email enviado';
+                    }
+                },
+                onEnter: onEnter,
+                data: {
+                    isInterruption: true,
+                    target: 'teacher'
+                }
+            })
+
+            .state('root.signup-teacher.step.social-user', {
+                url: '/social-user',
+                templateUrl: 'scripts/presentation/account/signup/social-user/signup.social-user.html',
+                controller: 'SignupSocialUserController as vm',
+                resolve: {
+                    user: function (UserService) {
+                        return UserService.me().then(function (user) {
+                            return user;
+                        }, function (error) {
+                            // TODO: Handle errors
+                        });
+                    },
+                    title: function () {
+                        return 'root.signup.socialUser'; // TODO: set proper title
+                    }
+                },
+                onEnter: onEnter,
+                data: {
+                    isInterruption: true,
+                    target: 'teacher'
+                }
+            })
+
+            .state('root.signup-teacher.facebook', {
+                url: '/facebook?code',
+                templateUrl: 'scripts/presentation/account/signup/callback/facebook/signup.facebook.html',
+                controller: 'SignupFacebookController as vm',
+                resolve: {
+                    title: function() {
+                        return 'Registro - Facebook';
+                    }
+                },
+                onEnter: onEnter,
+                data: {
+                    isInterruption: true,
+                    target: 'teacher'
+                }
+            })
+
+            .state('root.signup-teacher.step.data', {
+                url: '/data?step',
+                templateUrl: 'scripts/presentation/account/signup/teacher/data/signup.teacher.data.html',
                 controller: 'SignupTeacherController as vm',
                 resolve: {
                     user: function (UserService) {
@@ -175,14 +256,53 @@
                         return 'Registro - Profesor';
                     }
                 },
+                params: {
+                    step: '1'
+                },
                 onEnter: onEnter,
                 data: {
-                    isInterruption: true,
-                    stepNumber: 4
+                    isInterruption: true
                 }
             })
 
-            .state('root.signup.student', {
+            .state('root.signup-teacher.plan', {
+                url: '/plan',
+                templateUrl: 'scripts/presentation/account/signup/teacher/plan/signup.plan.html',
+                resolve: {
+                    title: function () {
+                        return 'Plan';
+                    }
+                },
+                onEnter: onEnter,
+                data: {
+                    isInterruption: true
+                }
+            })
+
+            /* Student signup */
+
+            .state('root.signup-student', {
+                url: '/signup/student',
+                abstract: true
+            })
+
+            .state('root.signup-student.method', {
+                url: '/method',
+                templateUrl: 'scripts/presentation/account/signup/method/signup.method.html',
+                controller: 'SignupMethodController as vm',
+                resolve: {
+                    title: function() {
+                        return 'Método';
+                    }
+                },
+                onEnter: onEnter,
+                data: {
+                    isInterruption: true,
+                    target: 'student'
+                }
+            })
+
+            .state('root.signup-student.data', {
                 url: '/student',
                 templateUrl: 'scripts/presentation/account/signup/student/signup.student.html',
                 controller: 'SignupStudentController as vm',
@@ -193,117 +313,31 @@
                 },
                 onEnter: onEnter,
                 data: {
-                    isInterruption: true,
-                    stepNumber: 4
-                }
-            })
-
-            .state('root.signup.plan', {
-                url: '/plan',
-                templateUrl: 'scripts/presentation/account/signup/plan/signup.plan.html',
-                resolve: {
-                    title: function () {
-                        return 'Plan';
-                    }
-                },
-                onEnter: onEnter,
-                data: {
-                    isInterruption: true,
-                    stepNumber: 7
+                    isInterruption: true
                 }
             })
 
             /* Local user states */
 
-            .state('root.signup.localUser', {
-                url: '/localUser',
-                templateUrl: 'scripts/presentation/account/signup/local-user/signup.local-user.html',
-                controller: 'SignupLocalUserController as vm',
-                resolve: {
-                    title: function() {
-                        return 'root.signup.localUser'; // TODO: set proper title
-                    }
-                },
-                onEnter: onEnter,
-                data: {
-                    isInterruption: true,
-                    stepNumber: 3
-                }
-            })
-
-            .state('root.signup.emailSent', {
-                url: '/emailSent',
-                templateUrl: 'scripts/presentation/account/signup/local-user/confirmation/signup.local-user.confirmation.html',
-                controller: 'LocalUserConfirmationController as vm',
-                resolve: {
-                    title: function() {
-                        return 'root.signup.emailSent'; // TODO: set proper title
-                    }
-                },
-                onEnter: onEnter,
-                data: {
-                    isInterruption: true,
-                    stepNumber: 3
-                }
-            })
-
             .state('root.userVerification', {
                 url: '/user/{id}/verification?code?redirectUri',
                 views: {
+                    'header@': {
+                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html'
+                    },
                     'container@': {
-                        templateUrl: 'scripts/presentation/account/signup/callback/local/local-user.verification.template.html',
+                        templateUrl: 'scripts/presentation/account/signup/callback/local/local-user.verification.html',
                         controller: 'UserVerificationController as vm'
                     }
                 },
                 resolve: {
-                    title: function() {
+                    title: function () {
                         return 'root.userVerification'; // TODO: set proper title
                     }
                 },
                 onEnter: onEnter,
                 data: {
                     isInterruption: true
-                }
-            })
-
-            /* Social user states */
-
-            .state('root.signup.socialUser', {
-                url: '/socialUser',
-                templateUrl: 'scripts/presentation/account/signup/social-user/signup.social-user.html',
-                controller: 'SignupSocialUserController as vm',
-                resolve: {
-                    user: function (UserService) {
-                        return UserService.me().then(function (user) {
-                            return user;
-                        }, function (error) {
-                            // TODO: Handle errors
-                        });
-                    },
-                    title: function() {
-                        return 'root.signup.socialUser'; // TODO: set proper title
-                    }
-                },
-                onEnter: onEnter,
-                data: {
-                    isInterruption: true,
-                    stepNumber: 3
-                }
-            })
-
-            .state('root.signup.facebook', {
-                url: '/facebook?code',
-                templateUrl: 'scripts/presentation/account/signup/callback/facebook/signup.facebook.template.html',
-                controller: 'SignupFacebookController as vm',
-                resolve: {
-                    title: function() {
-                        return 'root.signup.facebook'; // TODO: set proper title
-                    }
-                },
-                onEnter: onEnter,
-                data: {
-                    isInterruption: true,
-                    stepNumber: 3
                 }
             })
 

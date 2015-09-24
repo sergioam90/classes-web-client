@@ -9,11 +9,14 @@
 
     function SocialService(Restangular) {
 
-        var facebookEndPoint = location.protocol + '//' + location.host + '/signup/facebook';
+        var socialEndPointRoot = location.protocol + '//' + location.host + '/signup/';
 
+        function getFacebookUri(target){
+            return socialEndPointRoot + target + '/facebook';
+        }
 
         function getFacebookAuthorization(code, target) {
-            var uri = facebookEndPoint + (target ? '?target=' + target : '');
+            var uri = getFacebookUri(target);
 
             return Restangular.one('social').one('facebook').one('authorization').customPOST({
                 code: code,
@@ -22,7 +25,7 @@
         }
 
         function getFacebookAuthorizationUrl(target) {
-            var uri = facebookEndPoint + (target ? '?target=' + target : '');
+            var uri = getFacebookUri(target);
 
             return Restangular.one('social').one('facebook').one('authorization-url').customGET(
                 '',

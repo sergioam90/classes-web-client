@@ -3,15 +3,15 @@
 
     angular
         .module('classesClientApp')
-        .controller('LocalUserConfirmationController', LocalUserConfirmationController);
+        .controller('SignupLocalUserEmailSentController', SignupLocalUserEmailSentController);
 
-    LocalUserConfirmationController.$inject = ['InterruptionService', '$state', '$stateParams', '$interval', 'OAuthToken'];
+    SignupLocalUserEmailSentController.$inject = ['InterruptionService', '$state', '$stateParams', '$interval', 'OAuthToken'];
 
-    function LocalUserConfirmationController(InterruptionService, $state, $stateParams, $interval, OAuthToken) {
+    function SignupLocalUserEmailSentController(InterruptionService, $state, $stateParams, $interval, OAuthToken) {
         var vm = this;
 
         // Data
-        var target = $stateParams.target || null;
+        var target = $state.current.data.target;
         var loginCheckPromise;
 
         vm.waiting = true;
@@ -29,8 +29,6 @@
         function initialize() {
 
             loginCheckPromise = $interval(function () {
-                console.log('token: ');
-                console.log(OAuthToken.getToken());
                 if (OAuthToken.getToken()) {
                     loginDetected();
                 }
@@ -46,7 +44,7 @@
 
             vm.waiting = false;
 
-            $state.go('root.signup.' + target);
+            $state.go('root.signup-' + target + '.step.data');
         }
 
     }

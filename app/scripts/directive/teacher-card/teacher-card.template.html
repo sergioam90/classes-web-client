@@ -1,0 +1,62 @@
+<div class="teacher-card">
+    <div class="card z-depth-1" ng-class="{ hoverable: isLink }">
+        <div class="card-content">
+            <a ng-href="{{ href }}">
+                <div class="first">
+                    <user-image image="teacher.user.image" transformation="medium"></user-image>
+                </div>
+
+                <div class="second">
+                    <div class="first">
+                        {{ teacher.user | fullName }}
+                    </div>
+
+                    <div class="second">
+                        {{ teacher.description }}
+                    </div>
+
+                    <div class="third">
+                        <!-- TODO: implement logic -->
+                        <div>
+                            <i class="fa fa-graduation-cap"></i>
+                        </div>
+
+                        <div>
+                            <i class="fa fa-user"></i>
+                            <i class="fa fa-users"></i>
+                        </div>
+
+                        <div>
+                            <i class="fa fa-car"></i>
+                        </div>
+
+                        <div>
+                            <i class="fa fa-sun-o"></i>
+                            <i class="fa fa-question"></i>
+                            <i class="fa fa-moon-o"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="third">
+                    <div>
+                        <!-- TODO: implement logic -->
+                        <i class="fa fa-star" style="color: #ff9800;"></i>
+                        <i class="fa fa-star" style="color: #ff9800;"></i>
+                        <i class="fa fa-star" style="color: #ff9800;"></i>
+                        <i class="fa fa-star" style="color: #c6c6c6;"></i>
+                        <i class="fa fa-star" style="color: #c6c6c6;"></i>
+                    </div>
+
+                    <div>
+                        $ {{ teacher.fee }} <span class="unit">/ hora</span>
+                    </div>
+
+                    <div ng-if="teacher.distance">
+                        {{ teacher.distance | number:2 }} <span class="unit">km.</span>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>

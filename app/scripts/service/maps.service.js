@@ -82,10 +82,42 @@
             return deferred.promise;
         }
 
+        function getStreetName(place) {
+
+            var streetName;
+            var streetNumber;
+
+            // Search in address components
+            for (var i = 0; i < place.address_components.length; i++) {
+                if (streetName && streetNumber) {
+                    break;
+                }
+
+                // Search for street_number in address_components types
+                for (var j = 0; j < place.address_components[i].types.length; j++) {
+
+                    // Check route type
+                    if (!streetName && place.address_components[i].types[j] === 'route') {
+                        streetName = place.address_components[i].long_name;
+                        break;
+                    }
+
+                    // Check street number type
+                    if (!streetNumber && place.address_components[i].types[j] === 'street_number') {
+                        streetNumber = place.address_components[i].long_name;
+                        break;
+                    }
+                }
+            }
+
+            return streetName + ' ' + streetNumber;
+        }
+
         return {
-            getLocationName: getLocationName,
             getAddress: getAddress,
-            getLocality: getLocality
+            getLocationName: getLocationName,
+            getLocality: getLocality,
+            getStreetName: getStreetName
         };
     }
 })();

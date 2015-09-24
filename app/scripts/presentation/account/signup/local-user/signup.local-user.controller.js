@@ -11,7 +11,7 @@
         var vm = this;
 
         vm.user = {};
-        vm.target = $stateParams.target || null;
+        vm.target = $state.current.data.target;
 
         vm.submittedForm = false;
 
@@ -31,7 +31,7 @@
             // TODO: Validate user
 
             UserService.signup(vm.user).then(function () {
-                $state.go('root.signup.emailSent');
+                $state.go('root.signup-' + vm.target + '.step.email-sent');
             }, function (error) {
                 // TODO: Handle error
                 alert('Error creating user');

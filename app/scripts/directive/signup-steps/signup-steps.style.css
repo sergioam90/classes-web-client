@@ -10,7 +10,7 @@
     display: block;
     font-size: 1.4em;
     margin: 0 auto 8px auto;
-
+    cursor: default;
 }
 
 .signup-steps button:hover {
