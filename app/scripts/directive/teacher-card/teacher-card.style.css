@@ -1,0 +1,95 @@
+.teacher-card a {
+    color: inherit;
+    display: flex;
+}
+
+.teacher-card a > .first {
+    border-right: 5px solid #ffc200;
+    flex: 0 0 149px;
+    height: 144px;
+}
+
+.teacher-card a > .second {
+    flex: 1 1 auto;
+    overflow: hidden;
+    padding: 8px 12px;
+}
+
+.teacher-card a > .second > .first {
+    font-size: 2em;
+    font-weight: 200;
+    height: 34px;
+    line-height: 34px;
+    margin-bottom: 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.teacher-card a > .second > .second {
+    color: #a0a0a0;
+    height: 36px;
+    line-height: 18px;
+    overflow: hidden;
+    position: relative;
+}
+
+.teacher-card a > .second > .second:after {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1) 50%);
+    bottom: 0;
+    content: "";
+    height: 18px;
+    position: absolute;
+    right: 0;
+    text-align: right;
+    width: 30%;
+}
+
+.teacher-card a > .second > .third {
+    color: #c6c6c6;
+    display: flex;
+    font-size: 1.2em;
+    height: 54px;
+    line-height: 54px;
+    text-align: center;
+}
+
+.teacher-card a > .second > .third > div {
+    flex: 1 1 auto;
+}
+
+.teacher-card a > .third {
+    display: flex;
+    flex: 0 0 180px;
+    flex-flow: column nowrap;
+    justify-content: space-around;
+    outline: 1px solid #e8e8e8;
+    padding: 12px 0;
+}
+
+.teacher-card a > .third > div {
+    flex: 0 0 40px;
+    font-size: 1.7em;
+    font-weight: 200;
+    line-height: 40px;
+    text-align: center;
+}
+
+.teacher-card .card-content {
+    padding: 0;
+}
+
+.teacher-card .unit {
+    font-size: .7em;
+}
+
+@media only screen and (max-width : 600px) {
+    .teacher-card a {
+        display: block;
+    }
+
+    .teacher-card a > .first {
+        background-color: #ffc200;
+        border: 0;
+    }
+}
