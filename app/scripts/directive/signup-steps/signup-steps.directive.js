@@ -11,24 +11,19 @@
 
         function link(scope) {
             scope.isCurrentStep = isCurrentStep;
-            scope.setCurrentStep = setCurrentStep;
             scope.isPastStep = isPastStep;
             scope.isFutureStep = isFutureStep;
 
             function isCurrentStep(index) {
-                return SignupStepService.getCurrentStep() === index + 1;
-            }
-
-            function setCurrentStep(index) {
-                SignupStepService.setCurrentStep(index + 1);
+                return SignupStepService.getCurrentStep() === index;
             }
 
             function isPastStep(index) {
-                return SignupStepService.getCurrentStep() > index + 1;
+                return SignupStepService.getCurrentStep() > index;
             }
 
             function isFutureStep(index) {
-                return SignupStepService.getCurrentStep() < index + 1;
+                return SignupStepService.getCurrentStep() < index;
             }
         }
 

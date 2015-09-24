@@ -5,12 +5,12 @@
         .module('classesClientApp')
         .controller('SignupMethodController', SignupMethodController);
 
-    SignupMethodController.$inject = ['SocialService', '$stateParams'];
+    SignupMethodController.$inject = ['SocialService', '$state'];
 
-    function SignupMethodController(SocialService, $stateParams) {
+    function SignupMethodController(SocialService, $state) {
         var vm = this;
 
-        var target = $stateParams.target || null;
+        var target = $state.current.data.target;
 
         initialize();
 

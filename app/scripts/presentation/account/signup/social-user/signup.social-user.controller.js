@@ -10,41 +10,22 @@
     function SignupSocialUserController(user, UserService, $state) {
         var vm = this;
 
+        var target = $state.current.data.target;
+
         vm.user = user;
 
         vm.sendConfirmation = sendConfirmation;
 
-        vm.confirmAsStudent = confirmAsStudent;
-        vm.confirmAsTeacher = confirmAsTeacher;
-
-
         /* Implementation */
+        function sendConfirmation() {
+            var tempUser = angular.copy(user);
 
-        function sendConfirmation(target) {
-            var finalTarget = target || vm.user.target;
+            tempUser.target = target;
 
-            if (finalTarget) {
-
-                var tempUser = angular.copy(user);
-
-                tempUser.target = finalTarget;
-
-                // TODO: Handle errors
-                UserService.confirm(tempUser).then(function () {
-                    $state.go('root.signup.' + tempUser.target);
-                });
-            } else {
-                // TODO: Handle errors
-                alert('Not user target defined');
-            }
-        }
-
-        function confirmAsTeacher() {
-            sendConfirmation('teacher');
-        }
-
-        function confirmAsStudent() {
-            sendConfirmation('student');
+            // TODO: Handle errors
+            UserService.confirm(tempUser).then(function () {
+                $state.go('root.signup-' + target + '.step.data');
+            });
         }
     }
 })();

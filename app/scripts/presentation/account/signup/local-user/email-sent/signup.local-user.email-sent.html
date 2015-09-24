@@ -1,0 +1,31 @@
+<div class="row">
+    <div class="col s12 m8 offset-m2">
+        Te enviamos un email para verificar la cuenta:
+
+        <ol>
+            <li>Revisá tu casilla</li>
+            <li>Buscá el email que te enviamos</li>
+            <li>Hacé click en Activar cuenta</li>
+            <li>Seguí las instrucciones y volvé</li>
+        </ol>
+
+        <h5>¡Te esperamos!</h5>
+
+        <!-- Waiting spinner -->
+        <div class="center" ng-if="vm.waiting">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-yellow-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="gap-patch">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

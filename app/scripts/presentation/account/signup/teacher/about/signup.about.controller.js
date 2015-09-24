@@ -5,7 +5,7 @@
         .module('classesClientApp')
         .controller('SignupAboutController', SignupAboutController);
 
-    SignupAboutController.$inject = []
+    SignupAboutController.$inject = [];
 
     function SignupAboutController() {
 

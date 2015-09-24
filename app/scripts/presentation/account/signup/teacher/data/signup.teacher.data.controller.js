@@ -13,10 +13,11 @@
         'MapsService',
         'CityService',
         'InterruptionService',
+        '$stateParams',
         'SignupStepService'
     ];
 
-    function SignupTeacherController(user, TeacherService, DegreeService, Subjects, MapsService, CityService, InterruptionService, SignupStepService) {
+    function SignupTeacherController(user, TeacherService, DegreeService, Subjects, MapsService, CityService, InterruptionService, $stateParams, SignupStepService) {
         var vm = this;
 
         /* Default teacher values */
@@ -40,14 +41,12 @@
         vm.degrees = [];
         vm.subjects = [];
 
-        var internalSteps = 2;
-        var signupTeacherStepNumber = SignupStepService.getCurrentStep();
-        vm.stepOffset = 0;
+        vm.stepOffset = $stateParams.step;
 
         vm.placeChanged = placeChanged;
         vm.signupTeacher = signupTeacher;
-        vm.nextStep = nextStep;
-        vm.previousStep = previousStep;
+        vm.goToNextStep = goToNextStep;
+        vm.goToPreviousStep = goToPreviousStep;
 
         initialize();
 
@@ -82,7 +81,6 @@
 
         function placeChanged() {
             var place = this.getPlace();
-            console.log(place);
 
             MapsService.getLocality(place).then(success, error);
 
@@ -96,6 +94,7 @@
                 }
 
                 vm.teacher.location = {
+                    address: MapsService.getStreetName(place),
                     latitude: place.geometry.location.lat(),
                     longitude: place.geometry.location.lng(),
                     city: locality
@@ -112,20 +111,12 @@
 
         }
 
-        function nextStep() {
-            if (vm.stepOffset >= internalSteps) {
-                vm.signupTeacher();
-            } else {
-                vm.stepOffset++;
-                SignupStepService.setCurrentStep(signupTeacherStepNumber + vm.stepOffset);
-            }
+        function goToNextStep() {
+            SignupStepService.goToNextStep();
         }
 
-        function previousStep() {
-            if (vm.stepOffset > 0) {
-                vm.stepOffset--;
-                SignupStepService.setCurrentStep(signupTeacherStepNumber + vm.stepOffset);
-            }
+        function goToPreviousStep() {
+            SignupStepService.goToPreviousStep();
         }
     }
 })();

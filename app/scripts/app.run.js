@@ -22,12 +22,6 @@
                 }
             }
         });
-
-        $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
-            if (toState.data && toState.data.stepNumber) {
-                SignupStepService.setCurrentStep(toState.data.stepNumber);
-            }
-        });
     }
 
 })();
