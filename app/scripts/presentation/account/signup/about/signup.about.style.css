@@ -1,4 +1,4 @@
-.signup-about h4 {
+.signup-about .text-normal {
     font-size: 1.4rem;
     text-indent: 1rem;
 }
@@ -17,7 +17,7 @@
 }
 
 .premium-plan #price-plan-1 {
-    background-color: #00AAA1;
+    background-color: #82DACA;
     border-radius: 100%;
     line-height: 120px;
     width: 120px;
@@ -29,7 +29,7 @@
 }
 
 .premium-plan #price-plan-2 {
-    background-color: #00AA76;
+    background-color: #8BE4A6;
     border-radius: 100%;
     line-height: 120px;
     width: 120px;
@@ -41,7 +41,7 @@
 }
 
 .premium-plan #price-plan-3 {
-    background-color: #00AA3F;
+    background-color: #EF66F3;
     border-radius: 100%;
     line-height: 120px;
     width: 120px;
@@ -53,22 +53,28 @@
 }
 
 .premium-plan #border-plan-1 {
-    border: 1px solid #212121;
-    border-radius: 1rem 0 0 1rem;
-    border-right: none;
+    border-radius: 0.8rem 0 0 0.8rem;
     overflow: hidden;
+    -webkit-box-shadow: 0px 3px 15px -5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 3px 15px -5px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 3px 15px -5px rgba(0, 0, 0, 0.75);
 }
 
 .premium-plan #border-plan-2 {
-    border: 2px solid #212121;
+    z-index: 1;
+    border-radius: 0;
     overflow: hidden;
+    -webkit-box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 5px 15px -5px rgba(0, 0, 0, 0.75);
 }
 
 .premium-plan #border-plan-3 {
-    border: 1px solid #212121;
-    border-radius: 0 1rem 1rem 0;
-    border-left: none;
+    border-radius: 0 0.8rem 0.8rem 0;
     overflow: hidden;
+    -webkit-box-shadow: 0px 3px 15px -5px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 3px 15px -5px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 3px 15px -5px rgba(0, 0, 0, 0.75);
 }
 
 .premium-plan p {
@@ -79,8 +85,8 @@
 
 .premium-plan .title-plan h5 {
     line-height: 4rem;
-    border-bottom: 1px dashed grey;
     margin: 0;
+    font-weight: 300;
 }
 
 .premium-plan #card-container-plan {
@@ -89,4 +95,25 @@
 
 .premium-plan .s2 {
     padding: 0;
+}
+
+.premium-plan .color-title-plan-1 {
+    background-color: #78CFBF;
+}
+
+.premium-plan .color-title-plan-2 {
+    background-color: #78CF93;
+}
+
+.premium-plan .color-title-plan-3 {
+    background-color: #CB50DC;
+}
+
+.congrats #card-container-congrats {
+    padding: 2rem;
+}
+
+.congrats .font-family-special {
+    font-family: 'Love Ya Like A Sister', cursive;
+    letter-spacing: 0.05rem;
 }

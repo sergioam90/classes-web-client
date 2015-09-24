@@ -1,15 +1,7 @@
 <div class=" card signup-method">
 
     <div id="card-container" class="row no-margin-row valign-wrapper">
-        <div class="col s12 m6 card-content valign">
-            <p>Registrarte con las redes sociales hace mas fácil y rápido que te crees una cuenta, porque nos permite
-                completar automáticamente parte de los datos que despueé te vamos a pedir, como una foto para tu perfil
-                de profesor, tu nombre y apellido o tu edad.</p>
-
-            <p>Que te registres con Face o Google no nos permite acceder a tus amigos o publicar desde tu cuenta, por
-                eso no tenés que preocuparte.</p>
-        </div>
-        <div class="col s12 m5 offset-m1 valign">
+        <div class="col s12 m6 offset-m3 valign">
             <div class="row"><a id="facebook-button" ng-href="{{ vm.facebookUrl }}"
                                 class="waves-effect btn-large full-width">
                 <div class="col s2 center-align"><i class="fa fa-facebook"></i></div>
@@ -20,11 +12,16 @@
                 <div class="col s2 center-align"><i class="fa fa-google"></i></div>
                 <div class="col s10 left-align">Registrarme con Google</div>
             </a></div>
-            <div class="row no-margin-row"><a id="email-button" ui-sref="root.signup.localUser"
-                                class="waves-effect btn-large full-width">
-                <div class="col s2 center-align"><i class="material-icons">email</i></div>
-                <div class="col s10 left-align">Registrarme con mi Email</div>
-            </a></div>
+            <div class="row center-align grey-text text-darken-3">
+                ------------------------ O, un poco mas lento, también... ------------------------
+            </div>
+            <div class="row no-margin-row">
+                <div class="col s8 offset-s2"><a id="email-button" ui-sref="root.signup.localUser"
+                                                 class="waves-effect btn-large full-width reversebutton transparent amber-text">
+                    <div class="col s3 center-align"><i class="material-icons">email</i></div>
+                    <div class="col s9 left-align">Email</div>
+                </a></div>
+            </div>
 
         </div>
 
