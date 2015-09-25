@@ -3,7 +3,14 @@
          ng-class="{ 'current-step': isCurrentStep($index), 'past-step': isPastStep($index), 'future-step': isFutureStep($index) }"
          ng-style="{ 'width': 100 / steps.length + '%' }">
         <button class="btn-floating btn">
-            {{ $index + 1 }}
+            <i class="material-icons left"
+               ng-if="isPastStep($index)">
+                check
+            </i>
+            <i class="material-icons left"
+               ng-if="isCurrentStep($index)">
+                more_horiz
+            </i>
         </button>
 
         {{ step.title }}

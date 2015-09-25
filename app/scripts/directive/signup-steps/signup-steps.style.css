@@ -42,9 +42,13 @@
 }
 
 .signup-steps .current-step button {
-    /*background-color: black;
-    color: white;*/
+    background-color: white;
+    color: #454545;
     font-size: 2.4em;
+}
+
+.signup-steps .current-step button i {
+    color: #555;
 }
 
 .signup-steps .current-step button:hover {
@@ -68,7 +72,7 @@
 }
 
 .signup-steps .past-step button {
-    background-color: #4CAF50;
+    background-color: #59cf5d;
     color: white;
 }
 
@@ -89,10 +93,11 @@
 
 /* Future step */
 .signup-steps .future-step {
+    color: #454545;
 }
 
 .signup-steps .future-step button {
-    background-color: #a4a4a4;
+    background-color: #aaa;
     color: white;
 }
 
