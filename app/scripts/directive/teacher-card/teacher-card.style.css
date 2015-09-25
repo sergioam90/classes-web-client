@@ -4,9 +4,9 @@
 }
 
 .teacher-card a > .first {
+    background-color: #ffc200;
     border-right: 5px solid #ffc200;
     flex: 0 0 149px;
-    height: 144px;
 }
 
 .teacher-card a > .second {
@@ -89,7 +89,6 @@
     }
 
     .teacher-card a > .first {
-        background-color: #ffc200;
         border: 0;
     }
 }
