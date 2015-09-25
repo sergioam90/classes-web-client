@@ -24,7 +24,7 @@
             restrict: 'E',
             scope: {
                 teacher: '=',
-                isLink: '@'
+                isLink: '='
             },
             templateUrl: 'scripts/directive/teacher-card/teacher-card.template.html',
             link: link
