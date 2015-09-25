@@ -1,7 +1,6 @@
 (function () {
     'use strict';
 
-    // TODO: Use ui-router
     angular
         .module('classesClientApp')
         .config(RouterConfig);
