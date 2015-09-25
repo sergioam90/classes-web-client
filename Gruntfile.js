@@ -261,11 +261,6 @@ module.exports = function (grunt) {
                     '<%= yeoman.dist %>/images',
                     '<%= yeoman.dist %>/styles'
                 ],
-                blockReplacements: {
-                    base: function (block) {
-                        return ['<base href="', block.dest, '">'].join('');
-                    }
-                },
                 patterns: {
                     js: [
                         [/(scripts\/.*?\.html)/gm, 'Replacing html']
