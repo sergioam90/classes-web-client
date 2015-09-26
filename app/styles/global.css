@@ -683,7 +683,48 @@ nav ul li.active {
     }
 }
 
+/* Form title and fields */
+
+form .field-title:not(.custom-input) {
+    padding-top: 28px !important;
+}
+
 form .field-title {
-    margin-top: 10px;
+    text-align: right;
     font-weight: 400;
 }
+
+form .field-subtitle {
+    color: #555;
+    margin-top: 15px;
+}
+
+form .radio .valdr-message {
+    padding-top: 15px;
+}
+
+/* Materialize checkbox label color override */
+[type="checkbox"] + label {
+    color: black;
+}
+
+/* Materialize navbar height */
+nav,
+nav .button-collapse,
+nav .button-collapse i,
+.navbar-fixed {
+    height: 48px;
+    line-height: 48px;
+}
+
+@media only screen and (min-width: 601px) {
+    nav,
+    nav a.button-collapse,
+    nav a.button-collapse i,
+    nav .nav-wrapper i,
+    .navbar-fixed {
+        height: 48px;
+        line-height: 48px;
+    }
+}
+

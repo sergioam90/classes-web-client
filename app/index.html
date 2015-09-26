@@ -1,11 +1,9 @@
 <!doctype html>
-<html lang="es" class="no-js" ng-app="classesClientApp">
+<html lang="es" class="no-js" ng-app="classesClientApp" ng-strict-di>
 <head>
     <meta charset="utf-8">
 
-    <!-- build:base / -->
     <base href="/">
-    <!-- endbuild -->
 
     <title></title>
     <meta name="description" content="">
@@ -53,9 +51,11 @@
     <link href="scripts/directive/subject-select/subject-select.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/directive/subject-unselect/subject-unselect.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/directive/subject/subject.style.css" rel="stylesheet" type="text/css">
+    <link href="scripts/directive/teacher-card/teacher-card.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/directive/teacher-features/teacher-features.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/directive/teacher-result/teacher-result.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/directive/teacher-schedule/teacher.schedule.style.css" rel="stylesheet" type="text/css">
+    <link href="scripts/directive/user-image/user-image.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/presentation/account/signup/method/signup.method.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/presentation/account/signup/teacher/about/signup.about.style.css" rel="stylesheet" type="text/css">
     <link href="scripts/presentation/teacher/early-signup/early-signup.style.css" rel="stylesheet" type="text/css">
@@ -127,6 +127,7 @@
 <script src="bower_components/blueimp-load-image/js/load-image-exif.js"></script>
 <script src="bower_components/blueimp-load-image/js/load-image-exif-map.js"></script>
 <script src="bower_components/blueimp-canvas-to-blob/js/canvas-to-blob.js"></script>
+<script src="bower_components/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
 <script src="bower_components/blueimp-file-upload/js/jquery.fileupload.js"></script>
 <script src="bower_components/cloudinary_js/js/jquery.cloudinary.js"></script>
 <script src="bower_components/cloudinary_ng/js/angular.cloudinary.js"></script>
@@ -145,6 +146,7 @@
 <script src="scripts/app.constant.js"></script>
 <script src="scripts/app.config.js"></script>
 <script src="scripts/app.run.js"></script>
+<script src="scripts/config/cloudinary/cloudinary.config.js"></script>
 <script src="scripts/config/modal/modal.run.js"></script>
 <script src="scripts/config/oauth/oauth.config.js"></script>
 <script src="scripts/config/oauth/oauth.run.js"></script>
@@ -173,10 +175,12 @@
 <script src="scripts/directive/subject-select/subject-select.directive.js"></script>
 <script src="scripts/directive/subject-unselect/subject-unselect.directive.js"></script>
 <script src="scripts/directive/subject/subject.directive.js"></script>
+<script src="scripts/directive/teacher-card/teacher-card.directive.js"></script>
 <script src="scripts/directive/teacher-features/teacher-features.directive.js"></script>
 <script src="scripts/directive/teacher-result/teacher-result.directive.js"></script>
 <script src="scripts/directive/teacher-schedule/teacher.schedule.directive.js"></script>
 <script src="scripts/directive/title/title.directive.js"></script>
+<script src="scripts/directive/user-image/user-image.directive.js"></script>
 <script src="scripts/domain/students.js"></script>
 <script src="scripts/domain/subjects.js"></script>
 <script src="scripts/domain/teachers.js"></script>

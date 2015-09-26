@@ -70,12 +70,10 @@
             GeoCoder.geocode({address: localityName}).then(success, error);
 
             function success(result) {
-                console.log(result);
                 deferred.resolve(result[0].place_id);
             }
 
             function error(error) {
-                console.log(error);
                 deferred.reject();
             }
 

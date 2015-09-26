@@ -25,10 +25,10 @@
             'datePicker',
             'cloudinary'
         ])
-        .run(function (editableOptions) {
+        .run(['editableOptions', function (editableOptions) {
             // TODO: Move
             editableOptions.theme = 'bs3';
-        });
+        }]);
 
 
 })();
