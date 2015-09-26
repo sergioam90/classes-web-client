@@ -271,6 +271,21 @@
                 resolve: {
                     title: function () {
                         return 'Plan';
+                        ""
+                    }
+                },
+                onEnter: onEnter,
+                data: {
+                    isInterruption: true
+                }
+            })
+
+            .state('root.signup-teacher.congratulations', {
+                url: '/congratulations',
+                templateUrl: 'scripts/presentation/account/signup/teacher/congratulations/signup.congratulations.html',
+                resolve: {
+                    title: function () {
+                        return '¡Felicitaciones!';
                     }
                 },
                 onEnter: onEnter,

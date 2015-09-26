@@ -3,17 +3,26 @@
 
         <nav class="amber">
             <div class="container nav-wrapper">
-                <a class="nav-title" ui-sref="root.home" class="brand-logo left"><img src="/images/logo.png"
-                                                                                      alt="La sala"/> UpClaZ</a>
+                <a ui-sref="root.home" class="brand-logo left nav-title">
+                    <div id="container-logo" class="s12 valign-wrapper">
+                        <div class="valign">
+                            <img id="logo" src="/images/logo.png" class="responsive-img" alt="La sala"/>
+                        </div>
+                        <div id="texto-logo" class="valign">
+                            UpClaZ
+                        </div>
+                    </div>
+
+                </a>
                 <a data-activates="mobile-demo" data-sidenav="left" data-closeonclick="true" class="button-collapse">
                     <i class="mdi-navigation-menu"></i>
                 </a>
                 <ul class="side-nav grey-text text-darken-4" id="mobile-demo">
-                    <li><b>contacto@upclaz.com</b></li>
+                    <li>contacto@upclaz.com</li>
                 </ul>
 
                 <ul class="right hide-on-med-and-down">
-                    <li><b>contacto@upclaz.com</b></li>
+                    <li>contacto@upclaz.com</li>
                 </ul>
 
             </div>

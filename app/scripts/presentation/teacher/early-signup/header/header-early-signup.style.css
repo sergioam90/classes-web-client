@@ -1,4 +1,44 @@
-.header-early-signup .nav-title {
+.header-early-signup #container-logo {
+    height: 64px;
+}
+
+.header-early-signup .brand-logo {
+    text-transform: none;
+}
+
+.header-early-signup #logo {
+    width: 52px;
+    margin-top: 19px;
+}
+
+@media (max-width: 600px) {
+    .header-early-signup #logo {
+        padding-top: 0px;
+    }
+
+    .header-early-signup #container-logo {
+        height: 52px;
+    }
+}
+
+.header-early-signup #texto-logo {
     font-family: 'Love Ya Like A Sister', cursive;
     font-size: 2.1rem;
+    line-height: 64px;
+    letter-spacing: 0.1rem;
+    padding: 0;
+    padding-left: 0.5rem;
+    margin: 0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.4);
+}
+
+@media (max-width: 600px) {
+    .header-early-signup #texto-logo {
+        padding-top: 5px;
+    }
+}
+
+.header-early-signup ul li {
+    font-weight: 400;
+    letter-spacing: 1px;
 }

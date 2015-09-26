@@ -12,7 +12,7 @@
     border-right: 2px solid white;
 }
 
-.signup-method .s3 {
+.signup-method #border-email {
     border-right: 2px solid #ffc107;
 }
 .signup-method #facebook-button {

@@ -1,0 +1,17 @@
+.congrats #card-container-congrats {
+    padding: 2rem;
+}
+
+.congrats .font-family-special {
+    font-family: 'Love Ya Like A Sister', cursive;
+    letter-spacing: 0.05rem;
+}
+
+.congrats .text-normal {
+    font-size: 1.4rem;
+    text-indent: 1rem;
+}
+
+.congrats #img-construction {
+    margin-bottom: -6px;
+}
