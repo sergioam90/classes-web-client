@@ -1,87 +1,167 @@
-<div class="container">
-    <div class="row">
-        <div class="col s12">
+<div class="">
+    <div class="card-content">
 
-            <div class="row">
-                Estos son los datos que obtuvimos (podés revisar y modificar lo que creas necesario)
-            </div>
+        <div class="row">
+            <div class="col s12 m8 offset-m2">
 
-            <div class="row">
-                <div class="col s2">
-                    <img ng-src="{{ vm.user.imageUrl }}" class="responsive-img" alt="Profile picture">
+                <div class="row">
+                    Estos son los datos que obtuvimos (podés revisar y modificar lo que creas necesario)
                 </div>
 
-                <div class="col s10">
+                <div class="row">
+                    <form novalidate
+                          name="socialUserSignupForm"
+                          id="socialUserSignupForm"
+                          ng-class="vm.submittedForm ? 'submitted' : ''"
+                          valdr-type="User">
 
-                    <!-- First row -->
-                    <div class="row">
+                        <!-- Name -->
+                        <div class="row">
 
-                        <!-- First Name -->
-                        <input-field class="col s4">
-                            <input type="text" placeholder="Lionel" ng-model="vm.user.firstName" required>
-                            <label>Nombre</label>
-                        </input-field>
+                            <div class="col s12 m4 field-title">
+                                ¿Cómo te llamás?
+                            </div>
 
-                        <!-- Last Name -->
-                        <input-field class="col s4">
-                            <input placeholder="Messi" type="text" ng-model="vm.user.lastName" required>
-                            <label>Apellido</label>
-                        </input-field>
+                            <div class="col s12 m8 field-body">
+                                <div class="row no-margin-row">
+
+                                    <!-- First Name -->
+                                    <input-field class="col s12 m6" valdr-form-group>
+                                        <input id="firstName"
+                                               type="text"
+                                               class="validate"
+                                               name="firstName"
+                                               ng-model="vm.user.firstName" required="">
+                                        <label for="firstName">
+                                            Nombre
+                                        </label>
+
+                                        <div ng-show="socialUserSignupForm.$submitted || socialUserSignupForm.firstName.$touched">
+                                            <div ng-show="socialUserSignupForm.firstName.$errors">Error</div>
+                                        </div>
+                                        {{ socialUserSignupForm.$errors }}
+                                    </input-field>
+
+                                    <!-- Last Name -->
+                                    <input-field class="col s12 m6" valdr-form-group>
+                                        <input type="text"
+                                               id="lastName"
+                                               name="lastName"
+                                               class="validate"
+                                               ng-model="vm.user.lastName">
+                                        <label for="lastName">Apellido</label>
+                                    </input-field>
+                                </div>
+                            </div>
+
+                        </div>
 
                         <!-- Gender -->
-                        <div class="col s4">
-                            <label>Género</label>
+                        <div class="row">
 
-                            <div>
-                                <input id="maleRadio" type="radio" ng-model="vm.user.gender" value="male">
-                                <label for="maleRadio">Hombre</label>
-                                <input id="femaleRadio" type="radio" ng-model="vm.user.gender" value="female">
-                                <label for="femaleRadio">Mujer</label>
+                            <div class="col s12 m4 field-title">¿Género?</div>
+
+                            <div class="col s12 m8 field-body radio">
+                                <input-field>
+
+                                    <!-- Male -->
+                                    <input id="maleRadio"
+                                           type="radio"
+                                           name="gender"
+                                           ng-model="vm.user.gender"
+                                           value="male"
+                                           required>
+                                    <label for="maleRadio">Hombre</label>
+
+                                    <!-- Female -->
+                                    <input id="femaleRadio"
+                                           name="gender"
+                                           type="radio"
+                                           ng-model="vm.user.gender"
+                                           value="female"
+                                           required>
+                                    <label for="femaleRadio">Mujer</label>
+                                </input-field>
+
+                                <!-- Error message -->
+                                <div class="valdr-message invalid"
+                                     ng-class="socialUserSignupForm.gender.$pristine ? 'ng-pristine' : ''"
+                                     ng-if="socialUserSignupForm.gender.$invalid">
+                                    Seleccioná tu género
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Email -->
+                        <div class="row">
+
+                            <div class="col s12 m4 field-title">¿Cuál es tu email?</div>
+
+                            <input-field class="col s12 m6 field-body">
+                                {{ vm.user.email }}
+                            </input-field>
+
+                        </div>
+
+                        <!-- Birth date -->
+                        <div class="row">
+                            <div class="col s12 m4 field-title custom-input">
+                                ¿En qué fecha naciste?
+                            </div>
+
+                            <div valdr-form-group>
+                                <div class="col s12 m5">
+                                    <div class="center">
+                                        {{ vm.user.birthDate | date:'longDate' }}
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div enable-valdr-validation
+                                         enable-valdr-message
+                                         name="birthDate"
+                                         date-picker="vm.user.birthDate"
+                                         view="{{ vm.user.birthDate ? 'date' : 'year' }}"
+                                         min-view="date"
+                                         ng-model="vm.user.birthDate">
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Second row -->
+                        <!-- Profile picture -->
+                        <div class="row">
+                            <!--<img src="images/mock.jpg" class="img-responsive" alt="Profile picture">-->
+                        </div>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation buttons -->
+        <div class="row">
+
+            <div class="col s12">
+
+                <!-- Next button -->
+                <div class="right">
                     <div class="row">
-                        <input-field class="col s6">
-                            <input type="email" placeholder="lio@gmail.com" ng-model="vm.user.email" required>
-                            <label>Email</label>
-                        </input-field>
-                        <div class="col s6">
-                            <label>Fecha de nacimiento</label>
-                            <input input-date
-                                   required
-                                   type="text"
-                                   ng-model="vm.user.birthDate"
-                                   value="{{ vm.user.birthDate | date:longDate }}"
-                                   format="yyyy-mm-dd"
-                                   months-full="{{ month }}"
-                                   months-short="{{ monthShort }}"
-                                   weekdays-full="{{ weekdaysFull }}"
-                                   weekdays-short="{{ weekdaysShort }}"
-                                   weekdays-letter="{{ weekdaysLetter }}"
-                                   today="Hoy"
-                                   clear="Limpiar"
-                                   close="Cerrar"
-                                   select-years="15">
+                        <div class="col s12">
+                            <span class="red-text right" ng-show="socialUserSignupForm.$invalid">
+                                Hay campos inválidos o sin completar
+                            </span>
+                        </div>
+                        <div class="col s12">
+                            <button class="btn right amber"
+                                    ng-click="vm.sendConfirmation(socialUserSignupForm)">
+                                Siguiente
+                            </button>
                         </div>
                     </div>
-
                 </div>
             </div>
 
-            <!-- Navigation buttons -->
-            <div class="row">
-                <div class="col s12">
-                    <div>
-                        <a ng-click="vm.sendConfirmation()"
-                           class="btn right amber">
-                            Siguiente
-                        </a>
-                    </div>
-                </div>
-
-            </div>
         </div>
     </div>
 </div>
