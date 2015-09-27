@@ -215,7 +215,7 @@
                         });
                     },
                     title: function () {
-                        return 'root.signup.socialUser'; // TODO: set proper title
+                        return 'Registro';
                     }
                 },
                 onEnter: onEnter,
