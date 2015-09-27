@@ -111,9 +111,17 @@
                             ¿En qué fecha naciste?
                         </div>
 
-                        <div class="col s12 m5">
-                            <div date-picker="start" view="year" min-view="date" ng-model="vm.user.birthDate"></div>
-
+                        <div valdr-form-group>
+                            <div class="col s12 m5">
+                                <div enable-valdr-validation
+                                     enable-valdr-message
+                                     name="birthDate"
+                                     date-picker="start"
+                                     view="year"
+                                     min-view="date"
+                                     ng-model="vm.user.birthDate">
+                                </div>
+                            </div>
                         </div>
                     </div>
 

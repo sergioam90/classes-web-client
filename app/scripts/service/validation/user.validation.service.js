@@ -58,7 +58,9 @@
                     }
                 },
                 birthDate: {
-                    // TODO: Add date validator
+                    past: {
+                        message: 'user.birthDate.past'
+                    },
                     required: {
                         message: 'user.birthDate.required'
                     }

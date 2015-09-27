@@ -22,6 +22,7 @@
             'user.lastName.required': 'El apellido es obligatorio',
             'user.gender.required': 'El género es obligatorio',
             'user.birthDate.required': 'La fecha de nacimiento es obligatoria',
+            'user.birthDate.past': '¿Todavía no naciste?',
 
             // Teacher validation messages
             'teacher.degree.required': 'El nivel de estudios es obligatorio',
