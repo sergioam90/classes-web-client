@@ -6,26 +6,34 @@
         </div>
 
         <div class="col s12 overflow-visible">
-            <div class="card-content">
 
-                <!-- Subjects and degree step -->
-                <div ng-if="vm.stepOffset == 1" class="row">
+            <!-- Subjects and degree step -->
+            <div ng-show="vm.stepOffset == 0">
+
+                <form novalidate
+                      name="vm.forms[0]"
+                      id="vm.forms[0]"
+                      ng-class="vm.forms[0].submitted ? 'submitted' : ''"
+                      valdr-type="Teacher">
 
                     <!-- Subjects -->
-                    <div class="col s12">
-                        <div class="field-title">¿De qué materias te gustaría dar clases?</div>
+                    <div class="row">
+                        <div class="col s12 m4 field-title custom-input">¿De qué materias te gustaría dar clases?</div>
 
-                        <subject-disable ng-model="vm.subjects"></subject-disable>
-                        <subject-unselect ng-model="vm.subjects"></subject-unselect>
-                        <subject-select ng-model="vm.subjects"></subject-select>
+                        <div class="col s12 m8 field-body">
+                            <subject-unselect ng-model="vm.subjects"></subject-unselect>
+                            <subject-select ng-model="vm.subjects"></subject-select>
+                        </div>
                     </div>
 
                     <!-- Degree -->
-                    <div class="col s12">
-                        <div class="field-title">¿Cuál es tu nivel de estudios?</div>
+                    <div class="row">
+                        <div class="col s12 m4 field-title">¿Cuál es tu nivel de estudios?</div>
 
-                        <div class="col s4" input-field>
+                        <div class="col s12 m6 field-body" input-field valdr-form-group>
                             <select id="degree"
+                                    name="degree"
+                                    class="validate"
                                     ng-model="vm.teacher.degree"
                                     material-select
                                     watch>
@@ -35,172 +43,259 @@
                             </select>
                         </div>
                     </div>
+                </form>
+            </div>
 
-                </div>
 
-                <!-- Class info step -->
-                <div ng-if="vm.stepOffset == 2" class="row">
+            <!-- Class info step -->
+            <div ng-show="vm.stepOffset == 1">
+
+                <form novalidate
+                      name="vm.forms[1]"
+                      id="vm.forms[1]"
+                      ng-class="vm.forms[1].submitted ? 'submitted' : ''"
+                      valdr-type="Teacher">
 
                     <!-- Location -->
-                    <div class="col s12">
-                        <div class="field-title">¿Cuál es la direccion de tu casa o el lugar donde das clases
-                            particulares?
+                    <div class="row">
+                        <div class="col s12 m4 field-title">
+                            ¿Cuál es la dirección del lugar donde das clases particulares?
                         </div>
 
-                        <div class="row">
-                            <div class="col s12 m6">
-                                <input type="text"
-                                       places-auto-complete=""
-                                       ng-model="address"
-                                       types="['address']"
-                                       on-place-changed="vm.placeChanged(place)"
-                                       class="ng-pristine ng-valid"
-                                       placeholder="Ingrese su ubicación..."
-                                       autocomplete="on">
+                        <div class="col s12 m8 field-body">
+
+                            <!-- Map input box -->
+                            <div class="row no-margin-row">
+                                <div class="col s12" valdr-form-group>
+                                    <input-field>
+                                        <input type="text"
+                                               class="validate"
+                                               places-auto-complete=""
+                                               ng-model="vm.address"
+                                               ng-model-options="{ updateOn: 'default blur' }"
+                                               name="map"
+                                               types="['address']"
+                                               components="country:ar"
+                                               on-place-changed="vm.placeChanged(place)"
+                                               placeholder="Estomba 1, Bahía Blanca"
+                                               autocomplete="on">
+
+                                        <input type="hidden"
+                                               name="location"
+                                               ng-model="vm.teacher.$$location">
+                                    </input-field>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row valign-wrapper">
-                            <div class="col s12 m6">
-                                <img class="responsive-img"
-                                     src="https://maps.googleapis.com/maps/api/staticmap?size=300x300&maptype=roadmap&markers={{ vm.teacher.location.latitude }},{{ vm.teacher.location.longitude }}">
+
+                            <!-- Map, street and city -->
+                            <div class="row no-margin-row valign-wrapper">
+                                <img ng-if="!vm.teacher.location"
+                                     class="responsive-img"
+                                     src="images/initial_map.png">
+
+                                <img ng-if="vm.teacher.location"
+                                     class="responsive-img"
+                                     src="https://maps.googleapis.com/maps/api/staticmap?size=300x200&maptype=roadmap&markers={{ vm.teacher.location.latitude }},{{ vm.teacher.location.longitude }}">
+
+                                <div class="col s12 m6 center valign">
+                                    <b>Calle</b><br>
+                                    {{ vm.teacher.location.address }}<br><br>
+                                    <b>Ciudad</b><br>
+                                    {{ vm.teacher.location.city | city }}
+                                </div>
                             </div>
-                            <div class="col s12 m6 center valign">
-                                <b>Calle</b><br>
-                                {{ vm.teacher.location.address }}<br><br>
-                                <b>Ciudad</b><br>
-                                {{ vm.teacher.location.city | city }}
-                            </div>
+
                         </div>
                     </div>
 
                     <!-- Home lessons -->
-                    <div class="col s12">
-                        <div class="field-title">¿Das también clases a domicilio?</div>
-                        <input id="homeLessons"
-                               type="checkbox"
-                               ng-model="vm.teacher.homeLessons">
-                        <label for="homeLessons"> A domicilio</label>
+                    <div class="row">
+                        <div class="col s12 m4 field-title">¿Das también clases a domicilio?</div>
+                        <input-field class="col s12 m8 field-body">
+                            <input id="homeLessons"
+                                   type="checkbox"
+                                   name="homeLessons"
+                                   ng-model="vm.teacher.homeLessons">
+                            <label for="homeLessons">Doy clases a domicilio</label>
+                        </input-field>
                     </div>
 
                     <!-- Schedule -->
-                    <div class="col s12">
-                        <div class="field-title">¿En qué horarios das clases normalmente?</div>
+                    <div class="row">
+                        <div class="col s12 m4 field-title">¿En qué horarios das clases normalmente?</div>
 
-                        <div id="schedule">
+                        <div class="col s12 m8 field-body" input-field valdr-form-group>
                             <input id="morning"
                                    type="checkbox"
-                                   ng-model="vm.teacher.schedule.morning">
-                            <label for="morning"> Mañana</label>
+                                   name="morning"
+                                   ng-model="vm.teacher.schedule.morning"
+                                   ng-change="vm.validateSchedule()">
+                            <label for="morning">Mañana</label>
 
                             <input id="afternoon"
                                    type="checkbox"
-                                   ng-model="vm.teacher.schedule.afternoon">
-                            <label for="afternoon"> Tarde</label>
+                                   name="afternoon"
+                                   ng-model="vm.teacher.schedule.afternoon"
+                                   ng-change="vm.validateSchedule()">
+                            <label for="afternoon">Tarde</label>
 
                             <input id="night"
                                    type="checkbox"
-                                   ng-model="vm.teacher.schedule.night">
-                            <label for="night"> Noche</label>
+                                   name="night"
+                                   ng-model="vm.teacher.schedule.night"
+                                   ng-change="vm.validateSchedule()">
+                            <label for="night">Noche</label>
+
+                            <input type="hidden"
+                                   name="schedule"
+                                   ng-model="vm.teacher.$$schedule">
+
+                            <div class="field-subtitle">
+                                Podés seleccionar más de una opción
+                            </div>
                         </div>
-                        Podés seleccionar mas de una opción
                     </div>
 
                     <!-- Lesson audience -->
-                    <div class="col s12">
-                        <div class="field-title">¿Cómo son las clases que das?</div>
-                        <input id="groupLessons"
-                               type="checkbox"
-                               ng-model="vm.teacher.groupLessons">
-                        <label for="groupLessons"> Grupales</label>
+                    <div class="row">
+                        <div class="col s12 m4 field-title">
+                            ¿Cómo son las clases que das?
+                        </div>
 
-                        <input id="individualLessons"
-                               type="checkbox"
-                               ng-model="vm.teacher.individualLessons">
-                        <label for="individualLessons"> Individuales</label>
+                        <input-field class="col s12 m8 field-body" valdr-form-group>
+                            <input id="groupLessons"
+                                   type="checkbox"
+                                   name="groupLessons"
+                                   ng-model="vm.teacher.groupLessons"
+                                   ng-change="vm.validateAudience()">
+                            <label for="groupLessons">Grupales</label>
+
+                            <input id="individualLessons"
+                                   type="checkbox"
+                                   name="individualLessons"
+                                   ng-model="vm.teacher.individualLessons"
+                                   ng-change="vm.validateAudience()">
+                            <label for="individualLessons">Individuales</label>
+
+                            <input type="hidden"
+                                   name="audience"
+                                   ng-model="vm.teacher.$$audience">
+
+                            <div class="field-subtitle">
+                                Podés seleccionar más de una opción
+                            </div>
+                        </input-field>
                     </div>
 
                     <!-- Fee -->
-                    <div class="col s12">
-                        <div class="field-title">¿Qué precio cobras por hora de clase?</div>
+                    <div class="row">
+                        <div class="col s12 m4 field-title">¿Qué precio cobras por hora de clase?</div>
 
-                        <span>$</span>
-                        <input placeholder="80" type="number" min="0"
-                               ng-model="vm.teacher.fee">
+                        <input-field class="col s12 m8 field-body" valdr-form-group>
+                            <div class="col s12 m5">
+                                <i class="material-icons prefix">attach_money</i>
+                                <input placeholder="80"
+                                       type="number"
+                                       name="fee"
+                                       class="validate"
+                                       ng-model="vm.teacher.fee">
+                            </div>
+                        </input-field>
                     </div>
-                </div>
+                </form>
+            </div>
 
-                <!-- Contact information -->
-                <div ng-if="vm.stepOffset == 3" class="row">
+            <!-- Contact information -->
+            <div ng-show="vm.stepOffset == 2">
+
+                <form novalidate
+                      name="vm.forms[2]"
+                      id="vm.forms[2]"
+                      ng-class="vm.forms[2].submitted ? 'submitted' : ''"
+                      valdr-type="Teacher">
 
                     <!-- Phone -->
-                    <div class="col s12">
-                        <div class="field-title">
+                    <div class="row">
+                        <div class="col s12 m4 field-title">
                             ¿Cuál es el número de teléfono al que querés ser contactado?
                         </div>
 
-                        <div class="input-field">
+                        <input-field class="col s12 m3 field-body" valdr-form-group>
                             <input type="text"
+                                   name="phone"
+                                   class="validate"
                                    ng-model="vm.teacher.phone.number"
                                    placeholder="2914356546">
-                        </div>
+                        </input-field>
                     </div>
 
                     <!-- SMS -->
-                    <div class="col s12">
-                        <div class="field-title">
+                    <div class="row">
+                        <div class="col s12 m4 field-title">
                             ¿Recibís mensajes de texto de tus alumnos?
                         </div>
-                        <div class="center">
-                            <input id="sms" type="checkbox" ng-model="vm.teacher.phone.sms">
-                            <label for="sms"></label>
-                        </div>
+                        <input-field class="col s12 m8 field-body">
+                            <input id="sms"
+                                   type="checkbox"
+                                   name="sms"
+                                   ng-model="vm.teacher.phone.sms">
+                            <label for="sms">Recibo SMS</label>
+                        </input-field>
                     </div>
 
                     <!-- Whatsapp -->
-                    <div class="col s12">
-                        <div class="field-title">
+                    <div class="row">
+                        <div class="col s12 m4 field-title">
                             ¿Recibís mensajes de whatsapp?
                         </div>
 
-                        <div class="center">
-                            <input id="whatsapp" type="checkbox" ng-model="vm.teacher.phone.whatsApp">
-                            <label for="whatsapp"></label>
-                        </div>
+                        <input-field class="col s12 m8 field-body">
+                            <input id="whatsapp"
+                                   type="checkbox"
+                                   name="whatsapp"
+                                   ng-model="vm.teacher.phone.whatsApp">
+                            <label for="whatsapp">Recibo mensajes de Whatsapp</label>
+                        </input-field>
                     </div>
 
                     <!-- Description -->
-                    <div class="col s12">
-                        <div class="field-title">
+                    <div class="row">
+                        <div class="col s12 m4 field-title">
                             Por último, ¿hay algo que no te hayamos preguntado que creas que
                             es importante que tus alumnos sepan?
                         </div>
 
-                        <!-- TODO: Check description length -->
-                    <textarea id="description"
-                              class="materialize-textarea"
-                              ng-model="vm.teacher.description"
-                              placeholder="Escriba una breve descripción sobre usted">
-                    </textarea>
+                        <input-field class="col s12 m8 field-body" valdr-form-group>
+                            <!-- TODO: Check description length -->
+                            <textarea id="description"
+                                      length="512"
+                                      name="description"
+                                      class="materialize-textarea"
+                                      ng-model="vm.teacher.description"
+                                      placeholder="Escriba una breve descripción sobre usted">
+                            </textarea>
+                        </input-field>
                     </div>
-
-                </div>
-            </div>
-
-            <div class="divider"></div>
-
-            <!-- Action buttons -->
-            <div class="row no-margin-row">
-                <a class="btn-flat"
-                   ng-if="vm.stepOffset != 1"
-                   ng-click="vm.goToPreviousStep()">
-                    Anterior
-                </a>
-                <a class="btn right amber"
-                   ng-click="vm.goToNextStep()">
-                    Siguiente
-                </a>
+                </form>
             </div>
         </div>
     </div>
 </div>
+
+<div class="divider"></div>
+
+<!-- Action buttons -->
+<div class="row valign-wrapper">
+
+    <div class="col s12 valign">
+        <a class="btn-flat"
+           ng-if="vm.stepOffset != 0"
+           ng-click="vm.goToPreviousStep()">
+            Anterior
+        </a>
+        <a class="btn right amber"
+           ng-click="vm.goToNextStep()">
+            Siguiente
+        </a>
+    </div>
 </div>

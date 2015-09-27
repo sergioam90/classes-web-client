@@ -243,6 +243,7 @@
 
             .state('root.signup-teacher.step.data', {
                 url: '/data?step',
+                reloadOnSearch: false,
                 templateUrl: 'scripts/presentation/account/signup/teacher/data/signup.teacher.data.html',
                 controller: 'SignupTeacherController as vm',
                 resolve: {
@@ -256,7 +257,7 @@
                     }
                 },
                 params: {
-                    step: '1'
+                    step: '0'
                 },
                 onEnter: onEnter,
                 data: {

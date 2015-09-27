@@ -32,21 +32,21 @@
                 title: 'Materias',
                 states: 'root.signup-teacher.step.data',
                 params: {
-                    step: '1'
+                    step: '0'
                 }
             },
             {
                 title: 'Tus clases',
                 states: 'root.signup-teacher.step.data',
                 params: {
-                    step: '2'
+                    step: '1'
                 }
             },
             {
                 title: 'Contacto',
                 states: 'root.signup-teacher.step.data',
                 params: {
-                    step: '3'
+                    step: '2'
                 }
             }
         ];
