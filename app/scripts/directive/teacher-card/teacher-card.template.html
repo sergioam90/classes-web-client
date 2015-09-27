@@ -16,24 +16,12 @@
                     </div>
 
                     <div class="third">
-                        <!-- TODO: implement logic -->
-                        <div>
-                            <i class="fa fa-graduation-cap"></i>
+                        <div class="col s6">
+                            <teacher-features ng-model="teacher"></teacher-features>
                         </div>
 
-                        <div>
-                            <i class="fa fa-user"></i>
-                            <i class="fa fa-users"></i>
-                        </div>
-
-                        <div>
-                            <i class="fa fa-car"></i>
-                        </div>
-
-                        <div>
-                            <i class="fa fa-sun-o"></i>
-                            <i class="fa fa-question"></i>
-                            <i class="fa fa-moon-o"></i>
+                        <div class="col s6">
+                            <teacher-schedule ng-model="teacher.schedule"></teacher-schedule>
                         </div>
                     </div>
                 </div>
