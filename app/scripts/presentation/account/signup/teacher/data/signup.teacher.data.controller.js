@@ -14,10 +14,12 @@
         'CityService',
         'InterruptionService',
         '$stateParams',
-        'SignupStepService'
+        'SignupStepService',
+        '$location',
+        '$scope'
     ];
 
-    function SignupTeacherController(user, TeacherService, DegreeService, Subjects, MapsService, CityService, InterruptionService, $stateParams, SignupStepService) {
+    function SignupTeacherController(user, TeacherService, DegreeService, Subjects, MapsService, CityService, InterruptionService, $stateParams, SignupStepService, $location, $scope) {
         var vm = this;
 
         /* Default teacher values */
@@ -38,11 +40,25 @@
             user: user
         };
 
+        vm.teacher.$$location = undefined;
+
+        $scope.$watch(function () {
+            return $location.search();
+        }, function () {
+            vm.stepOffset = parseInt($location.search().step);
+        });
+
+
         vm.degrees = [];
         vm.subjects = [];
 
-        vm.stepOffset = $stateParams.step;
+        vm.stepOffset = parseInt($stateParams.step);
 
+        vm.formsSpecs = [];
+        vm.teacherSignupFormPrefix = 'teacherSignupFormStep';
+
+        vm.validateSchedule = validateSchedule;
+        vm.validateAudience = validateAudience;
         vm.placeChanged = placeChanged;
         vm.signupTeacher = signupTeacher;
         vm.goToNextStep = goToNextStep;
@@ -74,24 +90,19 @@
             }
 
             TeacherService.signupTeacher(vm.teacher).then(function () {
-                alert('registered successfully');
-                //InterruptionService.restore();
+                SignupStepService.goToNextStep();
             });
         }
 
         function placeChanged() {
             var place = this.getPlace();
 
+            // Set hidden location input dirty to make validation message visible
+            vm.forms[1].location.$setDirty();
+
             MapsService.getLocality(place).then(success, error);
 
             function success(locality) {
-
-                if (!validLocality(locality)) {
-                    // TODO: Add error handling
-                    alert('City is not valid');
-
-                    return;
-                }
 
                 vm.teacher.location = {
                     address: MapsService.getStreetName(place),
@@ -99,24 +110,70 @@
                     longitude: place.geometry.location.lng(),
                     city: locality
                 };
+
+                // Set $$location to fulfill location required validation
+                vm.teacher.$$location = vm.teacher.location;
             }
 
             function error(error) {
                 console.log(error);
             }
 
-            function validLocality(locality) {
-                return CityService.exists(locality);
-            }
-
         }
 
         function goToNextStep() {
+
+            // Validate current and previous steps
+            for (var i = 0; i <= vm.stepOffset; i++) {
+                if (!validateStep(i)) {
+                    setSubmittedForm(i);
+                    return;
+                }
+            }
+
+            // If it's the last data step
+            if (vm.stepOffset === 2) {
+                signupTeacher();
+                return;
+            }
+
             SignupStepService.goToNextStep();
         }
 
         function goToPreviousStep() {
             SignupStepService.goToPreviousStep();
+        }
+
+        function validateStep(step) {
+            var form = getFormByStep(step);
+
+            return form.$valid;
+        }
+
+        function setSubmittedForm(step) {
+            vm.forms[step].submitted = true;
+        }
+
+        function getFormByStep(step) {
+            return vm.forms[step];
+        }
+
+        function validateSchedule() {
+            var schedule = vm.teacher.schedule;
+
+            if (schedule.morning || schedule.afternoon || schedule.night) {
+                vm.teacher.$$schedule = {};
+            } else {
+                vm.teacher.$$schedule = undefined;
+            }
+        }
+
+        function validateAudience() {
+            if (vm.teacher.groupLessons || vm.teacher.individualLessons) {
+                vm.teacher.$$audience = {};
+            } else {
+                vm.teacher.$$audience = undefined;
+            }
         }
     }
 })();

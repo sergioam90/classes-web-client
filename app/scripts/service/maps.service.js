@@ -108,7 +108,7 @@
                 }
             }
 
-            return streetName + ' ' + streetNumber;
+            return streetName + ' ' + (streetNumber || '');
         }
 
         return {
