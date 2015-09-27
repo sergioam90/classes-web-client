@@ -28,8 +28,6 @@
 
             vm.user.target = vm.target;
 
-            // TODO: Validate user
-
             UserService.signup(vm.user).then(function () {
                 $state.go('root.signup-' + vm.target + '.step.email-sent');
             }, function (error) {
