@@ -271,7 +271,6 @@
                 resolve: {
                     title: function () {
                         return 'Plan';
-                        ""
                     }
                 },
                 onEnter: onEnter,
