@@ -55,7 +55,8 @@
                 url: '/',
                 views: {
                     'header@': {
-                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html'
+                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html',
+                        controller: 'HomeController as vm'
                     },
                     'container@': {
                         templateUrl: 'scripts/presentation/teacher/early-signup/early-signup.html',
@@ -75,7 +76,8 @@
                 url: '/about',
                 views: {
                     'header@': {
-                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html'
+                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html',
+                        controller: 'HomeController as vm'
                     },
                     'container@': {
                         templateUrl: 'scripts/presentation/about/about.html',
@@ -118,7 +120,8 @@
                 abstract: true,
                 views: {
                     'header@': {
-                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html'
+                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html',
+                        controller: 'HomeController as vm'
                     },
                     'container@': {
                         templateUrl: 'scripts/presentation/account/signup/teacher/signup.teacher.html'
@@ -337,7 +340,8 @@
                 url: '/user/{id}/verification?code?redirectUri',
                 views: {
                     'header@': {
-                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html'
+                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html',
+                        controller: 'HomeController as vm'
                     },
                     'container@': {
                         templateUrl: 'scripts/presentation/account/signup/callback/local/local-user.verification.html',
