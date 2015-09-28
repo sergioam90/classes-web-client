@@ -33,30 +33,6 @@
                         </li>
                     </span>
 
-                    <!-- Logged out buttons -->
-                    <span ng-show="!vm.isAuthenticated()">
-                        <li ui-sref-active="active">
-                            <a ui-sref="root.login"
-                               ng-click="isCollapsed = true">
-                                Iniciar sesión
-                            </a>
-                        </li>
-                        <li>
-
-                            <a ui-sref="root.signup.about({ target: 'teacher' })"
-                               ng-click="isCollapsed = true">
-                                Quiero enseñar
-                            </a>
-                        </li>
-                        <li>
-
-                            <a ui-sref="root.signup.about({ target: 'student' })"
-                               ng-click="isCollapsed = true">
-                                Quiero aprender
-                            </a>
-                        </li>
-                    </span>
-
                     <li>contacto@upclaz.com</li>
                 </ul>
 
@@ -73,30 +49,6 @@
                         <li>
                             <!-- TODO: Replace click with ui-sref -->
                             <a href="" ng-click="vm.logout()">Salir</a>
-                        </li>
-                    </span>
-
-                    <!-- Logged out buttons -->
-                    <span ng-show="!vm.isAuthenticated()">
-                        <li ui-sref-active="active">
-                            <a ui-sref="root.login"
-                               ng-click="isCollapsed = true">
-                                Iniciar sesión
-                            </a>
-                        </li>
-                        <li>
-
-                            <a ui-sref="root.signup.about({ target: 'teacher' })"
-                               ng-click="isCollapsed = true">
-                                Quiero enseñar
-                            </a>
-                        </li>
-                        <li>
-
-                            <a ui-sref="root.signup.about({ target: 'student' })"
-                               ng-click="isCollapsed = true">
-                                Quiero aprender
-                            </a>
                         </li>
                     </span>
 

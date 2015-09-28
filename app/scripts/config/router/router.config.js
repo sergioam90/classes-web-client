@@ -56,7 +56,7 @@
                 views: {
                     'header@': {
                         templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html',
-                        controller: 'HomeController as vm'
+                        controller: 'HeaderController as vm'
                     },
                     'container@': {
                         templateUrl: 'scripts/presentation/teacher/early-signup/early-signup.html',
@@ -77,7 +77,7 @@
                 views: {
                     'header@': {
                         templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html',
-                        controller: 'HomeController as vm'
+                        controller: 'HeaderController as vm'
                     },
                     'container@': {
                         templateUrl: 'scripts/presentation/about/about.html',
@@ -121,7 +121,7 @@
                 views: {
                     'header@': {
                         templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html',
-                        controller: 'HomeController as vm'
+                        controller: 'HeaderController as vm'
                     },
                     'container@': {
                         templateUrl: 'scripts/presentation/account/signup/teacher/signup.teacher.html'
@@ -341,7 +341,7 @@
                 views: {
                     'header@': {
                         templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html',
-                        controller: 'HomeController as vm'
+                        controller: 'HeaderController as vm'
                     },
                     'container@': {
                         templateUrl: 'scripts/presentation/account/signup/callback/local/local-user.verification.html',
