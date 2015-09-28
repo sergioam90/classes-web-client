@@ -429,6 +429,46 @@ module.exports = function (grunt) {
             production: {
                 // options
             }
+        },
+
+        replace: {
+            dist: {
+                options: {
+                    patterns: [
+                        {
+                            match: 'analyticsEnv',
+                            replacement: 'auto'
+                        }
+                    ]
+                },
+                files: [
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: '<%= yeoman.dist %>/index.html',
+                        dest: '<%= yeoman.dist %>'
+                    }
+                ]
+            },
+
+            dev: {
+                options: {
+                    patterns: [
+                        {
+                            match: 'analyticsEnv',
+                            replacement: 'none'
+                        }
+                    ]
+                },
+                files: [
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: '<%= yeoman.app %>/index.html',
+                        dest: '<%= yeoman.app %>'
+                    }
+                ]
+            }
         }
     });
 
@@ -445,6 +485,7 @@ module.exports = function (grunt) {
             'wiredep',
             'concurrent:server',
             'autoprefixer:server',
+            'replace:dev',
             'connect:livereload',
             'watch'
         ]);
@@ -469,6 +510,7 @@ module.exports = function (grunt) {
                 'filerev',
                 'usemin',
                 'htmlmin',
+                'replace:dist',
                 //'gh-pages',
                 'divshot:push:production'
             ]);
