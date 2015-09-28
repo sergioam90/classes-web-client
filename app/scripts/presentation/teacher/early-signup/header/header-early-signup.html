@@ -18,10 +18,40 @@
                     <i class="mdi-navigation-menu"></i>
                 </a>
                 <ul class="side-nav grey-text text-darken-4" id="mobile-demo">
+
+                    <!-- Logged in buttons -->
+                    <span ng-show="vm.isAuthenticated()">
+                        <li ui-sref-active="active"
+                            ng-cloak>
+                            <i
+                                    class="material-icons left">account_circle</i>
+                            {{ vm.getCurrentUser().firstName}}
+                        </li>
+                        <li>
+                            <!-- TODO: Replace click with ui-sref -->
+                            <a href="" ng-click="vm.logout()">Salir</a>
+                        </li>
+                    </span>
+
                     <li>contacto@upclaz.com</li>
                 </ul>
 
                 <ul class="right hide-on-med-and-down">
+
+                    <!-- Logged in buttons -->
+                    <span ng-show="vm.isAuthenticated()">
+                        <li ui-sref-active="active"
+                            ng-cloak>
+                            <i
+                                    class="material-icons left">account_circle</i>
+                            {{ vm.getCurrentUser().firstName}}
+                        </li>
+                        <li>
+                            <!-- TODO: Replace click with ui-sref -->
+                            <a href="" ng-click="vm.logout()">Salir</a>
+                        </li>
+                    </span>
+
                     <li>contacto@upclaz.com</li>
                 </ul>
 

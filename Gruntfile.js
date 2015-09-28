@@ -337,9 +337,6 @@ module.exports = function (grunt) {
         copy: {
             dist: {
                 files: [{
-                    src: '<%= yeoman.app %>/index.html',
-                    dest: '<%= yeoman.dist %>/404.html'
-                }, {
                     expand: true,
                     dot: true,
                     cwd: '<%= yeoman.app %>',
@@ -361,6 +358,11 @@ module.exports = function (grunt) {
                     expand: true,
                     cwd: 'bower_components/font-awesome',
                     src: 'fonts/*.*',
+                    dest: '<%= yeoman.dist %>'
+                }, {
+                    expand: true,
+                    cwd: 'bower_components/weather-icons',
+                    src: 'font/*.*',
                     dest: '<%= yeoman.dist %>'
                 }, {
                     expand: true,
@@ -402,14 +404,16 @@ module.exports = function (grunt) {
             development: {
                 constants: {
                     appConfig: {
-                        API_SERVER_URL: 'http://classes.noip.me:8080'
+                        API_SERVER_URL: 'http://classes.noip.me:8080',
+                        OAUTH_TOKEN_COOKIE_DOMAIN: 'classes.noip.me'
                     }
                 }
             },
             production: {
                 constants: {
                     appConfig: {
-                        API_SERVER_URL: 'https://api.upclaz.com'
+                        API_SERVER_URL: 'https://api.upclaz.com',
+                        OAUTH_TOKEN_COOKIE_DOMAIN: 'upclaz.com'
                     }
                 }
             }
@@ -428,6 +432,27 @@ module.exports = function (grunt) {
         'divshot:push': {
             production: {
                 // options
+            }
+        },
+
+        replace: {
+            dist: {
+                options: {
+                    patterns: [
+                        {
+                            match: /(.*analyticsEnable.*)(false)([^;]*)/,
+                            replacement: '$1true$3'
+                        }
+                    ]
+                },
+                files: [
+                    {
+                        expand: true,
+                        flatten: true,
+                        src: '<%= yeoman.dist %>/index.html',
+                        dest: '<%= yeoman.dist %>'
+                    }
+                ]
             }
         }
     });
@@ -469,6 +494,7 @@ module.exports = function (grunt) {
                 'filerev',
                 'usemin',
                 'htmlmin',
+                'replace:dist',
                 //'gh-pages',
                 'divshot:push:production'
             ]);

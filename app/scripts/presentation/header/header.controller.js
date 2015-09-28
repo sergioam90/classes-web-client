@@ -5,9 +5,9 @@
         .module('classesClientApp')
         .controller('HeaderController', HeaderController);
 
-    HeaderController.$inject = ['OAuth', 'AccountService', '$state'];
+    HeaderController.$inject = ['OAuth', 'AccountService', '$location'];
 
-    function HeaderController(OAuth, AccountService, $state) {
+    function HeaderController(OAuth, AccountService, $location) {
         var vm = this;
 
         vm.isAuthenticated = OAuth.isAuthenticated;
@@ -28,7 +28,7 @@
         function logout() {
             AccountService.logout();
 
-            $state.go('root.home');
+            $location.url('/');
         }
     }
 

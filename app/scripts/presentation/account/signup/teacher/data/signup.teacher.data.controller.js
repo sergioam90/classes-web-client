@@ -42,10 +42,15 @@
 
         vm.teacher.$$location = undefined;
 
+        // TODO: Do this better
         $scope.$watch(function () {
             return $location.search();
         }, function () {
-            vm.stepOffset = parseInt($location.search().step);
+            if ($location.search().step) {
+                vm.stepOffset = parseInt($location.search().step);
+            } else {
+                vm.stepOffset = 0;
+            }
         });
 
 

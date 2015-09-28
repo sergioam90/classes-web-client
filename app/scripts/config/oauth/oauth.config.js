@@ -18,7 +18,8 @@
 
         OAuthTokenProvider.configure({
             options: {
-                secure: false
+                secure: false,
+                domain: appConfig.OAUTH_TOKEN_COOKIE_DOMAIN
             }
         });
     }

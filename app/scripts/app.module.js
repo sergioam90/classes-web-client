@@ -23,7 +23,9 @@
             'valdr',
             'pascalprecht.translate',
             'datePicker',
-            'cloudinary'
+            'cloudinary',
+            'angulartics',
+            'angulartics.google.analytics'
         ])
         .run(['editableOptions', function (editableOptions) {
             // TODO: Move

@@ -55,7 +55,8 @@
                 url: '/',
                 views: {
                     'header@': {
-                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html'
+                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html',
+                        controller: 'HeaderController as vm'
                     },
                     'container@': {
                         templateUrl: 'scripts/presentation/teacher/early-signup/early-signup.html',
@@ -75,7 +76,8 @@
                 url: '/about',
                 views: {
                     'header@': {
-                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html'
+                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html',
+                        controller: 'HeaderController as vm'
                     },
                     'container@': {
                         templateUrl: 'scripts/presentation/about/about.html',
@@ -118,7 +120,8 @@
                 abstract: true,
                 views: {
                     'header@': {
-                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html'
+                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html',
+                        controller: 'HeaderController as vm'
                     },
                     'container@': {
                         templateUrl: 'scripts/presentation/account/signup/teacher/signup.teacher.html'
@@ -135,7 +138,7 @@
                 controller: 'SignupAboutController as vm',
                 resolve: {
                     title: function() {
-                        return 'Información';
+                        return 'Introducción - Registro';
                     }
                 },
                 onEnter: onEnter,
@@ -150,7 +153,7 @@
                 controller: 'SignupMethodController as vm',
                 resolve: {
                     title: function() {
-                        return 'Método';
+                        return 'Método - Registro';
                     }
                 },
                 onEnter: onEnter,
@@ -176,7 +179,7 @@
                 controller: 'SignupLocalUserController as vm',
                 resolve: {
                     title: function() {
-                        return 'Registro';
+                        return 'Registro por email - Registro';
                     }
                 },
                 onEnter: onEnter,
@@ -192,7 +195,7 @@
                 controller: 'SignupLocalUserEmailSentController as vm',
                 resolve: {
                     title: function() {
-                        return 'Email enviado';
+                        return 'Email enviado - Registro';
                     }
                 },
                 onEnter: onEnter,
@@ -215,7 +218,7 @@
                         });
                     },
                     title: function () {
-                        return 'root.signup.socialUser'; // TODO: set proper title
+                        return 'Registro con red social - Registro';
                     }
                 },
                 onEnter: onEnter,
@@ -231,7 +234,7 @@
                 controller: 'SignupFacebookController as vm',
                 resolve: {
                     title: function() {
-                        return 'Registro - Facebook';
+                        return 'Facebook - Registro';
                     }
                 },
                 onEnter: onEnter,
@@ -253,7 +256,7 @@
                         });
                     },
                     title: function() {
-                        return 'Registro - Profesor';
+                        return 'Profesor - Registro';
                     }
                 },
                 params: {
@@ -270,7 +273,7 @@
                 templateUrl: 'scripts/presentation/account/signup/teacher/plan/signup.plan.html',
                 resolve: {
                     title: function () {
-                        return 'Plan';
+                        return 'Plan - Registro';
                     }
                 },
                 onEnter: onEnter,
@@ -284,7 +287,7 @@
                 templateUrl: 'scripts/presentation/account/signup/teacher/congratulations/signup.congratulations.html',
                 resolve: {
                     title: function () {
-                        return '¡Felicitaciones!';
+                        return 'Felicitaciones - Registro';
                     }
                 },
                 onEnter: onEnter,
@@ -306,7 +309,7 @@
                 controller: 'SignupMethodController as vm',
                 resolve: {
                     title: function() {
-                        return 'Método';
+                        return 'Método de registro - Registro';
                     }
                 },
                 onEnter: onEnter,
@@ -322,7 +325,7 @@
                 controller: 'SignupStudentController as vm',
                 resolve: {
                     title: function() {
-                        return 'Registro - Estudiante';
+                        return 'Estudiante - Registro';
                     }
                 },
                 onEnter: onEnter,
@@ -337,7 +340,8 @@
                 url: '/user/{id}/verification?code?redirectUri',
                 views: {
                     'header@': {
-                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html'
+                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html',
+                        controller: 'HeaderController as vm'
                     },
                     'container@': {
                         templateUrl: 'scripts/presentation/account/signup/callback/local/local-user.verification.html',
@@ -346,7 +350,7 @@
                 },
                 resolve: {
                     title: function () {
-                        return 'root.userVerification'; // TODO: set proper title
+                        return 'Verificación email - Registro';
                     }
                 },
                 onEnter: onEnter,
@@ -387,7 +391,7 @@
                 },
                 resolve: {
                     title: function() {
-                        return 'root.account.user'; // TODO: set proper title
+                        return 'Usuario - Cuenta';
                     }
                 },
                 onEnter: onEnter
@@ -412,7 +416,7 @@
                 },
                 resolve: {
                     title: function() {
-                        return 'root.account.student'; // TODO: set proper title
+                        return 'Estudiante - Cuenta';
                     }
                 },
                 onEnter: onEnter
@@ -437,7 +441,7 @@
                 },
                 resolve: {
                     title: function() {
-                        return 'root.account.teacher'; // TODO: set proper title
+                        return 'Profesor - Cuenta';
                     }
                 },
                 onEnter: onEnter
@@ -454,7 +458,7 @@
                 },
                 resolve: {
                     title: function() {
-                        return 'root.teachersSearch'; // TODO: set proper title
+                        return 'Búsqueda profesor';
                     }
                 },
                 onEnter: onEnter
@@ -475,7 +479,7 @@
                 },
                 resolve: {
                     title: function() {
-                        return 'root.teacherProfile'; // TODO: set proper title
+                        return 'Perfil profesor';
                     }
                 },
                 onEnter: onEnter
@@ -491,7 +495,7 @@
                 },
                 resolve: {
                     title: function() {
-                        return 'root.maps'; // TODO: set proper title
+                        return 'Maps test';
                     }
                 },
                 onEnter: onEnter
