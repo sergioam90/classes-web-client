@@ -364,6 +364,11 @@ module.exports = function (grunt) {
                     dest: '<%= yeoman.dist %>'
                 }, {
                     expand: true,
+                    cwd: 'bower_components/weather-icons',
+                    src: 'font/*.*',
+                    dest: '<%= yeoman.dist %>'
+                }, {
+                    expand: true,
                     cwd: 'bower_components/materialize',
                     src: 'font/roboto/*.*',
                     dest: '<%= yeoman.dist %>'
@@ -402,14 +407,16 @@ module.exports = function (grunt) {
             development: {
                 constants: {
                     appConfig: {
-                        API_SERVER_URL: 'http://classes.noip.me:8080'
+                        API_SERVER_URL: 'http://classes.noip.me:8080',
+                        OAUTH_TOKEN_COOKIE_DOMAIN: 'classes.noip.me'
                     }
                 }
             },
             production: {
                 constants: {
                     appConfig: {
-                        API_SERVER_URL: 'https://api.upclaz.com'
+                        API_SERVER_URL: 'https://api.upclaz.com',
+                        OAUTH_TOKEN_COOKIE_DOMAIN: 'upclaz.com'
                     }
                 }
             }
@@ -436,8 +443,8 @@ module.exports = function (grunt) {
                 options: {
                     patterns: [
                         {
-                            match: 'analyticsEnv',
-                            replacement: 'auto'
+                            match: /(.*analyticsEnable.*)(false)([^;]*)/,
+                            replacement: '$1true$3'
                         }
                     ]
                 },
@@ -447,25 +454,6 @@ module.exports = function (grunt) {
                         flatten: true,
                         src: '<%= yeoman.dist %>/index.html',
                         dest: '<%= yeoman.dist %>'
-                    }
-                ]
-            },
-
-            dev: {
-                options: {
-                    patterns: [
-                        {
-                            match: 'analyticsEnv',
-                            replacement: 'none'
-                        }
-                    ]
-                },
-                files: [
-                    {
-                        expand: true,
-                        flatten: true,
-                        src: '<%= yeoman.app %>/index.html',
-                        dest: '<%= yeoman.app %>'
                     }
                 ]
             }
@@ -485,7 +473,6 @@ module.exports = function (grunt) {
             'wiredep',
             'concurrent:server',
             'autoprefixer:server',
-            'replace:dev',
             'connect:livereload',
             'watch'
         ]);

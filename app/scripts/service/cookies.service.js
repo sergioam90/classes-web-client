@@ -9,7 +9,7 @@
 
     function CookiesService($cookies) {
 
-        var APPLICATION_COOKIE_PREFIX = 'classes.';
+        var APPLICATION_COOKIE_PREFIX = 'upclaz.';
 
         function put(key, value) {
             $cookies.put(APPLICATION_COOKIE_PREFIX + key, value);
