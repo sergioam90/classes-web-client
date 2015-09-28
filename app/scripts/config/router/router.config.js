@@ -92,6 +92,27 @@
                 onEnter: onEnter
             })
 
+            .state('root.terms', {
+                url: '/terms',
+                views: {
+                    'header@': {
+                        templateUrl: 'scripts/presentation/teacher/early-signup/header/header-early-signup.html',
+                        controller: 'HeaderController as vm'
+                    },
+                    'container@': {
+                        templateUrl: 'scripts/presentation/account/signup/terms/signup.terms.html',
+                        controller: 'HomeController as vm'
+                    },
+                    'footer@': {}
+                },
+                resolve: {
+                    title: function () {
+                        return 'Términos y condiciones';
+                    }
+                },
+                onEnter: onEnter
+            })
+
             /* User states */
 
             .state('root.login', {
@@ -295,6 +316,7 @@
                     isInterruption: true
                 }
             })
+
 
             /* Student signup */
 

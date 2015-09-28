@@ -1,6 +1,6 @@
 <div class="signup-method">
     <div id="card-container">
-        <div class="row no-margin-row valign-wrapper">
+        <div class="row valign-wrapper">
         <div class="col s12 m6 offset-m3 valign">
             <div class="row"><a id="facebook-button" ng-href="{{ vm.facebookUrl }}"
                                 class="waves-effect btn-large full-width">
@@ -13,7 +13,7 @@
                 <div class="col s10 left-align">Registrarme con Google</div>
             </a></div>
             <div class="row center-align grey-text text-darken-3">O completando todos tus datos:</div>
-            <div class="row no-margin-row">
+            <div class="row">
                 <div class="col s10 offset-s1"><a id="email-button" ui-sref="root.signup-teacher.step.local-user"
                                                  class="waves-effect btn-large full-width reversebutton transparent amber-text">
                     <div id="border-email" class="col s2 center-align"><i class="material-icons">email</i></div>
@@ -21,8 +21,13 @@
                 </a></div>
             </div>
 
+
         </div>
 
+        </div>
+        <div class="row center-align no-margin-row">
+            Haciendo click en culquiera de las tres opciones de registración anteriores estas aceptando nuestros <a
+            href="/terms#terms" target="_blank">términos y condiciones</a>.
         </div>
     </div>
 </div>

@@ -1,0 +1,21 @@
+.terms ul li {
+    list-style-type: square;
+}
+
+.terms ul {
+    padding-left: 3rem;
+}
+
+.terms p {
+    text-indent: 1rem;
+}
+
+.terms {
+    background-color: white;
+    overflow: hidden;
+}
+
+.terms h2 {
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+}
