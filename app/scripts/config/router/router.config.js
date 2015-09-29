@@ -292,6 +292,7 @@
             .state('root.signup-teacher.plan', {
                 url: '/plan',
                 templateUrl: 'scripts/presentation/account/signup/teacher/plan/signup.plan.html',
+                controller: 'SignupPlanController as vm',
                 resolve: {
                     title: function () {
                         return 'Plan - Registro';
