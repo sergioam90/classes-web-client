@@ -1,18 +1,20 @@
+<div id="email-sent">
 <div class="row">
     <div class="col s12 m8 offset-m2">
-        Te enviamos un email para verificar la cuenta:
-
+        <p class="text-normal">Te enviamos un email para verificar tu cuenta. Ahora seguí los siguientes pasos:</p>
         <ol>
-            <li>Revisá tu casilla</li>
-            <li>Buscá el email que te enviamos</li>
-            <li>Hacé click en Activar cuenta</li>
-            <li>Seguí las instrucciones y volvé</li>
+            <li>Revisá tu casilla de emai.l</li>
+            <li>Buscá y abrí el mail que te mandamos (a veces aparece como spam).</li>
+            <li>Hace click en “confirmar mail”.</li>
+            <li>Volvé a esta pestaña.</li>
         </ol>
-
-        <h5>¡Te esperamos!</h5>
-
+        <p class="text-normal">Para ir a tu casilla de email hacé click <a href="">acá</a>.</p>
+        <h5 class="center-align">¡Te esperamos!</h5>
+    </div>
+</div>
+    <div class="row">
         <!-- Waiting spinner -->
-        <div class="center" ng-if="vm.waiting">
+        <div class="col s12 center" ng-if="vm.waiting">
             <div class="preloader-wrapper big active">
                 <div class="spinner-layer spinner-yellow-only">
                     <div class="circle-clipper left">
@@ -27,5 +29,5 @@
                 </div>
             </div>
         </div>
-    </div>
+</div>
 </div>
