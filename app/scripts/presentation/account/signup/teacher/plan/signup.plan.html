@@ -1,131 +1,210 @@
 <div class="premium-plan ">
     <div id="card-container-plan">
 
+        <!-- Plan introduction text -->
         <div class="row">
             <div class="col s12">
-
-                <p class="text-normal">¿Te gustaría que tu cuenta sea estandar o también querés tener alguna de estas
-                    funcionalidades extra?
+                <p class="text-normal">
+                    ¿Te gustaría que tu cuenta sea estándar o querés
+                    tener alguna de estas funcionalidades extra?
                 </P>
             </div>
 
         </div>
 
+        <!-- Plan wrapper -->
         <div id="plan" class="row valign-wrapper">
 
+            <!-- Free plan -->
             <div id="border-plan-1" class="col s12 m4 center-align valign white">
+
                 <div class="row">
-                    <div class="col s12 title-plan white-text color-title-plan-1"><h5>ESTANDAR
-                    </h5></div>
+                    <div class="col s12 title-plan white-text color-title-plan-1">
+                        <h5>ESTÁNDAR</h5>
+                    </div>
                 </div>
+
                 <div class="row">
                     <p id="price-plan-1"><strong>GRATIS</strong></p>
                 </div>
+
                 <div class="row left-align">
+
                     <div class="col s12 valign-wrapper">
-                        <div class="col s2 valign right-align"><p><i
-                                class=" small material-icons green-text">done</i>
-                        </p></div>
-                        <div class="col s10 valign"><p><strong>Perfil en Upclaz.com</strong></p></div>
+                        <div class="col s2 valign right-align">
+                            <p>
+                                <i class=" small material-icons green-text">done</i>
+                            </p>
+                        </div>
+                        <div class="col s10 valign">
+                            <p><strong>Perfil en Upclaz.com</strong></p>
+                        </div>
                     </div>
+
                     <div class="col s12 valign-wrapper">
+
                         <div class="col s2 valign right-align"></div>
-                        <div class="col s10 valign"><p>Nicho de oferta y demanda de clases particulares.</p></div>
+
+                        <div class="col s10 valign">
+                            <p>Nicho de oferta y demanda de clases particulares.</p>
+                        </div>
                     </div>
                 </div>
+
                 <div class="row">
                     <div class="col s8 offset-s2">
                         <a ui-sref="root.signup-teacher.congratulations"
+                           analytics-on="click"
+                           analytics-event="free_plan_selection"
                            class="waves-effect waves-light btn-large color-title-plan-1 full-width">
                             Finalizar
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Basic plan -->
+            <div id="border-plan-2" class="col s12 m4 center-align valign white">
+
+                <div class="row">
+                    <div class="col s12 title-plan white-text color-title-plan-2">
+                        <h5>BÁSICO</h5>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <p id="price-plan-2"><strong>$100</strong>/mes</p>
+                </div>
+
+                <div class="row left-align">
+
+                    <div class="col s12 valign-wrapper">
+
+                        <div class="col s2 valign right-align">
+                            <p><i class=" small material-icons green-text">done</i></p>
+                        </div>
+
+                        <div class="col s10 valign">
+                            <p><strong>Plan estandar</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="col s12 valign-wrapper">
+
+                        <div class="col s2 valign right-align">
+                            <p><i class=" small material-icons green-text">done</i></p>
+                        </div>
+
+                        <div class="col s10 valign">
+                            <p><strong>Reserva turnos online</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="col s12 valign-wrapper">
+
+                        <div class="col s2 valign right-align"></div>
+
+                        <div class="col s10 valign">
+                            <p>Tus alumnos podran reservar clases las 24 horas,
+                               los 7 dias de la semana.</p>
+                        </div>
+                    </div>
+
+                    <div class="col s12 valign-wrapper">
+
+                        <div class="col s2 valign right-align">
+                            <p><i class=" small material-icons green-text">done</i></p>
+                        </div>
+
+                        <div class="col s10 valign">
+                            <p><strong>Recordatorios por SMS</strong></p>
+                        </div>
+                    </div>
+
+                    <div class="col s12 valign-wrapper">
+
+                        <div class="col s2 valign right-align"></div>
+
+                        <div class="col s10 valign">
+                            <p>Tus alumnos reciben una notificación antes de cada clase.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col s8 offset-s2">
+                        <a class="waves-effect waves-light btn-large color-title-plan-2 full-width"
+                           analytics-on="click"
+                           analytics-event="basic_plan_selection"
+                           ng-click="vm.showUnavailableModal()">
+                            ver más
                         </a>
                     </div>
 
                 </div>
             </div>
-            <div id="border-plan-2" class="col s12 m4 center-align valign white">
-                <div class="row">
-                    <div class="col s12 title-plan white-text color-title-plan-2"><h5>BÁSICO
-                    </h5></div>
-                </div>
-                <div class="row">
-                    <p id="price-plan-2"><strong>$100</strong>/mes</p>
-                </div>
-                <div class="row left-align">
-                    <div class="col s12 valign-wrapper">
-                        <div class="col s2 valign right-align"><p><i
-                                class=" small material-icons green-text">done</i>
-                        </p></div>
-                        <div class="col s10 valign"><p><strong>Plan estandar</strong></p></div>
-                    </div>
-                    <div class="col s12 valign-wrapper">
-                        <div class="col s2 valign right-align"><p><i
-                                class=" small material-icons green-text">done</i>
-                        </p></div>
-                        <div class="col s10 valign"><p><strong>Reserva turnos
-                            online</strong></p></div>
-                    </div>
-                    <div class="col s12 valign-wrapper">
-                        <div class="col s2 valign right-align"></div>
-                        <div class="col s10 valign"><p>Tus alumnos podran reservar clases las 24 horas, los 7 dias de la
-                            semana.</p></div>
-                    </div>
-                    <div class="col s12 valign-wrapper">
-                        <div class="col s2 valign right-align"><p><i
-                                class=" small material-icons green-text">done</i></p>
-                        </div>
-                        <div class="col s10 valign"><p><strong>Recordatorios por SMS</strong></p></div>
-                    </div>
-                    <div class="col s12 valign-wrapper">
-                        <div class="col s2 valign right-align"></div>
-                        <div class="col s10 valign"><p>Tus alumnos reciben una notificación antes de cada clase.</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s8 offset-s2"><a
-                            class="waves-effect waves-light btn-large color-title-plan-2 full-width">ver
-                        más
-                    </a></div>
 
-                </div>
-            </div>
+            <!-- Plus plan -->
             <div id="border-plan-3" class="col s12 m4 center-align valign white ">
+
                 <div class="row">
-                    <div class="col s12 title-plan white-text color-title-plan-3"><h5>PLUS
-                    </h5></div>
+                    <div class="col s12 title-plan white-text color-title-plan-3">
+                        <h5>PLUS</h5>
+                    </div>
                 </div>
+
                 <div class="row">
                     <p id="price-plan-3"><strong>$150</strong>/mes</p>
                 </div>
+
                 <div class="row left-align">
                     <div class="col s12 valign-wrapper">
-                        <div class="col s2 valign right-align"><p><i
-                                class=" small material-icons green-text">done</i>
-                        </p></div>
-                        <div class="col s10 valign"><p><strong>Plan básico</strong></p></div>
+
+                        <div class="col s2 valign right-align">
+                            <p><i class=" small material-icons green-text">done</i></p>
+                        </div>
+
+                        <div class="col s10 valign">
+                            <p><strong>Plan básico</strong></p>
+                        </div>
                     </div>
+
                     <div class="col s12 valign-wrapper">
-                        <div class="col s2 valign right-align"><p><i
-                                class=" small material-icons green-text">done</i>
-                        </p></div>
-                        <div class="col s10 valign"><p><strong>Reserva de turnos online avanzada
-                        </strong></p></div>
+                        <div class="col s2 valign right-align">
+                            <p><i class=" small material-icons green-text">done</i></p>
+                        </div>
+
+                        <div class="col s10 valign">
+                            <p><strong>Reserva de turnos online avanzada</strong></p>
+                        </div>
                     </div>
+
                     <div class="col s12 valign-wrapper">
                         <div class="col s2 valign right-align"></div>
-                        <div class="col s10 valign"><p>Gestioná mejor tus descuentos por clases grupales y cantidad
-                            de horas.</p></div>
+                        <div class="col s10 valign">
+                            <p>
+                                Gestioná mejor tus descuentos por clases grupales y cantidad
+                                de horas.
+                            </p>
+                        </div>
                     </div>
                 </div>
+
                 <div class="row">
-                    <div class="col s8 offset-s2"><a
-                            class="waves-effect waves-light btn-large color-title-plan-3 full-width">ver
-                        más
-                    </a></div>
+                    <div class="col s8 offset-s2">
+                        <a class="waves-effect waves-light btn-large color-title-plan-3 full-width"
+                           analytics-on="click"
+                           analytics-event="plus_plan_selection"
+                           ng-click="vm.showUnavailableModal()">
+                            ver más
+                        </a>
+                    </div>
 
                 </div>
             </div>
+
         </div>
+
     </div>
 </div>
