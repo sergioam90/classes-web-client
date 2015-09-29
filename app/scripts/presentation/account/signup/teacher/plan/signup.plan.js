@@ -21,7 +21,8 @@
 
         function showUnavailableModal() {
             ModalService.open({
-                templateUrl: 'scripts/presentation/account/signup/teacher/plan/unavailable/signup.plan.unavailable.html'
+                templateUrl: 'scripts/presentation/account/signup/teacher/plan/unavailable/signup.plan.unavailable.html',
+                controller: 'SignupPlanUnavailableController as vm'
             });
         }
     }
