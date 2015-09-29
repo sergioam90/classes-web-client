@@ -98,10 +98,32 @@
                                    id="email"
                                    name="email"
                                    class="validate"
+                                   email-async-validator
                                    ng-model="vm.user.email"
                                    ng-model-options="{ updateOn: 'blur' }">
                             <label for="email">Email</label>
+
+                            <div class="valdr-message invalid" ng-show="userSignupForm.$error.email">
+                                Este email ya está registrado
+                            </div>
                         </input-field>
+
+                        <!-- Email loading spinner -->
+                        <span ng-show="userSignupForm.$pending.email">
+                            <div class="preloader-wrapper small active">
+                                <div class="spinner-layer spinner-yellow-only">
+                                    <div class="circle-clipper left">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="gap-patch">
+                                        <div class="circle"></div>
+                                    </div>
+                                    <div class="circle-clipper right">
+                                        <div class="circle"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </span>
 
                     </div>
 
@@ -202,6 +224,7 @@
                         </div>
                         <div class="col s12">
                             <button class="btn right amber"
+                                    ng-disabled="userSignupForm.$pending"
                                     ng-click="vm.sendConfirmation(userSignupForm)">
                                 Siguiente
                             </button>

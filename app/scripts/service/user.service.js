@@ -15,6 +15,7 @@
         vm.saveUser = saveUser;
         vm.signup = signup;
         vm.confirm = confirm;
+        vm.exists = exists;
 
         /* Implementation */
 
@@ -43,6 +44,10 @@
             user.birthDate = moment(user.birthDate).format('YYYY-M-D');
 
             return Users.one('me').one('confirmation').customPOST(user);
+        }
+
+        function exists(email) {
+            return Users.one('exists').get({email: email});
         }
 
     }

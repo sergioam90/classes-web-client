@@ -32,7 +32,7 @@
                 $state.go('root.signup-' + vm.target + '.step.email-sent');
             }, function (error) {
                 // TODO: Handle error
-                alert('Error creating user');
+                alert('Error creating user' + error.toString());
             });
         }
 
@@ -46,6 +46,7 @@
 
             return validPassword && validConfirmPassword;
         }
+
     }
 
 })();
